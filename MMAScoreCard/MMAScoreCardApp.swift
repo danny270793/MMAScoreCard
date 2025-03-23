@@ -12,6 +12,8 @@ struct MMAScoreCardApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-        }
+        }.modelContainer(for: [
+            Event.self
+        ])
     }
 }

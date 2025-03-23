@@ -6,16 +6,17 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    @Query var events: [Event]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        List(events) { event in
+            Text(event.name)
+        }.onAppear {
+            
         }
-        .padding()
     }
 }
 
