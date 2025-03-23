@@ -6,13 +6,30 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A0B318382D90896400658E72 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0B318372D90896400658E72 /* SwiftSoup */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		A0B318192D9080B400658E72 /* MMAScoreCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMAScoreCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A0B318B62D90979F00658E72 /* Exceptions for "MMAScoreCard" folder in "MMAScoreCard" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A0B318182D9080B400658E72 /* MMAScoreCard */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A0B3181B2D9080B400658E72 /* MMAScoreCard */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A0B318B62D90979F00658E72 /* Exceptions for "MMAScoreCard" folder in "MMAScoreCard" target */,
+			);
 			path = MMAScoreCard;
 			sourceTree = "<group>";
 		};
@@ -23,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0B318382D90896400658E72 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +83,7 @@
 			);
 			name = MMAScoreCard;
 			packageProductDependencies = (
+				A0B318372D90896400658E72 /* SwiftSoup */,
 			);
 			productName = MMAScoreCard;
 			productReference = A0B318192D9080B400658E72 /* MMAScoreCard.app */;
@@ -94,6 +113,9 @@
 			);
 			mainGroup = A0B318102D9080B400658E72;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A0B318362D90896400658E72 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A0B3181A2D9080B400658E72 /* Products */;
 			projectDirPath = "";
@@ -254,6 +276,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MMAScoreCard/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MMAScoreCard/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -282,6 +305,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MMAScoreCard/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MMAScoreCard/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -322,6 +346,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A0B318362D90896400658E72 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A0B318372D90896400658E72 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0B318362D90896400658E72 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A0B318112D9080B400658E72 /* Project object */;
 }
