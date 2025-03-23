@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct ContentView: View {
+struct EventsList: View {
     @Environment(\.modelContext) private var context
     
     @State private var isFetching: Bool = true

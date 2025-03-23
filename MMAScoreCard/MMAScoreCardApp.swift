@@ -11,7 +11,7 @@ import SwiftUI
 struct MMAScoreCardApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            EventsList()
         }.modelContainer(for: [
             Event.self
         ])
