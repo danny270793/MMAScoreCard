@@ -32,12 +32,18 @@ let session = URLSession(configuration: config, delegate: SSLDelegate(), delegat
 
 
 class Sheredog {
-    static func loadEvents() async throws -> [Event] {
-        guard let url = URL(string: "https://www.sherdog.com/organizations/Ultimate-Fighting-Championship-UFC-2") else {
+    static func requestIfNotExists(url: String) async throws -> String {
+        let htmlString: String? = try LocalStorage.loadFromFile(fileName: url)
+        if htmlString != nil {
+            print("already exists, so load it")
+            return htmlString!
+        }
+        print("do not exists, so request it")
+        guard let urlParsed = URL(string: url) else {
             throw SheredogError.invalidURL
         }
         
-        let (data, response) = try await session.data(from: url)
+        let (data, response) = try await session.data(from: urlParsed)
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
             throw SheredogError.invalidResponse
         }
@@ -46,9 +52,15 @@ class Sheredog {
             throw SheredogError.invalidData
         }
         
-        let document = try SwiftSoup.parse(htmlString)
+        try LocalStorage.saveToFile(content: htmlString, fileName: url)
+        return htmlString
+    }
+    
+    static func loadEvents() async throws -> [Event] {
+        let html = try await requestIfNotExists(url: "https://www.sherdog.com/organizations/Ultimate-Fighting-Championship-UFC-2")
+        
+        let document = try SwiftSoup.parse(html)
         let tables = try document.select("table.new_table")
-        print("\(tables.size()) tables")
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd yyyy"
@@ -56,7 +68,6 @@ class Sheredog {
         var events: [Event] = []
         for table in tables.array() {
             let rows = try table.select("tr")
-            print("\(rows.size()) rows")
             var rowNumber = -1
             for row in rows.array() {
                 rowNumber += 1
@@ -64,35 +75,34 @@ class Sheredog {
                     continue
                 }
                 
-                var name: String? = nil
+                var nameAndFight: String? = nil
                 var location: String? = nil
                 var date: Date? = nil
                 
                 let columns = try row.select("td")
-                print("\(columns.size()) columns")
                 var columnNumber = -1
                 for column in columns.array() {
                     columnNumber += 1
                     let columnText = try column.text()
                     switch columnNumber {
-                    case 0: {
-                        print("columnText \(columnText)")
-                        date = dateFormatter.date(from: columnText)
-                    }()
-                    case 1: name = columnText
+                    case 0: date = dateFormatter.date(from: columnText)
+                    case 1: nameAndFight = columnText
                     case 2: location = columnText
                     default: throw SheredogError.invalidColumn
                     }
                 }
                 
-                guard name != nil && location != nil && date != nil else {
+                guard nameAndFight != nil && location != nil && date != nil else {
                     throw SheredogError.invalidEvent
                 }
                 
-                events.append(Event(name: name!, location: location!, date: date!))
+                let parts = nameAndFight!.split(separator: "-")
+                let name: String = String(parts[0]).trim()
+                let fight: String = String(parts[1]).trim()
+                let event = Event(name: name, fight: fight.lowercased().contains("vs") ? fight : nil, location: location!, date: date!)
+                events.append(event)
             }
         }
-        print("\(events.count) events created")
         return events
     }
 }
