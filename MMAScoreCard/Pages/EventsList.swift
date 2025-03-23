@@ -54,7 +54,7 @@ struct EventsList: View {
     var body: some View {
         NavigationView {
             List(filteredEvents) { event in
-                NavigationLink(destination: Text(event.name)) {
+                NavigationLink(destination: FigthsList(event: event)) {
                     VStack {
                         Text(event.name.split(separator: "-")[0])
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -93,7 +93,7 @@ struct EventsList: View {
 }
 
 #Preview {
-    ContentView()
+    EventsList()
         .modelContainer(for: [
             Event.self
         ])
