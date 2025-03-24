@@ -53,10 +53,8 @@ class Sheredog {
     static func requestIfNotExists(url: String) async throws -> String {
         let htmlString: String? = try LocalStorage.loadFromFile(fileName: url)
         if htmlString != nil {
-            print("already exists \(url), so load it")
             return htmlString!
         }
-        print("do not exists, so request it \(url)")
         guard let urlParsed = URL(string: url) else {
             throw SheredogError.invalidURL(url: url)
         }
@@ -75,12 +73,69 @@ class Sheredog {
     }
     
     static func loadFights(event: Event) async throws -> [Fight] {
+        print("looking for event \(event.url)")
         let html = try await requestIfNotExists(url: event.url)
         
         let document = try SwiftSoup.parse(html)
-        let tables = try document.select("table.new_table")
+        let fightCard = try document.select("div.fight_card")
+        let division = try fightCard.select("span.weight_class").text()
+        
+        let leftSide = try fightCard.select("div.left_side")
+        let figther1StatusText = (try leftSide.select("span.final_result").text()).lowercased().trim()
+        print("figther1StatusText \(figther1StatusText)")
+        let figther1Status = figther1StatusText == "loss" ? FighterStatus.loss : figther1StatusText == "win" ? FighterStatus.win : FighterStatus.pending
+        print("figther1Status \(figther1Status)")
+        let figther1Name = try leftSide.select("h3").text()
+        
+        let rightSide = try fightCard.select("div.right_side")
+        let figther2StatusText = (try rightSide.select("span.final_result").text()).lowercased().trim()
+        print("figther2StatusText \(figther2StatusText)")
+        let figther2Status = figther2StatusText == "loss" ? FighterStatus.loss : figther2StatusText == "win" ? FighterStatus.win : FighterStatus.pending
+        print("figther2Status \(figther2Status)")
+        let figther2Name = try rightSide.select("h3").text()
+        
+        var position: Int = 1000
+        var result: String = ""
+        var round: String = ""
+        var time: String = ""
+        var referee: String = ""
+        var fightStatus = FightStatus.pending
+        
+        let resumeTables = try document.select("table.fight_card_resume")
+        print("\(resumeTables.count) resumeTables found")
+        for table in resumeTables.array() {
+            let rows = try table.select("tr")
+            print("\(rows.count) rows found")
+            for row in rows.array() {
+                let columns = try row.select("td")
+                print("\(columns.count) columns found")
+                var columnNumber = -1
+                for column in columns.array() {
+                    fightStatus = FightStatus.done
+                    columnNumber += 1
+                    let columnText = try column.text()
+                    print("columnNumber=\(columnNumber) columnText=\(columnText)")
+                    switch columnNumber {
+                    case 0: {
+                        let parts = columnText.split(separator: " ")
+                        let positionText = String(parts[parts.count - 1])
+                        position = Int(positionText) ?? -2
+                    }()
+                    case 1: result = columnText.replacingOccurrences(of: "Method ", with: "")
+                    case 2: referee = columnText
+                    case 3: round = columnText.replacingOccurrences(of: "Round ", with: "")
+                    case 4: time = columnText.replacingOccurrences(of: "Time ", with: "")
+                    default: throw SheredogError.invalidColumn(position: columnNumber, value: columnText)
+                    }
+                }
+            }
+        }
         
         var fights: [Fight] = []
+        let fight = Fight(position: position, figther1: Fighter(name: figther1Name, image: "", link: ""), figther1Status: figther1Status, figther2: Fighter(name: figther2Name, image: "", link: ""), figther2Status: figther2Status, result: result, round: round, time: time, referee: referee, division: division, fightStatus: fightStatus)
+        fights.append(fight)
+        
+        let tables = try document.select("table.new_table")
         for table in tables.array() {
             let rows = try table.select("tr")
             var rowNumber = -1
@@ -97,9 +152,9 @@ class Sheredog {
                 var referee: String? = nil
                 var division: String? = nil
                 var fighter1Name: String? = nil
-                var fighter1Status: String? = nil
+                var fighter1Status: FighterStatus = FighterStatus.pending
                 var fighter2Name: String? = nil
-                var fighter2Status: String? = nil
+                var fighter2Status: FighterStatus = FighterStatus.pending
                 var fightStatus: FightStatus? = nil
                 
                 let columns = try row.select("td")
@@ -107,7 +162,6 @@ class Sheredog {
                 for column in columns.array() {
                     columnNumber += 1
                     let columnText = try column.text()
-                    print("rowNumber \(rowNumber) columnNumber \(columnNumber) columnText \(columnText)")
                     if columns.count == 5 {
                         switch columnNumber {
                         case 0: position = Int(columnText)
@@ -125,6 +179,8 @@ class Sheredog {
                             referee = ""
                             round = ""
                             time = ""
+                            fighter1Status = FighterStatus.pending
+                            fighter2Status = FighterStatus.pending
                             fightStatus = FightStatus.pending
                         }()
                         default: throw SheredogError.invalidColumn(position: columnNumber, value: columnText)
@@ -133,14 +189,14 @@ class Sheredog {
                         switch columnNumber {
                         case 0: position = Int(columnText)
                         case 1: {
-                            fighter1Status = columnText.hasSuffix("win") ? "win" : "loss"
+                            fighter1Status = columnText.hasSuffix("win") ? FighterStatus.win : FighterStatus.loss
                             
                             let components = columnText.split(separator: " ")
                             fighter1Name = components.dropLast().joined(separator: " ")
                         }()
                         case 2: division = columnText
                         case 3: {
-                            fighter2Status = columnText.hasSuffix("win") ? "win" : "loss"
+                            fighter2Status = columnText.hasSuffix("win") ? FighterStatus.win : FighterStatus.loss
                             
                             let components = columnText.split(separator: " ")
                             fighter2Name = components.dropLast().joined(separator: " ")
@@ -165,7 +221,7 @@ class Sheredog {
                 
                 let figther1: Fighter = Fighter(name: fighter1Name!, image: "", link: "")
                 let figther2: Fighter = Fighter(name: fighter2Name!, image: "", link: "")
-                let fight = Fight(position: position!, figther1: figther1, figther2: figther2, result: result!, round: round!, time: time!, referee: referee!, division: division!, fightStatus: fightStatus!)
+                let fight = Fight(position: position!, figther1: figther1, figther1Status: fighter1Status, figther2: figther2, figther2Status: fighter2Status, result: result!, round: round!, time: time!, referee: referee!, division: division!, fightStatus: fightStatus!)
                 fights.append(fight)
             }
         }
