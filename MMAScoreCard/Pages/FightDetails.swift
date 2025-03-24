@@ -29,7 +29,7 @@ struct FigthDetails: View {
                 }
             }
             Section(header: Text("Fighter 1")) {
-                NavigationLink(destination: Text(fight.figther1.name)) {
+                NavigationLink(destination: FighterDetails(figther: fight.figther1)) {
                     LabeledContent("Name", value: fight.figther1.name)
                 }
                 if fight.figther1Status != FightStatus.pending.rawValue {
@@ -38,7 +38,7 @@ struct FigthDetails: View {
                 
             }
             Section(header: Text("Fighter 2")) {
-                NavigationLink(destination: Text(fight.figther2.name)) {
+                NavigationLink(destination: FighterDetails(figther: fight.figther2)) {
                     LabeledContent("Name", value: fight.figther2.name)
                 }
                 if fight.figther2Status != FightStatus.pending.rawValue {

@@ -107,7 +107,7 @@ struct FigthsList: View {
 }
 
 #Preview {
-    NavigationStack {
+    NavigationView {
         FigthsList(event: Event(name: "UFC 313", fight: "Alex Pereira vs. Ankalaev", location: "Los Angeles", date: Date(), url: "https://www.sherdog.com/events/UFC-Fight-Night-255-Edwards-vs-Brady-105670"))
             .modelContainer(for: [
                 Event.self,
