@@ -58,22 +58,26 @@ struct FigthsList: View {
     
     var body: some View {
         List {
-            Section(header: Text("Details")) {
+            Section(header: Text("Event")) {
                 LabeledContent("Name", value: event.name)
                 LabeledContent("Location", value: event.location)
                 LabeledContent("Date", value: event.date.ISO8601Format().split(separator: "T")[0])
             }
             Section(header: Text("Fights")) {
                 ForEach(filteredFights) { fight in
-                    VStack {
-                        Text("\(fight.figther1.name) vs \(fight.figther2.name)")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        if FightStatus.done.rawValue == fight.fightStatus {
-                            Text("\(fight.result) R\(fight.round) (\(fight.time))")
+                    NavigationLink(destination: FigthDetails(event: event, fight: fight)) {
+                        VStack {
+                            Text("\(fight.figther1.name) vs \(fight.figther2.name)")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            if FightStatus.done.rawValue == fight.fightStatus {
+                                Text("\(fight.result)")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Text("Round \(fight.round) at \(fight.time)")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            Text("\(fight.division)")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                        Text("\(fight.division)")
-                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
             }
