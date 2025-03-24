@@ -13,7 +13,9 @@ struct MMAScoreCardApp: App {
         WindowGroup {
             EventsList()
         }.modelContainer(for: [
-            Event.self
+            Event.self,
+            Fighter.self,
+            Fight.self
         ])
     }
 }

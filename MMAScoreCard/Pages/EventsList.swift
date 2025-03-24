@@ -42,14 +42,16 @@ struct EventsList: View {
     }
     
     private var filteredEvents: [Event] {
-            if searchText.isEmpty {
-                return events
-            } else {
-                return events.filter { event in
-                    event.name.lowercased().contains(searchText.lowercased())
-                }
+        if searchText.isEmpty {
+            return events
+        } else {
+            return events.filter { event in
+                event.name.lowercased().contains(searchText.lowercased()) ||
+                event.date.ISO8601Format().lowercased().contains(searchText.lowercased()) ||
+                (event.fight ?? "").lowercased().contains(searchText.lowercased())
             }
         }
+    }
     
     var body: some View {
         NavigationView {
@@ -69,7 +71,7 @@ struct EventsList: View {
             }
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
-                    Text("\(events.count) events")
+                    Text("\(filteredEvents.count) events")
                 }
             }
             .overlay {
@@ -95,6 +97,8 @@ struct EventsList: View {
 #Preview {
     EventsList()
         .modelContainer(for: [
-            Event.self
+            Event.self,
+            Fighter.self,
+            Fight.self
         ])
 }
