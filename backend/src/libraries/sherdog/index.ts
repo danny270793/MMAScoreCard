@@ -88,32 +88,34 @@ export class Sherdog {
                 columns.each((columnNumber: number, columnElement: Element) => {
                     const tempHtml: string = html(columnElement).html()?.replace(/<br\s*\/?>/g, '\n') || ''
                     const content: string = Cheerio.load(tempHtml).text().trim();
-                    switch(columnNumber) {
-                        case 0:
-                            position = parseInt(content)
-                            break
-                        case 1:
-                            content.endsWith('win') ? fighter1Status = 'win' : content.endsWith('loss') ? fighter1Status = 'loss' : fighter1Status = 'pending'
-                            fighter1Name = content.split(' ').slice(0, -1).join(' ').trim()
-                            html(columnElement).find('img').each((index: number, element: Element) => {
-                                if(element.attribs) {
-                                    if(element.attribs.src) {
-                                        fighter1Image = new URL(`${this.baseUrl}${element.attribs.src}`)
+                    if(columns.length === 7) {
+                        status = 'done'
+                        switch(columnNumber) {
+                            case 0:
+                                position = parseInt(content)
+                                break
+                            case 1:
+                                content.endsWith('win') ? fighter1Status = 'win' : content.endsWith('loss') ? fighter1Status = 'loss' : fighter1Status = 'pending'
+                                fighter1Name = content.split(' ').slice(0, -1).join(' ').trim()
+                                html(columnElement).find('img').each((index: number, element: Element) => {
+                                    if(element.attribs) {
+                                        if(element.attribs.src) {
+                                            fighter1Image = new URL(`${this.baseUrl}${element.attribs.src}`)
+                                        }
                                     }
-                                }
-                            })
-                            html(columnElement).find('a').each((index: number, element: Element) => {
-                                if(element.attribs) {
-                                    if(element.attribs.href) {
-                                        fighter1Url = new URL(`${this.baseUrl}${element.attribs.href}`)
+                                })
+                                html(columnElement).find('a').each((index: number, element: Element) => {
+                                    if(element.attribs) {
+                                        if(element.attribs.href) {
+                                            fighter1Url = new URL(`${this.baseUrl}${element.attribs.href}`)
+                                        }
                                     }
-                                }
-                            })
-                            break
-                        case 2:
-                            division = content
-                            break
-                        case 3:
+                                })
+                                break
+                            case 2:
+                                division = content
+                                break
+                            case 3:
                                 content.endsWith('win') ? fighter2Status = 'win' : content.endsWith('loss') ? fighter2Status = 'loss' : fighter2Status = 'pending'
                                 fighter2Name = content.split(' ').slice(0, -1).join(' ').trim()
                                 html(columnElement).find('img').each((index: number, element: Element) => {
@@ -131,17 +133,66 @@ export class Sherdog {
                                     }
                                 })
                                 break
-                        case 4:
-                            const parts: string[] = content.split(')')
-                            method = `${parts[0].trim()})`
-                            referee = parts[1].trim()
-                            break
-                        case 5:
-                            round = content
-                            break
-                        case 6:
-                            time = content
-                            break
+                            case 4:
+                                const parts: string[] = content.split(')')
+                                method = `${parts[0].trim()})`
+                                referee = parts[1].trim()
+                                break
+                            case 5:
+                                round = content
+                                break
+                            case 6:
+                                time = content
+                                break
+                        }
+                    } else {
+                        status = 'pending'
+                        round = ''
+                        time = ''
+                        referee = ''
+                        method = ''
+                        switch(columnNumber) {
+                            case 0:
+                                position = parseInt(content)
+                                break
+                            case 1:
+                                fighter1Name = content.split(' ').slice(0, -1).join(' ').trim()
+                                html(columnElement).find('img').each((index: number, element: Element) => {
+                                    if(element.attribs) {
+                                        if(element.attribs.src) {
+                                            fighter1Image = new URL(`${this.baseUrl}${element.attribs.src}`)
+                                        }
+                                    }
+                                })
+                                html(columnElement).find('a').each((index: number, element: Element) => {
+                                    if(element.attribs) {
+                                        if(element.attribs.href) {
+                                            fighter1Url = new URL(`${this.baseUrl}${element.attribs.href}`)
+                                        }
+                                    }
+                                })
+                                break
+                            case 2:
+                                division = content
+                                break
+                            case 3:
+                                fighter2Name = content.split(' ').slice(0, -1).join(' ').trim()
+                                html(columnElement).find('img').each((index: number, element: Element) => {
+                                    if(element.attribs) {
+                                        if(element.attribs.src) {
+                                            fighter2Image = new URL(`${this.baseUrl}${element.attribs.src}`)
+                                        }
+                                    }
+                                })
+                                html(columnElement).find('a').each((index: number, element: Element) => {
+                                    if(element.attribs) {
+                                        if(element.attribs.href) {
+                                            fighter2Url = new URL(`${this.baseUrl}${element.attribs.href}`)
+                                        }
+                                    }
+                                })
+                                break
+                        }
                     }
                 })
     
