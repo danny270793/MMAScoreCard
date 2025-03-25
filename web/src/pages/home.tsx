@@ -1,5 +1,15 @@
+import { Link } from "react-router-dom";
+
 const Home = () => {
-  return <h2>Home Page</h2>;
+  return (
+    <ul>
+      <li>
+        <Link to="/events">
+          Events
+        </Link>
+      </li>
+    </ul>
+  );
 };
 
 export default Home;
