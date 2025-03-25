@@ -1,8 +1,9 @@
 import Fs from 'node:fs'
+import { Cache } from '.'
 
-export class Storage {
+export class FileCache implements Cache {
     private path: string
-    private cachedData: any = {}
+    private cachedData: {[key: string]: string} = {}
     constructor(path: string) {
         this.path = path
         this.loadCachedData()
