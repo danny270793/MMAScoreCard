@@ -5,6 +5,7 @@ import Home from './pages/home';
 import NotFound from './pages/404';
 import EventsPage from './pages/events';
 import EventPage from './pages/event';
+import './css/w3css/index.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
