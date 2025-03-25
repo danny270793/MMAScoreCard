@@ -52,7 +52,7 @@ struct FigthDetails: View {
 
 #Preview {
     NavigationStack {
-        FigthDetails(event: Event(name: "UFC 313", fight: "Alex Pereira vs. Ankalaev", location: "Los Angeles", date: Date(), url: "https://www.sherdog.com/events/UFC-Fight-Night-255-Edwards-vs-Brady-105670"), fight: Fight(position: 1, figther1: Fighter(name: "Alex Pereira", image: "", link: ""), figther1Status: FighterStatus.win, figther2: Fighter(name: "Mokaev Ankalaev", image: "", link: ""), figther2Status: FighterStatus.win, result: "Submission (Armbar)", round: "3", time: "1:45", referee: "Marg Godard", division: "Heavyweight", fightStatus: FightStatus.done))
+        FigthDetails(event: Event(name: "UFC 313", fight: "Alex Pereira vs. Ankalaev", location: "Los Angeles", date: Date(), url: "https://www.sherdog.com/events/UFC-Fight-Night-255-Edwards-vs-Brady-105670"), fight: Fight(position: 1, figther1: Fighter(name: "Alex Pereira", image: "", link: ""), figther1Status: FighterStatus.win, figther2: Fighter(name: "Mokaev Ankalaev", image: "", link: ""), figther2Status: FighterStatus.loss, result: "Submission (Armbar)", round: "3", time: "1:45", referee: "Marg Godard", division: "Heavyweight", fightStatus: FightStatus.done))
             .modelContainer(for: [
                 Event.self,
                 Fighter.self,
