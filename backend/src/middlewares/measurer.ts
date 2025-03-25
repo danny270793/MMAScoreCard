@@ -7,7 +7,7 @@ export const measurer = () => {
         response.on('finish', () => {
             const end: number = Date.now()
             const duration: number = end - start
-            console.log(`${new Date()} ${request.method} ${request.originalUrl} - ${duration}ms`)
+            console.log(`${new Date()} ${request.method} ${response.statusCode} ${request.originalUrl} - ${duration}ms`)
         })
       
         next()
