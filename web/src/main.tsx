@@ -12,6 +12,7 @@ createRoot(document.getElementById('root')!).render(
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/index.html" element={<Home />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/events/:name" element={<EventPage />} />
         <Route path="*" element={<NotFound />} />
