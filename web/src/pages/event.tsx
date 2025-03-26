@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { Event, Fight, Sherdog } from "../services/sherdog";
+import { Event, Fight, sherdog } from "../services/sherdog";
 import { useEffect, useState } from "react";
 import { Loader } from "../component/loader";
 import { Appbar } from "../component/appbar";
@@ -15,10 +15,10 @@ const EventPage = () => {
   const init = async () => {
     setLoading(true)
     try {
-      const event: Event = await Sherdog.getEvent(name!)
+      const event: Event = await sherdog.getEvent(name!)
       setEvent(event)
 
-      const fights: Fight[] = await Sherdog.getFights(event)
+      const fights: Fight[] = await sherdog.getFights(event)
       setFights(fights)
     } catch(error) {
       console.error(error)
