@@ -7,8 +7,10 @@
     "web:build": "cd web && npm run build",
     "android:build": "cd mobile && npm run android:build",
     "android:run": "cd mobile && npm run android:run",
+    "android": "npm run web:build && npm run android:build && npm run android:run",
     "ios:build": "cd mobile && npm run ios:build",
-    "ios:run": "cd mobile && npm run ios:run"
+    "ios:run": "cd mobile && npm run ios:run",
+    "ios": "npm run web:build && npm run ios:build && npm run ios:run"
   },
   "keywords": [],
   "author": "",
