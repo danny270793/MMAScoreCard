@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct AboutView: View {
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
+    let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
+        
+    
     var body: some View {
         List {
             Section(header: Text("Application")) {
                 LabeledContent("Name", value: "MMA Score Card")
-                LabeledContent("Version", value: "1.0.0")
+                LabeledContent("Version", value: appVersion)
+                LabeledContent("Build number", value: buildNumber)
             }
             Section(header: Text("Developer")) {
                 LabeledContent("Name", value: "Danny Vaca")
