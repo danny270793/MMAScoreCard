@@ -69,7 +69,25 @@ struct EventsList: View {
             }
         }
         .toolbar {
+//            ToolbarItem(placement: .secondaryAction) {
+//                Menu {
+//                    Picker(selection: $filter, label: Text("Filter options")) {
+//                        Text("Past").tag(FilterOptions.past)
+//                        Text("Upcoming").tag(FilterOptions.upcoming)
+//                        Text("All").tag(FilterOptions.all)
+//                    }
+//                } label: {
+//                    Label("Filter", systemImage: "arrow.up.arrow.down")
+//                }
+//            }
             ToolbarItem(placement: .secondaryAction) {
+                NavigationLink(destination: AboutView()) {
+                    Label("About", systemImage: "info")
+                }
+                
+            }
+            
+            ToolbarItemGroup(placement: .bottomBar) {
                 Menu {
                     Picker(selection: $filter, label: Text("Filter options")) {
                         Text("Past").tag(FilterOptions.past)
@@ -79,16 +97,9 @@ struct EventsList: View {
                 } label: {
                     Label("Filter", systemImage: "arrow.up.arrow.down")
                 }
-            }
-            ToolbarItem(placement: .secondaryAction) {
-                NavigationLink(destination: AboutView()) {
-                    Label("About", systemImage: "info")
-                }
-                
-            }
-            
-            ToolbarItemGroup(placement: .bottomBar) {
+                Spacer()
                 Text("\(filteredEvents.count) events")
+                Spacer()
             }
         }
         .overlay {
