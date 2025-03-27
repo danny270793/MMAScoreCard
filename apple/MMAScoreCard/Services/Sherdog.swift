@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftSoup
 
-enum SheredogError: Error {
+enum SheredogError: Error, LocalizedError {
     case invalidURL(url: String)
     case invalidResponse
     case invalidData
@@ -16,20 +16,20 @@ enum SheredogError: Error {
     case invalidFigther
     case invalidColumn(position: Int, value: String)
     
-    var description: String {
+    var errorDescription: String? {
         switch self {
         case .invalidURL(let url):
-            return "Invalid URL: \(url)"
+            return NSLocalizedString("Invalid URL: \(url)", comment: "Invalid url")
         case .invalidResponse:
-            return "Invalid response with invalid status code"
+            return NSLocalizedString("Invalid response with invalid status code", comment: "Invalid response")
         case .invalidData:
-            return "Invalid data received"
+            return NSLocalizedString("Invalid data received", comment: "Invalid data")
         case .invalidEvent:
-            return "Invalid event"
+            return NSLocalizedString("Invalid event", comment: "Invalid event")
         case .invalidFigther:
-            return "Invalid fighter"
+            return NSLocalizedString("Invalid fighter", comment: "Invalid figther")
         case .invalidColumn(let position, let value):
-            return "Invalid column at position \(position) with value \(value)"
+            return NSLocalizedString("Invalid column at position \(position) with value \(value)", comment: "Invalid column")
         }
     }
 }
@@ -50,6 +50,21 @@ let session = URLSession(configuration: config, delegate: SSLDelegate(), delegat
 
 
 class Sheredog {
+    static let baseUrl: String = "https://www.sherdog.com"
+    
+    static func loadImage(url: URL) async throws -> Data {
+        let (data, response) = try await session.data(from: url)
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw SheredogError.invalidResponse
+        }
+        
+        return data
+    }
+    
+    static func requestIfNotExists(url: URL) async throws -> String {
+        return try await requestIfNotExists(url: url.absoluteString)
+    }
+    
     static func requestIfNotExists(url: String) async throws -> String {
         let htmlString: String? = try LocalStorage.loadFromFile(fileName: url)
         if htmlString != nil {
@@ -72,6 +87,146 @@ class Sheredog {
         return htmlString
     }
     
+    static func loadRecord(fighter: Fighter) async throws -> FighterRecord {
+        print("looking for record \(fighter.link)")
+        let html = try await requestIfNotExists(url: fighter.link)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM / dd / yyyy"
+        
+        var records: [Record] = []
+        
+        let document = try SwiftSoup.parse(html)
+        
+        var nationality: String? = nil
+        var age: String? = nil
+        var height: String? = nil
+        var weight: String? = nil
+        
+        let birthplaces = try document.select("span.birthplace")
+        for birthplace in birthplaces.array() {
+            nationality = try birthplace.text()
+        }
+        
+        let bios = try document.select("div.bio-holder")
+        for bio in bios.array() {
+            let tables = try bio.select("table")
+            for table in tables.array() {
+                let rows = try table.select("tr")
+                var rowNumber = -1
+                for row in rows.array() {
+                    rowNumber += 1
+                    
+                    let columns = try row.select("td")
+                    var columnNumber = -1
+                    for column in columns.array() {
+                        columnNumber += 1
+                        let columnText = try column.text()
+                        print("rowNumber=\(rowNumber) columnNumber=\(columnNumber) columnText=\(columnText)")
+                        switch columnNumber {
+                        case 1: {
+                            switch rowNumber {
+                            case 0: age = columnText
+                            case 1: height = columnText
+                            case 2: weight = columnText
+                            default:{}()
+                            }
+                        }()
+                        default:{}()
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        let tables = try document.select("table.new_table")
+        var tableNumber = -1
+        for table in tables.array() {
+            tableNumber += 1
+            if tableNumber != 0 {
+                continue
+            }
+            let rows = try table.select("tr")
+            var rowNumber = -1
+            for row in rows.array() {
+                rowNumber += 1
+                if rowNumber == 0 {
+                    continue
+                }
+                
+                var fighterStatus: FighterStatus? = nil
+                var fighter: String? = nil
+                var event: String? = nil
+                var date: Date? = nil
+                var referee: String? = nil
+                var method: String? = nil
+                var round: String? = nil
+                var time: String? = nil
+                
+                let columns = try row.select("td")
+                var columnNumber = -1
+                for column in columns.array() {
+                    columnNumber += 1
+                    let columnText = try column.text()
+                    print("rowNumber=\(rowNumber) columnNumber=\(columnNumber) columnText=\(columnText)")
+                    switch columnNumber {
+                    case 0: {
+                        let status = columnText.lowercased()
+                        fighterStatus = status == "win" ? FighterStatus.win :
+                        status == "loss" ? FighterStatus.loss :
+                        status == "nc" ? FighterStatus.nc :
+                        status == "draw" ? FighterStatus.draw :
+                        FighterStatus.pending
+                    }()
+                    case 1:
+                        fighter = columnText
+                    case 2: {
+                        let parts = columnText.split(separator: "-")
+                        
+                        event = String(parts[0])
+                        let dateString = String(parts[1])
+                        
+                        let dateParts = dateString.split(separator: " ")
+                        let year = dateParts[dateParts.count - 1]
+                        let day = dateParts[dateParts.count - 3]
+                        let month = dateParts[dateParts.count - 5]
+                        date = dateFormatter.date(from: "\(month) / \(day) / \(year)")
+                    }()
+                    case 3: {
+                        let parts = columnText.split(separator: ")")
+                        
+                        method = "\(parts[0]))"
+                        if parts.count > 1 {
+                            referee = String(parts[1].replacing("VIEW PLAY-BY-PLAY", with: "")).trim()
+                        }
+                    }()
+                    case 4:
+                        round = columnText
+                    case 5:
+                        time = columnText
+                    default: throw SheredogError.invalidColumn(position: columnNumber, value: columnText)
+                    }
+                }
+                
+                guard fighterStatus != nil && fighter != nil && event != nil && date != nil && method != nil && round != nil && time != nil else {
+                    throw SheredogError.invalidFigther
+                }
+                
+                let record: Record = Record(status: fighterStatus!, figther: fighter!, event: event!, date: date!, method: method!, referee: referee, round: round!, time: time!)
+                records.append(record)
+            }
+        }
+        
+        guard age != nil && height != nil && weight != nil && nationality != nil else {
+            throw SheredogError.invalidFigther
+        }
+        
+        return FighterRecord(name: fighter.name, nationality: nationality!, age: age!, height: height!, weight: weight!, fights: records.sorted { fight1, fight2 in
+            fight1.date > fight2.date
+        })
+    }
+    
     static func loadFights(event: Event) async throws -> [Fight] {
         print("looking for event \(event.url)")
         let html = try await requestIfNotExists(url: event.url)
@@ -82,17 +237,34 @@ class Sheredog {
         
         let leftSide = try fightCard.select("div.left_side")
         let figther1StatusText = (try leftSide.select("span.final_result").text()).lowercased().trim()
-        print("figther1StatusText \(figther1StatusText)")
         let figther1Status = figther1StatusText == "loss" ? FighterStatus.loss : figther1StatusText == "win" ? FighterStatus.win : FighterStatus.pending
-        print("figther1Status \(figther1Status)")
         let figther1Name = try leftSide.select("h3").text()
+        var fighter1Image: URL? = nil
+        var fighter1Url: URL? = nil
+        for image in try leftSide.select("img").array() {
+            let src = try image.attr("src")
+            fighter1Image = URL(string: "\(baseUrl)\(src)")
+        }
+        for a in try leftSide.select("a").array() {
+            let href = try a.attr("href")
+            fighter1Url = URL(string: "\(baseUrl)\(href)")
+        }
+        
         
         let rightSide = try fightCard.select("div.right_side")
         let figther2StatusText = (try rightSide.select("span.final_result").text()).lowercased().trim()
-        print("figther2StatusText \(figther2StatusText)")
         let figther2Status = figther2StatusText == "loss" ? FighterStatus.loss : figther2StatusText == "win" ? FighterStatus.win : FighterStatus.pending
-        print("figther2Status \(figther2Status)")
         let figther2Name = try rightSide.select("h3").text()
+        var fighter2Image: URL? = nil
+        var fighter2Url: URL? = nil
+        for image in try rightSide.select("img").array() {
+            let src = try image.attr("src")
+            fighter2Image = URL(string: "\(baseUrl)\(src)")
+        }
+        for a in try rightSide.select("a").array() {
+            let href = try a.attr("href")
+            fighter2Url = URL(string: "\(baseUrl)\(href)")
+        }
         
         var position: Int = 1000
         var result: String = ""
@@ -102,19 +274,18 @@ class Sheredog {
         var fightStatus = FightStatus.pending
         
         let resumeTables = try document.select("table.fight_card_resume")
-        print("\(resumeTables.count) resumeTables found")
         for table in resumeTables.array() {
             let rows = try table.select("tr")
-            print("\(rows.count) rows found")
+            var rowNumber = -1
             for row in rows.array() {
+                rowNumber += 1
                 let columns = try row.select("td")
-                print("\(columns.count) columns found")
                 var columnNumber = -1
                 for column in columns.array() {
                     fightStatus = FightStatus.done
                     columnNumber += 1
                     let columnText = try column.text()
-                    print("columnNumber=\(columnNumber) columnText=\(columnText)")
+                    print("rowNumber=\(rowNumber) columnNumber=\(columnNumber) columnText=\(columnText)")
                     switch columnNumber {
                     case 0: {
                         let parts = columnText.split(separator: " ")
@@ -122,7 +293,7 @@ class Sheredog {
                         position = Int(positionText) ?? -2
                     }()
                     case 1: result = columnText.replacingOccurrences(of: "Method ", with: "")
-                    case 2: referee = columnText
+                    case 2: referee = columnText.replacingOccurrences(of: "Referee ", with: "")
                     case 3: round = columnText.replacingOccurrences(of: "Round ", with: "")
                     case 4: time = columnText.replacingOccurrences(of: "Time ", with: "")
                     default: throw SheredogError.invalidColumn(position: columnNumber, value: columnText)
@@ -132,7 +303,7 @@ class Sheredog {
         }
         
         var fights: [Fight] = []
-        let fight = Fight(position: position, figther1: Fighter(name: figther1Name, image: "", link: ""), figther1Status: figther1Status, figther2: Fighter(name: figther2Name, image: "", link: ""), figther2Status: figther2Status, result: result, round: round, time: time, referee: referee, division: division, fightStatus: fightStatus)
+        let fight = Fight(position: position, figther1: Fighter(name: figther1Name, image: fighter1Image!, link: fighter1Url!), figther1Status: figther1Status, figther2: Fighter(name: figther2Name, image: fighter2Image!, link: fighter2Url!), figther2Status: figther2Status, result: result, round: round, time: time, referee: referee, division: division, fightStatus: fightStatus)
         fights.append(fight)
         
         let tables = try document.select("table.new_table")
@@ -152,8 +323,12 @@ class Sheredog {
                 var referee: String? = nil
                 var division: String? = nil
                 var fighter1Name: String? = nil
+                var fighter1Image: URL? = nil
+                var fighter1Url: URL? = nil
                 var fighter1Status: FighterStatus = FighterStatus.pending
                 var fighter2Name: String? = nil
+                var fighter2Image: URL? = nil
+                var fighter2Url: URL? = nil
                 var fighter2Status: FighterStatus = FighterStatus.pending
                 var fightStatus: FightStatus? = nil
                 
@@ -162,17 +337,41 @@ class Sheredog {
                 for column in columns.array() {
                     columnNumber += 1
                     let columnText = try column.text()
+                    print("rowNumber=\(rowNumber) columnNumber=\(columnNumber) columnText=\(columnText)")
+                    
                     if columns.count == 5 {
                         switch columnNumber {
                         case 0: position = Int(columnText)
-                        case 1: {
+                        case 1: try {
                             let components = columnText.split(separator: " ")
                             fighter1Name = components.dropLast().joined(separator: " ")
+                            
+                            for image in try column.select("img").array() {
+                                let src = try image.attr("src")
+                                print("src=\(src)")
+                                fighter1Image = URL(string: "\(baseUrl)\(src)")
+                            }
+                            for a in try column.select("a").array() {
+                                let href = try a.attr("href")
+                                print("href=\(href)")
+                                fighter1Url = URL(string: "\(baseUrl)\(href)")
+                            }
                         }()
                         case 2: division = columnText
-                        case 3: {
+                        case 3: try {
                             let components = columnText.split(separator: " ")
                             fighter2Name = components.dropLast().joined(separator: " ")
+                            
+                            for image in try column.select("img").array() {
+                                let src = try image.attr("src")
+                                print("src=\(src)")
+                                fighter2Image = URL(string: "\(baseUrl)\(src)")
+                            }
+                            for a in try column.select("a").array() {
+                                let href = try a.attr("href")
+                                print("href=\(href)")
+                                fighter2Url = URL(string: "\(baseUrl)\(href)")
+                            }
                         }()
                         case 4: {
                             result = ""
@@ -188,18 +387,40 @@ class Sheredog {
                     } else {
                         switch columnNumber {
                         case 0: position = Int(columnText)
-                        case 1: {
+                        case 1: try {
                             fighter1Status = columnText.hasSuffix("win") ? FighterStatus.win : FighterStatus.loss
                             
                             let components = columnText.split(separator: " ")
                             fighter1Name = components.dropLast().joined(separator: " ")
+                            
+                            for image in try column.select("img").array() {
+                                let src = try image.attr("src")
+                                print("src=\(src)")
+                                fighter1Image = URL(string: "\(baseUrl)\(src)")
+                            }
+                            for a in try column.select("a").array() {
+                                let href = try a.attr("href")
+                                print("href=\(href)")
+                                fighter1Url = URL(string: "\(baseUrl)\(href)")
+                            }
                         }()
                         case 2: division = columnText
-                        case 3: {
+                        case 3: try {
                             fighter2Status = columnText.hasSuffix("win") ? FighterStatus.win : FighterStatus.loss
                             
                             let components = columnText.split(separator: " ")
                             fighter2Name = components.dropLast().joined(separator: " ")
+                            
+                            for image in try column.select("img").array() {
+                                let src = try image.attr("src")
+                                print("src=\(src)")
+                                fighter2Image = URL(string: "\(baseUrl)\(src)")
+                            }
+                            for a in try column.select("a").array() {
+                                let href = try a.attr("href")
+                                print("href=\(href)")
+                                fighter2Url = URL(string: "\(baseUrl)\(href)")
+                            }
                         }()
                         case 4: {
                             let parts = columnText.split(separator: ")")
@@ -215,21 +436,22 @@ class Sheredog {
                     }
                 }
                 
-                guard position != nil && result != nil && round != nil && time != nil && referee != nil && fightStatus != nil else {
+                guard position != nil && result != nil && round != nil && time != nil && referee != nil && fightStatus != nil && fighter1Image != nil && fighter1Url != nil && fighter2Image != nil && fighter2Url != nil else {
                     throw SheredogError.invalidFigther
                 }
                 
-                let figther1: Fighter = Fighter(name: fighter1Name!, image: "", link: "")
-                let figther2: Fighter = Fighter(name: fighter2Name!, image: "", link: "")
+                let figther1: Fighter = Fighter(name: fighter1Name!, image: fighter1Image!, link: fighter1Url!)
+                let figther2: Fighter = Fighter(name: fighter2Name!, image: fighter2Image!, link: fighter2Url!)
                 let fight = Fight(position: position!, figther1: figther1, figther1Status: fighter1Status, figther2: figther2, figther2Status: fighter2Status, result: result!, round: round!, time: time!, referee: referee!, division: division!, fightStatus: fightStatus!)
                 fights.append(fight)
             }
         }
-        return fights
+        return fights.sorted { fight1, fight2 in
+            fight1.position > fight2.position
+        }
     }
     
     static func loadEvents() async throws -> [Event] {
-        let baseUrl: String = "https://www.sherdog.com"
         let html = try await requestIfNotExists(url: "\(baseUrl)/organizations/Ultimate-Fighting-Championship-UFC-2")
         
         let document = try SwiftSoup.parse(html)
@@ -287,6 +509,8 @@ class Sheredog {
                 events.append(event)
             }
         }
-        return events
+        return events.sorted { event1, event2 in
+            event1.date > event2.date
+        }
     }
 }
