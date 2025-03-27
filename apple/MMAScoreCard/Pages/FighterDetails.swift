@@ -18,6 +18,7 @@ struct FighterDetails: View {
     
     func onRefresh() {
         Task {
+            
             isFetching = true
             do {
                 //image = try await Sheredog.loadImage(url: figther.image)
@@ -72,32 +73,34 @@ struct FighterDetails: View {
                     LabeledContent("Weight", value: fighterRecord!.weight)
                 }
             }
-            Section(header: Text("Record")) {
-                if fighterRecord != nil {
-                    LabeledContent("WINs", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.win }.count)")
-                    LabeledContent("LOSSes", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.loss }.count)")
-                    LabeledContent("DRAWs", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.draw }.count)")
-                    LabeledContent("NCs", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.nc }.count)")
+            if fighterRecord != nil {
+                Section(header: Text("Record")) {
+                    LabeledContent("WIN", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.win }.count)")
+                    LabeledContent("LOSS", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.loss }.count)")
+                    LabeledContent("DRAW", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.draw }.count)")
+                    LabeledContent("NC", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.nc }.count)")
                 }
-            }
-            Section(header: Text("Fights")) {
-                ForEach(filteredFights) { fight in
-                    VStack {
-                        Text("\(fight.figther)")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Text("\(fight.status.rawValue) by \(fight.method)")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Text("Round \(fight.round) at \(fight.time)")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        if fight.referee != nil {
-                            Text("\(fight.referee!)")
+                
+                Section(header: Text("Fights")) {
+                    ForEach(filteredFights) { fight in
+                        VStack {
+                            Text("\(fight.figther)")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text("\(fight.status.rawValue) by \(fight.method)")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text("Round \(fight.round) at \(fight.time)")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            if fight.referee != nil {
+                                Text("\(fight.referee!)")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            Text("\(fight.event)")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text("\(fight.date.ISO8601Format().split(separator: "T")[0])")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                        Text("\(fight.event)")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Text("\(fight.date.ISO8601Format().split(separator: "T")[0])")
-                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
+                    
                 }
             }
         }
@@ -127,6 +130,6 @@ struct FighterDetails: View {
 
 #Preview {
     NavigationView {
-        FighterDetails(figther: Fighter(name: "Merab Dvalishvili", image: URL(string: "https://www.sherdog.com/image_crop/44/44/_images/fighter/1648844898903_20220401042811_Merab_Dvalishvili_ff.JPG")!, link: URL(string: "https://www.sherdog.com/fighter/Merab-Dvalishvili-157355")!))
+        FighterDetails(figther: Fighter(name: "Merab Dvalishvili", image: URL(string: "https://www.sherdog.com/image_crop/44/44/_images/fighter/1648844898903_20220401042811_Merab_Dvalishvili_ff.JPG")!, link: URL(string: "https://www.sherdog.com/fighter/Islam-Makhachev-76836")!))
     }
 }
