@@ -18,6 +18,7 @@ struct FighterDetails: View {
     
     func onRefresh() {
         Task {
+            
             isFetching = true
             do {
                 //image = try await Sheredog.loadImage(url: figther.image)
@@ -128,6 +129,6 @@ struct FighterDetails: View {
 
 #Preview {
     NavigationView {
-        FighterDetails(figther: Fighter(name: "Merab Dvalishvili", image: URL(string: "https://www.sherdog.com/image_crop/44/44/_images/fighter/1648844898903_20220401042811_Merab_Dvalishvili_ff.JPG")!, link: URL(string: "https://www.sherdog.com/fighter/Merab-Dvalishvili-157355")!))
+        FighterDetails(figther: Fighter(name: "Merab Dvalishvili", image: URL(string: "https://www.sherdog.com/image_crop/44/44/_images/fighter/1648844898903_20220401042811_Merab_Dvalishvili_ff.JPG")!, link: URL(string: "https://www.sherdog.com/fighter/Islam-Makhachev-76836")!))
     }
 }
