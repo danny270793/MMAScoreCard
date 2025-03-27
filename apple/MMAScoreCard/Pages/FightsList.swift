@@ -81,7 +81,9 @@ struct FigthsList: View {
             Alert(
                 title: Text("Error"),
                 message: Text(error!.localizedDescription),
-                dismissButton: .default(Text("OK"))
+                dismissButton: .default(Text("OK")) {
+                    error = nil
+                }
             )
         }
         .onAppear(perform: onRefresh)
