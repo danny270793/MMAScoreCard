@@ -50,19 +50,19 @@ struct FighterDetails: View {
     
     var body: some View {
         List {
-//            HStack {
-//                Spacer()
-//                if let image = image, let uiImage = UIImage(data: image) {
-//                    Image(uiImage: uiImage)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: 50, height: 50)
-//                        .clipShape(Circle())
-//                } else {
-//                    ProgressView()
-//                }
-//                Spacer()
-//            }
+            //            HStack {
+            //                Spacer()
+            //                if let image = image, let uiImage = UIImage(data: image) {
+            //                    Image(uiImage: uiImage)
+            //                        .resizable()
+            //                        .scaledToFit()
+            //                        .frame(width: 50, height: 50)
+            //                        .clipShape(Circle())
+            //                } else {
+            //                    ProgressView()
+            //                }
+            //                Spacer()
+            //            }
             Section(header: Text("Fighter")) {
                 LabeledContent("Name", value: figther.name)
                 if fighterRecord != nil {

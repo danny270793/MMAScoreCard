@@ -39,43 +39,41 @@ struct EventsList: View {
     }
     
     var body: some View {
-        NavigationView {
-            List(filteredEvents) { event in
-                NavigationLink(destination: FigthsList(event: event)) {
-                    VStack {
-                        Text(event.name.split(separator: "-")[0])
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        if event.fight != nil {
-                            Text(event.fight!)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        Text(event.date.ISO8601Format().split(separator: "T")[0])
+        List(filteredEvents) { event in
+            NavigationLink(destination: FigthsList(event: event)) {
+                VStack {
+                    Text(event.name.split(separator: "-")[0])
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    if event.fight != nil {
+                        Text(event.fight!)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
+                    Text(event.date.ISO8601Format().split(separator: "T")[0])
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
-            .toolbar {
-                ToolbarItemGroup(placement: .bottomBar) {
-                    Text("\(filteredEvents.count) events")
-                }
-            }
-            .overlay {
-                if isFetching {
-                    ProgressView()
-                }
-            }
-            .alert(isPresented: .constant(error != nil)) {
-                Alert(
-                    title: Text("Error"),
-                    message: Text(error!.localizedDescription),
-                    dismissButton: .default(Text("OK"))
-                )
-            }
-            .onAppear(perform: onRefresh)
-            .refreshable(action: onRefresh)
-            .searchable(text: $searchText)
-            .navigationTitle("Events")
         }
+        .toolbar {
+            ToolbarItemGroup(placement: .bottomBar) {
+                Text("\(filteredEvents.count) events")
+            }
+        }
+        .overlay {
+            if isFetching {
+                ProgressView()
+            }
+        }
+        .alert(isPresented: .constant(error != nil)) {
+            Alert(
+                title: Text("Error"),
+                message: Text(error!.localizedDescription),
+                dismissButton: .default(Text("OK"))
+            )
+        }
+        .onAppear(perform: onRefresh)
+        .refreshable(action: onRefresh)
+        .searchable(text: $searchText)
+        .navigationTitle("Events")
     }
 }
 
