@@ -11,7 +11,9 @@ import SwiftUI
 struct MMAScoreCardApp: App {
     var body: some Scene {
         WindowGroup {
-            EventsList()
+            NavigationStack {
+                EventsList()
+            }
         }
     }
 }
