@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftData
 
 enum FightStatus: String {
     case done = "DONE"
@@ -19,9 +18,7 @@ enum FighterStatus: String {
     case pending = "PENDING"
 }
 
-@Model
 class Fight {
-    @Attribute(.unique) var id: UUID
     var position: Int
     var figther1: Fighter
     var figther2: Fighter
@@ -34,9 +31,8 @@ class Fight {
     var division: String
     var fightStatus: String
     
-    init(id: UUID = UUID(), position: Int, figther1: Fighter, figther1Status: FighterStatus, figther2: Fighter, figther2Status: FighterStatus, result: String, round: String, time: String, referee: String, division: String, fightStatus: FightStatus) {
+    init(position: Int, figther1: Fighter, figther1Status: FighterStatus, figther2: Fighter, figther2Status: FighterStatus, result: String, round: String, time: String, referee: String, division: String, fightStatus: FightStatus) {
         self.position = position
-        self.id = id
         self.figther1 = figther1
         self.figther1Status = figther1Status.rawValue
         self.figther2 = figther2
