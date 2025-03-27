@@ -72,31 +72,32 @@ struct FighterDetails: View {
                     LabeledContent("Weight", value: fighterRecord!.weight)
                 }
             }
-            Section(header: Text("Record")) {
-                if fighterRecord != nil {
+            if fighterRecord != nil {
+                Section(header: Text("Record")) {
+                    
                     LabeledContent("WINs", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.win }.count)")
                     LabeledContent("LOSSes", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.loss }.count)")
                     LabeledContent("DRAWs", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.draw }.count)")
                     LabeledContent("NCs", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.nc }.count)")
                 }
-            }
-            Section(header: Text("Fights")) {
-                ForEach(filteredFights) { fight in
-                    VStack {
-                        Text("\(fight.figther)")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Text("\(fight.status.rawValue) by \(fight.method)")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Text("Round \(fight.round) at \(fight.time)")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        if fight.referee != nil {
-                            Text("\(fight.referee!)")
+                Section(header: Text("Fights")) {
+                    ForEach(filteredFights) { fight in
+                        VStack {
+                            Text("\(fight.figther)")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text("\(fight.status.rawValue) by \(fight.method)")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text("Round \(fight.round) at \(fight.time)")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            if fight.referee != nil {
+                                Text("\(fight.referee!)")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            Text("\(fight.event)")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text("\(fight.date.ISO8601Format().split(separator: "T")[0])")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                        Text("\(fight.event)")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Text("\(fight.date.ISO8601Format().split(separator: "T")[0])")
-                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
             }
