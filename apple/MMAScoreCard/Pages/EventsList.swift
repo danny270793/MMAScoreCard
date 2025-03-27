@@ -8,11 +8,18 @@
 import SwiftUI
 import SwiftData
 
+enum FilterOptions {
+    case all
+    case upcoming
+    case past
+}
+
 struct EventsList: View {
     @State private var isFetching: Bool = true
     @State private var error: Error? = nil
     @State private var searchText = ""
     @State var events: [Event] = []
+    @State private var filter = FilterOptions.past
     
     func onRefresh() {
         Task {
@@ -27,10 +34,18 @@ struct EventsList: View {
     }
     
     private var filteredEvents: [Event] {
+        var preFilteredEvents: [Event] = []
+        switch filter {
+        case FilterOptions.all: preFilteredEvents = events
+        case FilterOptions.upcoming: preFilteredEvents = events.filter { event in event.date > Date.now}
+        case FilterOptions.past: preFilteredEvents = events.filter { event in event.date <= Date.now}
+        default: preFilteredEvents = events
+        }
+            
         if searchText.isEmpty {
-            return events
+            return preFilteredEvents
         } else {
-            return events.filter { event in
+            return preFilteredEvents.filter { event in
                 event.name.lowercased().contains(searchText.lowercased()) ||
                 event.date.ISO8601Format().lowercased().contains(searchText.lowercased()) ||
                 (event.fight ?? "").lowercased().contains(searchText.lowercased())
@@ -54,6 +69,17 @@ struct EventsList: View {
             }
         }
         .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Menu {
+                    Picker(selection: $filter, label: Text("Filter options")) {
+                        Text("Past").tag(FilterOptions.past)
+                        Text("Upcoming").tag(FilterOptions.upcoming)
+                        Text("All").tag(FilterOptions.all)
+                    }
+                } label: {
+                    Label("Filter", systemImage: "arrow.up.arrow.down")
+                }
+            }
             ToolbarItemGroup(placement: .bottomBar) {
                 Text("\(filteredEvents.count) events")
             }
