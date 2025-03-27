@@ -9,31 +9,16 @@ import SwiftUI
 import SwiftData
 
 struct EventsList: View {
-    @Environment(\.modelContext) private var context
-    
     @State private var isFetching: Bool = true
     @State private var error: Error? = nil
     @State private var searchText = ""
-    @Query(sort: \Event.date, order: .reverse) var events: [Event]
+    @State var events: [Event] = []
     
     func onRefresh() {
         Task {
             isFetching = true
             do {
-               let newEvents = try await Sheredog.loadEvents()
-                
-                print("deleting old \(events.count) events")
-                for event in events {
-                    context.delete(event)
-                }
-                
-                print("inserting new \(newEvents.count) events")
-                for event in newEvents {
-                    context.insert(event)
-                }
-                
-                print("saving to database")
-                try context.save()
+                events = try await Sheredog.loadEvents()
             } catch {
                 self.error = error
             }
@@ -96,9 +81,4 @@ struct EventsList: View {
 
 #Preview {
     EventsList()
-        .modelContainer(for: [
-            Event.self,
-            Fighter.self,
-            Fight.self
-        ])
 }
