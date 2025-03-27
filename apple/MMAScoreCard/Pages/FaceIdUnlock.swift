@@ -25,10 +25,29 @@ struct FaceIdUnlock: View {
         }
     }
     
-    init(main: any View) {
-        self.main = main
+    func doBiometricAuthentication() {
+        isAuthenticating = true
         
-        print("requiresFaceId=\(requiresFaceId) authenticated=\(authenticated)")
+        var error: NSError?
+        if !context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            self.error = error
+            isAuthenticating = false
+            return
+        }
+        
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Please authenticate to start ussig the app") { success, error in
+            DispatchQueue.main.async {
+                isAuthenticating = false
+                if success {
+                    self.authenticated = true
+                } else {
+                    self.authenticated = false
+                    self.error = error
+                }
+            }
+        }
+        
+        isAuthenticating = false
     }
     
     var body: some View {
@@ -51,31 +70,13 @@ struct FaceIdUnlock: View {
                     ProgressView()
                 } else {
                     Button("Authenticate") {
-                        isAuthenticating = true
-                        
-                        var error: NSError?
-                        if !context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-                            self.error = error
-                            isAuthenticating = false
-                            return
-                        }
-                        
-                        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Please authenticate to start ussig the app") { success, error in
-                            DispatchQueue.main.async {
-                                isAuthenticating = false
-                                if success {
-                                    self.authenticated = true
-                                } else {
-                                    self.authenticated = false
-                                    self.error = error
-                                }
-                            }
-                        }
-                        
-                        isAuthenticating = false
+                        doBiometricAuthentication()
                     }
                 }
                 Spacer()
+            }
+            .onAppear {
+                doBiometricAuthentication()
             }
             .alert(isPresented: .constant(error != nil)) {
                 Alert(
