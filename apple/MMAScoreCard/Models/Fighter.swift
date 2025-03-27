@@ -7,12 +7,31 @@
 
 import Foundation
 
-class Fighter {
+class FighterRecord: Identifiable {
     var name: String
-    var image: String
-    var link: String
+    var nationality: String
+    var age: String
+    var height: String
+    var weight: String
     
-    init(name: String, image: String, link: String) {
+    var fights: [Record]
+    
+    init(name: String, nationality: String, age: String, height: String, weight: String, fights: [Record]) {
+        self.name = name
+        self.nationality = nationality
+        self.age = age
+        self.height = height
+        self.weight = weight
+        self.fights = fights
+    }
+}
+
+class Fighter: Identifiable {
+    var name: String
+    var image: URL
+    var link: URL
+    
+    init(name: String, image: URL, link: URL) {
         self.name = name
         self.image = image
         self.link = link

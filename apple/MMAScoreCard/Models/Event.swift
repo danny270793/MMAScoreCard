@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Event {
+class Event: Identifiable {
     var name: String
     var fight: String?
     var location: String
