@@ -182,16 +182,17 @@ class Sheredog {
                     case 1:
                         fighter = columnText
                     case 2: {
-                        let parts = columnText.split(separator: "-")
+                        let range = columnText.range(of: " - ", options: .backwards)!
+                        event = String(columnText[..<range.lowerBound])
+                        let dateString = String(columnText[range.upperBound...])
                         
-                        event = String(parts[0])
-                        let dateString = String(parts[1])
-                        
+                        print("dateString \(dateString)")
                         let dateParts = dateString.split(separator: " ")
+                        print("dateParts \(dateParts)")
                         let year = dateParts[dateParts.count - 1]
                         let day = dateParts[dateParts.count - 3]
                         let month = dateParts[dateParts.count - 5]
-                        date = dateFormatter.date(from: "\(month) / \(day) / \(year)")
+                        date = dateFormatter.date(from: "\(month) / \(day) / \(year)") 
                     }()
                     case 3: {
                         let parts = columnText.split(separator: ")")
