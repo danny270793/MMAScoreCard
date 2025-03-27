@@ -10,10 +10,6 @@ import LocalAuthentication
 
 @main
 struct MMAScoreCardApp: App {
-    @State var authenticated = false
-    @State var authenticating = false
-    @State var useFaceId = UserDefaults.standard.bool(forKey: "useFaceId")
-    
     var body: some Scene {
         WindowGroup {
             FaceIdUnlock(main: EventsList())
