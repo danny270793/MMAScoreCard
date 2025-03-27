@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Event, Sherdog } from "../services/sherdog";
+import { Event, sherdog } from "../services/sherdog";
 import { Loader } from "../component/loader";
 import { Appbar } from "../component/appbar";
 
@@ -12,7 +12,7 @@ const EventsPage = () => {
   const init = async () => {
     setLoading(true)
     try {
-      const events: Event[] = await Sherdog.getEvents()
+      const events: Event[] = await sherdog.getEvents()
       setEvents(events)
     } catch(error) {
       console.error(error)
