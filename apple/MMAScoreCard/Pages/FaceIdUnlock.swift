@@ -10,10 +10,12 @@ import LocalAuthentication
 
 struct FaceIdUnlock: View {
     var main: any View
+    
     @State private var error: Error? = nil
     @State var authenticated = false
     @State var isAuthenticating = false
     let context = LAContext()
+    var requiresFaceId = UserDefaults.standard.bool(forKey: "useFaceId")
     
     private var biometryTypeName: String {
         switch context.biometryType {
@@ -23,15 +25,25 @@ struct FaceIdUnlock: View {
         }
     }
     
+    init(main: any View) {
+        self.main = main
+        
+        print("requiresFaceId=\(requiresFaceId) authenticated=\(authenticated)")
+    }
+    
     var body: some View {
-        ZStack {
-            if authenticated {
-                AnyView(main)
+        NavigationStack {
+            if requiresFaceId {
+                if authenticated {
+                    AnyView(main)
+                } else {
+                    ProgressView()
+                }
             } else {
-                ProgressView()
+                AnyView(main)
             }
         }
-        .sheet(isPresented: .constant(!authenticated)) {
+        .sheet(isPresented: .constant(requiresFaceId && !authenticated)) {
             VStack {
                 Spacer()
                 Text("\(biometryTypeName) authentication is required")
