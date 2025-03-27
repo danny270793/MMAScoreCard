@@ -1,3 +1,5 @@
+import { Sherdog } from "."
+
 export interface Event {
     name: string
     figth: string|null
@@ -26,24 +28,22 @@ export interface Fight {
     status: 'done'|'pending'
 }
 
-export const Sherdog = {
+export const local: Sherdog = {
     async getEvents(): Promise<Event[]> {
-        return (await (await fetch('http://localhost:8000/events')).json()).map((event: any) => ({
-            ...event,
-            date: new Date(event.date),
-            url: new URL(event.url)
-        }))
+        return []
     },
     async getEvent(name: string): Promise<Event> {
-        return (await (await fetch('http://localhost:8000/events')).json()).map((event: any) => ({
-            ...event,
-            date: new Date(event.date),
-            url: new URL(event.url)
-        })).filter((event: Event) => event.name === name)[0]
+        console.log(name)
+        return {
+            date: new Date(),
+            figth: null,
+            location: '',
+            name: '',
+            url: new URL('http://localhost:8000')
+        }
     },
     async getFights(event: Event): Promise<Fight[]> {
-        return (await (await fetch(`http://localhost:8000/events/${event.name}`)).json()).map((fight: any) => ({
-            ...fight,
-        }))
+        console.log(event)
+        return []
     }
 }
