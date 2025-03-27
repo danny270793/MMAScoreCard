@@ -69,17 +69,6 @@ struct EventsList: View {
             }
         }
         .toolbar {
-//            ToolbarItem(placement: .primaryAction) {
-//                Menu {
-//                    Picker(selection: $filter, label: Text("Filter options")) {
-//                        Text("Past").tag(FilterOptions.past)
-//                        Text("Upcoming").tag(FilterOptions.upcoming)
-//                        Text("All").tag(FilterOptions.all)
-//                    }
-//                } label: {
-//                    Label("Filter", systemImage: "arrow.up.arrow.down")
-//                }
-//            }
             ToolbarItem(placement: .secondaryAction) {
                 Menu {
                     Picker(selection: $filter, label: Text("Filter options")) {
@@ -91,7 +80,12 @@ struct EventsList: View {
                     Label("Filter", systemImage: "arrow.up.arrow.down")
                 }
             }
-            
+            ToolbarItem(placement: .secondaryAction) {
+                NavigationLink(destination: AboutView()) {
+                    Label("About", systemImage: "info")
+                }
+                
+            }
             
             ToolbarItemGroup(placement: .bottomBar) {
                 Text("\(filteredEvents.count) events")
