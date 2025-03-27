@@ -54,7 +54,7 @@ struct FigthsList: View {
                         VStack {
                             Text("\(fight.figther1.name) vs \(fight.figther2.name)")
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                            if FightStatus.done.rawValue == fight.fightStatus {
+                            if FightStatus.done == fight.fightStatus {
                                 Text("\(fight.result)")
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 Text("Round \(fight.round) at \(fight.time)")

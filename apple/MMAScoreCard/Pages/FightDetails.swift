@@ -21,7 +21,7 @@ struct FigthDetails: View {
             }
             Section(header: Text("Fight")) {
                 LabeledContent("Division", value: fight.division)
-                if fight.fightStatus != FightStatus.pending.rawValue {
+                if fight.fightStatus != FightStatus.pending {
                     LabeledContent("Result", value: fight.result)
                     LabeledContent("Round", value: fight.round)
                     LabeledContent("Time", value: fight.time)
@@ -32,8 +32,8 @@ struct FigthDetails: View {
                 NavigationLink(destination: FighterDetails(figther: fight.figther1)) {
                     LabeledContent("Name", value: fight.figther1.name)
                 }
-                if fight.figther1Status != FightStatus.pending.rawValue {
-                    LabeledContent("Status", value: fight.figther1Status)
+                if fight.figther1Status != FighterStatus.pending {
+                    LabeledContent("Status", value: fight.figther1Status.rawValue)
                 }
                 
             }
@@ -41,8 +41,8 @@ struct FigthDetails: View {
                 NavigationLink(destination: FighterDetails(figther: fight.figther2)) {
                     LabeledContent("Name", value: fight.figther2.name)
                 }
-                if fight.figther2Status != FightStatus.pending.rawValue {
-                    LabeledContent("Status", value: fight.figther2Status)
+                if fight.figther2Status != FighterStatus.pending {
+                    LabeledContent("Status", value: fight.figther2Status.rawValue)
                 }
             }
         }
@@ -52,6 +52,6 @@ struct FigthDetails: View {
 
 #Preview {
     NavigationStack {
-        FigthDetails(event: Event(name: "UFC 313", fight: "Alex Pereira vs. Ankalaev", location: "Los Angeles", date: Date(), url: "https://www.sherdog.com/events/UFC-Fight-Night-255-Edwards-vs-Brady-105670"), fight: Fight(position: 1, figther1: Fighter(name: "Alex Pereira", image: "", link: ""), figther1Status: FighterStatus.win, figther2: Fighter(name: "Mokaev Ankalaev", image: "", link: ""), figther2Status: FighterStatus.loss, result: "Submission (Armbar)", round: "3", time: "1:45", referee: "Marg Godard", division: "Heavyweight", fightStatus: FightStatus.done))
+        FigthDetails(event: Event(name: "UFC 313", fight: "Alex Pereira vs. Ankalaev", location: "Los Angeles", date: Date(), url: "https://www.sherdog.com/events/UFC-Fight-Night-255-Edwards-vs-Brady-105670"), fight: Fight(position: 1, figther1: Fighter(name: "Alex Pereira", image: URL(string: "https://www.sherdog.com/image_crop/44/44/_images/fighter/1648844898903_20220401042811_Merab_Dvalishvili_ff.JPG")!, link: URL(string: "https://www.sherdog.com/fighter/Merab-Dvalishvili-157355")!), figther1Status: FighterStatus.win, figther2: Fighter(name: "Mokaev Ankalaev", image: URL(string: "https://www.sherdog.com/image_crop/44/44/_images/fighter/1648844898903_20220401042811_Merab_Dvalishvili_ff.JPG")!, link: URL(string: "https://www.sherdog.com/fighter/Merab-Dvalishvili-157355")!), figther2Status: FighterStatus.loss, result: "Submission (Armbar)", round: "3", time: "1:45", referee: "Marg Godard", division: "Heavyweight", fightStatus: FightStatus.done))
     }
 }
