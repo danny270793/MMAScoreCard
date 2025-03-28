@@ -39,7 +39,6 @@ struct EventsList: View {
         case FilterOptions.all: preFilteredEvents = events
         case FilterOptions.upcoming: preFilteredEvents = events.filter { event in event.date > Date.now}
         case FilterOptions.past: preFilteredEvents = events.filter { event in event.date <= Date.now}
-        default: preFilteredEvents = events
         }
             
         if searchText.isEmpty {
