@@ -10,7 +10,7 @@ import SwiftUI
 struct AboutView: View {
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
     let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
-        
+    let documentDirectory: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     
     var body: some View {
         List {
@@ -18,6 +18,9 @@ struct AboutView: View {
                 LabeledContent("Name", value: "MMA Score Card")
                 LabeledContent("Version", value: appVersion)
                 LabeledContent("Build number", value: buildNumber)
+                if documentDirectory != nil {
+                    LabeledContent("Cache directory", value: documentDirectory!.absoluteString)
+                }
             }
             Section(header: Text("Developer")) {
                 LabeledContent("Name", value: "Danny Vaca")
