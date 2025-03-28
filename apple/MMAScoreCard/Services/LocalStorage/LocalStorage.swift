@@ -23,7 +23,7 @@ class LocalStorage {
         try content.write(to: fileURL, atomically: true, encoding: .utf8)
     }
     
-    static func loadFromFile(fileName: String, cacheInvalidationMinutes: Int = 360) throws -> String? {
+    static func loadFromFile(fileName: String, cacheInvalidationMinutes: Int = -1) throws -> String? {
         guard let data = fileName.data(using: .utf8) else {
             throw LocalStorageErrors.encodingError
         }
@@ -39,7 +39,9 @@ class LocalStorage {
             return nil
         }
         
-        if cacheInvalidationMinutes != 0 {
+        if cacheInvalidationMinutes == 0 {
+            print("cached permanently \(fileName)")
+        } else {
             let attributes = try FileManager.default.attributesOfItem(atPath: fileURL.path)
             if let creationDate = attributes[.creationDate] as? Date {
                 let calendar = Calendar.current
@@ -47,14 +49,20 @@ class LocalStorage {
                 let components = calendar.dateComponents([.minute], from: creationDate, to: now)
                     
                 if let minutes = components.minute {
-                    print("cached \(minutes) minutes \(fileName) max allowed \(cacheInvalidationMinutes)")
-                    if minutes > 6 * 60 {
-                        return nil
+                    if cacheInvalidationMinutes == -1 {
+                        let defaultCacheInvalidationMinutes = UserDefaults.standard.integer(forKey: "cacheInvalidationTime")
+                        print("cached \(minutes) minutes \(fileName) max allowed from settings \(defaultCacheInvalidationMinutes)")
+                        if minutes > cacheInvalidationMinutes {
+                            return nil
+                        }
+                    } else {
+                        print("cached \(minutes) minutes \(fileName) max allowed specific \(cacheInvalidationMinutes)")
+                        if minutes > cacheInvalidationMinutes {
+                            return nil
+                        }
                     }
                 }
             }
-        } else {
-            print("cached permanently \(fileName)")
         }
         
         
