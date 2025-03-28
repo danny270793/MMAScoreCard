@@ -32,6 +32,7 @@ class Http {
     }
     
     static func get(url: String) async throws -> String {
+        print("GET \(url)")
         guard let urlParsed = URL(string: url) else {
             throw HttpErrors.invalidURL(url: url)
         }

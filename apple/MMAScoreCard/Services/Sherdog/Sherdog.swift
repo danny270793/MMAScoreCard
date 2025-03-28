@@ -115,7 +115,7 @@ class Sheredog {
                         let year = dateParts[dateParts.count - 1]
                         let day = dateParts[dateParts.count - 3]
                         let month = dateParts[dateParts.count - 5]
-                        date = dateFormatter.date(from: "\(month) / \(day) / \(year)") 
+                        date = dateFormatter.date(from: "\(month) / \(day) / \(year)")
                     }()
                     case 3: {
                         let parts = columnText.split(separator: ")")
@@ -152,7 +152,11 @@ class Sheredog {
     }
     
     static func loadFights(event: Event) async throws -> [Fight] {
-        let html = try await Http.getIfNotExists(url: event.url)
+        let eventHasPassed = hasPassedEvent(event: event)
+        if !eventHasPassed {
+            print("And event has passed, so refresh the entire events of fights of that event")
+        }
+        let html = try await Http.getIfNotExists(url: event.url, forceRefresh: !eventHasPassed)
         
         let document = try SwiftSoup.parse(html)
         let fightCard = try document.select("div.fight_card")
@@ -427,17 +431,23 @@ class Sheredog {
         }
     }
     
+    static func hasPassedEvent(event: Event) -> Bool {
+        let now = Date.now
+        
+        let calendar = Calendar.current
+        let eventDate = calendar.startOfDay(for: event.date)
+        let nowDate = calendar.startOfDay(for: now)
+        print("eventDate=\(eventDate) nowDate=\(nowDate)")
+        return eventDate < nowDate
+    }
+    
     static func loadEvents() async throws -> [Event] {
         let sortedEvents = try await loadEventsWithoutDateValidation()
         let upcomingEvents = sortedEvents.filter { event in event.date > Date.now}
         let nextEvent = upcomingEvents[upcomingEvents.count - 1]
-        let now = Date.now
         
-        let calendar = Calendar.current
-        let nextEventDate = calendar.startOfDay(for: nextEvent.date)
-        let nowDate = calendar.startOfDay(for: now)
-        let hasToRefresh = nextEventDate < nowDate
-        if nextEventDate < nowDate {
+        if hasPassedEvent(event: nextEvent) {
+            print("And event has passed, so refresh the entire events list")
             return try await loadEventsWithoutDateValidation(forceRefresh: true)
         }
         
