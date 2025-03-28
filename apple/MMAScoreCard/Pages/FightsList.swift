@@ -63,6 +63,18 @@ struct FigthsList: View {
                             Text("\(fight.division)")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
+                        .contextMenu {
+                            Button(action: {
+                                
+                            }) {
+                                Text("Share")
+                                Image(systemName: "square.and.arrow.up")
+                            }
+                        } preview: {
+                            NavigationStack {
+                                FigthDetails(event: event, fight: fight)
+                            }
+                        }
                     }
                 }
             }

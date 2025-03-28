@@ -66,6 +66,18 @@ struct EventsList: View {
                     Text(event.date.ISO8601Format().split(separator: "T")[0])
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
+                .contextMenu {
+                    Button(action: {
+                        
+                    }) {
+                        Text("Share")
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                } preview: {
+                    NavigationStack {
+                        FigthsList(event: event)
+                    }
+                }
             }
         }
         .toolbar {
