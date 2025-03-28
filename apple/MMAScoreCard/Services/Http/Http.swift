@@ -49,18 +49,18 @@ class Http {
         return htmlString
     }
     
-    static func getIfNotExists(url: URL) async throws -> String {
-        return try await getIfNotExists(url: url.absoluteString)
+    static func getIfNotExists(url: URL, forceRefresh: Bool = false) async throws -> String {
+        return try await getIfNotExists(url: url.absoluteString, forceRefresh: forceRefresh)
     }
     
-    static func getIfNotExists(url: String, forceRefresh: Bool = false) async throws -> String {
+    static func getIfNotExists(url: String, forceRefresh: Bool = false, cacheInvalidationMinutes: Int = 360) async throws -> String {
         if forceRefresh {
             let freshHtmlString = try await Http.get(url: url)
             try LocalStorage.saveToFile(content: freshHtmlString, fileName: url)
             return freshHtmlString
         }
         
-        let htmlString: String? = try LocalStorage.loadFromFile(fileName: url)
+        let htmlString: String? = try LocalStorage.loadFromFile(fileName: url, cacheInvalidationMinutes: cacheInvalidationMinutes)
         guard let html = htmlString else {
             let freshHtmlString = try await Http.get(url: url)
             
