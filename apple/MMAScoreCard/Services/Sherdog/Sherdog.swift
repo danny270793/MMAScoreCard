@@ -8,88 +8,15 @@
 import SwiftUI
 import SwiftSoup
 
-enum SheredogError: Error, LocalizedError {
-    case invalidURL(url: String)
-    case invalidResponse
-    case invalidData
-    case invalidEvent
-    case invalidFigther
-    case invalidColumn(position: Int, value: String)
-    
-    var errorDescription: String? {
-        switch self {
-        case .invalidURL(let url):
-            return NSLocalizedString("Invalid URL: \(url)", comment: "Invalid url")
-        case .invalidResponse:
-            return NSLocalizedString("Invalid response with invalid status code", comment: "Invalid response")
-        case .invalidData:
-            return NSLocalizedString("Invalid data received", comment: "Invalid data")
-        case .invalidEvent:
-            return NSLocalizedString("Invalid event", comment: "Invalid event")
-        case .invalidFigther:
-            return NSLocalizedString("Invalid fighter", comment: "Invalid figther")
-        case .invalidColumn(let position, let value):
-            return NSLocalizedString("Invalid column at position \(position) with value \(value)", comment: "Invalid column")
-        }
-    }
-}
-
-class SSLDelegate: NSObject, URLSessionDelegate {
-    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-            let credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
-            completionHandler(.useCredential, credential)
-        } else {
-            completionHandler(.performDefaultHandling, nil)
-        }
-    }
-}
-
-let config = URLSessionConfiguration.default
-let session = URLSession(configuration: config, delegate: SSLDelegate(), delegateQueue: nil)
-
-
 class Sheredog {
     static let baseUrl: String = "https://www.sherdog.com"
     
     static func loadImage(url: URL) async throws -> Data {
-        let (data, response) = try await session.data(from: url)
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-            throw SheredogError.invalidResponse
-        }
-        
-        return data
-    }
-    
-    static func requestIfNotExists(url: URL) async throws -> String {
-        return try await requestIfNotExists(url: url.absoluteString)
-    }
-    
-    static func requestIfNotExists(url: String) async throws -> String {
-        let htmlString: String? = try LocalStorage.loadFromFile(fileName: url)
-        if htmlString != nil {
-            return htmlString!
-        }
-        guard let urlParsed = URL(string: url) else {
-            throw SheredogError.invalidURL(url: url)
-        }
-        
-        let (data, response) = try await session.data(from: urlParsed)
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-            throw SheredogError.invalidResponse
-        }
-        
-        guard let htmlString = String(data: data, encoding: .utf8) else {
-            throw SheredogError.invalidData
-        }
-        
-        try LocalStorage.saveToFile(content: htmlString, fileName: url)
-        return htmlString
+        return try await Http.getImage(url: url)
     }
     
     static func loadRecord(fighter: Fighter) async throws -> FighterRecord {
-        print("looking for record \(fighter.link)")
-        let html = try await requestIfNotExists(url: fighter.link)
+        let html = try await Http.getIfNotExists(url: fighter.link)
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM / dd / yyyy"
@@ -122,7 +49,6 @@ class Sheredog {
                     for column in columns.array() {
                         columnNumber += 1
                         let columnText = try column.text()
-                        print("rowNumber=\(rowNumber) columnNumber=\(columnNumber) columnText=\(columnText)")
                         switch columnNumber {
                         case 1: {
                             switch rowNumber {
@@ -169,7 +95,6 @@ class Sheredog {
                 for column in columns.array() {
                     columnNumber += 1
                     let columnText = try column.text()
-                    print("rowNumber=\(rowNumber) columnNumber=\(columnNumber) columnText=\(columnText)")
                     switch columnNumber {
                     case 0: {
                         let status = columnText.lowercased()
@@ -186,9 +111,7 @@ class Sheredog {
                         event = String(columnText[..<range.lowerBound])
                         let dateString = String(columnText[range.upperBound...])
                         
-                        print("dateString \(dateString)")
                         let dateParts = dateString.split(separator: " ")
-                        print("dateParts \(dateParts)")
                         let year = dateParts[dateParts.count - 1]
                         let day = dateParts[dateParts.count - 3]
                         let month = dateParts[dateParts.count - 5]
@@ -206,12 +129,12 @@ class Sheredog {
                         round = columnText
                     case 5:
                         time = columnText
-                    default: throw SheredogError.invalidColumn(position: columnNumber, value: columnText)
+                    default: throw SheredogErrors.invalidColumn(position: columnNumber, value: columnText)
                     }
                 }
                 
                 guard fighterStatus != nil && fighter != nil && event != nil && date != nil && method != nil && round != nil && time != nil else {
-                    throw SheredogError.invalidFigther
+                    throw SheredogErrors.invalidFigther
                 }
                 
                 let record: Record = Record(status: fighterStatus!, figther: fighter!, event: event!, date: date!, method: method!, referee: referee, round: round!, time: time!)
@@ -220,7 +143,7 @@ class Sheredog {
         }
         
         guard age != nil && height != nil && weight != nil && nationality != nil else {
-            throw SheredogError.invalidFigther
+            throw SheredogErrors.invalidFigther
         }
         
         return FighterRecord(name: fighter.name, nationality: nationality!, age: age!, height: height!, weight: weight!, fights: records.sorted { fight1, fight2 in
@@ -229,8 +152,7 @@ class Sheredog {
     }
     
     static func loadFights(event: Event) async throws -> [Fight] {
-        print("looking for event \(event.url)")
-        let html = try await requestIfNotExists(url: event.url)
+        let html = try await Http.getIfNotExists(url: event.url)
         
         let document = try SwiftSoup.parse(html)
         let fightCard = try document.select("div.fight_card")
@@ -286,7 +208,6 @@ class Sheredog {
                     fightStatus = FightStatus.done
                     columnNumber += 1
                     let columnText = try column.text()
-                    print("rowNumber=\(rowNumber) columnNumber=\(columnNumber) columnText=\(columnText)")
                     switch columnNumber {
                     case 0: {
                         let parts = columnText.split(separator: " ")
@@ -297,7 +218,7 @@ class Sheredog {
                     case 2: referee = columnText.replacingOccurrences(of: "Referee ", with: "")
                     case 3: round = columnText.replacingOccurrences(of: "Round ", with: "")
                     case 4: time = columnText.replacingOccurrences(of: "Time ", with: "")
-                    default: throw SheredogError.invalidColumn(position: columnNumber, value: columnText)
+                    default: throw SheredogErrors.invalidColumn(position: columnNumber, value: columnText)
                     }
                 }
             }
@@ -338,7 +259,6 @@ class Sheredog {
                 for column in columns.array() {
                     columnNumber += 1
                     let columnText = try column.text()
-                    print("rowNumber=\(rowNumber) columnNumber=\(columnNumber) columnText=\(columnText)")
                     
                     if columns.count == 5 {
                         switch columnNumber {
@@ -349,12 +269,10 @@ class Sheredog {
                             
                             for image in try column.select("img").array() {
                                 let src = try image.attr("src")
-                                print("src=\(src)")
                                 fighter1Image = URL(string: "\(baseUrl)\(src)")
                             }
                             for a in try column.select("a").array() {
                                 let href = try a.attr("href")
-                                print("href=\(href)")
                                 fighter1Url = URL(string: "\(baseUrl)\(href)")
                             }
                         }()
@@ -365,12 +283,10 @@ class Sheredog {
                             
                             for image in try column.select("img").array() {
                                 let src = try image.attr("src")
-                                print("src=\(src)")
                                 fighter2Image = URL(string: "\(baseUrl)\(src)")
                             }
                             for a in try column.select("a").array() {
                                 let href = try a.attr("href")
-                                print("href=\(href)")
                                 fighter2Url = URL(string: "\(baseUrl)\(href)")
                             }
                         }()
@@ -383,7 +299,7 @@ class Sheredog {
                             fighter2Status = FighterStatus.pending
                             fightStatus = FightStatus.pending
                         }()
-                        default: throw SheredogError.invalidColumn(position: columnNumber, value: columnText)
+                        default: throw SheredogErrors.invalidColumn(position: columnNumber, value: columnText)
                         }
                     } else {
                         switch columnNumber {
@@ -396,12 +312,10 @@ class Sheredog {
                             
                             for image in try column.select("img").array() {
                                 let src = try image.attr("src")
-                                print("src=\(src)")
                                 fighter1Image = URL(string: "\(baseUrl)\(src)")
                             }
                             for a in try column.select("a").array() {
                                 let href = try a.attr("href")
-                                print("href=\(href)")
                                 fighter1Url = URL(string: "\(baseUrl)\(href)")
                             }
                         }()
@@ -414,12 +328,10 @@ class Sheredog {
                             
                             for image in try column.select("img").array() {
                                 let src = try image.attr("src")
-                                print("src=\(src)")
                                 fighter2Image = URL(string: "\(baseUrl)\(src)")
                             }
                             for a in try column.select("a").array() {
                                 let href = try a.attr("href")
-                                print("href=\(href)")
                                 fighter2Url = URL(string: "\(baseUrl)\(href)")
                             }
                         }()
@@ -432,13 +344,13 @@ class Sheredog {
                         }()
                         case 5: round = columnText
                         case 6: time = columnText
-                        default: throw SheredogError.invalidColumn(position: columnNumber, value: columnText)
+                        default: throw SheredogErrors.invalidColumn(position: columnNumber, value: columnText)
                         }
                     }
                 }
                 
                 guard position != nil && result != nil && round != nil && time != nil && referee != nil && fightStatus != nil && fighter1Image != nil && fighter1Url != nil && fighter2Image != nil && fighter2Url != nil else {
-                    throw SheredogError.invalidFigther
+                    throw SheredogErrors.invalidFigther
                 }
                 
                 let figther1: Fighter = Fighter(name: fighter1Name!, image: fighter1Image!, link: fighter1Url!)
@@ -452,8 +364,8 @@ class Sheredog {
         }
     }
     
-    static func loadEvents() async throws -> [Event] {
-        let html = try await requestIfNotExists(url: "\(baseUrl)/organizations/Ultimate-Fighting-Championship-UFC-2")
+    static func loadEventsWithoutDateValidation(forceRefresh: Bool = false) async throws -> [Event] {
+        let html = try await Http.getIfNotExists(url: "\(baseUrl)/organizations/Ultimate-Fighting-Championship-UFC-2", forceRefresh: forceRefresh)
         
         let document = try SwiftSoup.parse(html)
         let tables = try document.select("table.new_table")
@@ -495,12 +407,12 @@ class Sheredog {
                     case 0: date = dateFormatter.date(from: columnText)
                     case 1: nameAndFight = columnText
                     case 2: location = columnText
-                    default: throw SheredogError.invalidColumn(position: columnNumber, value: columnText)
+                    default: throw SheredogErrors.invalidColumn(position: columnNumber, value: columnText)
                     }
                 }
                 
                 guard nameAndFight != nil && location != nil && date != nil && url != nil else {
-                    throw SheredogError.invalidEvent
+                    throw SheredogErrors.invalidEvent
                 }
                 
                 let parts = nameAndFight!.split(separator: "-")
@@ -513,5 +425,22 @@ class Sheredog {
         return events.sorted { event1, event2 in
             event1.date > event2.date
         }
+    }
+    
+    static func loadEvents() async throws -> [Event] {
+        let sortedEvents = try await loadEventsWithoutDateValidation()
+        let upcomingEvents = sortedEvents.filter { event in event.date > Date.now}
+        let nextEvent = upcomingEvents[upcomingEvents.count - 1]
+        let now = Date.now
+        
+        let calendar = Calendar.current
+        let nextEventDate = calendar.startOfDay(for: nextEvent.date)
+        let nowDate = calendar.startOfDay(for: now)
+        let hasToRefresh = nextEventDate < nowDate
+        if nextEventDate < nowDate {
+            return try await loadEventsWithoutDateValidation(forceRefresh: true)
+        }
+        
+        return sortedEvents
     }
 }
