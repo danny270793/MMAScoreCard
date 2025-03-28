@@ -32,14 +32,37 @@ struct FigthDetails: View {
                 NavigationLink(destination: FighterDetails(figther: fight.figther1)) {
                     LabeledContent("Name", value: fight.figther1.name)
                 }
+                .contextMenu {
+                    Button(action: {
+                        
+                    }) {
+                        Text("Share")
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                } preview: {
+                    NavigationStack {
+                        FighterDetails(figther: fight.figther1)
+                    }
+                }
                 if fight.figther1Status != FighterStatus.pending {
                     LabeledContent("Status", value: fight.figther1Status.rawValue)
                 }
-                
             }
             Section(header: Text("Fighter 2")) {
                 NavigationLink(destination: FighterDetails(figther: fight.figther2)) {
                     LabeledContent("Name", value: fight.figther2.name)
+                }
+                .contextMenu {
+                    Button(action: {
+                        
+                    }) {
+                        Text("Share")
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                } preview: {
+                    NavigationStack {
+                        FighterDetails(figther: fight.figther2)
+                    }
                 }
                 if fight.figther2Status != FighterStatus.pending {
                     LabeledContent("Status", value: fight.figther2Status.rawValue)
