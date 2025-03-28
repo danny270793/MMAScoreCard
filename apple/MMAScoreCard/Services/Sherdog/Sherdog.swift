@@ -156,7 +156,7 @@ class Sheredog {
         if !eventHasPassed {
             print("And event has passed, so refresh the entire events of fights of that event")
         }
-        let html = try await Http.getIfNotExists(url: event.url, forceRefresh: !eventHasPassed, cacheInvalidationMinutes: eventHasPassed ? 0 : 360)
+        let html = try await Http.getIfNotExists(url: event.url, forceRefresh: !eventHasPassed, cacheInvalidationMinutes: !eventHasPassed ? -1 : 0)
         
         let document = try SwiftSoup.parse(html)
         let fightCard = try document.select("div.fight_card")

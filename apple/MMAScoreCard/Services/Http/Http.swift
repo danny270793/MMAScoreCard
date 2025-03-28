@@ -53,7 +53,7 @@ class Http {
         return try await getIfNotExists(url: url.absoluteString, forceRefresh: forceRefresh)
     }
     
-    static func getIfNotExists(url: String, forceRefresh: Bool = false, cacheInvalidationMinutes: Int = 360) async throws -> String {
+    static func getIfNotExists(url: String, forceRefresh: Bool = false, cacheInvalidationMinutes: Int = -1) async throws -> String {
         if forceRefresh {
             let freshHtmlString = try await Http.get(url: url)
             try LocalStorage.saveToFile(content: freshHtmlString, fileName: url)
