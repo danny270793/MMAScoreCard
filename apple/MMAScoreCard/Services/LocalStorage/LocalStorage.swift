@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum LocalStorageErrors: Error {
-    case noHasAccess
-    case encodingError
-}
-
 class LocalStorage {
     static func saveToFile(content: String, fileName: String) throws {
         guard let data = fileName.data(using: .utf8) else {
@@ -43,6 +38,11 @@ class LocalStorage {
         if !fileManager.fileExists(atPath: fileURL.path) {
             return nil
         }
+        
+//        let attributes = try FileManager.default.attributesOfItem(atPath: fileURL.path)
+//        if let creationDate = attributes[.creationDate] as? Date {
+//            print("File creation date: \(creationDate)")
+//        }
         
         return try String(contentsOf: fileURL, encoding: .utf8)
     }
