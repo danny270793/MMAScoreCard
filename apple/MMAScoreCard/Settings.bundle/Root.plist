@@ -8,6 +8,12 @@
 	<array>
 		<dict>
 			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Cache</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
 			<string>Cache invalidation</string>
@@ -17,9 +23,9 @@
 			<integer>360</integer>
 			<key>Titles</key>
 			<array>
-				<string>0</string>
-				<string>360</string>
-				<string>1440</string>
+				<string>0 minutes</string>
+				<string>360 minutes</string>
+				<string>1440 minutes</string>
 			</array>
 			<key>Values</key>
 			<array>
@@ -27,6 +33,12 @@
 				<integer>360</integer>
 				<integer>1440</integer>
 			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Security</string>
 		</dict>
 		<dict>
 			<key>Type</key>
