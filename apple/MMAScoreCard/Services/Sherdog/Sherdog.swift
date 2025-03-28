@@ -156,7 +156,7 @@ class Sheredog {
         if !eventHasPassed {
             print("And event has passed, so refresh the entire events of fights of that event")
         }
-        let html = try await Http.getIfNotExists(url: event.url, forceRefresh: !eventHasPassed)
+        let html = try await Http.getIfNotExists(url: event.url, forceRefresh: !eventHasPassed, cacheInvalidationMinutes: eventHasPassed ? 0 : 360)
         
         let document = try SwiftSoup.parse(html)
         let fightCard = try document.select("div.fight_card")
@@ -369,7 +369,7 @@ class Sheredog {
     }
     
     static func loadEventsWithoutDateValidation(forceRefresh: Bool = false) async throws -> [Event] {
-        let html = try await Http.getIfNotExists(url: "\(baseUrl)/organizations/Ultimate-Fighting-Championship-UFC-2", forceRefresh: forceRefresh)
+        let html = try await Http.getIfNotExists(url: "\(baseUrl)/organizations/Ultimate-Fighting-Championship-UFC-2", forceRefresh: forceRefresh, cacheInvalidationMinutes: 0)
         
         let document = try SwiftSoup.parse(html)
         let tables = try document.select("table.new_table")
@@ -437,7 +437,6 @@ class Sheredog {
         let calendar = Calendar.current
         let eventDate = calendar.startOfDay(for: event.date)
         let nowDate = calendar.startOfDay(for: now)
-        print("eventDate=\(eventDate) nowDate=\(nowDate)")
         return eventDate < nowDate
     }
     
