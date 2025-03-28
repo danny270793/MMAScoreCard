@@ -57,7 +57,7 @@ struct EventsList: View {
         List(filteredEvents) { event in
             NavigationLink(destination: FigthsList(event: event)) {
                 VStack {
-                    Text(event.name.split(separator: "-")[0])
+                    Text(event.name)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     if event.fight != nil {
                         Text(event.fight!)
@@ -68,7 +68,7 @@ struct EventsList: View {
                 }
                 .contextMenu {
                     Button(action: {
-                        
+                        Sharing.shareText(text: "I'm viewing \"\(event.name)\"\nSee more information at: \(event.url)")
                     }) {
                         Text("Share")
                         Image(systemName: "square.and.arrow.up")

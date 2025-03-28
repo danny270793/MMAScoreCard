@@ -34,7 +34,7 @@ struct FigthDetails: View {
                 }
                 .contextMenu {
                     Button(action: {
-                        
+                        Sharing.shareText(text: "I'm viewing \"\(fight.figther1.name)\"\nSee more information at: \(fight.figther1.link)")
                     }) {
                         Text("Share")
                         Image(systemName: "square.and.arrow.up")
@@ -54,7 +54,7 @@ struct FigthDetails: View {
                 }
                 .contextMenu {
                     Button(action: {
-                        
+                        Sharing.shareText(text: "I'm viewing \"\(fight.figther2.name)\"\nSee more information at: \(fight.figther2.link)")
                     }) {
                         Text("Share")
                         Image(systemName: "square.and.arrow.up")
