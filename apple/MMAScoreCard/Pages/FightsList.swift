@@ -65,7 +65,7 @@ struct FigthsList: View {
                         }
                         .contextMenu {
                             Button(action: {
-                                
+                                Sharing.shareText(text: "I'm viewing \"\(fight.figther1.name) vs \(fight.figther2.name)")
                             }) {
                                 Text("Share")
                                 Image(systemName: "square.and.arrow.up")
