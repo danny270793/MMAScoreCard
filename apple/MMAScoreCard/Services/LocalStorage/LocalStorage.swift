@@ -23,7 +23,29 @@ class LocalStorage {
         try content.write(to: fileURL, atomically: true, encoding: .utf8)
     }
     
-    static func loadFromFile(fileName: String, cacheInvalidationMinutes: Int = -1) throws -> String? {
+    static func getMinutesCached(fileURL: URL) throws -> Int {
+        let attributes = try FileManager.default.attributesOfItem(atPath: fileURL.path)
+        if let creationDate = attributes[.creationDate] as? Date {
+            let calendar = Calendar.current
+            let now = Date.now
+            let components = calendar.dateComponents([.minute], from: creationDate, to: now)
+            if let minutes = components.minute {
+                return minutes
+            }
+            return 0
+        }
+        return 0
+    }
+    
+    static func minutesToText(minutes: Int) -> String {
+        let days = minutes / (24 * 60)
+        let hours = (minutes % (24 * 60)) / 60
+        let remainingMinutes = minutes % 60
+        
+        return String(format: "%02dd%02dh%02dm", days, hours, remainingMinutes)
+    }
+    
+    static func loadFromFile(fileName: String, cacheInvalidationMinutes: Int = 0) throws -> String? {
         guard let data = fileName.data(using: .utf8) else {
             throw LocalStorageErrors.encodingError
         }
@@ -39,31 +61,25 @@ class LocalStorage {
             return nil
         }
         
+        let minutesCached = try getMinutesCached(fileURL: fileURL)
+        let minutesCachedInText = minutesToText(minutes: minutesCached)
+        
         if cacheInvalidationMinutes == 0 {
-            print("cached permanently \(fileName)")
+            print("cached permanently for \(minutesCachedInText)")
         } else {
-            let attributes = try FileManager.default.attributesOfItem(atPath: fileURL.path)
-            if let creationDate = attributes[.creationDate] as? Date {
-                let calendar = Calendar.current
-                let now = Date.now
-                let components = calendar.dateComponents([.minute], from: creationDate, to: now)
-                    
-                if let minutes = components.minute {
-                    if cacheInvalidationMinutes == -1 {
-                        let cacheInvalidationTime = UserDefaults.standard.integer(forKey: "cacheInvalidationTime")
-                        let defaultCacheInvalidationTime = 360
-                        let actualCacheInvalidationTime = cacheInvalidationTime != 0 ? cacheInvalidationTime : defaultCacheInvalidationTime
-                        
-                        print("cached \(minutes) minutes \(fileName) max allowed from settings \(actualCacheInvalidationTime)")
-                        if minutes > actualCacheInvalidationTime {
-                            return nil
-                        }
-                    } else {
-                        print("cached \(minutes) minutes \(fileName) max allowed specific \(cacheInvalidationMinutes)")
-                        if minutes > cacheInvalidationMinutes {
-                            return nil
-                        }
-                    }
+            if cacheInvalidationMinutes == -1 {
+                let cacheInvalidationTime = UserDefaults.standard.integer(forKey: "cacheInvalidationTime")
+                let defaultCacheInvalidationTime = 360
+                let actualCacheInvalidationTime = cacheInvalidationTime != 0 ? cacheInvalidationTime : defaultCacheInvalidationTime
+                
+                print("cached for \(minutesCachedInText), max allowed from settings \(minutesToText(minutes: actualCacheInvalidationTime))")
+                if minutesCached > actualCacheInvalidationTime {
+                    return nil
+                }
+            } else {
+                print("cached for \(minutesCachedInText), max allowed specific \(minutesToText(minutes: cacheInvalidationMinutes))")
+                if minutesCached > cacheInvalidationMinutes {
+                    return nil
                 }
             }
         }
