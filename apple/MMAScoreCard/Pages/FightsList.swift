@@ -16,11 +16,23 @@ struct FigthsList: View {
     @State private var searchText = ""
     @State var fights: [Fight] = []
     
+    func onAppear() {
+        Task {
+            await loadFights(forceRefresh: false)
+        }
+    }
+    
     func onRefresh() {
+        Task {
+            await loadFights(forceRefresh: true)
+        }
+    }
+    
+    func loadFights(forceRefresh: Bool) async {
         Task {
             isFetching = true
             do {
-                fights = try await Sheredog.loadFights(event: event)
+                fights = try await Sheredog.loadFights(event: event, forceRefresh: forceRefresh)
             } catch {
                 self.error = error
             }
@@ -98,7 +110,7 @@ struct FigthsList: View {
                 }
             )
         }
-        .onAppear(perform: onRefresh)
+        .onAppear(perform: onAppear)
         .refreshable(action: onRefresh)
         .searchable(text: $searchText)
         .navigationTitle(event.name)

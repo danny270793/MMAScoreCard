@@ -15,8 +15,8 @@ class Sheredog {
         return try await Http.getImage(url: url)
     }
     
-    static func loadRecord(fighter: Fighter) async throws -> FighterRecord {
-        let html = try await Http.getIfNotExists(url: fighter.link)
+    static func loadRecord(fighter: Fighter, forceRefresh: Bool = false) async throws -> FighterRecord {
+        let html = try await Http.getIfNotExists(url: fighter.link, forceRefresh: forceRefresh)
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM / dd / yyyy"
@@ -151,12 +151,8 @@ class Sheredog {
         })
     }
     
-    static func loadFights(event: Event) async throws -> [Fight] {
-        let eventHasPassed = hasPassedEvent(event: event)
-        if !eventHasPassed {
-            print("And event has passed, so refresh the entire events of fights of that event")
-        }
-        let html = try await Http.getIfNotExists(url: event.url, forceRefresh: !eventHasPassed, cacheInvalidationMinutes: !eventHasPassed ? -1 : 0)
+    static func loadFights(event: Event, forceRefresh: Bool = false) async throws -> [Fight] {
+        let html = try await Http.getIfNotExists(url: event.url, forceRefresh: forceRefresh)
         
         let document = try SwiftSoup.parse(html)
         let fightCard = try document.select("div.fight_card")
@@ -368,8 +364,8 @@ class Sheredog {
         }
     }
     
-    static func loadEventsWithoutDateValidation(forceRefresh: Bool = false) async throws -> [Event] {
-        let html = try await Http.getIfNotExists(url: "\(baseUrl)/organizations/Ultimate-Fighting-Championship-UFC-2", forceRefresh: forceRefresh, cacheInvalidationMinutes: 0)
+    static func loadEvents(forceRefresh: Bool = false) async throws -> [Event] {
+        let html = try await Http.getIfNotExists(url: "\(baseUrl)/organizations/Ultimate-Fighting-Championship-UFC-2", forceRefresh: forceRefresh)
         
         let document = try SwiftSoup.parse(html)
         let tables = try document.select("table.new_table")
@@ -429,27 +425,5 @@ class Sheredog {
         return events.sorted { event1, event2 in
             event1.date > event2.date
         }
-    }
-    
-    static func hasPassedEvent(event: Event) -> Bool {
-        let now = Date.now
-        
-        let calendar = Calendar.current
-        let eventDate = calendar.startOfDay(for: event.date)
-        let nowDate = calendar.startOfDay(for: now)
-        return eventDate < nowDate
-    }
-    
-    static func loadEvents() async throws -> [Event] {
-        let sortedEvents = try await loadEventsWithoutDateValidation()
-        let upcomingEvents = sortedEvents.filter { event in event.date > Date.now}
-        let nextEvent = upcomingEvents[upcomingEvents.count - 1]
-        
-        if hasPassedEvent(event: nextEvent) {
-            print("And event has passed, so refresh the entire events list")
-            return try await loadEventsWithoutDateValidation(forceRefresh: true)
-        }
-        
-        return sortedEvents
     }
 }

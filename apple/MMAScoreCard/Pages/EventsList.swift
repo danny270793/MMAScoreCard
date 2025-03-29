@@ -21,16 +21,26 @@ struct EventsList: View {
     @State var events: [Event] = []
     @State private var filter = FilterOptions.past
     
+    func onAppear() {
+        Task {
+            await loadEvents(forceRefresh: false)
+        }
+    }
+    
     func onRefresh() {
         Task {
-            isFetching = true
-            do {
-                events = try await Sheredog.loadEvents()
-            } catch {
-                self.error = error
-            }
-            isFetching = false
+            await loadEvents(forceRefresh: true)
         }
+    }
+    
+    func loadEvents(forceRefresh: Bool) async {
+        isFetching = true
+        do {
+            events = try await Sheredog.loadEvents(forceRefresh: forceRefresh)
+        } catch {
+            self.error = error
+        }
+        isFetching = false
     }
     
     private var filteredEvents: [Event] {
@@ -127,7 +137,7 @@ struct EventsList: View {
                 }
             )
         }
-        .onAppear(perform: onRefresh)
+        .onAppear(perform: onAppear)
         .refreshable(action: onRefresh)
         .searchable(text: $searchText)
         .navigationTitle("Events")
