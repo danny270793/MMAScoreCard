@@ -55,6 +55,7 @@ class Http {
     
     static func getIfNotExists(url: String, forceRefresh: Bool = false, cacheInvalidationMinutes: Int = -1) async throws -> String {
         if forceRefresh {
+            print("forcing refresh skipping cached")
             let freshHtmlString = try await Http.get(url: url)
             try LocalStorage.saveToFile(content: freshHtmlString, fileName: url)
             return freshHtmlString
