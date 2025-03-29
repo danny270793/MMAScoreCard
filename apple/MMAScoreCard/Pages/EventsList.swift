@@ -102,10 +102,19 @@ struct EventsList: View {
 //                }
 //            }
             ToolbarItem(placement: .secondaryAction) {
+                Button(action: {
+                    if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(appSettings)
+                    }
+                }) {
+                    Label("Settings", systemImage: "gear")
+                    
+                }
+            }
+            ToolbarItem(placement: .secondaryAction) {
                 NavigationLink(destination: AboutView()) {
                     Label("About", systemImage: "info")
                 }
-                
             }
             
             ToolbarItemGroup(placement: .bottomBar) {
