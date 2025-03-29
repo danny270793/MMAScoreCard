@@ -16,13 +16,24 @@ struct FighterDetails: View {
     @State private var searchText = ""
     @State private var fighterRecord: FighterRecord? = nil
     
+    func onAppear() {
+        Task {
+            await loadRecord(forceRefresh: false)
+        }
+    }
+    
     func onRefresh() {
         Task {
-            
+            await loadRecord(forceRefresh: true)
+        }
+    }
+    
+    func loadRecord(forceRefresh: Bool) async {
+        Task {
             isFetching = true
             do {
                 //image = try await Sheredog.loadImage(url: figther.image)
-                fighterRecord = try await Sheredog.loadRecord(fighter: figther)
+                fighterRecord = try await Sheredog.loadRecord(fighter: figther, forceRefresh: forceRefresh)
             } catch {
                 self.error = error
             }
@@ -122,7 +133,7 @@ struct FighterDetails: View {
                 }
             )
         }
-        .onAppear(perform: onRefresh)
+        .onAppear(perform: onAppear)
         .refreshable(action: onRefresh)
         .searchable(text: $searchText)
         .navigationTitle(figther.name)
