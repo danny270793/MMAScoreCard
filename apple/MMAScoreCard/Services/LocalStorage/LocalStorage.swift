@@ -50,9 +50,12 @@ class LocalStorage {
                     
                 if let minutes = components.minute {
                     if cacheInvalidationMinutes == -1 {
-                        let defaultCacheInvalidationMinutes = UserDefaults.standard.integer(forKey: "cacheInvalidationTime")
-                        print("cached \(minutes) minutes \(fileName) max allowed from settings \(defaultCacheInvalidationMinutes)")
-                        if minutes > cacheInvalidationMinutes {
+                        let cacheInvalidationTime = UserDefaults.standard.integer(forKey: "cacheInvalidationTime")
+                        let defaultCacheInvalidationTime = 360
+                        let actualCacheInvalidationTime = cacheInvalidationTime != 0 ? cacheInvalidationTime : defaultCacheInvalidationTime
+                        
+                        print("cached \(minutes) minutes \(fileName) max allowed from settings \(actualCacheInvalidationTime)")
+                        if minutes > actualCacheInvalidationTime {
                             return nil
                         }
                     } else {
