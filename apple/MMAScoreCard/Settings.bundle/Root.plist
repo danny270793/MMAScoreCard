@@ -20,16 +20,18 @@
 			<key>Key</key>
 			<string>cacheInvalidationTime</string>
 			<key>DefaultValue</key>
-			<integer>360</integer>
+			<integer>0</integer>
 			<key>Titles</key>
 			<array>
-				<string>0 minutes</string>
+				<string>Always cache</string>
+				<string>60 minutes</string>
 				<string>360 minutes</string>
 				<string>1440 minutes</string>
 			</array>
 			<key>Values</key>
 			<array>
 				<integer>0</integer>
+				<integer>60</integer>
 				<integer>360</integer>
 				<integer>1440</integer>
 			</array>
