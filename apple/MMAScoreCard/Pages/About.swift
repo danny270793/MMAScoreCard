@@ -8,23 +8,32 @@
 import SwiftUI
 
 struct AboutView: View {
+    let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "Unknown"
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
     let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
-    let documentDirectory: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     
     var body: some View {
         List {
             Section(header: Text("Application")) {
-                LabeledContent("Name", value: "MMA Score Card")
+                LabeledContent("Name", value: appName)
                 LabeledContent("Version", value: appVersion)
                 LabeledContent("Build number", value: buildNumber)
-                if documentDirectory != nil {
-                    LabeledContent("Cache directory", value: documentDirectory!.absoluteString)
-                }
             }
             Section(header: Text("Developer")) {
                 LabeledContent("Name", value: "Danny Vaca")
                 LabeledContent("Email", value: "danny270793@icloud.com")
+            }
+            Section(header: Text("Social")) {
+                Button("GitHub") {
+                    if let url = URL(string: "https://github.com/danny270793") {
+                        UIApplication.shared.open(url)
+                    }
+                }
+                Button("YouTube") {
+                    if let url = URL(string: "https://www.youtube.com/@DannyVacaO") {
+                        UIApplication.shared.open(url)
+                    }
+                }
             }
         }
         .navigationTitle("About")
