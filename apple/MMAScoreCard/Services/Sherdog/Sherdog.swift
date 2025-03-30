@@ -161,7 +161,7 @@ class Sheredog {
         let leftSide = try fightCard.select("div.left_side")
         let figther1StatusText = (try leftSide.select("span.final_result").text()).lowercased().trim()
         let figther1Status = figther1StatusText == "loss" ? FighterStatus.loss : figther1StatusText == "win" ? FighterStatus.win : FighterStatus.pending
-        let figther1Name = try leftSide.select("h3").text()
+        var figther1Name = try leftSide.select("h3").text()
         var fighter1Image: URL? = nil
         var fighter1Url: URL? = nil
         for image in try leftSide.select("img").array() {
@@ -173,11 +173,10 @@ class Sheredog {
             fighter1Url = URL(string: "\(baseUrl)\(href)")
         }
         
-        
         let rightSide = try fightCard.select("div.right_side")
         let figther2StatusText = (try rightSide.select("span.final_result").text()).lowercased().trim()
         let figther2Status = figther2StatusText == "loss" ? FighterStatus.loss : figther2StatusText == "win" ? FighterStatus.win : FighterStatus.pending
-        let figther2Name = try rightSide.select("h3").text()
+        var figther2Name = try rightSide.select("h3").text()
         var fighter2Image: URL? = nil
         var fighter2Url: URL? = nil
         for image in try rightSide.select("img").array() {
@@ -189,12 +188,25 @@ class Sheredog {
             fighter2Url = URL(string: "\(baseUrl)\(href)")
         }
         
+        var fightStatus = FightStatus.done
+        print("figther1StatusText=\(figther1StatusText)")
+        if figther1StatusText.contains("yet to come") {
+            figther1Name = figther1Name.replacingOccurrences(of: "yet to come", with: "")
+            fightStatus = FightStatus.pending
+        }
+        print("figther2StatusText=\(figther2StatusText)")
+        if figther2StatusText.contains("yet to come") {
+            figther2Name = figther2Name.replacingOccurrences(of: "yet to come", with: "")
+            fightStatus = FightStatus.pending
+        }
+        print("fightStatus=\(fightStatus)")
+        
         var position: Int = 1000
         var result: String = ""
         var round: String = ""
         var time: String = ""
         var referee: String = ""
-        var fightStatus = FightStatus.pending
+        
         
         let resumeTables = try document.select("table.fight_card_resume")
         for table in resumeTables.array() {
@@ -205,7 +217,6 @@ class Sheredog {
                 let columns = try row.select("td")
                 var columnNumber = -1
                 for column in columns.array() {
-                    fightStatus = FightStatus.done
                     columnNumber += 1
                     let columnText = try column.text()
                     switch columnNumber {
@@ -259,12 +270,17 @@ class Sheredog {
                 for column in columns.array() {
                     columnNumber += 1
                     let columnText = try column.text()
+                    //print("rowNumber=\(rowNumber) columnNumber=\(columnNumber) columnText=\(columnText)")
                     
                     if columns.count == 5 {
+                        fighter1Status = FighterStatus.pending
+                        fighter2Status = FighterStatus.pending
+                        fightStatus = FightStatus.pending
+                        
                         switch columnNumber {
                         case 0: position = Int(columnText)
                         case 1: try {
-                            let components = columnText.split(separator: " ")
+                            let components = columnText.replacingOccurrences(of: "yet to come", with: "").split(separator: " ")
                             fighter1Name = components.dropLast().joined(separator: " ")
                             
                             for image in try column.select("img").array() {
@@ -295,9 +311,6 @@ class Sheredog {
                             referee = ""
                             round = ""
                             time = ""
-                            fighter1Status = FighterStatus.pending
-                            fighter2Status = FighterStatus.pending
-                            fightStatus = FightStatus.pending
                         }()
                         default: throw SheredogErrors.invalidColumn(position: columnNumber, value: columnText)
                         }
@@ -307,7 +320,7 @@ class Sheredog {
                         case 1: try {
                             fighter1Status = columnText.hasSuffix("win") ? FighterStatus.win : FighterStatus.loss
                             
-                            let components = columnText.split(separator: " ")
+                            let components = columnText.replacingOccurrences(of: "yet to come", with: "").split(separator: " ")
                             fighter1Name = components.dropLast().joined(separator: " ")
                             
                             for image in try column.select("img").array() {
@@ -323,7 +336,7 @@ class Sheredog {
                         case 3: try {
                             fighter2Status = columnText.hasSuffix("win") ? FighterStatus.win : FighterStatus.loss
                             
-                            let components = columnText.split(separator: " ")
+                            let components = columnText.replacingOccurrences(of: "yet to come", with: "").split(separator: " ")
                             fighter2Name = components.dropLast().joined(separator: " ")
                             
                             for image in try column.select("img").array() {
@@ -337,10 +350,15 @@ class Sheredog {
                         }()
                         case 4: {
                             let parts = columnText.split(separator: ")")
-                            
-                            result = String(parts[0]).trim() + ")"
-                            referee = String(parts[1]).trim()
-                            fightStatus = FightStatus.done
+                            if parts.count == 2 {
+                                result = String(parts[0]).trim() + ")"
+                                referee = String(parts[1]).trim()
+                                fightStatus = FightStatus.done
+                            } else {
+                                result = ""
+                                referee = ""
+                                fightStatus = FightStatus.pending
+                            }
                         }()
                         case 5: round = columnText
                         case 6: time = columnText
