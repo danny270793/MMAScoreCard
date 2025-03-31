@@ -23,6 +23,49 @@ class LocalStorage {
         try content.write(to: fileURL, atomically: true, encoding: .utf8)
     }
     
+    static func getCachedAt(fileName: String) throws -> Date? {
+        guard let data = fileName.data(using: .utf8) else {
+            throw LocalStorageErrors.encodingError
+        }
+        let fileNameBase64 = data.base64EncodedString()
+        
+        let fileManager = FileManager.default
+        guard let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            throw LocalStorageErrors.noHasAccess
+        }
+        
+        let fileURL = documentDirectory.appendingPathComponent(fileNameBase64)
+        if !fileManager.fileExists(atPath: fileURL.path) {
+            return nil
+        }
+        
+        let attributes = try FileManager.default.attributesOfItem(atPath: fileURL.path)
+        if let creationDate = attributes[.creationDate] as? Date {
+            return creationDate
+        }
+        return nil
+    }
+    
+    static func getTimeCached(fileName: String) throws -> String? {
+        guard let data = fileName.data(using: .utf8) else {
+            throw LocalStorageErrors.encodingError
+        }
+        let fileNameBase64 = data.base64EncodedString()
+        
+        let fileManager = FileManager.default
+        guard let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            throw LocalStorageErrors.noHasAccess
+        }
+        
+        let fileURL = documentDirectory.appendingPathComponent(fileNameBase64)
+        if !fileManager.fileExists(atPath: fileURL.path) {
+            return nil
+        }
+        
+        let minutesCached: Int = try getMinutesCached(fileURL: fileURL)
+        return minutesToText(minutes: minutesCached)
+    }
+    
     static func getMinutesCached(fileURL: URL) throws -> Int {
         let attributes = try FileManager.default.attributesOfItem(atPath: fileURL.path)
         if let creationDate = attributes[.creationDate] as? Date {
@@ -42,7 +85,7 @@ class LocalStorage {
         let hours = (minutes % (24 * 60)) / 60
         let remainingMinutes = minutes % 60
         
-        return String(format: "%02dd%02dh%02dm", days, hours, remainingMinutes)
+        return String(format: "%02dd %02dh%02dm", days, hours, remainingMinutes)
     }
     
     static func loadFromFile(fileName: String, cacheInvalidationMinutes: Int = 0) throws -> String? {
