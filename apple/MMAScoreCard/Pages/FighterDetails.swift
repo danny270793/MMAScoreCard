@@ -14,7 +14,7 @@ struct FighterDetails: View {
     @State private var error: Error? = nil
     //@State private var image: Data? = nil
     @State private var searchText = ""
-    @State private var fighterRecord: FighterRecord? = nil
+    @State private var response: SherdogResponse<FighterRecord>? = nil
     
     func onAppear() {
         Task {
@@ -33,7 +33,7 @@ struct FighterDetails: View {
             isFetching = true
             do {
                 //image = try await Sheredog.loadImage(url: figther.image)
-                fighterRecord = try await Sheredog.loadRecord(fighter: figther, forceRefresh: forceRefresh)
+                response = try await Sheredog.loadRecord(fighter: figther, forceRefresh: forceRefresh)
             } catch {
                 self.error = error
             }
@@ -42,14 +42,14 @@ struct FighterDetails: View {
     }
     
     private var filteredFights: [Record] {
-        if fighterRecord == nil {
+        if response == nil {
             return []
         }
         
         if searchText.isEmpty {
-            return fighterRecord!.fights
+            return response!.data.fights
         } else {
-            return fighterRecord!.fights.filter { fight in
+            return response!.data.fights.filter { fight in
                 fight.figther.lowercased().contains(searchText.lowercased()) ||
                 fight.status.rawValue.lowercased().contains(searchText.lowercased()) ||
                 fight.method.lowercased().contains(searchText.lowercased()) ||
@@ -77,20 +77,19 @@ struct FighterDetails: View {
             //            }
             Section(header: Text("Fighter")) {
                 LabeledContent("Name", value: figther.name)
-                if fighterRecord != nil {
-                    LabeledContent("Nationality", value: fighterRecord!.nationality)
-                    LabeledContent("Age", value: fighterRecord!.age)
-                    LabeledContent("Height", value: fighterRecord!.height)
-                    LabeledContent("Weight", value: fighterRecord!.weight)
+                if response?.data != nil {
+                    LabeledContent("Nationality", value: response!.data.nationality)
+                    LabeledContent("Age", value: response!.data.age)
+                    LabeledContent("Height", value: response!.data.height)
+                    LabeledContent("Weight", value: response!.data.weight)
                 }
             }
-            if fighterRecord != nil {
+            if response?.data != nil {
                 Section(header: Text("Record")) {
-                    
-                    LabeledContent("WIN", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.win }.count)")
-                    LabeledContent("LOSS", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.loss }.count)")
-                    LabeledContent("DRAW", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.draw }.count)")
-                    LabeledContent("NC", value: "\(fighterRecord!.fights.filter { fight in fight.status == FighterStatus.nc }.count)")
+                    LabeledContent("WIN", value: "\(response!.data.fights.filter { fight in fight.status == FighterStatus.win }.count)")
+                    LabeledContent("LOSS", value: "\(response!.data.fights.filter { fight in fight.status == FighterStatus.loss }.count)")
+                    LabeledContent("DRAW", value: "\(response!.data.fights.filter { fight in fight.status == FighterStatus.draw }.count)")
+                    LabeledContent("NC", value: "\(response!.data.fights.filter { fight in fight.status == FighterStatus.nc }.count)")
                 }
                 Section(header: Text("Fights")) {
                     ForEach(filteredFights) { fight in
@@ -111,6 +110,12 @@ struct FighterDetails: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
+                }
+            }
+            if response?.data != nil || response?.timeCached != nil {
+                Section("Metadata") {
+                    LabeledContent("Cached at", value: response!.cachedAt!.ISO8601Format())
+                    LabeledContent("Time cached", value: response!.timeCached!)
                 }
             }
         }
