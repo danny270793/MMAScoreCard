@@ -18,7 +18,7 @@ struct EventsList: View {
     @State private var isFetching: Bool = true
     @State private var error: Error? = nil
     @State private var searchText = ""
-    @State var events: [Event] = []
+    @State var response: SherdogResponse<[Event]>? = nil
     @State private var filter = FilterOptions.past
     
     func onAppear() {
@@ -36,7 +36,7 @@ struct EventsList: View {
     func loadEvents(forceRefresh: Bool) async {
         isFetching = true
         do {
-            events = try await Sheredog.loadEvents(forceRefresh: forceRefresh)
+            response = try await Sheredog.loadEvents(forceRefresh: forceRefresh)
         } catch {
             self.error = error
         }
@@ -44,11 +44,15 @@ struct EventsList: View {
     }
     
     private var filteredEvents: [Event] {
+        if response == nil {
+            return []
+        }
+        
         var preFilteredEvents: [Event] = []
         switch filter {
-        case FilterOptions.all: preFilteredEvents = events
-        case FilterOptions.upcoming: preFilteredEvents = events.filter { event in event.date > Date.now}
-        case FilterOptions.past: preFilteredEvents = events.filter { event in event.date <= Date.now}
+        case FilterOptions.all: preFilteredEvents = response!.data
+        case FilterOptions.upcoming: preFilteredEvents = response!.data.filter { event in event.date > Date.now}
+        case FilterOptions.past: preFilteredEvents = response!.data.filter { event in event.date <= Date.now}
         }
             
         if searchText.isEmpty {
@@ -63,29 +67,38 @@ struct EventsList: View {
     }
     
     var body: some View {
-        List(filteredEvents) { event in
-            NavigationLink(destination: FigthsList(event: event)) {
-                VStack {
-                    Text(event.name)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    if event.fight != nil {
-                        Text(event.fight!)
+        List {
+            ForEach(filteredEvents) { event in
+                NavigationLink(destination: FigthsList(event: event)) {
+                    VStack {
+                        Text(event.name)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        if event.fight != nil {
+                            Text(event.fight!)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        Text(event.date.ISO8601Format().split(separator: "T")[0])
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    Text(event.date.ISO8601Format().split(separator: "T")[0])
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    .contextMenu {
+                        Button(action: {
+                            Sharing.shareText(text: "I'm viewing \"\(event.name)\"\nSee more information at: \(event.url)")
+                        }) {
+                            Text("Share")
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                    } preview: {
+                        NavigationStack {
+                            FigthsList(event: event)
+                        }
+                    }
                 }
-                .contextMenu {
-                    Button(action: {
-                        Sharing.shareText(text: "I'm viewing \"\(event.name)\"\nSee more information at: \(event.url)")
-                    }) {
-                        Text("Share")
-                        Image(systemName: "square.and.arrow.up")
-                    }
-                } preview: {
-                    NavigationStack {
-                        FigthsList(event: event)
-                    }
+            }
+            
+            if response?.data != nil || response?.timeCached != nil {
+                Section("Metadata") {
+                    LabeledContent("Cached at", value: response!.cachedAt!.ISO8601Format())
+                    LabeledContent("Time cached", value: response!.timeCached!)
                 }
             }
         }

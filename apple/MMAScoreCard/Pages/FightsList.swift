@@ -14,7 +14,7 @@ struct FigthsList: View {
     @State private var isFetching: Bool = true
     @State private var error: Error? = nil
     @State private var searchText = ""
-    @State var fights: [Fight] = []
+    @State var response: SherdogResponse<[Fight]>? = nil
     
     func onAppear() {
         Task {
@@ -32,7 +32,7 @@ struct FigthsList: View {
         Task {
             isFetching = true
             do {
-                fights = try await Sheredog.loadFights(event: event, forceRefresh: forceRefresh)
+                response = try await Sheredog.loadFights(event: event, forceRefresh: forceRefresh)
             } catch {
                 self.error = error
             }
@@ -41,14 +41,18 @@ struct FigthsList: View {
     }
     
     private var filteredFights: [Fight] {
+        if response == nil {
+            return []
+        }
+        
         if searchText.isEmpty {
-            return fights
+            return response!.data
         } else {
-            return fights.filter { event in
-                event.figther1.name.lowercased().contains(searchText.lowercased()) ||
-                event.figther2.name.lowercased().contains(searchText.lowercased()) ||
-                event.division.lowercased().contains(searchText.lowercased()) ||
-                event.result.lowercased().contains(searchText.lowercased())
+            return response!.data.filter { fight in
+                fight.figther1.name.lowercased().contains(searchText.lowercased()) ||
+                fight.figther2.name.lowercased().contains(searchText.lowercased()) ||
+                fight.division.lowercased().contains(searchText.lowercased()) ||
+                fight.result.lowercased().contains(searchText.lowercased())
             }
         }
     }
@@ -88,6 +92,12 @@ struct FigthsList: View {
                             }
                         }
                     }
+                }
+            }
+            if response?.data != nil || response?.timeCached != nil {
+                Section("Metadata") {
+                    LabeledContent("Cached at", value: response!.cachedAt!.ISO8601Format())
+                    LabeledContent("Time cached", value: response!.timeCached!)
                 }
             }
         }
