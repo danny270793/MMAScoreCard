@@ -8,14 +8,21 @@
 import SwiftUI
 import SwiftSoup
 
+struct SherdogResponse<T> {
+    let cachedAt: Date?
+    let timeCached: String?
+    let data: T
+}
+
 class Sheredog {
     static let baseUrl: String = "https://www.sherdog.com"
+    static let eventsUrl: String = "\(baseUrl)/organizations/Ultimate-Fighting-Championship-UFC-2"
     
     static func loadImage(url: URL) async throws -> Data {
         return try await Http.getImage(url: url)
     }
     
-    static func loadRecord(fighter: Fighter, forceRefresh: Bool = false) async throws -> FighterRecord {
+    static func loadRecord(fighter: Fighter, forceRefresh: Bool = false) async throws -> SherdogResponse<FighterRecord> {
         let html = try await Http.getIfNotExists(url: fighter.link, forceRefresh: forceRefresh)
         
         let dateFormatter = DateFormatter()
@@ -146,12 +153,15 @@ class Sheredog {
             throw SheredogErrors.invalidFigther
         }
         
-        return FighterRecord(name: fighter.name, nationality: nationality!, age: age!, height: height!, weight: weight!, fights: records.sorted { fight1, fight2 in
+        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: eventsUrl)
+        let timeCached: String? = try LocalStorage.getTimeCached(fileName: eventsUrl)
+        let data: FighterRecord = FighterRecord(name: fighter.name, nationality: nationality!, age: age!, height: height!, weight: weight!, fights: records.sorted { fight1, fight2 in
             fight1.date > fight2.date
         })
+        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
     
-    static func loadFights(event: Event, forceRefresh: Bool = false) async throws -> [Fight] {
+    static func loadFights(event: Event, forceRefresh: Bool = false) async throws -> SherdogResponse<[Fight]> {
         let html = try await Http.getIfNotExists(url: event.url, forceRefresh: forceRefresh)
         
         let document = try SwiftSoup.parse(html)
@@ -377,13 +387,17 @@ class Sheredog {
                 fights.append(fight)
             }
         }
-        return fights.sorted { fight1, fight2 in
+        
+        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: eventsUrl)
+        let timeCached: String? = try LocalStorage.getTimeCached(fileName: eventsUrl)
+        let data: [Fight] = fights.sorted { fight1, fight2 in
             fight1.position > fight2.position
         }
+        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
     
-    static func loadEvents(forceRefresh: Bool = false) async throws -> [Event] {
-        let html = try await Http.getIfNotExists(url: "\(baseUrl)/organizations/Ultimate-Fighting-Championship-UFC-2", forceRefresh: forceRefresh)
+    static func loadEvents(forceRefresh: Bool = false) async throws -> SherdogResponse<[Event]> {
+        let html = try await Http.getIfNotExists(url: eventsUrl, forceRefresh: forceRefresh)
         
         let document = try SwiftSoup.parse(html)
         let tables = try document.select("table.new_table")
@@ -440,8 +454,12 @@ class Sheredog {
                 events.append(event)
             }
         }
-        return events.sorted { event1, event2 in
+        
+        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: eventsUrl)
+        let timeCached: String? = try LocalStorage.getTimeCached(fileName: eventsUrl)
+        let data: [Event] = events.sorted { event1, event2 in
             event1.date > event2.date
         }
+        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
 }

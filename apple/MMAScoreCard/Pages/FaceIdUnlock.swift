@@ -51,7 +51,7 @@ struct FaceIdUnlock: View {
     }
     
     var body: some View {
-        NavigationStack {
+        ZStack {
             if requiresFaceId {
                 if authenticated {
                     AnyView(main)
