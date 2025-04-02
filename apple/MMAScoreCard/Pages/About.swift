@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AboutView: View {
-    let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "Unknown"
+    let appName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "Unknown"
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
     let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
     
