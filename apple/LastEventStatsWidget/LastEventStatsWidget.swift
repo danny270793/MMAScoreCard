@@ -54,6 +54,9 @@ struct LastEventStatsWidgetEntryView : View {
         let kos = Double(entry.koTko)/fights
         let submissions = Double(entry.submission)/fights
         let decissions = Double(entry.decission)/fights
+        let text = 0.3
+        let space = 0.2
+        let theRest = 1 - text - space
         
         GeometryReader { geometry in
             VStack {
@@ -61,37 +64,40 @@ struct LastEventStatsWidgetEntryView : View {
                 Text(entry.eventName)
                 HStack{
                     Text("KOs")
-                        .frame(width: geometry.size.width * 0.3)
+                        .frame(width: geometry.size.width * text)
                     ZStack {
                         Rectangle()
                             .fill(Color.red)
                             .cornerRadius(10)
-                            .frame(width: geometry.size.width * 0.7 * kos)
+                            .frame(width: geometry.size.width * space + geometry.size.width * theRest * kos)
                         Text(String(entry.koTko))
+                            .foregroundColor(.white)
                     }
                     Spacer()
                 }
                 HStack {
                     Text("Sub")
-                        .frame(width: geometry.size.width * 0.3)
+                        .frame(width: geometry.size.width * text)
                     ZStack {
                         Rectangle()
                             .fill(Color.blue)
                             .cornerRadius(10)
-                            .frame(width: geometry.size.width * 0.7 * submissions)
+                            .frame(width: geometry.size.width * space + geometry.size.width * theRest * submissions)
                         Text(String(entry.submission))
+                            .foregroundColor(.white)
                     }
                     Spacer()
                 }
                 HStack {
                     Text("Dec")
-                        .frame(width: geometry.size.width * 0.3)
+                        .frame(width: geometry.size.width * text)
                     ZStack {
                         Rectangle()
                             .fill(Color.green)
                             .cornerRadius(10)
-                            .frame(width: geometry.size.width * decissions - 0.3)
+                            .frame(width: geometry.size.width * space + geometry.size.width * theRest * decissions)
                         Text(String(entry.decission))
+                            .foregroundColor(.white)
                     }
                     Spacer()
                 }
