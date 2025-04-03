@@ -13,6 +13,7 @@
 		A0E9934C2D9E23E100A50EDE /* LastEventStatsWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A0E9933C2D9E23E000A50EDE /* LastEventStatsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A0E993A52D9ED82A00A50EDE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0E993A42D9ED82A00A50EDE /* SwiftSoup */; };
 		A0E994702D9F40FD00A50EDE /* MMAScoreCardWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A0E994632D9F40FC00A50EDE /* MMAScoreCardWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A0E9947A2D9F422400A50EDE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0E994792D9F422400A50EDE /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		A0E993402D9E23E000A50EDE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		A0E993A62D9EDD0200A50EDE /* LastEventStatsWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LastEventStatsWidgetExtension.entitlements; sourceTree = "<group>"; };
 		A0E994632D9F40FC00A50EDE /* MMAScoreCardWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MMAScoreCardWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0E9947B2D9F422900A50EDE /* MMAScoreCardWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "MMAScoreCardWatch-Watch-App-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -81,9 +83,10 @@
 			);
 			target = A0E9933B2D9E23E000A50EDE /* LastEventStatsWidgetExtension */;
 		};
-		A0E9939A2D9ED5C200A50EDE /* Exceptions for "MMAScoreCard" folder in "LastEventStatsWidgetExtension" target */ = {
+		A0E9947E2D9F426400A50EDE /* Exceptions for "Shared" folder in "MMAScoreCard" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Enums/FilterOptions.swift,
 				Models/Event.swift,
 				Models/Fight.swift,
 				Models/Fighter.swift,
@@ -95,7 +98,24 @@
 				Services/Sherdog/Sherdog.swift,
 				Services/Sherdog/SherdogErrors.swift,
 			);
-			target = A0E9933B2D9E23E000A50EDE /* LastEventStatsWidgetExtension */;
+			target = A0B318182D9080B400658E72 /* MMAScoreCard */;
+		};
+		A0E9947F2D9F426400A50EDE /* Exceptions for "Shared" folder in "MMAScoreCardWatch Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Enums/FilterOptions.swift,
+				Models/Event.swift,
+				Models/Fight.swift,
+				Models/Fighter.swift,
+				Models/Record.swift,
+				Services/Http/Http.swift,
+				Services/Http/HttpErrors.swift,
+				Services/LocalStorage/LocalStorage.swift,
+				Services/LocalStorage/LocalStorageErrors.swift,
+				Services/Sherdog/Sherdog.swift,
+				Services/Sherdog/SherdogErrors.swift,
+			);
+			target = A0E994622D9F40FC00A50EDE /* MMAScoreCardWatch Watch App */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -104,7 +124,6 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				A0B318B62D90979F00658E72 /* Exceptions for "MMAScoreCard" folder in "MMAScoreCard" target */,
-				A0E9939A2D9ED5C200A50EDE /* Exceptions for "MMAScoreCard" folder in "LastEventStatsWidgetExtension" target */,
 			);
 			path = MMAScoreCard;
 			sourceTree = "<group>";
@@ -120,6 +139,15 @@
 		A0E994642D9F40FC00A50EDE /* MMAScoreCardWatchApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = MMAScoreCardWatchApp;
+			sourceTree = "<group>";
+		};
+		A0E994782D9F41FE00A50EDE /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A0E9947E2D9F426400A50EDE /* Exceptions for "Shared" folder in "MMAScoreCard" target */,
+				A0E9947F2D9F426400A50EDE /* Exceptions for "Shared" folder in "MMAScoreCardWatch Watch App" target */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -147,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0E9947A2D9F422400A50EDE /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +185,8 @@
 		A0B318102D9080B400658E72 = {
 			isa = PBXGroup;
 			children = (
+				A0E9947B2D9F422900A50EDE /* MMAScoreCardWatch-Watch-App-Info.plist */,
+				A0E994782D9F41FE00A50EDE /* Shared */,
 				A0E993A62D9EDD0200A50EDE /* LastEventStatsWidgetExtension.entitlements */,
 				A0B3181B2D9080B400658E72 /* MMAScoreCard */,
 				A0E993422D9E23E000A50EDE /* LastEventStatsWidget */,
@@ -228,6 +259,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				A0E993422D9E23E000A50EDE /* LastEventStatsWidget */,
+				A0E994782D9F41FE00A50EDE /* Shared */,
 			);
 			name = LastEventStatsWidgetExtension;
 			packageProductDependencies = (
@@ -254,6 +286,7 @@
 			);
 			name = "MMAScoreCardWatch Watch App";
 			packageProductDependencies = (
+				A0E994792D9F422400A50EDE /* SwiftSoup */,
 			);
 			productName = "MMAScoreCardWatch Watch App";
 			productReference = A0E994632D9F40FC00A50EDE /* MMAScoreCardWatch Watch App.app */;
@@ -616,6 +649,7 @@
 				DEVELOPMENT_TEAM = JBQ32BV635;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MMAScoreCardWatch-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = MMAScoreCardWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = io.github.danny270793.MMAScoreCard;
@@ -646,6 +680,7 @@
 				DEVELOPMENT_TEAM = JBQ32BV635;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MMAScoreCardWatch-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = MMAScoreCardWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = io.github.danny270793.MMAScoreCard;
@@ -724,6 +759,11 @@
 			productName = SwiftSoup;
 		};
 		A0E993A42D9ED82A00A50EDE /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0B318362D90896400658E72 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		A0E994792D9F422400A50EDE /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A0B318362D90896400658E72 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
