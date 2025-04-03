@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 enum FilterOptions {
     case all
@@ -37,6 +38,7 @@ struct EventsList: View {
         isFetching = true
         do {
             response = try await Sheredog.loadEvents(forceRefresh: forceRefresh)
+            WidgetCenter.shared.reloadTimelines(ofKind: "LastEventStatsWidget")
         } catch {
             self.error = error
         }
