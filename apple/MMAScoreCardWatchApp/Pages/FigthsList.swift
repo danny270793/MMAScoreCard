@@ -67,7 +67,7 @@ struct FigthsList: View {
             }
             Section(header: Text("Fights")) {
                 ForEach(filteredFights) { fight in
-                    //NavigationLink(destination: FigthDetails(event: event, fight: fight)) {
+                    NavigationLink(destination: FigthDetails(event: event, fight: fight)) {
                         VStack {
                             Text("\(fight.figther1.name) vs \(fight.figther2.name)")
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -80,7 +80,7 @@ struct FigthsList: View {
                             Text("\(fight.division)")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                    //}
+                    }
                 }
             }
             if response?.data != nil || response?.timeCached != nil {
