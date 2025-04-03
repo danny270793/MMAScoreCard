@@ -10,100 +10,103 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: .now, eventName: "UFC 300", koTko: 3, submission: 5, decission: 8)
+        SimpleEntry(date: .now, stats: EventStats(name: "UFC 300", kos: 5, submissions: 8, decisions: 2))
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: .now, eventName: "UFC 308", koTko: 3, submission: 5, decission: 8)
+        let entry = SimpleEntry(date: .now, stats: EventStats(name: "UFC 308", kos: 5, submissions: 8, decisions: 2))
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        //Sherdog.getLastEventStats()
-        
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 7 {
-            let entryDate = Calendar.current.date(byAdding: .day, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, eventName: "UFC 309", koTko: 3, submission: 5, decission: 8)
-            entries.append(entry)
-        }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+        createTimeline(date: Date(), completion: completion)
     }
-
-//    func relevances() async -> WidgetRelevances<Void> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
+    
+    func createTimelineEntry(date: Date, completion: @escaping (Entry) -> ()) {
+        Task {
+            let stats = try await Sheredog.getLastEventStats()
+            let entry = Entry(date: date, stats: stats.data)
+            completion(entry)
+        }
+    }
+    
+    func createTimeline(date: Date, completion: @escaping (Timeline<Entry>) -> ()) {
+        Task {
+            let stats = try await Sheredog.getLastEventStats()
+            let entry = Entry(date: date, stats: stats.data)
+            let timeline = Timeline(entries: [entry], policy: .never)
+            completion(timeline)
+        }
+    }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let eventName: String
-    let koTko: Int
-    let submission: Int
-    let decission: Int
+    let stats: EventStats?
 }
 
 struct LastEventStatsWidgetEntryView : View {
     var entry: Provider.Entry
     
     var body: some View {
-        let fights = Double(entry.koTko + entry.decission + entry.submission)
-        let kos = Double(entry.koTko)/fights
-        let submissions = Double(entry.submission)/fights
-        let decissions = Double(entry.decission)/fights
-        let text = 0.3
-        let space = 0.2
-        let theRest = 1 - text - space
-        
-        GeometryReader { geometry in
-            let labelWidth = geometry.size.width * text
-            let barMinWidht = geometry.size.width * space
-            VStack {
-                
-                Text(entry.eventName)
-                HStack{
-                    Text("KOs")
-                        .frame(width: labelWidth)
-                    ZStack {
-                        Rectangle()
-                            .fill(Color.red)
-                            .cornerRadius(10)
-                            .frame(width: barMinWidht + geometry.size.width * theRest * kos)
-                        Text(String(entry.koTko))
-                            .foregroundColor(.white)
+        if entry.stats == nil {
+            ZStack {
+                ProgressView()
+                Text("Loading...")
+            }
+        } else {
+            let fights = Double(entry.stats!.kos + entry.stats!.decisions + entry.stats!.submissions)
+            let kos = Double(entry.stats!.kos)/fights
+            let submissions = Double(entry.stats!.submissions)/fights
+            let decissions = Double(entry.stats!.decisions)/fights
+            let text = 0.3
+            let space = 0.2
+            let theRest = 1 - text - space
+            
+            GeometryReader { geometry in
+                let labelWidth = geometry.size.width * text
+                let barMinWidht = geometry.size.width * space
+                VStack {
+                    Text(entry.stats!.name)
+                    HStack{
+                        Text("KOs")
+                            .frame(width: labelWidth)
+                        ZStack {
+                            Rectangle()
+                                .fill(Color.red)
+                                .cornerRadius(10)
+                                .frame(width: barMinWidht + geometry.size.width * theRest * kos)
+                            Text(String(entry.stats!.kos))
+                                .foregroundColor(.white)
+                        }
+                        Spacer()
                     }
-                    Spacer()
-                }
-                HStack {
-                    Text("Sub")
-                        .frame(width: labelWidth)
-                    ZStack {
-                        Rectangle()
-                            .fill(Color.blue)
-                            .cornerRadius(10)
-                            .frame(width: barMinWidht + geometry.size.width * theRest * submissions)
-                        Text(String(entry.submission))
-                            .foregroundColor(.white)
+                    HStack {
+                        Text("Sub")
+                            .frame(width: labelWidth)
+                        ZStack {
+                            Rectangle()
+                                .fill(Color.blue)
+                                .cornerRadius(10)
+                                .frame(width: barMinWidht + geometry.size.width * theRest * submissions)
+                            Text(String(entry.stats!.submissions))
+                                .foregroundColor(.white)
+                        }
+                        Spacer()
                     }
-                    Spacer()
-                }
-                HStack {
-                    Text("Dec")
-                        .frame(width: labelWidth)
-                    ZStack {
-                        Rectangle()
-                            .fill(Color.green)
-                            .cornerRadius(10)
-                            .frame(width: barMinWidht + geometry.size.width * theRest * decissions)
-                        Text(String(entry.decission))
-                            .foregroundColor(.white)
+                    HStack {
+                        Text("Dec")
+                            .frame(width: labelWidth)
+                        ZStack {
+                            Rectangle()
+                                .fill(Color.green)
+                                .cornerRadius(10)
+                                .frame(width: barMinWidht + geometry.size.width * theRest * decissions)
+                            Text(String(entry.stats!.decisions))
+                                .foregroundColor(.white)
+                        }
+                        Spacer()
                     }
-                    Spacer()
                 }
             }
         }
@@ -132,5 +135,6 @@ struct LastEventStatsWidget: Widget {
 #Preview(as: .systemSmall) {
     LastEventStatsWidget()
 } timeline: {
-    SimpleEntry(date: .now, eventName: "UFC 306", koTko: 5, submission: 8, decission: 2)
+    SimpleEntry(date: .now, stats: EventStats(name: "UFC 306", kos: 5, submissions: 8, decisions: 2))
+    SimpleEntry(date: .now, stats: nil)
 }
