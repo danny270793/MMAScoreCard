@@ -10,11 +10,11 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+        SimpleEntry(date: .now, eventName: "UFC 300", koTko: 3, submission: 5, decission: 8)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
+        let entry = SimpleEntry(date: .now, eventName: "UFC 308", koTko: 3, submission: 5, decission: 8)
         completion(entry)
     }
 
@@ -25,7 +25,7 @@ struct Provider: TimelineProvider {
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
+            let entry = SimpleEntry(date: .now, eventName: "UFC 309", koTko: 3, submission: 5, decission: 8)
             entries.append(entry)
         }
 
@@ -40,19 +40,90 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let emoji: String
+    let eventName: String
+    let koTko: Int
+    let submission: Int
+    let decission: Int
 }
 
 struct LastEventStatsWidgetEntryView : View {
     var entry: Provider.Entry
-
+    
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Emoji:")
-            Text(entry.emoji)
+        let fights = Double(entry.koTko + entry.decission + entry.submission)
+        let kos = Double(entry.koTko)/fights
+        let submissions = Double(entry.submission)/fights
+        let decissions = Double(entry.decission)/fights
+        
+        GeometryReader { geometry in
+            VStack {
+                
+                Text(entry.eventName)
+                HStack{
+                    Text("KOs")
+                        .frame(width: geometry.size.width * 0.3)
+                    ZStack {
+                        Rectangle()
+                            .fill(Color.red)
+                            .cornerRadius(10)
+                            .frame(width: geometry.size.width * 0.7 * kos)
+                        Text(String(entry.koTko))
+                    }
+                    Spacer()
+                }
+                HStack {
+                    Text("Sub")
+                        .frame(width: geometry.size.width * 0.3)
+                    ZStack {
+                        Rectangle()
+                            .fill(Color.blue)
+                            .cornerRadius(10)
+                            .frame(width: geometry.size.width * 0.7 * submissions)
+                        Text(String(entry.submission))
+                    }
+                    Spacer()
+                }
+                HStack {
+                    Text("Dec")
+                        .frame(width: geometry.size.width * 0.3)
+                    ZStack {
+                        Rectangle()
+                            .fill(Color.green)
+                            .cornerRadius(10)
+                            .frame(width: geometry.size.width * decissions - 0.3)
+                        Text(String(entry.decission))
+                    }
+                    Spacer()
+                }
+            }
+            
+            //        ZStack {
+            //            Circle()
+            //                .stroke(style: StrokeStyle(
+            //                    lineWidth: 20, lineCap: .round
+            //                ))
+            //
+            ////            Circle()
+            ////                .trim(from: kos + submissions, to: kos + submissions + decissions)
+            ////                .stroke(.green, style: StrokeStyle(
+            ////                    lineWidth: 20, lineCap: .round
+            ////                ))
+            ////                .rotationEffect(.degrees(-90))
+            //            Circle()
+            //                .trim(from: kos, to: kos + submissions)
+            //                .stroke(.blue, style: StrokeStyle(
+            //                    lineWidth: 20, lineCap: .round
+            //                ))
+            //                .rotationEffect(.degrees(-90))
+            //            Circle()
+            //                .trim(from: 0, to: kos)
+            //                .stroke(.red, style: StrokeStyle(
+            //                    lineWidth: 20, lineCap: .round
+            //                ))
+            //                .rotationEffect(.degrees(-90))
+            //            VStack {
+            //                Text(entry.eventName)
+            //            }
         }
     }
 }
@@ -71,14 +142,13 @@ struct LastEventStatsWidget: Widget {
                     .background()
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Last event stats")
+        .description("Show the percentage ok KO/TKO, Submissions and Decissions on last event")
     }
 }
 
 #Preview(as: .systemSmall) {
     LastEventStatsWidget()
 } timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
+    SimpleEntry(date: .now, eventName: "UFC 306", koTko: 5, submission: 8, decission: 2)
 }
