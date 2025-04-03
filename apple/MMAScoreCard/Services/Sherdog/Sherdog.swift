@@ -396,6 +396,29 @@ class Sheredog {
         return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
     
+    static func getLastEventStats() async throws {
+        let events = try await Sheredog.loadEvents()
+        let pastEvents = events.data.filter { event in event.date <= Date.now}
+        let lastEvent = pastEvents[0]
+        let fights = try await loadFights(event: lastEvent)
+        
+        var kos = 0
+        var submission = 0
+        var decission = 0
+        for fight in fights.data {
+            let parts = fight.result.split(separator: " ")
+            let result = parts[0]
+            switch result.lowercased().trim() {
+            case "ko": kos += 1
+            case "tko": kos += 1
+            case "decision": decission += 1
+            case "submission": submission += 1
+            default:{}()
+            }
+        }
+        
+    }
+    
     static func loadEvents(forceRefresh: Bool = false) async throws -> SherdogResponse<[Event]> {
         let html = try await Http.getIfNotExists(url: eventsUrl, forceRefresh: forceRefresh)
         
