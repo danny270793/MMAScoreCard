@@ -15,9 +15,10 @@ struct SherdogResponse<T> {
 }
 
 struct EventStats {
+    let name: String
     let kos: Int
     let submissions: Int
-    let decision: Int
+    let decisions: Int
 }
 
 class Sheredog {
@@ -424,7 +425,7 @@ class Sheredog {
         }
         let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: eventsUrl)
         let timeCached: String? = try LocalStorage.getTimeCached(fileName: eventsUrl)
-        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(kos: kos, submissions: submission, decision: decission))
+        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: lastEvent.name, kos: kos, submissions: submission, decisions: decission))
     }
     
     static func loadEvents(forceRefresh: Bool = false) async throws -> SherdogResponse<[Event]> {
