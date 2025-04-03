@@ -59,17 +59,19 @@ struct LastEventStatsWidgetEntryView : View {
         let theRest = 1 - text - space
         
         GeometryReader { geometry in
+            let labelWidth = geometry.size.width * text
+            let barMinWidht = geometry.size.width * space
             VStack {
                 
                 Text(entry.eventName)
                 HStack{
                     Text("KOs")
-                        .frame(width: geometry.size.width * text)
+                        .frame(width: labelWidth)
                     ZStack {
                         Rectangle()
                             .fill(Color.red)
                             .cornerRadius(10)
-                            .frame(width: geometry.size.width * space + geometry.size.width * theRest * kos)
+                            .frame(width: barMinWidht + geometry.size.width * theRest * kos)
                         Text(String(entry.koTko))
                             .foregroundColor(.white)
                     }
@@ -77,12 +79,12 @@ struct LastEventStatsWidgetEntryView : View {
                 }
                 HStack {
                     Text("Sub")
-                        .frame(width: geometry.size.width * text)
+                        .frame(width: labelWidth)
                     ZStack {
                         Rectangle()
                             .fill(Color.blue)
                             .cornerRadius(10)
-                            .frame(width: geometry.size.width * space + geometry.size.width * theRest * submissions)
+                            .frame(width: barMinWidht + geometry.size.width * theRest * submissions)
                         Text(String(entry.submission))
                             .foregroundColor(.white)
                     }
@@ -90,46 +92,18 @@ struct LastEventStatsWidgetEntryView : View {
                 }
                 HStack {
                     Text("Dec")
-                        .frame(width: geometry.size.width * text)
+                        .frame(width: labelWidth)
                     ZStack {
                         Rectangle()
                             .fill(Color.green)
                             .cornerRadius(10)
-                            .frame(width: geometry.size.width * space + geometry.size.width * theRest * decissions)
+                            .frame(width: barMinWidht + geometry.size.width * theRest * decissions)
                         Text(String(entry.decission))
                             .foregroundColor(.white)
                     }
                     Spacer()
                 }
             }
-            
-            //        ZStack {
-            //            Circle()
-            //                .stroke(style: StrokeStyle(
-            //                    lineWidth: 20, lineCap: .round
-            //                ))
-            //
-            ////            Circle()
-            ////                .trim(from: kos + submissions, to: kos + submissions + decissions)
-            ////                .stroke(.green, style: StrokeStyle(
-            ////                    lineWidth: 20, lineCap: .round
-            ////                ))
-            ////                .rotationEffect(.degrees(-90))
-            //            Circle()
-            //                .trim(from: kos, to: kos + submissions)
-            //                .stroke(.blue, style: StrokeStyle(
-            //                    lineWidth: 20, lineCap: .round
-            //                ))
-            //                .rotationEffect(.degrees(-90))
-            //            Circle()
-            //                .trim(from: 0, to: kos)
-            //                .stroke(.red, style: StrokeStyle(
-            //                    lineWidth: 20, lineCap: .round
-            //                ))
-            //                .rotationEffect(.degrees(-90))
-            //            VStack {
-            //                Text(entry.eventName)
-            //            }
         }
     }
 }
