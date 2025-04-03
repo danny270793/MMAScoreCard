@@ -31,10 +31,8 @@ struct Provider: TimelineProvider {
     }
     
     func createTimeline(date: Date, completion: @escaping (Timeline<Entry>) -> ()) {
-        Task {
-            let stats = try await Sheredog.getLastEventStats()
-            let entry = Entry(date: date, stats: stats.data)
-            let timeline = Timeline(entries: [entry], policy: .never)
+        createTimelineEntry(date: date) { entry in
+            let timeline = Timeline(entries: [entry], policy: .atEnd)
             completion(timeline)
         }
     }
@@ -46,6 +44,7 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct LastEventStatsWidgetEntryView : View {
+    @Environment(\.widgetFamily) var family
     var entry: Provider.Entry
     
     var body: some View {
@@ -59,7 +58,7 @@ struct LastEventStatsWidgetEntryView : View {
             let kos = Double(entry.stats!.kos)/fights
             let submissions = Double(entry.stats!.submissions)/fights
             let decissions = Double(entry.stats!.decisions)/fights
-            let text = 0.3
+            let text = family == .systemSmall ? 0.3 : 0.2
             let space = 0.2
             let theRest = 1 - text - space
             
@@ -67,7 +66,12 @@ struct LastEventStatsWidgetEntryView : View {
                 let labelWidth = geometry.size.width * text
                 let barMinWidht = geometry.size.width * space
                 VStack {
-                    Text(entry.stats!.name)
+                    if family == .systemSmall {
+                        Text(entry.stats!.name)
+                            .font(.system(size: 13))
+                    } else {
+                        Text(entry.stats!.name)
+                    }
                     HStack{
                         Text("KOs")
                             .frame(width: labelWidth)
@@ -129,12 +133,13 @@ struct LastEventStatsWidget: Widget {
         }
         .configurationDisplayName("Last event stats")
         .description("Show the percentage ok KO/TKO, Submissions and Decissions on last event")
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge])
     }
 }
 
 #Preview(as: .systemSmall) {
     LastEventStatsWidget()
 } timeline: {
-    SimpleEntry(date: .now, stats: EventStats(name: "UFC 306", kos: 5, submissions: 8, decisions: 2))
+    SimpleEntry(date: .now, stats: EventStats(name: "UFC Fight Night 255", kos: 5, submissions: 8, decisions: 2))
     SimpleEntry(date: .now, stats: nil)
 }
