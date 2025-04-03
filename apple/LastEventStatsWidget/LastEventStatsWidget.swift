@@ -24,13 +24,6 @@ struct LastEventStatsWidget: Widget {
         }
         .configurationDisplayName("Last event stats")
         .description("Show the percentage ok KO/TKO, Submissions and Decissions on last event")
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
-}
-
-#Preview(as: .systemSmall) {
-    LastEventStatsWidget()
-} timeline: {
-    LastEventStatsEntry(date: .now, stats: EventStats(name: "UFC Fight Night 255", kos: 5, submissions: 8, decisions: 2))
-    LastEventStatsEntry(date: .now, stats: nil)
 }
