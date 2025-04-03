@@ -9,12 +9,6 @@ import SwiftUI
 import SwiftData
 import WidgetKit
 
-enum FilterOptions {
-    case all
-    case upcoming
-    case past
-}
-
 struct EventsList: View {
     @State private var isFetching: Bool = true
     @State private var error: Error? = nil
