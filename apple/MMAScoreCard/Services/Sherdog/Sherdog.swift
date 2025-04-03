@@ -14,6 +14,12 @@ struct SherdogResponse<T> {
     let data: T
 }
 
+struct EventStats {
+    let kos: Int
+    let submissions: Int
+    let decision: Int
+}
+
 class Sheredog {
     static let baseUrl: String = "https://www.sherdog.com"
     static let eventsUrl: String = "\(baseUrl)/organizations/Ultimate-Fighting-Championship-UFC-2"
@@ -396,7 +402,7 @@ class Sheredog {
         return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
     
-    static func getLastEventStats() async throws {
+    static func getLastEventStats() async throws -> SherdogResponse<EventStats> {
         let events = try await Sheredog.loadEvents()
         let pastEvents = events.data.filter { event in event.date <= Date.now}
         let lastEvent = pastEvents[0]
@@ -416,7 +422,9 @@ class Sheredog {
             default:{}()
             }
         }
-        
+        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: eventsUrl)
+        let timeCached: String? = try LocalStorage.getTimeCached(fileName: eventsUrl)
+        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(kos: kos, submissions: submission, decision: decission))
     }
     
     static func loadEvents(forceRefresh: Bool = false) async throws -> SherdogResponse<[Event]> {
