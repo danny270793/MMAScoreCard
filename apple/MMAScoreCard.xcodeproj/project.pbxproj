@@ -11,6 +11,7 @@
 		A0E9933F2D9E23E000A50EDE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E9933E2D9E23E000A50EDE /* WidgetKit.framework */; };
 		A0E993412D9E23E000A50EDE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E993402D9E23E000A50EDE /* SwiftUI.framework */; };
 		A0E9934C2D9E23E100A50EDE /* LastEventStatsWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A0E9933C2D9E23E000A50EDE /* LastEventStatsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A0E993A52D9ED82A00A50EDE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0E993A42D9ED82A00A50EDE /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,22 @@
 			);
 			target = A0E9933B2D9E23E000A50EDE /* LastEventStatsWidgetExtension */;
 		};
+		A0E9939A2D9ED5C200A50EDE /* Exceptions for "MMAScoreCard" folder in "LastEventStatsWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models/Event.swift,
+				Models/Fight.swift,
+				Models/Fighter.swift,
+				Models/Record.swift,
+				Services/Http/Http.swift,
+				Services/Http/HttpErrors.swift,
+				Services/LocalStorage/LocalStorage.swift,
+				Services/LocalStorage/LocalStorageErrors.swift,
+				Services/Sherdog/Sherdog.swift,
+				Services/Sherdog/SherdogErrors.swift,
+			);
+			target = A0E9933B2D9E23E000A50EDE /* LastEventStatsWidgetExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -66,6 +83,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				A0B318B62D90979F00658E72 /* Exceptions for "MMAScoreCard" folder in "MMAScoreCard" target */,
+				A0E9939A2D9ED5C200A50EDE /* Exceptions for "MMAScoreCard" folder in "LastEventStatsWidgetExtension" target */,
 			);
 			path = MMAScoreCard;
 			sourceTree = "<group>";
@@ -95,6 +113,7 @@
 			files = (
 				A0E993412D9E23E000A50EDE /* SwiftUI.framework in Frameworks */,
 				A0E9933F2D9E23E000A50EDE /* WidgetKit.framework in Frameworks */,
+				A0E993A52D9ED82A00A50EDE /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +193,7 @@
 			);
 			name = LastEventStatsWidgetExtension;
 			packageProductDependencies = (
+				A0E993A42D9ED82A00A50EDE /* SwiftSoup */,
 			);
 			productName = LastEventStatsWidgetExtension;
 			productReference = A0E9933C2D9E23E000A50EDE /* LastEventStatsWidgetExtension.appex */;
@@ -545,6 +565,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		A0B318372D90896400658E72 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0B318362D90896400658E72 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		A0E993A42D9ED82A00A50EDE /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A0B318362D90896400658E72 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;

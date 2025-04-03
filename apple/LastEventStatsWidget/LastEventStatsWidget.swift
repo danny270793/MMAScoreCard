@@ -19,13 +19,15 @@ struct Provider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        //Sherdog.getLastEventStats()
+        
         var entries: [SimpleEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: .now, eventName: "UFC 309", koTko: 3, submission: 5, decission: 8)
+        for hourOffset in 0 ..< 7 {
+            let entryDate = Calendar.current.date(byAdding: .day, value: hourOffset, to: currentDate)!
+            let entry = SimpleEntry(date: entryDate, eventName: "UFC 309", koTko: 3, submission: 5, decission: 8)
             entries.append(entry)
         }
 
