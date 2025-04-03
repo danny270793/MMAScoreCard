@@ -108,19 +108,19 @@ class LocalStorage {
         let minutesCachedInText = minutesToText(minutes: minutesCached)
         
         if cacheInvalidationMinutes == 0 {
-            print("cached permanently for \(minutesCachedInText)")
+            print("cached permanently for \(minutesCachedInText) \(fileName)")
         } else {
             if cacheInvalidationMinutes == -1 {
                 let cacheInvalidationTime = UserDefaults.standard.integer(forKey: "cacheInvalidationTime")
                 let defaultCacheInvalidationTime = 360
                 let actualCacheInvalidationTime = cacheInvalidationTime != 0 ? cacheInvalidationTime : defaultCacheInvalidationTime
                 
-                print("cached for \(minutesCachedInText), max allowed from settings \(minutesToText(minutes: actualCacheInvalidationTime))")
+                print("cached for \(minutesCachedInText), max allowed from settings \(minutesToText(minutes: actualCacheInvalidationTime)) \(fileName)")
                 if minutesCached > actualCacheInvalidationTime {
                     return nil
                 }
             } else {
-                print("cached for \(minutesCachedInText), max allowed specific \(minutesToText(minutes: cacheInvalidationMinutes))")
+                print("cached for \(minutesCachedInText), max allowed specific \(minutesToText(minutes: cacheInvalidationMinutes)) \(fileName)")
                 if minutesCached > cacheInvalidationMinutes {
                     return nil
                 }
