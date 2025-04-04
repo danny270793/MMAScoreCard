@@ -14,6 +14,7 @@
 		A0E993A52D9ED82A00A50EDE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0E993A42D9ED82A00A50EDE /* SwiftSoup */; };
 		A0E994702D9F40FD00A50EDE /* MMAScoreCardWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A0E994632D9F40FC00A50EDE /* MMAScoreCardWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A0E9947A2D9F422400A50EDE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0E994792D9F422400A50EDE /* SwiftSoup */; };
+		A0E994C22D9F6C2D00A50EDE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0E994C12D9F6C2D00A50EDE /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,30 @@
 			);
 			target = A0E994622D9F40FC00A50EDE /* MMAScoreCardWatch Watch App */;
 		};
+		A0E994B42D9F6BE200A50EDE /* Exceptions for "Shared" folder in "MMAScoreCardTv" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Enums/FilterOptions.swift,
+				Models/Event.swift,
+				Models/Fight.swift,
+				Models/Fighter.swift,
+				Models/Record.swift,
+				Services/Http/Http.swift,
+				Services/Http/HttpErrors.swift,
+				Services/LocalStorage/LocalStorage.swift,
+				Services/LocalStorage/LocalStorageErrors.swift,
+				Services/Sherdog/Sherdog.swift,
+				Services/Sherdog/SherdogErrors.swift,
+			);
+			target = A0E994A42D9F6B6000A50EDE /* MMAScoreCardTv */;
+		};
+		A0E994C02D9F6C1E00A50EDE /* Exceptions for "MMAScoreCardTv" folder in "MMAScoreCardTv" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A0E994A42D9F6B6000A50EDE /* MMAScoreCardTv */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -147,12 +172,16 @@
 			exceptions = (
 				A0E9947E2D9F426400A50EDE /* Exceptions for "Shared" folder in "MMAScoreCard" target */,
 				A0E9947F2D9F426400A50EDE /* Exceptions for "Shared" folder in "MMAScoreCardWatch Watch App" target */,
+				A0E994B42D9F6BE200A50EDE /* Exceptions for "Shared" folder in "MMAScoreCardTv" target */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
 		};
 		A0E994A62D9F6B6000A50EDE /* MMAScoreCardTv */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A0E994C02D9F6C1E00A50EDE /* Exceptions for "MMAScoreCardTv" folder in "MMAScoreCardTv" target */,
+			);
 			path = MMAScoreCardTv;
 			sourceTree = "<group>";
 		};
@@ -189,6 +218,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0E994C22D9F6C2D00A50EDE /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +354,7 @@
 			);
 			name = MMAScoreCardTv;
 			packageProductDependencies = (
+				A0E994C12D9F6C2D00A50EDE /* SwiftSoup */,
 			);
 			productName = MMAScoreCardTv;
 			productReference = A0E994A52D9F6B6000A50EDE /* MMAScoreCardTv.app */;
@@ -765,6 +796,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MMAScoreCardTv/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MMAScoreCardTv/Info.plist;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -792,6 +824,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MMAScoreCardTv/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MMAScoreCardTv/Info.plist;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -882,6 +915,11 @@
 			productName = SwiftSoup;
 		};
 		A0E994792D9F422400A50EDE /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0B318362D90896400658E72 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		A0E994C12D9F6C2D00A50EDE /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A0B318362D90896400658E72 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;

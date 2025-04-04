@@ -11,7 +11,9 @@ import SwiftUI
 struct MMAScoreCardTvApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                ContentView()
+            }
         }
     }
 }
