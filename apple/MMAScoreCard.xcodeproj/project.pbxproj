@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A045896C2D9F78D300A7E865 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = A045896B2D9F78D300A7E865 /* RealityKitContent */; };
+		A0A9C7742D9F7A5400D2646C /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0A9C7732D9F7A5400D2646C /* SwiftSoup */; };
 		A0B318382D90896400658E72 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0B318372D90896400658E72 /* SwiftSoup */; };
 		A0E9933F2D9E23E000A50EDE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E9933E2D9E23E000A50EDE /* WidgetKit.framework */; };
 		A0E993412D9E23E000A50EDE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E993402D9E23E000A50EDE /* SwiftUI.framework */; };
@@ -78,6 +79,23 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+			);
+			target = A04589662D9F78D200A7E865 /* MMAScoreCardVisionOS */;
+		};
+		A0A9C7682D9F79F300D2646C /* Exceptions for "Shared" folder in "MMAScoreCardVisionOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Enums/FilterOptions.swift,
+				Models/Event.swift,
+				Models/Fight.swift,
+				Models/Fighter.swift,
+				Models/Record.swift,
+				Services/Http/Http.swift,
+				Services/Http/HttpErrors.swift,
+				Services/LocalStorage/LocalStorage.swift,
+				Services/LocalStorage/LocalStorageErrors.swift,
+				Services/Sherdog/Sherdog.swift,
+				Services/Sherdog/SherdogErrors.swift,
 			);
 			target = A04589662D9F78D200A7E865 /* MMAScoreCardVisionOS */;
 		};
@@ -191,6 +209,7 @@
 				A0E9947E2D9F426400A50EDE /* Exceptions for "Shared" folder in "MMAScoreCard" target */,
 				A0E9947F2D9F426400A50EDE /* Exceptions for "Shared" folder in "MMAScoreCardWatch Watch App" target */,
 				A0E994B42D9F6BE200A50EDE /* Exceptions for "Shared" folder in "MMAScoreCardTv" target */,
+				A0A9C7682D9F79F300D2646C /* Exceptions for "Shared" folder in "MMAScoreCardVisionOS" target */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -211,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A045896C2D9F78D300A7E865 /* RealityKitContent in Frameworks */,
+				A0A9C7742D9F7A5400D2646C /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +338,7 @@
 			name = MMAScoreCardVisionOS;
 			packageProductDependencies = (
 				A045896B2D9F78D300A7E865 /* RealityKitContent */,
+				A0A9C7732D9F7A5400D2646C /* SwiftSoup */,
 			);
 			productName = MMAScoreCardVisionOS;
 			productReference = A04589672D9F78D200A7E865 /* MMAScoreCardVisionOS.app */;
@@ -571,6 +592,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MMAScoreCardVisionOS/Preview Content\"";
+				DEVELOPMENT_TEAM = JBQ32BV635;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -598,6 +620,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MMAScoreCardVisionOS/Preview Content\"";
+				DEVELOPMENT_TEAM = JBQ32BV635;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -1048,6 +1071,11 @@
 		A045896B2D9F78D300A7E865 /* RealityKitContent */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RealityKitContent;
+		};
+		A0A9C7732D9F7A5400D2646C /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0B318362D90896400658E72 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 		A0B318372D90896400658E72 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
