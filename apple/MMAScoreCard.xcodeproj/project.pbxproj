@@ -66,6 +66,7 @@
 		A0E993A62D9EDD0200A50EDE /* LastEventStatsWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LastEventStatsWidgetExtension.entitlements; sourceTree = "<group>"; };
 		A0E994632D9F40FC00A50EDE /* MMAScoreCardWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MMAScoreCardWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0E9947B2D9F422900A50EDE /* MMAScoreCardWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "MMAScoreCardWatch-Watch-App-Info.plist"; sourceTree = "<group>"; };
+		A0E994A52D9F6B6000A50EDE /* MMAScoreCardTv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMAScoreCardTv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -150,6 +151,11 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		A0E994A62D9F6B6000A50EDE /* MMAScoreCardTv */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MMAScoreCardTv;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +185,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A0E994A22D9F6B6000A50EDE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -191,6 +204,7 @@
 				A0B3181B2D9080B400658E72 /* MMAScoreCard */,
 				A0E993422D9E23E000A50EDE /* LastEventStatsWidget */,
 				A0E994642D9F40FC00A50EDE /* MMAScoreCardWatchApp */,
+				A0E994A62D9F6B6000A50EDE /* MMAScoreCardTv */,
 				A0E9933D2D9E23E000A50EDE /* Frameworks */,
 				A0B3181A2D9080B400658E72 /* Products */,
 			);
@@ -202,6 +216,7 @@
 				A0B318192D9080B400658E72 /* MMAScoreCard.app */,
 				A0E9933C2D9E23E000A50EDE /* LastEventStatsWidgetExtension.appex */,
 				A0E994632D9F40FC00A50EDE /* MMAScoreCardWatch Watch App.app */,
+				A0E994A52D9F6B6000A50EDE /* MMAScoreCardTv.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -292,6 +307,28 @@
 			productReference = A0E994632D9F40FC00A50EDE /* MMAScoreCardWatch Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A0E994A42D9F6B6000A50EDE /* MMAScoreCardTv */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0E994B02D9F6B6200A50EDE /* Build configuration list for PBXNativeTarget "MMAScoreCardTv" */;
+			buildPhases = (
+				A0E994A12D9F6B6000A50EDE /* Sources */,
+				A0E994A22D9F6B6000A50EDE /* Frameworks */,
+				A0E994A32D9F6B6000A50EDE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A0E994A62D9F6B6000A50EDE /* MMAScoreCardTv */,
+			);
+			name = MMAScoreCardTv;
+			packageProductDependencies = (
+			);
+			productName = MMAScoreCardTv;
+			productReference = A0E994A52D9F6B6000A50EDE /* MMAScoreCardTv.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -309,6 +346,9 @@
 						CreatedOnToolsVersion = 16.0;
 					};
 					A0E994622D9F40FC00A50EDE = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					A0E994A42D9F6B6000A50EDE = {
 						CreatedOnToolsVersion = 16.0;
 					};
 				};
@@ -333,6 +373,7 @@
 				A0B318182D9080B400658E72 /* MMAScoreCard */,
 				A0E9933B2D9E23E000A50EDE /* LastEventStatsWidgetExtension */,
 				A0E994622D9F40FC00A50EDE /* MMAScoreCardWatch Watch App */,
+				A0E994A42D9F6B6000A50EDE /* MMAScoreCardTv */,
 			);
 		};
 /* End PBXProject section */
@@ -359,6 +400,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A0E994A32D9F6B6000A50EDE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -377,6 +425,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A0E9945F2D9F40FC00A50EDE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0E994A12D9F6B6000A50EDE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -700,6 +755,60 @@
 			};
 			name = Release;
 		};
+		A0E994B12D9F6B6200A50EDE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MMAScoreCardTv/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.danny270793.MMAScoreCard.MMAScoreCardTv;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 18.0;
+			};
+			name = Debug;
+		};
+		A0E994B22D9F6B6200A50EDE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MMAScoreCardTv/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.danny270793.MMAScoreCard.MMAScoreCardTv;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 18.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -735,6 +844,15 @@
 			buildConfigurations = (
 				A0E994722D9F40FD00A50EDE /* Debug */,
 				A0E994732D9F40FD00A50EDE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0E994B02D9F6B6200A50EDE /* Build configuration list for PBXNativeTarget "MMAScoreCardTv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0E994B12D9F6B6200A50EDE /* Debug */,
+				A0E994B22D9F6B6200A50EDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
