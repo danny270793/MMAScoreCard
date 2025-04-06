@@ -403,8 +403,8 @@ class Sheredog {
         return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
     
-    static func getLastEventStats() async throws -> SherdogResponse<EventStats> {
-        let events = try await Sheredog.loadEvents()
+    static func getLastEventStats(forceRefresh: Bool = false) async throws -> SherdogResponse<EventStats> {
+        let events = try await Sheredog.loadEvents(forceRefresh: forceRefresh)
         let pastEvents = events.data.filter { event in event.date <= Date.now}
         let lastEvent = pastEvents[0]
         let fights = try await loadFights(event: lastEvent)
@@ -426,6 +426,28 @@ class Sheredog {
         let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: eventsUrl)
         let timeCached: String? = try LocalStorage.getTimeCached(fileName: eventsUrl)
         return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: lastEvent.name, kos: kos, submissions: submission, decisions: decission))
+    }
+    
+    static func getEventStats(event: Event, forceRefresh: Bool = false) async throws -> SherdogResponse<EventStats> {
+        let fights = try await loadFights(event: event, forceRefresh: forceRefresh)
+        
+        var kos = 0
+        var submission = 0
+        var decission = 0
+        for fight in fights.data {
+            let parts = fight.result.split(separator: " ")
+            let result = parts[0]
+            switch result.lowercased().trim() {
+            case "ko": kos += 1
+            case "tko": kos += 1
+            case "decision": decission += 1
+            case "submission": submission += 1
+            default:{}()
+            }
+        }
+        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: eventsUrl)
+        let timeCached: String? = try LocalStorage.getTimeCached(fileName: eventsUrl)
+        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: event.name, kos: kos, submissions: submission, decisions: decission))
     }
     
     static func loadEvents(forceRefresh: Bool = false) async throws -> SherdogResponse<[Event]> {
