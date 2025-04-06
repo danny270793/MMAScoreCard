@@ -60,6 +60,10 @@ struct EventGraph : View {
         }
     }
     
+    func map(x: Double, inMin: Double, inMax: Double, outMin: Double, outMax: Double) -> Double {
+      return (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+    }
+    
     var body: some View {
         List {
             Section(header: Text("Event")) {
@@ -73,10 +77,15 @@ struct EventGraph : View {
                 let submissions = Double(response!.data.submissions)/fights
                 let decissions = Double(response!.data.decisions)/fights
                 
+                let maxNumber = [kos, submissions, decissions].max()!
+                let kosMapped = map(x: decissions, inMin: 0, inMax: maxNumber, outMin: 0, outMax: 1)
+                let submissionsMapped = map(x: submissions, inMin: 0, inMax: maxNumber, outMin: 0, outMax: 1)
+                let decissionsMapped = map(x: decissions, inMin: 0, inMax: maxNumber, outMin: 0, outMax: 1)
+                
                 Section(header: Text("Graphs")) {
-                    AnyView(getDetail(title: "KO", color: Color.red, value: response!.data.kos, percentage: kos))
-                    AnyView(getDetail(title: "Submission", color: Color.green, value: response!.data.submissions, percentage: submissions))
-                    AnyView(getDetail(title: "Decision", color: Color.blue, value: response!.data.decisions, percentage: decissions))
+                    AnyView(getDetail(title: "KO", color: Color.red, value: response!.data.kos, percentage: kosMapped))
+                    AnyView(getDetail(title: "Submission", color: Color.green, value: response!.data.submissions, percentage: submissionsMapped))
+                    AnyView(getDetail(title: "Decision", color: Color.blue, value: response!.data.decisions, percentage: decissionsMapped))
                 }
                 
             }
