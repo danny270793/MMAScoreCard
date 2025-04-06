@@ -160,8 +160,8 @@ class Sheredog {
             throw SheredogErrors.invalidFigther
         }
         
-        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: eventsUrl)
-        let timeCached: String? = try LocalStorage.getTimeCached(fileName: eventsUrl)
+        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: fighter.link.absoluteString)
+        let timeCached: String? = try LocalStorage.getTimeCached(fileName: fighter.link.absoluteString)
         let data: FighterRecord = FighterRecord(name: fighter.name, nationality: nationality!, age: age!, height: height!, weight: weight!, fights: records.sorted { fight1, fight2 in
             fight1.date > fight2.date
         })
@@ -423,8 +423,8 @@ class Sheredog {
             default:{}()
             }
         }
-        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: eventsUrl)
-        let timeCached: String? = try LocalStorage.getTimeCached(fileName: eventsUrl)
+        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName:lastEvent.url)
+        let timeCached: String? = try LocalStorage.getTimeCached(fileName: lastEvent.url)
         return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: lastEvent.name, kos: kos, submissions: submission, decisions: decission))
     }
     
@@ -445,8 +445,9 @@ class Sheredog {
             default:{}()
             }
         }
-        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: eventsUrl)
-        let timeCached: String? = try LocalStorage.getTimeCached(fileName: eventsUrl)
+        
+        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: event.url)
+        let timeCached: String? = try LocalStorage.getTimeCached(fileName: event.url)
         return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: event.name, kos: kos, submissions: submission, decisions: decission))
     }
     
