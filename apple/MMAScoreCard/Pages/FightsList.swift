@@ -94,7 +94,7 @@ struct FigthsList: View {
                     }
                 }
             }
-            if response?.data != nil || response?.timeCached != nil {
+            if response?.cachedAt != nil || response?.timeCached != nil {
                 Section("Metadata") {
                     LabeledContent("Cached at", value: response!.cachedAt!.ISO8601Format())
                     LabeledContent("Time cached", value: response!.timeCached!)
