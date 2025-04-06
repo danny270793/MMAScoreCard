@@ -395,8 +395,8 @@ class Sheredog {
             }
         }
         
-        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: eventsUrl)
-        let timeCached: String? = try LocalStorage.getTimeCached(fileName: eventsUrl)
+        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: event.url)
+        let timeCached: String? = try LocalStorage.getTimeCached(fileName: event.url)
         let data: [Fight] = fights.sorted { fight1, fight2 in
             fight1.position > fight2.position
         }
