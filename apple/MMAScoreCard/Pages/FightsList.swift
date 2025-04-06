@@ -105,6 +105,18 @@ struct FigthsList: View {
             ToolbarItemGroup(placement: .bottomBar) {
                 Text("\(filteredFights.count) Fights")
             }
+            if response != nil {
+                let fightsDone = response!.data.filter { fight in
+                    return fight.fightStatus == FightStatus.pending
+                }
+                if fightsDone.count == 0 {
+                    ToolbarItem(placement: .secondaryAction) {
+                        NavigationLink(destination: EventGraph(event: event)) {
+                            Label("Graph", systemImage: "chart.xyaxis.line")
+                        }
+                    }
+                }
+            }
         }
         .overlay {
             if isFetching {
