@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftData
-import WidgetKit
 
 struct EventsList: View {
     @State private var isFetching: Bool = true
@@ -32,7 +31,6 @@ struct EventsList: View {
         isFetching = true
         do {
             response = try await Sheredog.loadEvents(forceRefresh: forceRefresh)
-            WidgetCenter.shared.reloadTimelines(ofKind: "LastEventStatsWidget")
         } catch {
             self.error = error
         }
@@ -78,7 +76,7 @@ struct EventsList: View {
                     }
                     .contextMenu {
                         Button(action: {
-                            Sharing.shareText(text: "I'm viewing \"\(event.name)\"\nSee more information at: \(event.url)")
+//                            Sharing.shareText(text: "I'm viewing \"\(event.name)\"\nSee more information at: \(event.url)")
                         }) {
                             Text("Share")
                             Image(systemName: "square.and.arrow.up")

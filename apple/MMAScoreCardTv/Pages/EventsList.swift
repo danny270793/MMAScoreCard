@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftData
-import WidgetKit
 
 struct EventsList: View {
     @State private var isFetching: Bool = true
@@ -15,29 +14,7 @@ struct EventsList: View {
     @State private var searchText = ""
     @State var response: SherdogResponse<[Event]>? = nil
     @State private var filter = FilterOptions.past
-    
-    func onAppear() {
-        Task {
-            await loadEvents(forceRefresh: false)
-        }
-    }
-    
-    func onRefresh() {
-        Task {
-            await loadEvents(forceRefresh: true)
-        }
-    }
-    
-    func loadEvents(forceRefresh: Bool) async {
-        isFetching = true
-        do {
-            response = try await Sheredog.loadEvents(forceRefresh: forceRefresh)
-            WidgetCenter.shared.reloadTimelines(ofKind: "LastEventStatsWidget")
-        } catch {
-            self.error = error
-        }
-        isFetching = false
-    }
+    let columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 40), count: 2)
     
     private var filteredEvents: [Event] {
         if response == nil {
@@ -62,35 +39,57 @@ struct EventsList: View {
         }
     }
     
+    func onAppear() {
+        Task {
+            await loadEvents(forceRefresh: false)
+        }
+    }
+    
+    func onRefresh() {
+        Task {
+            await loadEvents(forceRefresh: true)
+        }
+    }
+    
+    func loadEvents(forceRefresh: Bool) async {
+        isFetching = true
+        do {
+            response = try await Sheredog.loadEvents(forceRefresh: forceRefresh)
+        } catch {
+            self.error = error
+        }
+        isFetching = false
+    }
+    
     var body: some View {
-        List {
-            ForEach(filteredEvents) { event in
-                NavigationLink(destination: FigthsList(event: event)) {
-                    VStack {
-                        Text(event.name)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        if event.fight != nil {
-                            Text(event.fight!)
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach(filteredEvents) { event in
+                    NavigationLink(destination: FigthsList(event: event)) {
+                        VStack {
+                            Text(event.name)
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        Text(event.date.ISO8601Format().split(separator: "T")[0])
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    .contextMenu {
-                        Button(action: {
-                            Sharing.shareText(text: "I'm viewing \"\(event.name)\"\nSee more information at: \(event.url)")
-                        }) {
-                            Text("Share")
-                            Image(systemName: "square.and.arrow.up")
-                        }
-                    } preview: {
-                        NavigationStack {
-                            FigthsList(event: event)
+                            if event.fight != nil {
+                                Text(event.fight!)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            Text(event.date.ISO8601Format().split(separator: "T")[0])
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }.contextMenu {
+                            Button(action: {
+                                //                            Sharing.shareText(text: "I'm viewing \"\(event.name)\"\nSee more information at: \(event.url)")
+                            }) {
+                                Text("Share")
+                                Image(systemName: "square.and.arrow.up")
+                            }
+                        } preview: {
+                            NavigationStack {
+                                FigthsList(event: event)
+                            }
                         }
                     }
                 }
             }
-            
             if response?.data != nil || response?.timeCached != nil {
                 Section("Metadata") {
                     LabeledContent("Cached at", value: response!.cachedAt!.ISO8601Format())
@@ -99,18 +98,7 @@ struct EventsList: View {
             }
         }
         .toolbar {
-//            ToolbarItem(placement: .secondaryAction) {
-//                Menu {
-//                    Picker(selection: $filter, label: Text("Filter options")) {
-//                        Text("Past").tag(FilterOptions.past)
-//                        Text("Upcoming").tag(FilterOptions.upcoming)
-//                        Text("All").tag(FilterOptions.all)
-//                    }
-//                } label: {
-//                    Label("Filter", systemImage: "arrow.up.arrow.down")
-//                }
-//            }
-            ToolbarItem(placement: .secondaryAction) {
+            ToolbarItem(placement: .primaryAction) {
                 Button(action: {
                     if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                         UIApplication.shared.open(appSettings)
@@ -120,7 +108,7 @@ struct EventsList: View {
                     
                 }
             }
-            ToolbarItem(placement: .secondaryAction) {
+            ToolbarItem(placement: .primaryAction) {
                 NavigationLink(destination: AboutView()) {
                     Label("About", systemImage: "info")
                 }
@@ -155,9 +143,14 @@ struct EventsList: View {
                 }
             )
         }
-        .onAppear(perform: onAppear)
         .refreshable(action: onRefresh)
         .searchable(text: $searchText)
+        .searchSuggestions {
+            ForEach(filteredEvents) { event in
+                Text(event.name)
+            }
+        }
+        .onAppear(perform: onAppear)
         .navigationTitle("Events")
     }
 }

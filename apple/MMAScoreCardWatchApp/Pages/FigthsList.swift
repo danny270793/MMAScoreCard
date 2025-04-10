@@ -1,9 +1,10 @@
 //
-//  FightsList.swift
+//  FigthsList.swift
 //  MMAScoreCard
 //
-//  Created by dvaca on 23/3/25.
+//  Created by dvaca on 3/4/25.
 //
+
 
 import SwiftUI
 import SwiftData
@@ -79,42 +80,13 @@ struct FigthsList: View {
                             Text("\(fight.division)")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                        .contextMenu {
-                            Button(action: {
-                                Sharing.shareText(text: "I'm viewing \"\(fight.figther1.name) vs \(fight.figther2.name)")
-                            }) {
-                                Text("Share")
-                                Image(systemName: "square.and.arrow.up")
-                            }
-                        } preview: {
-                            NavigationStack {
-                                FigthDetails(event: event, fight: fight)
-                            }
-                        }
                     }
                 }
             }
-            if response?.cachedAt != nil || response?.timeCached != nil {
+            if response?.data != nil || response?.timeCached != nil {
                 Section("Metadata") {
                     LabeledContent("Cached at", value: response!.cachedAt!.ISO8601Format())
                     LabeledContent("Time cached", value: response!.timeCached!)
-                }
-            }
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: .bottomBar) {
-                Text("\(filteredFights.count) Fights")
-            }
-            if response != nil {
-                let fightsDone = response!.data.filter { fight in
-                    return fight.fightStatus == FightStatus.pending
-                }
-                if fightsDone.count == 0 {
-                    ToolbarItem(placement: .secondaryAction) {
-                        NavigationLink(destination: EventGraph(event: event)) {
-                            Label("Graph", systemImage: "chart.xyaxis.line")
-                        }
-                    }
                 }
             }
         }
