@@ -1,15 +1,13 @@
 //
-//  ContentView.swift
+//  EventsList.swift
 //  MMAScoreCard
 //
-//  Created by dvaca on 23/3/25.
+//  Created by dvaca on 3/4/25.
 //
 
 import SwiftUI
-import SwiftData
-import WidgetKit
 
-struct EventsList: View {
+struct EventsListView: View {
     @State private var isFetching: Bool = true
     @State private var error: Error? = nil
     @State private var searchText = ""
@@ -32,7 +30,6 @@ struct EventsList: View {
         isFetching = true
         do {
             response = try await Sheredog.loadEvents(forceRefresh: forceRefresh)
-            WidgetCenter.shared.reloadTimelines(ofKind: "LastEventStatsWidget")
         } catch {
             self.error = error
         }
@@ -76,18 +73,6 @@ struct EventsList: View {
                         Text(event.date.ISO8601Format().split(separator: "T")[0])
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    .contextMenu {
-                        Button(action: {
-                            Sharing.shareText(text: "I'm viewing \"\(event.name)\"\nSee more information at: \(event.url)")
-                        }) {
-                            Text("Share")
-                            Image(systemName: "square.and.arrow.up")
-                        }
-                    } preview: {
-                        NavigationStack {
-                            FigthsList(event: event)
-                        }
-                    }
                 }
             }
             
@@ -99,51 +84,10 @@ struct EventsList: View {
             }
         }
         .toolbar {
-//            ToolbarItem(placement: .secondaryAction) {
-//                Menu {
-//                    Picker(selection: $filter, label: Text("Filter options")) {
-//                        Text("Past").tag(FilterOptions.past)
-//                        Text("Upcoming").tag(FilterOptions.upcoming)
-//                        Text("All").tag(FilterOptions.all)
-//                    }
-//                } label: {
-//                    Label("Filter", systemImage: "arrow.up.arrow.down")
-//                }
-//            }
-            ToolbarItem(placement: .secondaryAction) {
-                Button(action: {
-                    if let appSettings = URL(string: UIApplication.openSettingsURLString) {
-                        UIApplication.shared.open(appSettings)
-                    }
-                }) {
-                    Label("Settings", systemImage: "gear")
-                    
-                }
-            }
-            ToolbarItem(placement: .secondaryAction) {
+            ToolbarItem(placement: .primaryAction) {
                 NavigationLink(destination: AboutView()) {
                     Label("About", systemImage: "info")
                 }
-            }
-            
-            ToolbarItemGroup(placement: .bottomBar) {
-                Menu {
-                    Picker(selection: $filter, label: Text("Filter options")) {
-                        Text("Past").tag(FilterOptions.past)
-                        Text("Upcoming").tag(FilterOptions.upcoming)
-                        Text("All").tag(FilterOptions.all)
-                    }
-                } label: {
-                    Label("Filter", systemImage: "arrow.up.arrow.down")
-                }
-                Spacer()
-                Text("\(filteredEvents.count) events")
-                Spacer()
-            }
-        }
-        .overlay {
-            if isFetching {
-                ProgressView()
             }
         }
         .alert(isPresented: .constant(error != nil)) {
@@ -155,6 +99,11 @@ struct EventsList: View {
                 }
             )
         }
+        .overlay {
+            if isFetching {
+                ProgressView()
+            }
+        }
         .onAppear(perform: onAppear)
         .refreshable(action: onRefresh)
         .searchable(text: $searchText)
@@ -164,6 +113,6 @@ struct EventsList: View {
 
 #Preview {
     NavigationStack {
-        EventsList()
+        EventsListView()
     }
 }

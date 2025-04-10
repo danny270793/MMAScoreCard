@@ -81,7 +81,7 @@ struct FigthsList: View {
                         }
                         .contextMenu {
                             Button(action: {
-                                Sharing.shareText(text: "I'm viewing \"\(fight.figther1.name) vs \(fight.figther2.name)")
+//                                Sharing.shareText(text: "I'm viewing \"\(fight.figther1.name) vs \(fight.figther2.name)")
                             }) {
                                 Text("Share")
                                 Image(systemName: "square.and.arrow.up")
@@ -94,7 +94,7 @@ struct FigthsList: View {
                     }
                 }
             }
-            if response?.cachedAt != nil || response?.timeCached != nil {
+            if response?.data != nil || response?.timeCached != nil {
                 Section("Metadata") {
                     LabeledContent("Cached at", value: response!.cachedAt!.ISO8601Format())
                     LabeledContent("Time cached", value: response!.timeCached!)
@@ -104,18 +104,6 @@ struct FigthsList: View {
         .toolbar {
             ToolbarItemGroup(placement: .bottomBar) {
                 Text("\(filteredFights.count) Fights")
-            }
-            if response != nil {
-                let fightsDone = response!.data.filter { fight in
-                    return fight.fightStatus == FightStatus.pending
-                }
-                if fightsDone.count == 0 {
-                    ToolbarItem(placement: .secondaryAction) {
-                        NavigationLink(destination: EventGraph(event: event)) {
-                            Label("Graph", systemImage: "chart.xyaxis.line")
-                        }
-                    }
-                }
             }
         }
         .overlay {
