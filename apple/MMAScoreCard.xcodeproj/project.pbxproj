@@ -14,7 +14,6 @@
 		A0E993412D9E23E000A50EDE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E993402D9E23E000A50EDE /* SwiftUI.framework */; };
 		A0E9934C2D9E23E100A50EDE /* LastEventStatsWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A0E9933C2D9E23E000A50EDE /* LastEventStatsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A0E993A52D9ED82A00A50EDE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0E993A42D9ED82A00A50EDE /* SwiftSoup */; };
-		A0E994702D9F40FD00A50EDE /* MMAScoreCardWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A0E994632D9F40FC00A50EDE /* MMAScoreCardWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A0E9947A2D9F422400A50EDE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0E994792D9F422400A50EDE /* SwiftSoup */; };
 		A0E994C22D9F6C2D00A50EDE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0E994C12D9F6C2D00A50EDE /* SwiftSoup */; };
 /* End PBXBuildFile section */
@@ -26,13 +25,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = A0E9933B2D9E23E000A50EDE;
 			remoteInfo = LastEventStatsWidgetExtension;
-		};
-		A0E9946E2D9F40FD00A50EDE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A0B318112D9080B400658E72 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A0E994622D9F40FC00A50EDE;
-			remoteInfo = "MMAScoreCardWatch Watch App";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -46,17 +38,6 @@
 				A0E9934C2D9E23E100A50EDE /* LastEventStatsWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A0E994712D9F40FD00A50EDE /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				A0E994702D9F40FD00A50EDE /* MMAScoreCardWatch Watch App.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -352,13 +333,11 @@
 				A0B318162D9080B400658E72 /* Frameworks */,
 				A0B318172D9080B400658E72 /* Resources */,
 				A0E9934D2D9E23E100A50EDE /* Embed Foundation Extensions */,
-				A0E994712D9F40FD00A50EDE /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				A0E9934B2D9E23E100A50EDE /* PBXTargetDependency */,
-				A0E9946F2D9F40FD00A50EDE /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A0B3181B2D9080B400658E72 /* MMAScoreCard */,
@@ -576,11 +555,6 @@
 			target = A0E9933B2D9E23E000A50EDE /* LastEventStatsWidgetExtension */;
 			targetProxy = A0E9934A2D9E23E100A50EDE /* PBXContainerItemProxy */;
 		};
-		A0E9946F2D9F40FD00A50EDE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A0E994622D9F40FC00A50EDE /* MMAScoreCardWatch Watch App */;
-			targetProxy = A0E9946E2D9F40FD00A50EDE /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -767,7 +741,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MMAScoreCard/Preview Content\"";
-				DEVELOPMENT_TEAM = JBQ32BV635;
+				DEVELOPMENT_TEAM = 8TGP3K3MLX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MMAScoreCard/Info.plist;
@@ -799,7 +773,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MMAScoreCard/Preview Content\"";
-				DEVELOPMENT_TEAM = JBQ32BV635;
+				DEVELOPMENT_TEAM = 8TGP3K3MLX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MMAScoreCard/Info.plist;
@@ -831,7 +805,7 @@
 				CODE_SIGN_ENTITLEMENTS = LastEventStatsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JBQ32BV635;
+				DEVELOPMENT_TEAM = 8TGP3K3MLX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LastEventStatsWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = LastEventStatsWidget;
@@ -859,7 +833,7 @@
 				CODE_SIGN_ENTITLEMENTS = LastEventStatsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JBQ32BV635;
+				DEVELOPMENT_TEAM = 8TGP3K3MLX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LastEventStatsWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = LastEventStatsWidget;
@@ -887,13 +861,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MMAScoreCardWatchApp/Preview Content\"";
-				DEVELOPMENT_TEAM = JBQ32BV635;
+				DEVELOPMENT_TEAM = 8TGP3K3MLX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MMAScoreCardWatch-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = MMAScoreCardWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = io.github.danny270793.MMAScoreCard;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -918,13 +893,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MMAScoreCardWatchApp/Preview Content\"";
-				DEVELOPMENT_TEAM = JBQ32BV635;
+				DEVELOPMENT_TEAM = 8TGP3K3MLX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MMAScoreCardWatch-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = MMAScoreCardWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = io.github.danny270793.MMAScoreCard;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
