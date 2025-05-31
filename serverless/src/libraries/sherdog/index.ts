@@ -39,9 +39,13 @@ export class Sherdog {
         const html: string = await this.getHtml(url)
         const $: cheerio.Root = cheerio.load(html)
         const tables: Element[] = $('table').get()
-        let index: number = -1
+        let tablerNumber: number = -1
         for (const eachTable of tables) {
-            index += 1
+            tablerNumber += 1
+
+            if (page > 1 && tablerNumber === 0) {
+                continue
+            }
 
             const table: cheerio.Cheerio = $(eachTable)
             if (table.attr('class') !== 'new_table event') {
@@ -75,7 +79,7 @@ export class Sherdog {
                     country,
                     city,
                     location,
-                    state: index === 0 ? 'uppcoming' : 'past',
+                    state: tablerNumber === 0 ? 'uppcoming' : 'past',
                 }
                 events.push(event)
             }
@@ -91,11 +95,6 @@ export class Sherdog {
         const events: Event[] = []
         while (hasEvents) {
             const events: Event[] = await this.getEventsFromPage(index)
-            for (const event of events) {
-                console.log(event)
-            }
-
-            console.log(`Page ${index} has ${events.length} events`)
             if (events.length === 0) {
                 hasEvents = false
             } else {

@@ -11,10 +11,11 @@ async function main(): Promise<void> {
     const sherdog = new Sherdog()
     sherdog.setCache(cache)
 
-    const events: Event[] = await sherdog.getEventsFromPage(1)
+    const events: Event[] = await sherdog.getEvents()
     for (const event of events) {
         console.log(event)
     }
+    console.log(`${events.length} events`)
 }
 
 main().catch(console.error)
