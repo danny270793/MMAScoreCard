@@ -78,7 +78,7 @@ struct EventGraph : View {
                 let decissions = Double(response!.data.decisions)/fights
                 
                 let maxNumber = [kos, submissions, decissions].max()!
-                let kosMapped = map(x: decissions, inMin: 0, inMax: maxNumber, outMin: 0, outMax: 1)
+                let kosMapped = map(x: kos, inMin: 0, inMax: maxNumber, outMin: 0, outMax: 1)
                 let submissionsMapped = map(x: submissions, inMin: 0, inMax: maxNumber, outMin: 0, outMax: 1)
                 let decissionsMapped = map(x: decissions, inMin: 0, inMax: maxNumber, outMin: 0, outMax: 1)
                 
