@@ -16,9 +16,13 @@ export class Sherdog {
             return this.cache.get(url)
         }
         logger.debug(`CACHE MISS ${url}`)
-        const html: string = await fetch(url).then((response) =>
-            response.text(),
-        )
+        const response: Response = await fetch(url)
+        if (response.status >= 300) {
+            throw new Error(
+                `Failed to fetch ${url}: ${response.status} ${response.statusText}`,
+            )
+        }
+        const html: string = await response.text()
         if (this.cache) {
             this.cache.set(url, html)
         }
