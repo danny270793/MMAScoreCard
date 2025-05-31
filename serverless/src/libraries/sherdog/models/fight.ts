@@ -14,6 +14,7 @@ export interface BaseFight {
     category: Category
     fighterTwo: Fighter
     mainEvent: boolean
+    titleFight: boolean
 }
 
 export interface PendingFight extends BaseFight {
@@ -24,7 +25,7 @@ export interface DoneFight extends BaseFight {
     decision: string
     referee: string
     method: string
-    time: string
+    time: number
     round: number
     type: 'done'
 }

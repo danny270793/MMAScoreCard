@@ -13,7 +13,7 @@ async function main(): Promise<void> {
     sherdog.setCache(cache)
 
     const events: Event[] = await sherdog.getEvents()
-    const fights: Fight[] = await sherdog.getFightsFromEvent(events[19])
+    const fights: Fight[] = await sherdog.getFightsFromEvent(events[20])
     for (const fight of fights) {
         console.log(fight)
     }

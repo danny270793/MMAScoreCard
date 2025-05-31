@@ -136,8 +136,10 @@ export class Sherdog {
                     .trim()
                 const fighterOneLink: string =
                     $(cells[1]).find('a').attr('href') || ''
-                const category: string = $(cells[2]).text().trim()
-                const categoryParts: string[] = category.split(' ')
+                let category: string = $(cells[2]).text().trim()
+                const titleFight: boolean = category.includes('TITLE FIGHT')
+                category = category.replace('TITLE FIGHT', '').trim()
+                const categoryParts: string[] = category.split('lb')
 
                 $(cells[3]).find('br').replaceWith(' ')
                 const fighterTwo: string = $(cells[3])
@@ -158,11 +160,7 @@ export class Sherdog {
                             categoryParts.length > 1
                                 ? {
                                       name: categoryParts[1].trim(),
-                                      weight: parseInt(
-                                          categoryParts[0]
-                                              .trim()
-                                              .replace('lb', ''),
-                                      ),
+                                      weight: parseInt(categoryParts[0].trim()),
                                   }
                                 : {
                                       name: categoryParts[0].trim(),
@@ -172,6 +170,7 @@ export class Sherdog {
                             link: `${this.baseUrl}${fighterTwoLink}`,
                         },
                         mainEvent: false,
+                        titleFight,
                         type: 'pending',
                     }
                     fights.push(fight)
@@ -189,7 +188,9 @@ export class Sherdog {
                         .slice(0, -1)
                     const referee: string = refereeAndMethodParts[1].trim()
                     const round: number = parseInt($(cells[5]).text().trim())
-                    const time: string = $(cells[6]).text().trim()
+                    const time: number = Utils.timeToSeconds(
+                        $(cells[6]).text().trim(),
+                    )
 
                     const fight: DoneFight = {
                         position,
@@ -201,11 +202,7 @@ export class Sherdog {
                             categoryParts.length > 1
                                 ? {
                                       name: categoryParts[1].trim(),
-                                      weight: parseInt(
-                                          categoryParts[0]
-                                              .trim()
-                                              .replace('lb', ''),
-                                      ),
+                                      weight: parseInt(categoryParts[0].trim()),
                                   }
                                 : {
                                       name: categoryParts[0].trim(),
@@ -215,6 +212,7 @@ export class Sherdog {
                             link: `${this.baseUrl}${fighterTwoLink}`,
                         },
                         mainEvent: false,
+                        titleFight,
                         type: 'done',
                         method,
                         decision,
@@ -256,6 +254,9 @@ export class Sherdog {
             const fighterTwoLink: string =
                 $(rightSide).find('a').attr('href') || ''
 
+            const isTitle: Element[] = resume.find('span.title_fight').get()
+            const titleFight: boolean = isTitle.length > 0
+
             const spans: Element[] = resume.find('span.weight_class').get()
             $(spans[0]).find('br').replaceWith(' ')
             const category: string = $(spans[0]).text().trim()
@@ -284,6 +285,7 @@ export class Sherdog {
                         name: fighterTwo,
                         link: `${this.baseUrl}${fighterTwoLink}`,
                     },
+                    titleFight,
                     mainEvent: true,
                     type: 'pending',
                 }
@@ -313,10 +315,9 @@ export class Sherdog {
                         const round: number = parseInt(
                             $(cells[3]).text().trim().replace('Round ', ''),
                         )
-                        const time: string = $(cells[4])
-                            .text()
-                            .trim()
-                            .replace('Time ', '')
+                        const time: number = Utils.timeToSeconds(
+                            $(cells[4]).text().trim().replace('Time ', ''),
+                        )
 
                         const fight: DoneFight = {
                             position: fights.length + 1,
@@ -342,6 +343,7 @@ export class Sherdog {
                                 link: `${this.baseUrl}${fighterTwoLink}`,
                             },
                             mainEvent: true,
+                            titleFight,
                             type: 'done',
                             method,
                             decision,
