@@ -1,4 +1,4 @@
-import Fs from 'fs'
+import Fs from 'node:fs'
 import { Cache } from '.'
 
 export class FileCache implements Cache {
