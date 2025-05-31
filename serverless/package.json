@@ -13,9 +13,13 @@
   "license": "MIT",
   "description": "",
   "devDependencies": {
+    "@types/cheerio": "^0.22.35",
     "prettier": "^3.5.3",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0"
   }
 }
