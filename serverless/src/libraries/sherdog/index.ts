@@ -3,6 +3,7 @@ import { Cache } from '../cache'
 import { Logger } from '../logger'
 import { Event } from './models/event'
 import { Utils } from '../utils'
+import { Fight, PendingFight } from './models/fight'
 
 const logger: Logger = new Logger('./libraries/sherdog/index.ts')
 
@@ -108,5 +109,129 @@ export class Sherdog {
             }
         }
         return events
+    }
+
+    async getFightsFromEvent(event: Event): Promise<Fight[]> {
+        const html: string = await this.getHtml(event.link)
+        const $: cheerio.Root = cheerio.load(html)
+
+        const fights: Fight[] = []
+
+        const tables: Element[] = $('table.new_table.upcoming').get()
+        for (const eachTable of tables) {
+            const table: cheerio.Cheerio = $(eachTable)
+            const rows: Element[] = table.find('tr').get()
+            for (const row of rows.slice(1)) {
+                const cells: Element[] = $(row).find('td').get()
+
+                const position: number = parseInt($(cells[0]).text().trim())
+
+                $(cells[1]).find('br').replaceWith(' ')
+                const fighterOne: string = $(cells[1])
+                    .text()
+                    .trim()
+                    .split('\n')[0]
+                    .trim()
+                const fighterOneLink: string =
+                    $(cells[1]).find('a').attr('href') || ''
+                const category: string = $(cells[2]).text().trim()
+                const categoryParts: string[] = category.split(' ')
+
+                $(cells[3]).find('br').replaceWith(' ')
+                const fighterTwo: string = $(cells[1])
+                    .text()
+                    .trim()
+                    .split('\n')[0]
+                    .trim()
+                const fighterTwoLink: string =
+                    $(cells[3]).find('a').attr('href') || ''
+
+                const fight: PendingFight = {
+                    position,
+                    fighterOne: {
+                        name: fighterOne,
+                        link: `${this.baseUrl}${fighterOneLink}`,
+                    },
+                    category:
+                        categoryParts.length > 1
+                            ? {
+                                  name: categoryParts[1].trim(),
+                                  weight: parseInt(
+                                      categoryParts[0].trim().replace('lb', ''),
+                                  ),
+                              }
+                            : {
+                                  name: categoryParts[0].trim(),
+                              },
+                    fighterTwo: {
+                        name: fighterTwo,
+                        link: `${this.baseUrl}${fighterTwoLink}`,
+                    },
+                    mainEvent: false,
+                    type: 'pending',
+                }
+                fights.push(fight)
+            }
+        }
+
+        const resumes: Element[] = $('div.fight_card').get()
+        for (const eachResume of resumes) {
+            const resume: cheerio.Cheerio = $(eachResume)
+
+            const leftSide: Element[] = resume
+                .find('div.fighter.left_side')
+                .get()
+            const fighterOne: string = $(leftSide)
+                .text()
+                .trim()
+                .split('\n')[0]
+                .trim()
+            const fighterOneLink: string =
+                $(leftSide).find('a').attr('href') || ''
+
+            const rightSide: Element[] = resume
+                .find('div.fighter.right_side')
+                .get()
+            const fighterTwo: string = $(rightSide)
+                .text()
+                .trim()
+                .split('\n')[0]
+                .trim()
+            const fighterTwoLink: string =
+                $(rightSide).find('a').attr('href') || ''
+
+            const spans: Element[] = resume.find('span.weight_class').get()
+            $(spans[0]).find('br').replaceWith(' ')
+            const category: string = $(spans[0]).text().trim()
+            const categoryParts: string[] = category.split(' ')
+
+            const fight: PendingFight = {
+                position: fights.length + 1,
+                fighterOne: {
+                    name: fighterOne,
+                    link: `${this.baseUrl}${fighterOneLink}`,
+                },
+                category:
+                    categoryParts.length > 1
+                        ? {
+                              name: categoryParts[1].trim(),
+                              weight: parseInt(
+                                  categoryParts[0].trim().replace('lb', ''),
+                              ),
+                          }
+                        : {
+                              name: categoryParts[0].trim(),
+                          },
+                fighterTwo: {
+                    name: fighterTwo,
+                    link: `${this.baseUrl}${fighterTwoLink}`,
+                },
+                mainEvent: true,
+                type: 'pending',
+            }
+            fights.push(fight)
+        }
+
+        return fights
     }
 }
