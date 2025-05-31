@@ -8,24 +8,21 @@ export interface Category {
     weight?: number
 }
 
-export interface PendingFight {
+export interface BaseFight {
     position: number
     fighterOne: Fighter
     category: Category
     fighterTwo: Fighter
     mainEvent: boolean
+}
 
+export interface PendingFight extends BaseFight {
     type: 'pending'
 }
 
-export interface DoneFight {
-    position: number
-    fighterOne: Fighter
-    category: Category
-    fighterTwo: Fighter
-    mainEvent: boolean
-
-    result: string
+export interface DoneFight extends BaseFight {
+    decision: string
+    referee: string
     method: string
     time: string
     round: number

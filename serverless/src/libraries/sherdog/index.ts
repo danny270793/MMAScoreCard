@@ -3,7 +3,7 @@ import { Cache } from '../cache'
 import { Logger } from '../logger'
 import { Event } from './models/event'
 import { Utils } from '../utils'
-import { Fight, PendingFight } from './models/fight'
+import { DoneFight, Fight, PendingFight } from './models/fight'
 
 const logger: Logger = new Logger('./libraries/sherdog/index.ts')
 
@@ -117,7 +117,10 @@ export class Sherdog {
 
         const fights: Fight[] = []
 
-        const tables: Element[] = $('table.new_table.upcoming').get()
+        const tables: Element[] = [
+            ...$('table.new_table.upcoming').get(),
+            ...$('table.new_table.result').get(),
+        ]
         for (const eachTable of tables) {
             const table: cheerio.Cheerio = $(eachTable)
             const rows: Element[] = table.find('tr').get()
@@ -125,7 +128,6 @@ export class Sherdog {
                 const cells: Element[] = $(row).find('td').get()
 
                 const position: number = parseInt($(cells[0]).text().trim())
-
                 $(cells[1]).find('br').replaceWith(' ')
                 const fighterOne: string = $(cells[1])
                     .text()
@@ -138,42 +140,96 @@ export class Sherdog {
                 const categoryParts: string[] = category.split(' ')
 
                 $(cells[3]).find('br').replaceWith(' ')
-                const fighterTwo: string = $(cells[1])
+                const fighterTwo: string = $(cells[3])
                     .text()
                     .trim()
                     .split('\n')[0]
                     .trim()
                 const fighterTwoLink: string =
                     $(cells[3]).find('a').attr('href') || ''
+                if (cells.length === 5) {
+                    const fight: PendingFight = {
+                        position,
+                        fighterOne: {
+                            name: fighterOne,
+                            link: `${this.baseUrl}${fighterOneLink}`,
+                        },
+                        category:
+                            categoryParts.length > 1
+                                ? {
+                                      name: categoryParts[1].trim(),
+                                      weight: parseInt(
+                                          categoryParts[0]
+                                              .trim()
+                                              .replace('lb', ''),
+                                      ),
+                                  }
+                                : {
+                                      name: categoryParts[0].trim(),
+                                  },
+                        fighterTwo: {
+                            name: fighterTwo,
+                            link: `${this.baseUrl}${fighterTwoLink}`,
+                        },
+                        mainEvent: false,
+                        type: 'pending',
+                    }
+                    fights.push(fight)
+                } else if (cells.length === 7) {
+                    const refereeAndMethod: string = $(cells[4]).text().trim()
+                    const refereeAndMethodParts: string[] =
+                        refereeAndMethod.split('\n')
+                    const decisionAndMethod: string =
+                        refereeAndMethodParts[0].trim()
+                    const decisionAndMethodParts: string[] =
+                        decisionAndMethod.split('(')
+                    const decision: string = decisionAndMethodParts[0].trim()
+                    const method: string = decisionAndMethodParts[1]
+                        .trim()
+                        .slice(0, -1)
+                    const referee: string = refereeAndMethodParts[1].trim()
+                    const round: number = parseInt($(cells[5]).text().trim())
+                    const time: string = $(cells[6]).text().trim()
 
-                const fight: PendingFight = {
-                    position,
-                    fighterOne: {
-                        name: fighterOne,
-                        link: `${this.baseUrl}${fighterOneLink}`,
-                    },
-                    category:
-                        categoryParts.length > 1
-                            ? {
-                                  name: categoryParts[1].trim(),
-                                  weight: parseInt(
-                                      categoryParts[0].trim().replace('lb', ''),
-                                  ),
-                              }
-                            : {
-                                  name: categoryParts[0].trim(),
-                              },
-                    fighterTwo: {
-                        name: fighterTwo,
-                        link: `${this.baseUrl}${fighterTwoLink}`,
-                    },
-                    mainEvent: false,
-                    type: 'pending',
+                    const fight: DoneFight = {
+                        position,
+                        fighterOne: {
+                            name: fighterOne,
+                            link: `${this.baseUrl}${fighterOneLink}`,
+                        },
+                        category:
+                            categoryParts.length > 1
+                                ? {
+                                      name: categoryParts[1].trim(),
+                                      weight: parseInt(
+                                          categoryParts[0]
+                                              .trim()
+                                              .replace('lb', ''),
+                                      ),
+                                  }
+                                : {
+                                      name: categoryParts[0].trim(),
+                                  },
+                        fighterTwo: {
+                            name: fighterTwo,
+                            link: `${this.baseUrl}${fighterTwoLink}`,
+                        },
+                        mainEvent: false,
+                        type: 'done',
+                        method,
+                        decision,
+                        time,
+                        round,
+                        referee,
+                    }
+                    fights.push(fight)
+                } else {
+                    throw new Error('Unexpected number of cells in row')
                 }
-                fights.push(fight)
             }
         }
 
+        // get main event
         const resumes: Element[] = $('div.fight_card').get()
         for (const eachResume of resumes) {
             const resume: cheerio.Cheerio = $(eachResume)
@@ -205,31 +261,98 @@ export class Sherdog {
             const category: string = $(spans[0]).text().trim()
             const categoryParts: string[] = category.split(' ')
 
-            const fight: PendingFight = {
-                position: fights.length + 1,
-                fighterOne: {
-                    name: fighterOne,
-                    link: `${this.baseUrl}${fighterOneLink}`,
-                },
-                category:
-                    categoryParts.length > 1
-                        ? {
-                              name: categoryParts[1].trim(),
-                              weight: parseInt(
-                                  categoryParts[0].trim().replace('lb', ''),
-                              ),
-                          }
-                        : {
-                              name: categoryParts[0].trim(),
-                          },
-                fighterTwo: {
-                    name: fighterTwo,
-                    link: `${this.baseUrl}${fighterTwoLink}`,
-                },
-                mainEvent: true,
-                type: 'pending',
+            const tables: Element[] = $('table.fight_card_resume').get()
+            if (tables.length === 0) {
+                const fight: PendingFight = {
+                    position: fights.length + 1,
+                    fighterOne: {
+                        name: fighterOne,
+                        link: `${this.baseUrl}${fighterOneLink}`,
+                    },
+                    category:
+                        categoryParts.length > 1
+                            ? {
+                                  name: categoryParts[1].trim(),
+                                  weight: parseInt(
+                                      categoryParts[0].trim().replace('lb', ''),
+                                  ),
+                              }
+                            : {
+                                  name: categoryParts[0].trim(),
+                              },
+                    fighterTwo: {
+                        name: fighterTwo,
+                        link: `${this.baseUrl}${fighterTwoLink}`,
+                    },
+                    mainEvent: true,
+                    type: 'pending',
+                }
+                fights.push(fight)
+            } else {
+                for (const eachTable of tables) {
+                    const table: cheerio.Cheerio = $(eachTable)
+                    const rows: Element[] = table.find('tr').get()
+                    for (const row of rows) {
+                        const cells: Element[] = $(row).find('td').get()
+
+                        const decisionAndMethod: string = $(cells[1])
+                            .text()
+                            .trim()
+                        const decisionAndMethodParts: string[] =
+                            decisionAndMethod.split('(')
+                        const decision: string = decisionAndMethodParts[0]
+                            .trim()
+                            .replace('Method ', '')
+                        const method: string = decisionAndMethodParts[1]
+                            .trim()
+                            .slice(0, -1)
+                        const referee: string = $(cells[2])
+                            .text()
+                            .trim()
+                            .replace('Referee ', '')
+                        const round: number = parseInt(
+                            $(cells[3]).text().trim().replace('Round ', ''),
+                        )
+                        const time: string = $(cells[4])
+                            .text()
+                            .trim()
+                            .replace('Time ', '')
+
+                        const fight: DoneFight = {
+                            position: fights.length + 1,
+                            fighterOne: {
+                                name: fighterOne,
+                                link: `${this.baseUrl}${fighterOneLink}`,
+                            },
+                            category:
+                                categoryParts.length > 1
+                                    ? {
+                                          name: categoryParts[1].trim(),
+                                          weight: parseInt(
+                                              categoryParts[0]
+                                                  .trim()
+                                                  .replace('lb', ''),
+                                          ),
+                                      }
+                                    : {
+                                          name: categoryParts[0].trim(),
+                                      },
+                            fighterTwo: {
+                                name: fighterTwo,
+                                link: `${this.baseUrl}${fighterTwoLink}`,
+                            },
+                            mainEvent: true,
+                            type: 'done',
+                            method,
+                            decision,
+                            time,
+                            round,
+                            referee,
+                        }
+                        fights.push(fight)
+                    }
+                }
             }
-            fights.push(fight)
         }
 
         return fights
