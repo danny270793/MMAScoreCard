@@ -8,6 +8,10 @@ export class FileCache implements Cache {
     constructor(path: string) {
         this.path = path
 
+        if (!Fs.existsSync(path)) {
+            Fs.writeFileSync(path, JSON.stringify({}, null, 2), 'utf8')
+        }
+
         const content: string = Fs.readFileSync(path, 'utf8')
         this.data = JSON.parse(content)
     }
