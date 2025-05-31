@@ -55,8 +55,11 @@ export class Sherdog {
             const rows: Element[] = table.find('tr').get()
             for (const row of rows.slice(1)) {
                 const cells: Element[] = $(row).find('td').get()
-                const one: string = $(cells[0]).text().trim()
-                const two: string = $(cells[1]).text().trim()
+                const cellOne: cheerio.Cheerio = $(cells[0])
+                const cellTwo: cheerio.Cheerio = $(cells[1])
+
+                const one: string = cellOne.text().trim()
+                const two: string = cellTwo.text().trim()
                 const three: string = $(cells[2]).text().trim()
 
                 let name: string = ''
@@ -68,6 +71,7 @@ export class Sherdog {
                 } else {
                     name = two
                 }
+
                 const threeParts: string[] = three.split(',')
                 const country: string = threeParts[threeParts.length - 1].trim()
                 const city: string = threeParts[threeParts.length - 2].trim()
@@ -80,6 +84,7 @@ export class Sherdog {
                     city,
                     location,
                     state: tablerNumber === 0 ? 'uppcoming' : 'past',
+                    link: `${this.baseUrl}${cellTwo.find('a').attr('href')}`,
                 }
                 events.push(event)
             }
@@ -94,10 +99,11 @@ export class Sherdog {
 
         const events: Event[] = []
         while (hasEvents) {
-            const events: Event[] = await this.getEventsFromPage(index)
-            if (events.length === 0) {
+            const pageEvents: Event[] = await this.getEventsFromPage(index)
+            if (pageEvents.length === 0) {
                 hasEvents = false
             } else {
+                events.push(...pageEvents)
                 index++
             }
         }

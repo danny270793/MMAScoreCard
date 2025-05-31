@@ -6,4 +6,5 @@ export interface Event {
     city: string
     location: string
     state: 'uppcoming' | 'past'
+    link: string
 }
