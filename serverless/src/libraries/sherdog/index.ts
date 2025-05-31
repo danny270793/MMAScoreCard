@@ -1,5 +1,5 @@
-import { Cache } from "../cache"
-import { Logger } from "../logger"
+import { Cache } from '../cache'
+import { Logger } from '../logger'
 
 const logger: Logger = new Logger('./libraries/sherdog/index.ts')
 
@@ -16,9 +16,10 @@ export class Sherdog {
             return this.cache.get(url)
         }
         logger.debug(`CACHE MISS ${url}`)
-        const html: string = await fetch(url)
-            .then(response => response.text())
-        if(this.cache) {
+        const html: string = await fetch(url).then((response) =>
+            response.text(),
+        )
+        if (this.cache) {
             this.cache.set(url, html)
         }
         return html
