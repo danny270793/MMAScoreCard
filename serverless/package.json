@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "format": "prettier ./src --write",
     "build": "tsc",
     "start": "ts-node ./src/index.ts",
     "start:watch": "ts-node-dev --respawn ./src/index.ts"
