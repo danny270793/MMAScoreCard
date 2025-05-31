@@ -1,5 +1,8 @@
+import * as cheerio from 'cheerio'
 import { Cache } from '../cache'
 import { Logger } from '../logger'
+import { Event } from './models/event'
+import { Utils } from '../utils'
 
 const logger: Logger = new Logger('./libraries/sherdog/index.ts')
 
@@ -29,9 +32,76 @@ export class Sherdog {
         return html
     }
 
-    async getEventsFromPage(page: number): Promise<string> {
+    async getEventsFromPage(page: number): Promise<Event[]> {
+        const events: Event[] = []
+
         const url: string = `${this.baseUrl}/organizations/Ultimate-Fighting-Championship-UFC-2/recent-events/${page}`
         const html: string = await this.getHtml(url)
-        return html
+        const $: cheerio.Root = cheerio.load(html)
+        const tables: Element[] = $('table').get()
+        let index: number = -1
+        for (const eachTable of tables) {
+            index += 1
+
+            const table: cheerio.Cheerio = $(eachTable)
+            if (table.attr('class') !== 'new_table event') {
+                continue
+            }
+
+            const rows: Element[] = table.find('tr').get()
+            for (const row of rows.slice(1)) {
+                const cells: Element[] = $(row).find('td').get()
+                const one: string = $(cells[0]).text().trim()
+                const two: string = $(cells[1]).text().trim()
+                const three: string = $(cells[2]).text().trim()
+
+                let name: string = ''
+                let fight: string | undefined
+                if (two.includes('vs.')) {
+                    const twoParts: string[] = two.split('-')
+                    name = twoParts[0].trim()
+                    fight = twoParts[1].trim()
+                } else {
+                    name = two
+                }
+                const threeParts: string[] = three.split(',')
+                const country: string = threeParts[threeParts.length - 1].trim()
+                const city: string = threeParts[threeParts.length - 2].trim()
+                const location: string = threeParts.slice(0, -2).join(', ')
+                const event: Event = {
+                    name,
+                    fight,
+                    date: Utils.parseCompactDate(one)!,
+                    country,
+                    city,
+                    location,
+                    state: index === 0 ? 'uppcoming' : 'past',
+                }
+                events.push(event)
+            }
+        }
+
+        return events
+    }
+
+    async getEvents(): Promise<Event[]> {
+        let index: number = 1
+        let hasEvents: boolean = true
+
+        const events: Event[] = []
+        while (hasEvents) {
+            const events: Event[] = await this.getEventsFromPage(index)
+            for (const event of events) {
+                console.log(event)
+            }
+
+            console.log(`Page ${index} has ${events.length} events`)
+            if (events.length === 0) {
+                hasEvents = false
+            } else {
+                index++
+            }
+        }
+        return events
     }
 }
