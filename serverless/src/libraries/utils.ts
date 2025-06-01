@@ -1,4 +1,20 @@
 export class Utils {
+    static toYYYYMMDDHHMMSSUUUU(date: Date): string {
+        const pad = (n: number, len = 2) => n.toString().padStart(len, '0')
+
+        const year: number = date.getFullYear()
+        const month: string = pad(date.getMonth() + 1) // Months are 0-based
+        const day: string = pad(date.getDate())
+
+        const hours: string = pad(date.getHours())
+        const minutes: string = pad(date.getMinutes())
+        const seconds: string = pad(date.getSeconds())
+
+        const milliseconds: string = pad(date.getMilliseconds(), 3) // 3 digits
+        const microseconds: string = pad(parseInt(milliseconds) * 1000, 4) // Simulate UUUU
+
+        return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}.${microseconds}`
+    }
     static timeToSeconds(input: string): number {
         const match = input.match(/^(\d{1,2}):(\d{2})$/)
         if (!match) return 0
