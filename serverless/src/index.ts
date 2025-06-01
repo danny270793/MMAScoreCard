@@ -315,17 +315,39 @@ async function main(): Promise<void> {
                 name: fight.fighterOne.name,
             })
             if (!existsOne) {
-                const country: any = await database.getFirst('countries', {
-                    name: event.country,
-                })
-                const city: any = await database.getFirst('cities', {
-                    name: event.city,
-                    countryId: country.id,
-                })
-
                 const stats: Stats = await sherdog.getStatsFighter(
                     fights[0].fighterOne,
                 )
+
+                const existsCountry: boolean = await database.exists(
+                    'countries',
+                    {
+                        name: stats.country,
+                    },
+                )
+                if (!existsCountry) {
+                    await database.insert('countries', {
+                        name: stats.country,
+                    })
+                }
+                const country: any = await database.getFirst('countries', {
+                    name: stats.country,
+                })
+
+                const existsCity: boolean = await database.exists('cities', {
+                    name: stats.city,
+                    countryId: country.id,
+                })
+                if (!existsCity) {
+                    await database.insert('cities', {
+                        name: stats.city,
+                        countryId: country.id,
+                    })
+                }
+                const city: any = await database.getFirst('cities', {
+                    name: stats.city,
+                    countryId: country.id,
+                })
 
                 await database.insert('fighters', {
                     name: fight.fighterOne.name,
@@ -345,9 +367,51 @@ async function main(): Promise<void> {
                 name: fight.fighterTwo.name,
             })
             if (!existsTwo) {
+                const stats: Stats = await sherdog.getStatsFighter(
+                    fights[0].fighterTwo,
+                )
+
+                const existsCountry: boolean = await database.exists(
+                    'countries',
+                    {
+                        name: stats.country,
+                    },
+                )
+                if (!existsCountry) {
+                    await database.insert('countries', {
+                        name: stats.country,
+                    })
+                }
+                const country: any = await database.getFirst('countries', {
+                    name: stats.country,
+                })
+
+                const existsCity: boolean = await database.exists('cities', {
+                    name: stats.city,
+                    countryId: country.id,
+                })
+                if (!existsCity) {
+                    await database.insert('cities', {
+                        name: stats.city,
+                        countryId: country.id,
+                    })
+                }
+                const city: any = await database.getFirst('cities', {
+                    name: stats.city,
+                    countryId: country.id,
+                })
+
                 await database.insert('fighters', {
                     name: fight.fighterTwo.name,
                     link: fight.fighterTwo.link,
+                    nickname: stats.nickname,
+                    cityId: city.id,
+                    birthday: stats.birthday.toISOString().split('T')[0],
+                    died: stats.died
+                        ? stats.died.toISOString().split('T')[0]
+                        : null,
+                    height: stats.height,
+                    weight: stats.weight,
                 })
             }
         }
