@@ -174,14 +174,18 @@ export class Sherdog {
                             link: `${this.baseUrl}${fighterOneLink}`,
                         },
                         category:
-                            categoryParts.length > 1
-                                ? {
-                                      name: categoryParts[1].trim(),
-                                      weight: parseInt(categoryParts[0].trim()),
-                                  }
-                                : {
-                                      name: categoryParts[0].trim(),
-                                  },
+                            category === ''
+                                ? undefined
+                                : categoryParts.length > 1
+                                  ? {
+                                        name: categoryParts[1].trim(),
+                                        weight: parseInt(
+                                            categoryParts[0].trim(),
+                                        ),
+                                    }
+                                  : {
+                                        name: categoryParts[0].trim(),
+                                    },
                         fighterTwo: {
                             name: fighterTwo,
                             link: `${this.baseUrl}${fighterTwoLink}`,
@@ -232,14 +236,18 @@ export class Sherdog {
                             result: resultOne,
                         },
                         category:
-                            categoryParts.length > 1
-                                ? {
-                                      name: categoryParts[1].trim(),
-                                      weight: parseInt(categoryParts[0].trim()),
-                                  }
-                                : {
-                                      name: categoryParts[0].trim(),
-                                  },
+                            category === ''
+                                ? undefined
+                                : categoryParts.length > 1
+                                  ? {
+                                        name: categoryParts[1].trim(),
+                                        weight: parseInt(
+                                            categoryParts[0].trim(),
+                                        ),
+                                    }
+                                  : {
+                                        name: categoryParts[0].trim(),
+                                    },
                         fighterTwo: {
                             name: fighterTwo,
                             link: `${this.baseUrl}${fighterTwoLink}`,
