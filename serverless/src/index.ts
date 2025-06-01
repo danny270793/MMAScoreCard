@@ -99,12 +99,28 @@ async function main(): Promise<void> {
         ],
     )
 
-    await database.createTable('fighters', {
-        id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
-        name: 'VARCHAR(255) NOT NULL',
-        link: 'VARCHAR(255) NOT NULL',
-        UNIQUE: '(name)',
-    })
+    await database.createTable(
+        'fighters',
+        {
+            id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+            name: 'VARCHAR(255) NOT NULL',
+            nickname: 'VARCHAR(255) NULL',
+            cityId: 'INTEGER NOT NULL',
+            birthday: 'DATE NOT NULL',
+            died: 'DATE NULL',
+            height: 'FLOAT NOT NULL',
+            weight: 'FLOAT NOT NULL',
+            link: 'VARCHAR(255) NOT NULL',
+            UNIQUE: '(name)',
+        },
+        [
+            {
+                column: 'cityId',
+                referencedTable: 'cities',
+                referencedColumn: 'id',
+            },
+        ],
+    )
 
     await database.createTable('categories', {
         id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
@@ -299,13 +315,29 @@ async function main(): Promise<void> {
                 name: fight.fighterOne.name,
             })
             if (!existsOne) {
-                // const stats: Stats = await sherdog.getStatsFighter(
-                //     fights[0].fighterOne,
-                // )
+                const country: any = await database.getFirst('countries', {
+                    name: event.country,
+                })
+                const city: any = await database.getFirst('cities', {
+                    name: event.city,
+                    countryId: country.id,
+                })
+
+                const stats: Stats = await sherdog.getStatsFighter(
+                    fights[0].fighterOne,
+                )
 
                 await database.insert('fighters', {
                     name: fight.fighterOne.name,
                     link: fight.fighterOne.link,
+                    nickname: stats.nickname,
+                    cityId: city.id,
+                    birthday: stats.birthday.toISOString().split('T')[0],
+                    died: stats.died
+                        ? stats.died.toISOString().split('T')[0]
+                        : null,
+                    height: stats.height,
+                    weight: stats.weight,
                 })
             }
 
@@ -321,10 +353,6 @@ async function main(): Promise<void> {
         }
     }
     bar.reset()
-
-    // // const fights: Fight[] = await sherdog.getFightsFromEvent(events[0])
-    // // const stats: Stats = await sherdog.getStatsFighter(fights[0].fighterOne)
-    // // console.log(stats)
 
     for (const event of events) {
         bar.increase('fights')
