@@ -1,6 +1,7 @@
 export interface Fighter {
     name: string
     link: string
+    result?: string //'win' | 'loss' | 'draw' | 'nc'
 }
 
 export interface Category {

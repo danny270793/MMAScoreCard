@@ -3,7 +3,7 @@ import { Cache } from '../cache'
 import { Logger } from '../logger'
 import { Event } from './models/event'
 import { Utils } from '../utils'
-import { DoneFight, Fight, PendingFight } from './models/fight'
+import { DoneFight, Fight, Fighter, PendingFight } from './models/fight'
 
 const logger: Logger = new Logger('./libraries/sherdog/index.ts')
 
@@ -134,8 +134,11 @@ export class Sherdog {
                     .trim()
                     .split('\n')[0]
                     .trim()
-                const fighterOneLink: string =
-                    $(cells[1]).find('a').attr('href') || ''
+
+                const nameOneParts: string[] = $(cells[1])
+                    .text()
+                    .trim()
+                    .split('\n')
                 let category: string = $(cells[2]).text().trim()
                 const titleFight: boolean = category.includes('TITLE FIGHT')
                 category = category.replace('TITLE FIGHT', '').trim()
@@ -147,6 +150,13 @@ export class Sherdog {
                     .trim()
                     .split('\n')[0]
                     .trim()
+                const nameTwoParts: string[] = $(cells[3])
+                    .text()
+                    .trim()
+                    .split('\n')
+                const fighterOneLink: string =
+                    $(cells[1]).find('a').attr('href') || ''
+
                 const fighterTwoLink: string =
                     $(cells[3]).find('a').attr('href') || ''
                 if (cells.length === 5) {
@@ -192,11 +202,18 @@ export class Sherdog {
                         $(cells[6]).text().trim(),
                     )
 
+                    const resultOne: string =
+                        nameOneParts[nameOneParts.length - 1].trim()
+
+                    const resultTwo: string =
+                        nameTwoParts[nameTwoParts.length - 1].trim()
+
                     const fight: DoneFight = {
                         position,
                         fighterOne: {
                             name: fighterOne,
                             link: `${this.baseUrl}${fighterOneLink}`,
+                            result: resultOne,
                         },
                         category:
                             categoryParts.length > 1
@@ -210,6 +227,7 @@ export class Sherdog {
                         fighterTwo: {
                             name: fighterTwo,
                             link: `${this.baseUrl}${fighterTwoLink}`,
+                            result: resultTwo,
                         },
                         mainEvent: false,
                         titleFight,
@@ -291,6 +309,20 @@ export class Sherdog {
                 }
                 fights.push(fight)
             } else {
+                const nameOneParts: string[] = $(leftSide)
+                    .text()
+                    .trim()
+                    .split('\n')
+                const resultOne: string =
+                    nameOneParts[nameOneParts.length - 1].trim()
+
+                const nameTwoParts: string[] = $(rightSide)
+                    .text()
+                    .trim()
+                    .split('\n')
+                const resultTwo: string =
+                    nameTwoParts[nameTwoParts.length - 1].trim()
+
                 for (const eachTable of tables) {
                     const table: cheerio.Cheerio = $(eachTable)
                     const rows: Element[] = table.find('tr').get()
@@ -324,6 +356,7 @@ export class Sherdog {
                             fighterOne: {
                                 name: fighterOne,
                                 link: `${this.baseUrl}${fighterOneLink}`,
+                                result: resultOne,
                             },
                             category:
                                 categoryParts.length > 1
@@ -341,6 +374,7 @@ export class Sherdog {
                             fighterTwo: {
                                 name: fighterTwo,
                                 link: `${this.baseUrl}${fighterTwoLink}`,
+                                result: resultTwo,
                             },
                             mainEvent: true,
                             titleFight,
@@ -354,6 +388,45 @@ export class Sherdog {
                         fights.push(fight)
                     }
                 }
+            }
+        }
+
+        return fights
+    }
+
+    async getFightsFromFighter(fighter: Fighter): Promise<Fight[]> {
+        const fights: Fight[] = []
+
+        const html: string = await this.getHtml(fighter.link)
+        const $: cheerio.Root = cheerio.load(html)
+
+        const tables: Element[] = $('table.new_table.fighter').get()
+        for (const eachTable of tables) {
+            const table: cheerio.Cheerio = $(eachTable)
+            const rows: Element[] = table.find('tr').get()
+            for (const row of rows.slice(1)) {
+                const cells: Element[] = $(row).find('td').get()
+
+                const decisionMethodReferee: string = $(cells[3]).text().trim()
+                const decisionMethodRefereeParts: string[] =
+                    decisionMethodReferee.split('(')
+                const decision: string = decisionMethodRefereeParts[0].trim()
+                const methodReferee: string[] = decisionMethodRefereeParts[1]
+                    .trim()
+                    .split(')')
+                const method: string = methodReferee[0].trim()
+                const referee: string = methodReferee[1].trim()
+                const round: number = parseInt($(cells[4]).text().trim())
+                const time: number = Utils.timeToSeconds(
+                    $(cells[5]).text().trim(),
+                )
+                console.log({
+                    decision,
+                    method,
+                    referee,
+                    round,
+                    time,
+                })
             }
         }
 
