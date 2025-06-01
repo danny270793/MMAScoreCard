@@ -1,6 +1,8 @@
 import { Utils } from './utils'
 
 export class Logger {
+    public static enabled: boolean = true
+
     private name: string
     private enable: boolean
     constructor(name: string, enable: boolean = true) {
@@ -8,7 +10,7 @@ export class Logger {
         this.enable = enable
     }
     write(tag: 'ERROR' | 'DEBUG', message: string): void {
-        if (!this.enable) {
+        if (!this.enable || !Logger.enabled) {
             return
         }
 
