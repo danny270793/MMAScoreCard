@@ -257,7 +257,7 @@ async function main(): Promise<void> {
 
         for (const fight of fights) {
             if (!fight.category) {
-                return
+                continue
             }
 
             const weight: number =
@@ -299,8 +299,6 @@ async function main(): Promise<void> {
         const fights: Fight[] = await sherdog.getFightsFromEvent(event)
 
         for (const fight of fights) {
-            console.log(fight)
-
             const existsOne: boolean = await database.exists('fighters', {
                 name: fight.fighterOne.name,
             })
