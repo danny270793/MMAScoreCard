@@ -197,13 +197,22 @@ export class Sherdog {
                         refereeAndMethod.split('\n')
                     const decisionAndMethod: string =
                         refereeAndMethodParts[0].trim()
-                    const decisionAndMethodParts: string[] =
-                        decisionAndMethod.split('(')
-                    const decision: string = decisionAndMethodParts[0].trim()
-                    const method: string = decisionAndMethodParts[1]
-                        .trim()
-                        .slice(0, -1)
-                    const referee: string = refereeAndMethodParts[1].trim()
+
+                    let method: string | undefined
+                    let decision: string | undefined
+                    let referee: string
+
+                    if (decisionAndMethod === 'No Contest') {
+                        method = undefined
+                        decision = undefined
+                        referee = refereeAndMethodParts[1].trim()
+                    } else {
+                        const decisionAndMethodParts: string[] =
+                            decisionAndMethod.split('(')
+                        decision = decisionAndMethodParts[0].trim()
+                        method = decisionAndMethodParts[1].trim().slice(0, -1)
+                        referee = refereeAndMethodParts[1].trim()
+                    }
                     const round: number = parseInt($(cells[5]).text().trim())
                     const time: number = Utils.timeToSeconds(
                         $(cells[6]).text().trim(),
