@@ -3,6 +3,12 @@ import { Logger } from '../logger'
 
 const logger = new Logger('/src/libraries/database/index.ts')
 
+interface Relationship {
+    column: string
+    referencedTable: string
+    referencedColumn: string
+}
+
 export class Database {
     private path: string
     private database: sqlite3.Database
@@ -26,13 +32,24 @@ export class Database {
     async createTable(
         name: string,
         columns: Record<string, string>,
+        references: Relationship[] = [],
     ): Promise<void> {
         const columnsDefinition = Object.entries(columns)
             .map(([column, type]) => `${column} ${type}`)
             .join(', ')
 
+        const foreignKeysDefinition = references
+            .map(
+                (relationship: Relationship) =>
+                    `FOREIGN KEY (${relationship.column}) REFERENCES ${relationship.referencedTable}(${relationship.referencedColumn})`,
+            )
+            .join(', ')
+        const foreignKeysClause = foreignKeysDefinition
+            ? `, ${foreignKeysDefinition}`
+            : ''
+
         return new Promise((resolve, reject) => {
-            const sql: string = `CREATE TABLE IF NOT EXISTS ${name} (${columnsDefinition})`
+            const sql: string = `CREATE TABLE IF NOT EXISTS ${name} (${columnsDefinition} ${foreignKeysClause})`
             logger.debug(sql)
             this.database.run(sql, (error) => {
                 if (error) {
@@ -43,10 +60,7 @@ export class Database {
             })
         })
     }
-    exists(
-        table: string,
-        conditions: Record<string, string>,
-    ): Promise<boolean> {
+    exists(table: string, conditions: Record<string, any>): Promise<boolean> {
         const whereClause = Object.entries(conditions)
             .map(([column, value]) => `${column} = ?`)
             .join(' AND ')
@@ -82,7 +96,7 @@ export class Database {
     }
     async getFirst<T>(
         table: string,
-        conditions: Record<string, string>,
+        conditions: Record<string, any>,
     ): Promise<T> {
         const rows: T[] = await this.get<T>(table, conditions)
         return rows[0]

@@ -4,6 +4,19 @@ import { FileCache } from './libraries/cache/file-cache'
 import { Sherdog } from './libraries/sherdog'
 import { Event } from './libraries/sherdog/models/event'
 import { Database } from './libraries/database'
+import { Fight } from './libraries/sherdog/models/fight'
+
+const weights: Record<string, number> = {
+    Strawweight: 115,
+    Flyweight: 125,
+    Bantamweight: 135,
+    Featherweight: 145,
+    Lightweight: 155,
+    Welterweight: 170,
+    Middleweight: 185,
+    'Light Heavyweight': 205,
+    Heavyweight: 225,
+}
 
 async function main(): Promise<void> {
     const cachePath: string = Path.join(__dirname, '..', '.cache.json')
@@ -12,6 +25,10 @@ async function main(): Promise<void> {
     const databasePath: string = Path.join(__dirname, '..', '.database.sqlite')
     const database: Database = new Database(databasePath)
 
+    await database.dropTable('fights')
+    await database.dropTable('referees')
+    await database.dropTable('categories')
+    await database.dropTable('fighters')
     await database.dropTable('events')
     await database.dropTable('locations')
     await database.dropTable('cities')
@@ -22,38 +39,126 @@ async function main(): Promise<void> {
         name: 'VARCHAR(255) NOT NULL UNIQUE',
     })
 
-    await database.createTable('cities', {
-        id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
-        name: 'VARCHAR(255) NOT NULL',
-        countryId: 'INTEGER NOT NULL',
-        FOREIGN: 'KEY (countryId) REFERENCES countries(id)',
-        UNIQUE: '(name, countryId)',
-    })
+    await database.createTable(
+        'cities',
+        {
+            id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+            name: 'VARCHAR(255) NOT NULL',
+            countryId: 'INTEGER NOT NULL',
+            UNIQUE: '(name, countryId)',
+        },
+        [
+            {
+                column: 'countryId',
+                referencedTable: 'countries',
+                referencedColumn: 'id',
+            },
+        ],
+    )
 
-    await database.createTable('locations', {
-        id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
-        name: 'VARCHAR(255) NOT NULL',
-        cityId: 'INTEGER NOT NULL',
-        FOREIGN: 'KEY (cityId) REFERENCES cities(id)',
-        UNIQUE: '(name, cityId)',
-    })
+    await database.createTable(
+        'locations',
+        {
+            id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+            name: 'VARCHAR(255) NOT NULL',
+            cityId: 'INTEGER NOT NULL',
+            UNIQUE: '(name, cityId)',
+        },
+        [
+            {
+                column: 'cityId',
+                referencedTable: 'cities',
+                referencedColumn: 'id',
+            },
+        ],
+    )
 
-    await database.createTable('events', {
+    await database.createTable(
+        'events',
+        {
+            id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+            name: 'VARCHAR(255) NOT NULL',
+            fight: 'VARCHAR(255) NULL',
+            date: 'DATE NOT NULL',
+            link: 'VARCHAR(255) NOT NULL',
+            status: "VARCHAR(255) NOT NULL CHECK (status IN ('uppcoming', 'past'))",
+            locationId: 'INTEGER NOT NULL',
+            UNIQUE: '(name)',
+        },
+        [
+            {
+                column: 'locationId',
+                referencedTable: 'locations',
+                referencedColumn: 'id',
+            },
+        ],
+    )
+
+    await database.createTable('fighters', {
         id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
         name: 'VARCHAR(255) NOT NULL',
-        fight: 'VARCHAR(255) NULL',
-        date: 'DATE NOT NULL',
         link: 'VARCHAR(255) NOT NULL',
-        status: "VARCHAR(255) NOT NULL CHECK (status IN ('uppcoming', 'past'))",
-        locationId: 'INTEGER NOT NULL',
-        FOREIGN: 'KEY (locationId) REFERENCES locations(id)',
         UNIQUE: '(name)',
     })
+
+    await database.createTable('categories', {
+        id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+        name: 'VARCHAR(255) NOT NULL',
+        weight: 'int NOT NULL',
+        UNIQUE: '(name, weight)',
+    })
+
+    await database.createTable('referees', {
+        id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+        name: 'VARCHAR(255) NOT NULL',
+        UNIQUE: '(name)',
+    })
+
+    await database.createTable(
+        'fights',
+        {
+            id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+            position: 'INTEGER NOT NULL',
+            categoryId: 'INTEGER NOT NULL',
+            fighterOne: 'INTEGER NOT NULL',
+            fighterTwo: 'INTEGER NOT NULL',
+            referee: 'INTEGER NULL',
+            mainEvent: 'INTEGER NOT NULL DEFAULT 0',
+            titleFight: 'INTEGER NOT NULL DEFAULT 0',
+            type: "VARCHAR(255) NOT NULL CHECK (type IN ('pending', 'done'))",
+            method: 'VARCHAR(255) NULL',
+            time: 'INTEGER NULL',
+            round: 'INTEGER NULL',
+            decision: 'VARCHAR(255) NULL',
+        },
+        [
+            {
+                column: 'categoryId',
+                referencedTable: 'categories',
+                referencedColumn: 'id',
+            },
+            {
+                column: 'fighterOne',
+                referencedTable: 'fighters',
+                referencedColumn: 'id',
+            },
+            {
+                column: 'fighterTwo',
+                referencedTable: 'fighters',
+                referencedColumn: 'id',
+            },
+            {
+                column: 'referee',
+                referencedTable: 'referees',
+                referencedColumn: 'id',
+            },
+        ],
+    )
 
     const sherdog = new Sherdog()
     sherdog.setCache(cache)
 
-    const events: Event[] = await sherdog.getEvents()
+    const events: Event[] = await sherdog.getEventsFromPage(1)
     for (const event of events) {
         const exists: boolean = await database.exists('countries', {
             name: event.country,
@@ -123,6 +228,106 @@ async function main(): Promise<void> {
                 status: event.state,
                 locationId: location.id,
             })
+        }
+    }
+
+    for (const event of events) {
+        const fights: Fight[] = await sherdog.getFightsFromEvent(event)
+        for (const fight of fights) {
+            console.log(fight)
+
+            const existsOne: boolean = await database.exists('fighters', {
+                name: fight.fighterOne.name,
+            })
+            if (!existsOne) {
+                await database.insert('fighters', {
+                    name: fight.fighterOne.name,
+                    link: fight.fighterOne.link,
+                })
+            }
+
+            const existsTwo: boolean = await database.exists('fighters', {
+                name: fight.fighterTwo.name,
+            })
+            if (!existsTwo) {
+                await database.insert('fighters', {
+                    name: fight.fighterTwo.name,
+                    link: fight.fighterTwo.link,
+                })
+            }
+        }
+
+        for (const fight of fights) {
+            const weight: number =
+                fight.category.weight || weights[fight.category.name]
+            const exists: boolean = await database.exists('categories', {
+                name: fight.category.name,
+                weight,
+            })
+            if (!exists) {
+                await database.insert('categories', {
+                    name: fight.category.name,
+                    weight,
+                })
+            }
+        }
+
+        for (const fight of fights) {
+            if (fight.type === 'done') {
+                const exists: boolean = await database.exists('referees', {
+                    name: fight.referee,
+                })
+                if (!exists) {
+                    await database.insert('referees', {
+                        name: fight.referee,
+                    })
+                }
+            }
+        }
+
+        for (const fight of fights) {
+            const one: any = await database.getFirst('fighters', {
+                name: fight.fighterOne.name,
+            })
+            const two: any = await database.getFirst('fighters', {
+                name: fight.fighterOne.name,
+            })
+            const weight: number =
+                fight.category.weight || weights[fight.category.name]
+            const category: any = await database.getFirst('categories', {
+                name: fight.category.name,
+                weight,
+            })
+            if (fight.type === 'done') {
+                const referee: any = await database.getFirst('referees', {
+                    name: fight.referee,
+                })
+
+                await database.insert('fights', {
+                    categoryId: category.id,
+                    position: fight.position,
+                    fighterOne: one.id,
+                    fighterTwo: two.id,
+                    referee: referee.id,
+                    mainEvent: fight.mainEvent ? 1 : 0,
+                    titleFight: fight.titleFight ? 1 : 0,
+                    type: fight.type,
+                    method: fight.method,
+                    time: fight.time,
+                    round: fight.round,
+                    decision: fight.decision,
+                })
+            } else {
+                await database.insert('fights', {
+                    categoryId: category.id,
+                    position: fight.position,
+                    fighterOne: one.id,
+                    fighterTwo: two.id,
+                    mainEvent: fight.mainEvent ? 1 : 0,
+                    titleFight: fight.titleFight ? 1 : 0,
+                    type: fight.type,
+                })
+            }
         }
     }
 }
