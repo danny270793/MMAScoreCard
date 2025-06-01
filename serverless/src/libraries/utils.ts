@@ -31,4 +31,11 @@ export class Utils {
         const date = new Date(`${monthStr} ${dayStr}, ${yearStr}`)
         return isNaN(date.getTime()) ? null : date
     }
+    static parseDate(input: string): Date | null {
+        const match = input.match(/([A-Za-z]{3} \d{1,2}, \d{4})/)
+        if (!match) return null
+
+        const date = new Date(match[1])
+        return isNaN(date.getTime()) ? null : date
+    }
 }
