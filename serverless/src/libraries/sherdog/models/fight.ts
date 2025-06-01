@@ -12,7 +12,7 @@ export interface Category {
 export interface BaseFight {
     position: number
     fighterOne: Fighter
-    category: Category
+    category?: Category
     fighterTwo: Fighter
     mainEvent: boolean
     titleFight: boolean
