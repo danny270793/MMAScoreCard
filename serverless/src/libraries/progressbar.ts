@@ -19,7 +19,7 @@ export class ProgressBar {
         const bar: string =
             '█'.repeat(filledLength) + '-'.repeat(20 - filledLength)
         process.stdout.write(
-            `\r${label}: [${bar}] ${percentage.toFixed(2)}% (${this.current}/${this.total})`,
+            `\r${label.slice(0, 20).padEnd(20, ' ')} [${bar}] ${percentage.toFixed(2).padStart(7, ' ')}% (${this.current}/${this.total})`,
         )
     }
 }
