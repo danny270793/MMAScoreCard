@@ -68,6 +68,7 @@ export class Database {
         return new Promise((resolve, reject) => {
             const sql: string = `SELECT COUNT(*) as count FROM ${table} WHERE ${whereClause}`
             logger.debug(sql)
+            logger.debug(values.join(', '))
             this.database.get(sql, values, (error: Error, row: any) => {
                 if (error) {
                     reject(error)
@@ -85,6 +86,7 @@ export class Database {
         return new Promise((resolve, reject) => {
             const sql: string = `SELECT * FROM ${table} WHERE ${whereClause}`
             logger.debug(sql)
+            logger.debug(values.join(', '))
             this.database.all(sql, values, (error: Error, rows: T[]) => {
                 if (error) {
                     reject(error)
@@ -111,6 +113,7 @@ export class Database {
         return new Promise((resolve, reject) => {
             const sql: string = `INSERT INTO ${table} (${columns}) VALUES (${placeholders})`
             logger.debug(sql)
+            logger.debug(values.join(', '))
             this.database.run(sql, values, (error) => {
                 if (error) {
                     reject(error)
