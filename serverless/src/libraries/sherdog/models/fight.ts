@@ -32,9 +32,9 @@ export interface NoEventFight {
 }
 
 export interface DoneFight extends BaseFight {
-    decision: string
+    decision?: string
     referee: string
-    method: string
+    method?: string
     time: number
     round: number
     type: 'done'
