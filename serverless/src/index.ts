@@ -5,6 +5,11 @@ import { Sherdog } from './libraries/sherdog'
 import { Event } from './libraries/sherdog/models/event'
 import { Database } from './libraries/database'
 import { Fight } from './libraries/sherdog/models/fight'
+import { Stats } from './libraries/sherdog/models/stats'
+import { ProgressBar } from './libraries/progressbar'
+import { Logger } from './libraries/logger'
+
+Logger.enabled = false
 
 const weights: Record<string, number> = {
     Strawweight: 115,
@@ -158,8 +163,12 @@ async function main(): Promise<void> {
     const sherdog = new Sherdog()
     sherdog.setCache(cache)
 
-    const events: Event[] = await sherdog.getEventsFromPage(1)
+    const events: Event[] = await sherdog.getEvents()
+
+    const bar: ProgressBar = new ProgressBar(events.length)
+
     for (const event of events) {
+        bar.increase('countries')
         const exists: boolean = await database.exists('countries', {
             name: event.country,
         })
@@ -167,8 +176,10 @@ async function main(): Promise<void> {
             await database.insert('countries', { name: event.country })
         }
     }
+    bar.reset()
 
     for (const event of events) {
+        bar.increase('cities')
         const country: any = await database.getFirst('countries', {
             name: event.country,
         })
@@ -183,8 +194,10 @@ async function main(): Promise<void> {
             })
         }
     }
+    bar.reset()
 
     for (const event of events) {
+        bar.increase('locations')
         const country: any = await database.getFirst('countries', {
             name: event.country,
         })
@@ -203,8 +216,10 @@ async function main(): Promise<void> {
             })
         }
     }
+    bar.reset()
 
     for (const event of events) {
+        bar.increase('events')
         const country: any = await database.getFirst('countries', {
             name: event.country,
         })
@@ -230,106 +245,114 @@ async function main(): Promise<void> {
             })
         }
     }
+    bar.reset()
+
+    // // const fights: Fight[] = await sherdog.getFightsFromEvent(events[0])
+    // // const stats: Stats = await sherdog.getStatsFighter(fights[0].fighterOne)
+    // // console.log(stats)
 
     for (const event of events) {
+        bar.increase('events')
         const fights: Fight[] = await sherdog.getFightsFromEvent(event)
-        for (const fight of fights) {
-            console.log(fight)
+        // for (const fight of fights) {
+        //     console.log(fight)
 
-            const existsOne: boolean = await database.exists('fighters', {
-                name: fight.fighterOne.name,
-            })
-            if (!existsOne) {
-                await database.insert('fighters', {
-                    name: fight.fighterOne.name,
-                    link: fight.fighterOne.link,
-                })
-            }
+        //     const existsOne: boolean = await database.exists('fighters', {
+        //         name: fight.fighterOne.name,
+        //     })
+        //     if (!existsOne) {
+        //         await database.insert('fighters', {
+        //             name: fight.fighterOne.name,
+        //             link: fight.fighterOne.link,
+        //         })
+        //     }
 
-            const existsTwo: boolean = await database.exists('fighters', {
-                name: fight.fighterTwo.name,
-            })
-            if (!existsTwo) {
-                await database.insert('fighters', {
-                    name: fight.fighterTwo.name,
-                    link: fight.fighterTwo.link,
-                })
-            }
-        }
+        //     const existsTwo: boolean = await database.exists('fighters', {
+        //         name: fight.fighterTwo.name,
+        //     })
+        //     if (!existsTwo) {
+        //         await database.insert('fighters', {
+        //             name: fight.fighterTwo.name,
+        //             link: fight.fighterTwo.link,
+        //         })
+        //     }
+        // }
 
-        for (const fight of fights) {
-            const weight: number =
-                fight.category.weight || weights[fight.category.name]
-            const exists: boolean = await database.exists('categories', {
-                name: fight.category.name,
-                weight,
-            })
-            if (!exists) {
-                await database.insert('categories', {
-                    name: fight.category.name,
-                    weight,
-                })
-            }
-        }
+        // for (const fight of fights) {
+        //     const weight: number =
+        //         fight.category.weight || weights[fight.category.name]
+        //     const exists: boolean = await database.exists('categories', {
+        //         name: fight.category.name,
+        //         weight,
+        //     })
+        //     if (!exists) {
+        //         await database.insert('categories', {
+        //             name: fight.category.name,
+        //             weight,
+        //         })
+        //     }
+        // }
 
-        for (const fight of fights) {
-            if (fight.type === 'done') {
-                const exists: boolean = await database.exists('referees', {
-                    name: fight.referee,
-                })
-                if (!exists) {
-                    await database.insert('referees', {
-                        name: fight.referee,
-                    })
-                }
-            }
-        }
+        // for (const fight of fights) {
+        //     if (fight.type === 'done') {
+        //         const exists: boolean = await database.exists('referees', {
+        //             name: fight.referee,
+        //         })
+        //         if (!exists) {
+        //             await database.insert('referees', {
+        //                 name: fight.referee,
+        //             })
+        //         }
+        //     }
+        // }
 
-        for (const fight of fights) {
-            const one: any = await database.getFirst('fighters', {
-                name: fight.fighterOne.name,
-            })
-            const two: any = await database.getFirst('fighters', {
-                name: fight.fighterOne.name,
-            })
-            const weight: number =
-                fight.category.weight || weights[fight.category.name]
-            const category: any = await database.getFirst('categories', {
-                name: fight.category.name,
-                weight,
-            })
-            if (fight.type === 'done') {
-                const referee: any = await database.getFirst('referees', {
-                    name: fight.referee,
-                })
+        // for (const fight of fights) {
+        //     const one: any = await database.getFirst('fighters', {
+        //         name: fight.fighterOne.name,
+        //     })
+        //     const two: any = await database.getFirst('fighters', {
+        //         name: fight.fighterOne.name,
+        //     })
+        //     const weight: number =
+        //         fight.category.weight || weights[fight.category.name]
+        //     const category: any = await database.getFirst('categories', {
+        //         name: fight.category.name,
+        //         weight,
+        //     })
+        //     if (fight.type === 'done') {
+        //         const referee: any = await database.getFirst('referees', {
+        //             name: fight.referee,
+        //         })
 
-                await database.insert('fights', {
-                    categoryId: category.id,
-                    position: fight.position,
-                    fighterOne: one.id,
-                    fighterTwo: two.id,
-                    referee: referee.id,
-                    mainEvent: fight.mainEvent ? 1 : 0,
-                    titleFight: fight.titleFight ? 1 : 0,
-                    type: fight.type,
-                    method: fight.method,
-                    time: fight.time,
-                    round: fight.round,
-                    decision: fight.decision,
-                })
-            } else {
-                await database.insert('fights', {
-                    categoryId: category.id,
-                    position: fight.position,
-                    fighterOne: one.id,
-                    fighterTwo: two.id,
-                    mainEvent: fight.mainEvent ? 1 : 0,
-                    titleFight: fight.titleFight ? 1 : 0,
-                    type: fight.type,
-                })
-            }
-        }
+        //         await database.insert('fights', {
+        //             categoryId: category.id,
+        //             position: fight.position,
+        //             fighterOne: one.id,
+        //             fighterTwo: two.id,
+        //             referee: referee.id,
+        //             mainEvent: fight.mainEvent ? 1 : 0,
+        //             titleFight: fight.titleFight ? 1 : 0,
+        //             type: fight.type,
+        //             method: fight.method,
+        //             time: fight.time,
+        //             round: fight.round,
+        //             decision: fight.decision,
+        //         })
+        //     } else {
+        //         await database.insert('fights', {
+        //             categoryId: category.id,
+        //             position: fight.position,
+        //             fighterOne: one.id,
+        //             fighterTwo: two.id,
+        //             mainEvent: fight.mainEvent ? 1 : 0,
+        //             titleFight: fight.titleFight ? 1 : 0,
+        //             type: fight.type,
+        //         })
+        //     }
+        // }
     }
+
+    console.log('Done')
 }
 
 main().catch(console.error)
