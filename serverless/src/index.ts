@@ -3,16 +3,7 @@ import Path from 'node:path'
 import { FileCache } from './libraries/cache/file-cache'
 import { Sherdog } from './libraries/sherdog'
 import { Event } from './libraries/sherdog/models/event'
-import { Fight, NoEventFight } from './libraries/sherdog/models/fight'
-import { error } from 'node:console'
 import { Database } from './libraries/database'
-
-interface Entity {
-    id: number
-}
-interface Country extends Entity {
-    name: string
-}
 
 async function main(): Promise<void> {
     const cachePath: string = Path.join(__dirname, '..', '.cache.json')
