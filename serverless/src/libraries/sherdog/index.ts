@@ -10,6 +10,7 @@ import {
     NoEventFight,
     PendingFight,
 } from './models/fight'
+import { Stats } from './models/stats'
 
 const logger: Logger = new Logger('./libraries/sherdog/index.ts')
 
@@ -398,6 +399,61 @@ export class Sherdog {
         }
 
         return fights
+    }
+
+    async getStatsFighter(fighter: Fighter): Promise<Stats> {
+        const html: string = await this.getHtml(fighter.link)
+        const $: cheerio.Root = cheerio.load(html)
+
+        const nicknames: string[] = $('span.nickname').get()
+        const nickname: string = $(nicknames[0]).text().trim()
+
+        const nationalities: string[] = $('span.item.birthplace').get()
+        const country: string = $(nationalities[0])
+            .text()
+            .trim()
+            .split('\n')[0]
+            .trim()
+
+        const locality: string[] = $('span.locality').get()
+        const city: string = $(locality[0]).text().trim()
+
+        const bio: Element[] = $('div.bio-holder').get()
+        const tables: Element[] = $(bio[0]).find('table').get()
+        const rows: Element[] = $(tables[0]).find('tr').get()
+
+        let birthday: Date | null = null
+        let height: string | null = null
+        let weight: string | null = null
+
+        let index: number = -1
+        for (const row of rows) {
+            index += 1
+
+            const cells: Element[] = $(row).find('td').get()
+            if (index === 0) {
+                const text: string = $(cells[1]).text().trim()
+
+                birthday = Utils.parseDate(text.split('/')[1].trim())
+            } else if (index === 1) {
+                const text: string = $(cells[1]).text().trim()
+
+                height = text.split('/')[1].trim().replace('cm', '').trim()
+            } else if (index === 2) {
+                const text: string = $(cells[1]).text().trim()
+
+                weight = text.split('/')[1].trim().replace('kg', '').trim()
+            }
+        }
+
+        return {
+            nickname,
+            country,
+            city,
+            birthday: birthday!,
+            height: parseFloat(height!),
+            weight: parseFloat(weight!),
+        }
     }
 
     async getFightsFromFighter(fighter: Fighter): Promise<NoEventFight[]> {
