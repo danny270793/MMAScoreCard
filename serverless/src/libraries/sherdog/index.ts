@@ -446,6 +446,7 @@ export class Sherdog {
         const rows: Element[] = $(tables[0]).find('tr').get()
 
         let birthday: Date | null = null
+        let deadAt: Date | null = null
         let height: string | null = null
         let weight: string | null = null
 
@@ -459,13 +460,31 @@ export class Sherdog {
 
                 birthday = Utils.parseDate(text.split('/')[1].trim())
             } else if (index === 1) {
-                const text: string = $(cells[1]).text().trim()
+                if (rows.length === 3) {
+                    const text: string = $(cells[1]).text().trim()
 
-                height = text.split('/')[1].trim().replace('cm', '').trim()
+                    height = text.split('/')[1].trim().replace('cm', '').trim()
+                } else {
+                    const text: string = $(cells[1]).text().trim()
+
+                    deadAt = Utils.parseDate(text.trim())
+                }
             } else if (index === 2) {
+                if (rows.length === 3) {
+                    const text: string = $(cells[1]).text().trim()
+
+                    weight = text.split('/')[1].trim().replace('kg', '').trim()
+                } else {
+                    const text: string = $(cells[1]).text().trim()
+
+                    height = text.split('/')[1].trim().replace('cm', '').trim()
+                }
+            } else if (index === 3) {
                 const text: string = $(cells[1]).text().trim()
 
                 weight = text.split('/')[1].trim().replace('kg', '').trim()
+            } else {
+                throw new Error(`Unexpected index in bio table: ${index}`)
             }
         }
 
@@ -473,6 +492,7 @@ export class Sherdog {
             nickname,
             country,
             city,
+            died: deadAt ?? undefined,
             birthday: birthday!,
             height: parseFloat(height!),
             weight: parseFloat(weight!),
