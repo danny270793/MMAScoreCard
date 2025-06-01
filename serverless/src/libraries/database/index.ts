@@ -1,7 +1,7 @@
 import sqlite3 from 'sqlite3'
 import { Logger } from '../logger'
 
-const logger = new Logger('/src/libraries/database/index.ts', false)
+const logger = new Logger('/src/libraries/database/index.ts')
 
 interface Relationship {
     column: string
