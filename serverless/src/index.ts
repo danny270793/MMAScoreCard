@@ -252,8 +252,30 @@ async function main(): Promise<void> {
     // // console.log(stats)
 
     for (const event of events) {
-        bar.increase('events')
+        bar.increase('categories')
         const fights: Fight[] = await sherdog.getFightsFromEvent(event)
+
+        for (const fight of fights) {
+            const weight: number =
+                fight.category.weight || weights[fight.category.name]
+            const exists: boolean = await database.exists('categories', {
+                name: fight.category.name,
+                weight,
+            })
+            if (!exists) {
+                await database.insert('categories', {
+                    name: fight.category.name,
+                    weight,
+                })
+            }
+        }
+    }
+    bar.reset()
+
+    for (const event of events) {
+        bar.increase('categories')
+        const fights: Fight[] = await sherdog.getFightsFromEvent(event)
+
         // for (const fight of fights) {
         //     console.log(fight)
 
@@ -274,21 +296,6 @@ async function main(): Promise<void> {
         //         await database.insert('fighters', {
         //             name: fight.fighterTwo.name,
         //             link: fight.fighterTwo.link,
-        //         })
-        //     }
-        // }
-
-        // for (const fight of fights) {
-        //     const weight: number =
-        //         fight.category.weight || weights[fight.category.name]
-        //     const exists: boolean = await database.exists('categories', {
-        //         name: fight.category.name,
-        //         weight,
-        //     })
-        //     if (!exists) {
-        //         await database.insert('categories', {
-        //             name: fight.category.name,
-        //             weight,
         //         })
         //     }
         // }
