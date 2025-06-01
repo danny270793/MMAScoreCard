@@ -22,6 +22,15 @@ export interface PendingFight extends BaseFight {
     type: 'pending'
 }
 
+export interface NoEventFight {
+    fighter: Fighter
+    decision: string
+    referee: string
+    method: string
+    time: number
+    round: number
+}
+
 export interface DoneFight extends BaseFight {
     decision: string
     referee: string

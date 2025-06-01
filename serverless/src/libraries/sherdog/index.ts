@@ -3,7 +3,13 @@ import { Cache } from '../cache'
 import { Logger } from '../logger'
 import { Event } from './models/event'
 import { Utils } from '../utils'
-import { DoneFight, Fight, Fighter, PendingFight } from './models/fight'
+import {
+    DoneFight,
+    Fight,
+    Fighter,
+    NoEventFight,
+    PendingFight,
+} from './models/fight'
 
 const logger: Logger = new Logger('./libraries/sherdog/index.ts')
 
@@ -394,8 +400,8 @@ export class Sherdog {
         return fights
     }
 
-    async getFightsFromFighter(fighter: Fighter): Promise<Fight[]> {
-        const fights: Fight[] = []
+    async getFightsFromFighter(fighter: Fighter): Promise<NoEventFight[]> {
+        const fights: NoEventFight[] = []
 
         const html: string = await this.getHtml(fighter.link)
         const $: cheerio.Root = cheerio.load(html)
@@ -407,6 +413,20 @@ export class Sherdog {
             for (const row of rows.slice(1)) {
                 const cells: Element[] = $(row).find('td').get()
 
+                const resultTwo: string = $(cells[0]).text().trim()
+                const fighterTwo: string = $(cells[1]).text().trim()
+                const fighterTwoLink: string =
+                    $(cells[1]).find('a').attr('href') || ''
+
+                $(cells[2]).find('br').replaceWith('\n')
+
+                // const eventDate: string = $(cells[2]).text().trim()
+                // const event: string = eventDateParts[0].trim()
+                // const eventDateParts: string[] = eventDate.split('\n')
+                // const date: string = eventDateParts[1].trim()
+
+                // const dateClean: string = date.replace(/\s*\/\s*/g, '/')
+
                 const decisionMethodReferee: string = $(cells[3]).text().trim()
                 const decisionMethodRefereeParts: string[] =
                     decisionMethodReferee.split('(')
@@ -415,18 +435,29 @@ export class Sherdog {
                     .trim()
                     .split(')')
                 const method: string = methodReferee[0].trim()
-                const referee: string = methodReferee[1].trim()
+                const referee: string = methodReferee[1]
+                    .trim()
+                    .split('\n')[0]
+                    .trim()
                 const round: number = parseInt($(cells[4]).text().trim())
                 const time: number = Utils.timeToSeconds(
                     $(cells[5]).text().trim(),
                 )
-                console.log({
-                    decision,
+
+                const fight: NoEventFight = {
+                    fighter: {
+                        name: fighterTwo,
+                        link: `${this.baseUrl}${fighterTwoLink}`,
+                        result: resultTwo,
+                    },
                     method,
-                    referee,
-                    round,
+                    decision,
                     time,
-                })
+                    round,
+                    referee,
+                }
+
+                fights.push(fight)
             }
         }
 

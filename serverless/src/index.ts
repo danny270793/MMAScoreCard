@@ -3,7 +3,7 @@ import Path from 'node:path'
 import { FileCache } from './libraries/cache/file-cache'
 import { Sherdog } from './libraries/sherdog'
 import { Event } from './libraries/sherdog/models/event'
-import { Fight } from './libraries/sherdog/models/fight'
+import { Fight, NoEventFight } from './libraries/sherdog/models/fight'
 
 async function main(): Promise<void> {
     const cachePath: string = Path.join(__dirname, '..', '.cache.json')
@@ -13,14 +13,17 @@ async function main(): Promise<void> {
     sherdog.setCache(cache)
 
     const events: Event[] = await sherdog.getEvents()
-    const fights: Fight[] = await sherdog.getFightsFromEvent(events[19])
-    for (const fight of fights) {
+    const fights: Fight[] = await sherdog.getFightsFromEvent(events[20])
+    // for (const fight of fights) {
+    //     console.log(fight)
+    // }
+    const fighterFights: NoEventFight[] = await sherdog.getFightsFromFighter(
+        fights[0].fighterOne,
+    )
+    for (const fight of fighterFights) {
         console.log(fight)
     }
-    // const fighterFights: Fight[] = await sherdog.getFightsFromFighter(
-    //     fights[0].fighterOne,
-    // )
-    // console.log(`${fighterFights.length} fights`)
+    console.log(`${fighterFights.length} fights`)
 }
 
 main().catch(console.error)
