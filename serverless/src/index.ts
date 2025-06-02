@@ -4,7 +4,7 @@ import { FileCache } from './libraries/cache/file-cache'
 import { Sherdog } from './libraries/sherdog'
 import { Event } from './libraries/sherdog/models/event'
 import { Database } from './libraries/database'
-import { Fight } from './libraries/sherdog/models/fight'
+import { Fight, NoEventFight } from './libraries/sherdog/models/fight'
 import { Stats } from './libraries/sherdog/models/stats'
 import { ProgressBar } from './libraries/progressbar'
 import { Logger } from './libraries/logger'
@@ -23,13 +23,7 @@ const weights: Record<string, number> = {
     Heavyweight: 225,
 }
 
-async function main(): Promise<void> {
-    const cachePath: string = Path.join(__dirname, '..', '.cache.json')
-    const cache: Cache = new FileCache(cachePath)
-
-    const databasePath: string = Path.join(__dirname, '..', '.database.sqlite')
-    const database: Database = new Database(databasePath)
-
+async function dropAndCreateTables(database: Database): Promise<void> {
     await database.dropTable('fights')
     await database.dropTable('referees')
     await database.dropTable('categories')
@@ -175,6 +169,10 @@ async function main(): Promise<void> {
             },
         ],
     )
+}
+
+async function main(cache: Cache, database: Database): Promise<void> {
+    await dropAndCreateTables(database)
 
     const sherdog = new Sherdog()
     sherdog.setCache(cache)
@@ -316,7 +314,7 @@ async function main(): Promise<void> {
             })
             if (!existsOne) {
                 const stats: Stats = await sherdog.getStatsFighter(
-                    fights[0].fighterOne,
+                    fight.fighterOne,
                 )
 
                 const existsCountry: boolean = await database.exists(
@@ -370,7 +368,7 @@ async function main(): Promise<void> {
             })
             if (!existsTwo) {
                 const stats: Stats = await sherdog.getStatsFighter(
-                    fights[0].fighterTwo,
+                    fight.fighterTwo,
                 )
 
                 const existsCountry: boolean = await database.exists(
@@ -478,7 +476,46 @@ async function main(): Promise<void> {
     }
     bar.reset()
 
+    const fighters: any[] = await database.get('fighters', {})
+    const bar2: ProgressBar = new ProgressBar(fighters.length)
+    for (const fighter of fighters) {
+        bar2.increase('no event fights')
+        const fights: NoEventFight[] =
+            await sherdog.getFightsFromFighter(fighter)
+        for (const fight of fights) {
+            // const exists: boolean = await database.exists('fights', {
+            //     fighterOne: fighter.id,
+            //     fighterTwo: fight.fighter.name,
+            //     type: 'done',
+            // })
+            // if (!exists) {
+            //     const opponent: any = await database.getFirst('fighters', {
+            //         name: fight.fighter.name,
+            //     })
+            //     await database.insert('fights', {
+            //         fighterOne: fighter.id,
+            //         fighterTwo: opponent.id,
+            //         referee: null,
+            //         mainEvent: 0,
+            //         titleFight: 0,
+            //         type: 'done',
+            //         decision: fight.decision,
+            //         method: fight.method,
+            //         time: fight.time,
+            //         round: fight.round,
+            //     })
+            // }
+        }
+    }
+    bar2.reset()
+
     console.log('Done')
 }
 
-main().catch(console.error)
+const cachePath: string = Path.join(__dirname, '..', '.cache.json')
+const cache: Cache = new FileCache(cachePath)
+
+const databasePath: string = Path.join(__dirname, '..', '.database.sqlite')
+const database: Database = new Database(databasePath)
+
+main(cache, database).catch(console.error)
