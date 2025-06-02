@@ -354,7 +354,9 @@ async function main(): Promise<void> {
                     link: fight.fighterOne.link,
                     nickname: stats.nickname,
                     cityId: city.id,
-                    birthday: stats.birthday.toISOString().split('T')[0],
+                    birthday: stats.birthday
+                        ? stats.birthday.toISOString().split('T')[0]
+                        : undefined,
                     died: stats.died
                         ? stats.died.toISOString().split('T')[0]
                         : null,
@@ -406,7 +408,9 @@ async function main(): Promise<void> {
                     link: fight.fighterTwo.link,
                     nickname: stats.nickname,
                     cityId: city.id,
-                    birthday: stats.birthday.toISOString().split('T')[0],
+                    birthday: stats.birthday
+                        ? stats.birthday.toISOString().split('T')[0]
+                        : undefined,
                     died: stats.died
                         ? stats.died.toISOString().split('T')[0]
                         : null,

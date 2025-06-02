@@ -445,7 +445,7 @@ export class Sherdog {
         const tables: Element[] = $(bio[0]).find('table').get()
         const rows: Element[] = $(tables[0]).find('tr').get()
 
-        let birthday: Date | null = null
+        let birthday: Date | null | undefined = null
         let deadAt: Date | null = null
         let height: string | null = null
         let weight: string | null = null
@@ -457,8 +457,9 @@ export class Sherdog {
             const cells: Element[] = $(row).find('td').get()
             if (index === 0) {
                 const text: string = $(cells[1]).text().trim()
-
-                birthday = Utils.parseDate(text.split('/')[1].trim())
+                if (text.includes('N/A')) {
+                    birthday = Utils.parseDate(text.split('/')[1].trim())
+                }
             } else if (index === 1) {
                 if (rows.length === 3) {
                     const text: string = $(cells[1]).text().trim()
@@ -493,7 +494,7 @@ export class Sherdog {
             country,
             city,
             died: deadAt ?? undefined,
-            birthday: birthday!,
+            birthday: birthday ?? undefined,
             height: parseFloat(height!),
             weight: parseFloat(weight!),
         }
