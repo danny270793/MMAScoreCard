@@ -78,13 +78,19 @@ export class Database {
             })
         })
     }
-    get<T>(table: string, conditions: Record<string, string>): Promise<T[]> {
+    get<T>(
+        table: string,
+        conditions: Record<string, string> = {},
+    ): Promise<T[]> {
         const whereClause = Object.entries(conditions)
             .map(([column, value]) => `${column} = ?`)
             .join(' AND ')
         const values = Object.values(conditions)
         return new Promise((resolve, reject) => {
-            const sql: string = `SELECT * FROM ${table} WHERE ${whereClause}`
+            const sql: string =
+                whereClause.length > 0
+                    ? `SELECT * FROM ${table} WHERE ${whereClause}`
+                    : `SELECT * FROM ${table}`
             logger.debug(sql)
             logger.debug(values.join(', '))
             this.database.all(sql, values, (error: Error, rows: T[]) => {
