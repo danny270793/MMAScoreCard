@@ -27,6 +27,7 @@ export class Sherdog {
             return this.cache.get(url)
         }
         logger.debug(`CACHE MISS ${url}`)
+
         const response: Response = await fetch(url)
         if (response.status >= 300) {
             throw new Error(
@@ -507,7 +508,10 @@ export class Sherdog {
         const $: cheerio.Root = cheerio.load(html)
 
         const tables: Element[] = $('table.new_table.fighter').get()
+        let tableCounter: number = -1
         for (const eachTable of tables) {
+            tableCounter += 1
+
             const table: cheerio.Cheerio = $(eachTable)
             const rows: Element[] = table.find('tr').get()
             for (const row of rows.slice(1)) {
@@ -527,18 +531,32 @@ export class Sherdog {
 
                 // const dateClean: string = date.replace(/\s*\/\s*/g, '/')
 
+                let decision: string | undefined = undefined
+                let method: string | undefined = undefined
+                let referee: string | undefined = undefined
+                $(cells[3]).find('br').replaceWith('\n')
                 const decisionMethodReferee: string = $(cells[3]).text().trim()
-                const decisionMethodRefereeParts: string[] =
-                    decisionMethodReferee.split('(')
-                const decision: string = decisionMethodRefereeParts[0].trim()
-                const methodReferee: string[] = decisionMethodRefereeParts[1]
-                    .trim()
-                    .split(')')
-                const method: string = methodReferee[0].trim()
-                const referee: string = methodReferee[1]
-                    .trim()
-                    .split('\n')[0]
-                    .trim()
+                if (decisionMethodReferee !== '') {
+                    if (decisionMethodReferee.includes('(')) {
+                        const decisionMethodRefereeParts: string[] =
+                            decisionMethodReferee.split('(')
+                        decision = decisionMethodRefereeParts[0].trim()
+                        const methodReferee: string[] =
+                            decisionMethodRefereeParts[1].trim().split(')')
+                        method = methodReferee[0].trim()
+                        referee = methodReferee[1].trim().split('\n')[0].trim()
+                    } else {
+                        if (decisionMethodReferee.includes('\n')) {
+                            const decisionRefereeParts: string[] =
+                                decisionMethodReferee.split('\n')
+                            decision = decisionRefereeParts[0].trim()
+                            referee = decisionRefereeParts[1].trim()
+                        } else {
+                            decision = decisionMethodReferee.trim()
+                        }
+                    }
+                }
+
                 const round: number = parseInt($(cells[4]).text().trim())
                 const time: number = Utils.timeToSeconds(
                     $(cells[5]).text().trim(),
@@ -555,6 +573,7 @@ export class Sherdog {
                     time,
                     round,
                     referee,
+                    proFight: tableCounter === 0,
                 }
 
                 fights.push(fight)
