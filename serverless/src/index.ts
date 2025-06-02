@@ -106,7 +106,7 @@ async function main(): Promise<void> {
             name: 'VARCHAR(255) NOT NULL',
             nickname: 'VARCHAR(255) NULL',
             cityId: 'INTEGER NOT NULL',
-            birthday: 'DATE NOT NULL',
+            birthday: 'DATE NULL',
             died: 'DATE NULL',
             height: 'FLOAT NOT NULL',
             weight: 'FLOAT NOT NULL',
