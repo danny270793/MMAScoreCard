@@ -1,7 +1,7 @@
 export interface Fighter {
     name: string
     link: string
-    result?: string //'win' | 'loss' | 'draw' | 'nc'
+    result?: string
 }
 
 export interface Category {
@@ -29,6 +29,7 @@ export interface NoEventFight {
     method: string
     time: number
     round: number
+    proFight: boolean
 }
 
 export interface DoneFight extends BaseFight {
