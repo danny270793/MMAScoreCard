@@ -15,6 +15,9 @@ export class FileCache implements Cache {
         const content: string = Fs.readFileSync(path, 'utf8')
         this.data = JSON.parse(content)
     }
+    keysCount(): number {
+        return Object.keys(this.data).length
+    }
     has(key: string): boolean {
         return this.data.hasOwnProperty(key)
     }
