@@ -24,9 +24,9 @@ export interface PendingFight extends BaseFight {
 
 export interface NoEventFight {
     fighter: Fighter
-    decision: string
-    referee: string
-    method: string
+    decision?: string
+    referee?: string
+    method?: string
     time: number
     round: number
     proFight: boolean
