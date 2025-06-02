@@ -8,6 +8,7 @@ import { Fight, NoEventFight } from './libraries/sherdog/models/fight'
 import { Stats } from './libraries/sherdog/models/stats'
 import { ProgressBar } from './libraries/progressbar'
 import { Logger } from './libraries/logger'
+import { SQLite } from './libraries/database/sqlite'
 
 Logger.enabled = false
 
@@ -33,10 +34,14 @@ async function dropAndCreateTables(database: Database): Promise<void> {
     await database.dropTable('cities')
     await database.dropTable('countries')
 
-    await database.createTable('countries', {
-        id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
-        name: 'VARCHAR(255) NOT NULL UNIQUE',
-    })
+    await database.createTable(
+        'countries',
+        {
+            id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+            name: 'VARCHAR(255) NOT NULL UNIQUE',
+        },
+        [],
+    )
 
     await database.createTable(
         'cities',
@@ -116,18 +121,26 @@ async function dropAndCreateTables(database: Database): Promise<void> {
         ],
     )
 
-    await database.createTable('categories', {
-        id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
-        name: 'VARCHAR(255) NOT NULL',
-        weight: 'int NOT NULL',
-        UNIQUE: '(name, weight)',
-    })
+    await database.createTable(
+        'categories',
+        {
+            id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+            name: 'VARCHAR(255) NOT NULL',
+            weight: 'int NOT NULL',
+            UNIQUE: '(name, weight)',
+        },
+        [],
+    )
 
-    await database.createTable('referees', {
-        id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
-        name: 'VARCHAR(255) NOT NULL',
-        UNIQUE: '(name)',
-    })
+    await database.createTable(
+        'referees',
+        {
+            id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+            name: 'VARCHAR(255) NOT NULL',
+            UNIQUE: '(name)',
+        },
+        [],
+    )
 
     await database.createTable(
         'fights',
@@ -514,8 +527,9 @@ async function main(cache: Cache, database: Database): Promise<void> {
 
 const cachePath: string = Path.join(__dirname, '..', '.cache.json')
 const cache: Cache = new FileCache(cachePath)
+console.log(`${cache.keysCount()} keys in cache`)
 
 const databasePath: string = Path.join(__dirname, '..', '.database.sqlite')
-const database: Database = new Database(databasePath)
+const database: Database = new SQLite(databasePath)
 
 main(cache, database).catch(console.error)
