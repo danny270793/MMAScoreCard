@@ -1,5 +1,5 @@
 export interface Fighter {
-    id: string;
+    id: number;
     name: string;
     nickname?: string
     cityId: number
