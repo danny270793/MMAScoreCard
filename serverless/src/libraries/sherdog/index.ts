@@ -544,7 +544,12 @@ export class Sherdog {
                         const methodReferee: string[] =
                             decisionMethodRefereeParts[1].trim().split(')')
                         method = methodReferee[0].trim()
-                        referee = methodReferee[1].trim().split('\n')[0].trim()
+                        if (methodReferee.length > 1) {
+                            referee = methodReferee[1]
+                                .trim()
+                                .split('\n')[0]
+                                .trim()
+                        }
                     } else {
                         if (decisionMethodReferee.includes('\n')) {
                             const decisionRefereeParts: string[] =
