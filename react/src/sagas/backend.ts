@@ -2,8 +2,8 @@ import { call, put, takeLatest, type ForkEffect } from "redux-saga/effects";
 import {
   actions as backendActions,
   type Type as BackendTypes} from '../reducers/backned'
-import { Backend } from "../connector/backend";
-import type { Event } from "../connector/backend/models/event";
+import { Backend } from "../connectors/backend";
+import type { Event } from "../connectors/backend/models/event";
 
 export const sagas: ForkEffect[] = [
   takeLatest<BackendTypes>(
