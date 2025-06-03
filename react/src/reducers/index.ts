@@ -6,6 +6,8 @@ import {
   type UnknownAction,
 } from 'redux'
 import { reducer as backendReducer, type BackendState } from './backned'
+import createSagaMiddleware, { type SagaMiddleware } from 'redux-saga'
+import { rootSagas } from '../sagas'
 
 export type RootReducer = { backend: BackendState }
 
@@ -20,6 +22,8 @@ const storeLogger: Middleware = () => (next) => (action) => {
   return next(action)
 }
 
+const sagaMiddleware: SagaMiddleware = createSagaMiddleware()
+
 export const store: EnhancedStore<RootReducer> = configureStore({
   reducer: rootReducer,
   devTools: import.meta.env.MODE === 'development',
@@ -27,5 +31,7 @@ export const store: EnhancedStore<RootReducer> = configureStore({
     getDefaultMiddleware({
       thunk: false,
       serializableCheck: false,
-    }).concat(storeLogger),
+    }).concat(sagaMiddleware, storeLogger),
 })
+
+sagaMiddleware.run(rootSagas)
