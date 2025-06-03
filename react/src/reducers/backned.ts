@@ -1,5 +1,5 @@
 import type { UnknownAction } from '@reduxjs/toolkit'
-import type { Event } from '../connectors/backend/models/event'
+import type { Event } from '../models/event'
 
 export type Type = 'backend/INIT' | 'backend/CLEAR_ERROR' | 'backend/GET_EVENTS' | 'backend/GET_EVENTS_SUCCESS' | 'backend/GET_EVENTS_ERROR'
 
