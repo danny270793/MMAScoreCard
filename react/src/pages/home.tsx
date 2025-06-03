@@ -2,19 +2,20 @@ import type { Dispatch } from "@reduxjs/toolkit";
 import { useEffect, type FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  actions as backnedActions,
+  actions as backendActions,
   selectors as backendSelectors,
-} from "../reducers/backned";
+} from "../reducers/backend";
+import type { Event } from "../models/event";
 
 export const Home: FC = () => {
   const dispatch: Dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(backnedActions.getEvents());
+    dispatch(backendActions.getEvents());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const events: string[] = useSelector(backendSelectors.getEvents);
+  const events: Event[] = useSelector(backendSelectors.getEvents);
   const error: Error | undefined = useSelector(backendSelectors.getError);
   const state: string = useSelector(backendSelectors.getState);
 
@@ -26,8 +27,10 @@ export const Home: FC = () => {
       )}
       {state === "getting_events_success" && (
         <ul>
-          {events.map((event) => (
-            <li key={event}>{event}</li>
+          {events.map((event: Event) => (
+            <li key={event.id}>
+              {event.name} {event.fight && `- ${event.fight}`}
+            </li>
           ))}
         </ul>
       )}
