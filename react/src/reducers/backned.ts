@@ -1,4 +1,5 @@
 import type { UnknownAction } from '@reduxjs/toolkit'
+import type { Event } from '../connector/backend/models/event'
 
 export type Type = 'backend/INIT' | 'backend/CLEAR_ERROR' | 'backend/GET_EVENTS' | 'backend/GET_EVENTS_SUCCESS' | 'backend/GET_EVENTS_ERROR'
 
@@ -20,7 +21,7 @@ export interface GetEventsAction extends Action {
 
 export interface GetEventsSuccessAction extends Action {
   type: 'backend/GET_EVENTS_SUCCESS'
-  events: string[]
+  events: Event[]
 }
 
 export interface GetEventsErrorAction extends Action {
@@ -33,7 +34,7 @@ export type State = 'initting' | 'getting_events' | 'getting_events_success' | '
 export interface BackendState {
   state: State
   error: Error | undefined
-  events: string[]
+  events: Event[]
 }
 
 export const initialState: BackendState = {
@@ -86,7 +87,7 @@ export const actions = {
     getEvents: (): GetEventsAction => ({
         type: 'backend/GET_EVENTS',
     }),
-    getEventsSuccess: (events: string[]): GetEventsSuccessAction => ({
+    getEventsSuccess: (events: Event[]): GetEventsSuccessAction => ({
         type: 'backend/GET_EVENTS_SUCCESS',
         events,
     }),
@@ -103,5 +104,5 @@ export interface Store {
 export const selectors = {
   getState: (state: Store): State => state.backend.state,
   getError: (state: Store): Error | undefined => state.backend.error,
-  getEvents: (state: Store): string[] => state.backend.events,
+  getEvents: (state: Store): Event[] => state.backend.events,
 }
