@@ -32,7 +32,10 @@ export const Home: FC = () => {
               <div>{event.name}</div>
               {event.fight && <div>{event.fight}</div>}
               <div>{event.date}</div>
-              <div>{event.locationId}</div>
+              <div>
+                {event.location.city.country.name} - {event.location.city.name}
+              </div>
+              <div>{event.location.name}</div>
               <div>{event.status}</div>
             </li>
           ))}
