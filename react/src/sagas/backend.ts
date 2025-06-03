@@ -3,6 +3,7 @@ import {
   actions as backendActions,
   type Type as BackendTypes} from '../reducers/backned'
 import { Backend } from "../connector/backend";
+import type { Event } from "../connector/backend/models/event";
 
 export const sagas: ForkEffect[] = [
   takeLatest<BackendTypes>(
@@ -13,7 +14,7 @@ export const sagas: ForkEffect[] = [
 
 function* onGetEventsRequested(): Generator {
   try {
-    const events: string[] = yield call(Backend.getEvents)
+    const events: Event[] = yield call(Backend.getEvents)
 
     yield put(backendActions.getEventsSuccess(events));
   } catch (error) {
