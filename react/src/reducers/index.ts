@@ -5,7 +5,7 @@ import {
   type Reducer,
   type UnknownAction,
 } from 'redux'
-import { reducer as backendReducer, type BackendState } from './backned'
+import { reducer as backendReducer, type BackendState } from './backend'
 import createSagaMiddleware, { type SagaMiddleware } from 'redux-saga'
 import { rootSagas } from '../sagas'
 
