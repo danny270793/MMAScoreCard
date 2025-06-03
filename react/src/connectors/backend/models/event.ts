@@ -1,9 +1,9 @@
 export interface Event {
-    id: string;
+    id: number;
     name: string;
     fight?: string
     date: string
     link: string
-    locationId: string
+    locationId: number
     status: string
 }
