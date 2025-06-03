@@ -28,7 +28,7 @@ export const Home: FC = () => {
       {state === "getting_events_success" && (
         <ul>
           {events.map((event: Event) => (
-            <li key={event.name}>
+            <li key={event.id}>
               {event.name} {event.fight && `- ${event.fight}`}
             </li>
           ))}
