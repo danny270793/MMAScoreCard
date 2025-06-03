@@ -1,5 +1,5 @@
 export interface Fight {
-    id: number
+    id: number;
     position: number
     categoryId: number
     fighterOne: number
