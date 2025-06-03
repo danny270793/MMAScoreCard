@@ -1,5 +1,6 @@
 import { Cache } from './libraries/cache'
 import Path from 'node:path'
+import Fs from 'node:fs'
 import { FileCache } from './libraries/cache/file-cache'
 import { Sherdog } from './libraries/sherdog'
 import { Event } from './libraries/sherdog/models/event'
@@ -182,6 +183,29 @@ async function dropAndCreateTables(database: Database): Promise<void> {
             },
         ],
     )
+}
+
+async function exportData(database: Database): Promise<void> {
+    const tables: string[] = [
+        'countries',
+        'cities',
+        'locations',
+        'events',
+        'fighters',
+        'categories',
+        'referees',
+        'fights',
+    ]
+    const promises: Promise<void>[] = tables.map(async (table: string) => {
+        const countries: any[] = await database.get(table, {})
+        Fs.writeFileSync(
+            Path.join(__dirname, '..', `${table}.json`),
+            JSON.stringify(countries, null, 2),
+        )
+    })
+    console.log('exporting to JSON files')
+    await Promise.all(promises)
+    console.log('exported to JSON files')
 }
 
 async function main(cache: Cache, database: Database): Promise<void> {
@@ -533,3 +557,4 @@ const databasePath: string = Path.join(__dirname, '..', 'database.sqlite')
 const database: Database = new SQLite(databasePath)
 
 main(cache, database).catch(console.error)
+// exportData(database).catch(console.error)
