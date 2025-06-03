@@ -1,4 +1,3 @@
-import type { Event } from "./models/event";
 import Events from './assets/events.json'
 import Categories from './assets/categories.json'
 import type { Category } from "./models/category";
@@ -14,6 +13,7 @@ import Locations from './assets/locations.json'
 import type { Location } from "./models/location";
 import Referees from './assets/referees.json'
 import type { Referee } from "./models/referee";
+import type { Event } from './models/event';
 
 export class Backend {
     static async getCategories(): Promise<Category[]> {
