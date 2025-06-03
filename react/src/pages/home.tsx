@@ -2,16 +2,16 @@ import type { Dispatch } from "@reduxjs/toolkit";
 import { useEffect, type FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  actions as backnedActions,
+  actions as backendActions,
   selectors as backendSelectors,
-} from "../reducers/backned";
+} from "../reducers/backend";
 import type { Event } from "../models/event";
 
 export const Home: FC = () => {
   const dispatch: Dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(backnedActions.getEvents());
+    dispatch(backendActions.getEvents());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

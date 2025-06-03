@@ -1,7 +1,7 @@
 import { call, put, takeLatest, type ForkEffect } from "redux-saga/effects";
 import {
   actions as backendActions,
-  type Type as BackendTypes} from '../reducers/backned'
+  type Type as BackendTypes} from '../reducers/backend'
 import { Backend } from "../connectors/backend";
 import type { Event } from "../connectors/backend/models/event";
 
