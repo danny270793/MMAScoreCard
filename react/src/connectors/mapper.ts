@@ -7,6 +7,10 @@ export const mapper = {
             id: event.id,
             name: event.name,
             fight: event.fight,
+            date: event.date,
+            link: event.link,
+            locationId: event.locationId,
+            status: event.status,
         };
     }
 }
