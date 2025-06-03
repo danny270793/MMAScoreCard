@@ -529,7 +529,7 @@ const cachePath: string = Path.join(__dirname, '..', '.cache.json')
 const cache: Cache = new FileCache(cachePath)
 console.log(`${cache.keysCount()} keys in cache`)
 
-const databasePath: string = Path.join(__dirname, '..', '.database.sqlite')
+const databasePath: string = Path.join(__dirname, '..', 'database.sqlite')
 const database: Database = new SQLite(databasePath)
 
 main(cache, database).catch(console.error)
