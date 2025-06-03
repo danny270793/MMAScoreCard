@@ -29,7 +29,11 @@ export const Home: FC = () => {
         <ul>
           {events.map((event: Event) => (
             <li key={event.id}>
-              {event.name} {event.fight && `- ${event.fight}`}
+              <div>{event.name}</div>
+              {event.fight && <div>{event.fight}</div>}
+              <div>{event.date}</div>
+              <div>{event.locationId}</div>
+              <div>{event.status}</div>
             </li>
           ))}
         </ul>
