@@ -5,7 +5,7 @@ import {
   actions as backnedActions,
   selectors as backendSelectors,
 } from "../reducers/backned";
-import type { Event } from "../connectors/backend/models/event";
+import type { Event } from "../models/event";
 
 export const Home: FC = () => {
   const dispatch: Dispatch = useDispatch();
