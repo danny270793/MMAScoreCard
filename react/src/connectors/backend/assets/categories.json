@@ -1,0 +1,327 @@
+[
+  {
+    "id": 1,
+    "name": "Lightweight",
+    "weight": 155
+  },
+  {
+    "id": 2,
+    "name": "Welterweight",
+    "weight": 170
+  },
+  {
+    "id": 3,
+    "name": "Light Heavyweight",
+    "weight": 205
+  },
+  {
+    "id": 4,
+    "name": "Featherweight",
+    "weight": 145
+  },
+  {
+    "id": 5,
+    "name": "Middleweight",
+    "weight": 185
+  },
+  {
+    "id": 6,
+    "name": "Catchweight",
+    "weight": 128
+  },
+  {
+    "id": 7,
+    "name": "Strawweight",
+    "weight": 115
+  },
+  {
+    "id": 8,
+    "name": "Catchweight",
+    "weight": 127
+  },
+  {
+    "id": 9,
+    "name": "Bantamweight",
+    "weight": 135
+  },
+  {
+    "id": 10,
+    "name": "Flyweight",
+    "weight": 125
+  },
+  {
+    "id": 11,
+    "name": "Heavyweight",
+    "weight": 225
+  },
+  {
+    "id": 12,
+    "name": "Catchweight",
+    "weight": 187
+  },
+  {
+    "id": 13,
+    "name": "Catchweight",
+    "weight": 147
+  },
+  {
+    "id": 14,
+    "name": "Catchweight",
+    "weight": 138
+  },
+  {
+    "id": 15,
+    "name": "Catchweight",
+    "weight": 140
+  },
+  {
+    "id": 16,
+    "name": "Catchweight",
+    "weight": 173
+  },
+  {
+    "id": 17,
+    "name": "Catchweight",
+    "weight": 211
+  },
+  {
+    "id": 18,
+    "name": "Catchweight",
+    "weight": 148
+  },
+  {
+    "id": 19,
+    "name": "Catchweight",
+    "weight": 175
+  },
+  {
+    "id": 20,
+    "name": "Catchweight",
+    "weight": 149
+  },
+  {
+    "id": 21,
+    "name": "Catchweight",
+    "weight": 129
+  },
+  {
+    "id": 22,
+    "name": "Catchweight",
+    "weight": 188
+  },
+  {
+    "id": 23,
+    "name": "Catchweight",
+    "weight": 195
+  },
+  {
+    "id": 24,
+    "name": "Catchweight",
+    "weight": 167
+  },
+  {
+    "id": 25,
+    "name": "Catchweight",
+    "weight": 174
+  },
+  {
+    "id": 26,
+    "name": "Catchweight",
+    "weight": 137
+  },
+  {
+    "id": 27,
+    "name": "Catchweight",
+    "weight": 160
+  },
+  {
+    "id": 28,
+    "name": "Catchweight",
+    "weight": 139
+  },
+  {
+    "id": 29,
+    "name": "Catchweight",
+    "weight": 189
+  },
+  {
+    "id": 30,
+    "name": "Catchweight",
+    "weight": 150
+  },
+  {
+    "id": 31,
+    "name": "Catchweight",
+    "weight": 172
+  },
+  {
+    "id": 32,
+    "name": "Catchweight",
+    "weight": 141
+  },
+  {
+    "id": 33,
+    "name": "Catchweight",
+    "weight": 165
+  },
+  {
+    "id": 34,
+    "name": "Catchweight",
+    "weight": 117
+  },
+  {
+    "id": 35,
+    "name": "Catchweight",
+    "weight": 130
+  },
+  {
+    "id": 36,
+    "name": "Catchweight",
+    "weight": 157
+  },
+  {
+    "id": 37,
+    "name": "Catchweight",
+    "weight": 131
+  },
+  {
+    "id": 38,
+    "name": "Catchweight",
+    "weight": 158
+  },
+  {
+    "id": 39,
+    "name": "Catchweight",
+    "weight": 120
+  },
+  {
+    "id": 40,
+    "name": "Catchweight",
+    "weight": 190
+  },
+  {
+    "id": 41,
+    "name": "Catchweight",
+    "weight": 118
+  },
+  {
+    "id": 42,
+    "name": "Catchweight",
+    "weight": 215
+  },
+  {
+    "id": 43,
+    "name": "Catchweight",
+    "weight": 177
+  },
+  {
+    "id": 44,
+    "name": "Catchweight",
+    "weight": 159
+  },
+  {
+    "id": 45,
+    "name": "Catchweight",
+    "weight": 180
+  },
+  {
+    "id": 46,
+    "name": "Catchweight",
+    "weight": 207
+  },
+  {
+    "id": 47,
+    "name": "Catchweight",
+    "weight": 220
+  },
+  {
+    "id": 48,
+    "name": "Catchweight",
+    "weight": 119
+  },
+  {
+    "id": 49,
+    "name": "Catchweight",
+    "weight": 161
+  },
+  {
+    "id": 50,
+    "name": "Catchweight",
+    "weight": 208
+  },
+  {
+    "id": 51,
+    "name": "Catchweight",
+    "weight": 176
+  },
+  {
+    "id": 52,
+    "name": "Catchweight",
+    "weight": 151
+  },
+  {
+    "id": 53,
+    "name": "Catchweight",
+    "weight": 191
+  },
+  {
+    "id": 54,
+    "name": "Catchweight",
+    "weight": 121
+  },
+  {
+    "id": 55,
+    "name": "Catchweight",
+    "weight": 209
+  },
+  {
+    "id": 56,
+    "name": "Catchweight",
+    "weight": 123
+  },
+  {
+    "id": 57,
+    "name": "Catchweight",
+    "weight": 142
+  },
+  {
+    "id": 58,
+    "name": "Catchweight",
+    "weight": 210
+  },
+  {
+    "id": 59,
+    "name": "Catchweight",
+    "weight": 163
+  },
+  {
+    "id": 60,
+    "name": "Catchweight",
+    "weight": 155
+  },
+  {
+    "id": 61,
+    "name": "Catchweight",
+    "weight": 162
+  },
+  {
+    "id": 62,
+    "name": "Catchweight",
+    "weight": 192
+  },
+  {
+    "id": 63,
+    "name": "Catchweight",
+    "weight": 143
+  },
+  {
+    "id": 64,
+    "name": "Catchweight",
+    "weight": 152
+  },
+  {
+    "id": 65,
+    "name": "Catchweight",
+    "weight": 183
+  }
+]
