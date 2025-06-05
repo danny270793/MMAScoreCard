@@ -14,6 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
 import { useTranslation } from 'react-i18next'
+import { Loader } from '../components/loader'
 
 export const Home: FC = () => {
   const { t } = useTranslation()
@@ -30,7 +31,7 @@ export const Home: FC = () => {
 
   return (
     <>
-      {state === 'getting_events' && <div>Loading events...</div>}
+      {state === 'getting_events' && <Loader />}
       {state === 'getting_events_error' && (
         <div>
           {t('error', { postProcess: 'capitalize' })}: {error?.message}
