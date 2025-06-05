@@ -6,6 +6,7 @@ import { Home } from './pages/home.tsx'
 import { Provider } from 'react-redux'
 import { store } from './reducers/index.ts'
 import './styles/index.css'
+import './i18n'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
