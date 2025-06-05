@@ -1,13 +1,13 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { NotFound } from "./pages/not-found.tsx";
-import { Home } from "./pages/home.tsx";
-import { Provider } from "react-redux";
-import { store } from "./reducers/index.ts";
-import "./styles/index.css";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { NotFound } from './pages/not-found.tsx'
+import { Home } from './pages/home.tsx'
+import { Provider } from 'react-redux'
+import { store } from './reducers/index.ts'
+import './styles/index.css'
 
-createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
@@ -17,5 +17,5 @@ createRoot(document.getElementById("root")!).render(
         </Routes>
       </BrowserRouter>
     </Provider>
-  </StrictMode>
-);
+  </StrictMode>,
+)
