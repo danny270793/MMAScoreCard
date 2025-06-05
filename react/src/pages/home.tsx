@@ -39,6 +39,7 @@ export const Home: FC = () => {
       {state === 'getting_events' && <Loader />}
       {state === 'getting_events_error' && (
         <Modal
+          type="error"
           title={t('error', { postProcess: 'capitalize' })}
           onClose={onCloseErrorModalClicked}
         >
