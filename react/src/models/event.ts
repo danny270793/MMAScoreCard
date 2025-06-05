@@ -4,7 +4,7 @@ export interface Event {
     id: number;
     name: string;
     fight?: string
-    date: string
+    date: Date
     link: string
     location: Location
     status: string
