@@ -12,6 +12,7 @@ import {
   faLocation,
   faMap,
 } from "@fortawesome/free-solid-svg-icons";
+import { DateUtils } from "../utils/date-utils";
 
 export const Home: FC = () => {
   const dispatch: Dispatch = useDispatch();
@@ -52,7 +53,12 @@ export const Home: FC = () => {
                 <br />
                 <div>
                   <FontAwesomeIcon icon={faCalendar} />{" "}
-                  <span className="text-sm text-gray-500">{event.date}</span>
+                  <span className="text-sm text-gray-500">
+                    {event.date.toISOString().split("T")[0]}
+                  </span>{" "}
+                  <span className="text-sm text-gray-500">
+                    (in {DateUtils.daysBetween(event.date, new Date())} days)
+                  </span>
                 </div>
                 <div>
                   <FontAwesomeIcon icon={faMap} />{" "}
@@ -61,12 +67,14 @@ export const Home: FC = () => {
                     {event.location.city.name}
                   </span>
                 </div>
-                <div>
-                  <FontAwesomeIcon icon={faLocation} />{" "}
-                  <span className="text-sm text-gray-500">
-                    {event.location.name}
-                  </span>
-                </div>
+                {event.location.name !== "" && (
+                  <div>
+                    <FontAwesomeIcon icon={faLocation} />{" "}
+                    <span className="text-sm text-gray-500">
+                      {event.location.name}
+                    </span>
+                  </div>
+                )}
               </div>
             </li>
           ))}
