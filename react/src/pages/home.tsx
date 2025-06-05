@@ -14,6 +14,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
 import { useTranslation } from 'react-i18next'
+import { Loader } from '../components/loader'
+import { Modal } from '../components/modal'
 
 export const Home: FC = () => {
   const { t } = useTranslation()
@@ -28,13 +30,21 @@ export const Home: FC = () => {
   const error: Error | undefined = useSelector(backendSelectors.getError)
   const state: string = useSelector(backendSelectors.getState)
 
+  const onCloseErrorModalClicked = () => {
+    dispatch(backendActions.clearError())
+  }
+
   return (
     <>
-      {state === 'getting_events' && <div>Loading events...</div>}
+      {state === 'getting_events' && <Loader />}
       {state === 'getting_events_error' && (
-        <div>
-          {t('error', { postProcess: 'capitalize' })}: {error?.message}
-        </div>
+        <Modal
+          type="error"
+          title={t('error', { postProcess: 'capitalize' })}
+          onClose={onCloseErrorModalClicked}
+        >
+          {error?.message}
+        </Modal>
       )}
       {state === 'getting_events_success' && (
         <ul>
