@@ -62,7 +62,7 @@ export const reducer: Reducer = (
     case 'backend/INIT':
       return initialState
     case 'backend/CLEAR_ERROR':
-      return { ...state, error: undefined }
+      return { ...state, state: 'initting', error: undefined }
     case 'backend/GET_EVENTS':
       return {
         ...state,
