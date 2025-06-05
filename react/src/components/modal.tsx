@@ -10,11 +10,11 @@ interface ModalProps {
 
 export const Modal: FC<ModalProps> = (props: ModalProps) => {
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+    <div className="fixed inset-0 flex justify-center items-center bg-black/70 z-50">
       <div className="bg-white w-96 shadow-lg rounded-lg">
         {props.onClose && (
           <div
-            className="float-right p-4 cursor-pointer"
+            className="float-right px-2 cursor-pointer rounded-tr-lg hover:text-white hover:bg-red-500"
             onClick={props.onClose}
           >
             <FontAwesomeIcon icon={faClose} />
