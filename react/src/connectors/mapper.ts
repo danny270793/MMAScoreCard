@@ -33,7 +33,7 @@ export const mapper = {
             id: event.id,
             name: event.name,
             fight: event.fight,
-            date: event.date,
+            date: new Date(event.date),
             link: event.link,
             location: mapper.toLocation(locations.find(location => location.id === event.locationId)!, cities, countries),
             status: event.status,

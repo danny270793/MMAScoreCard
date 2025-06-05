@@ -19,6 +19,12 @@ export const sagas: ForkEffect[] = [
 function* onGetEventsRequested(): Generator {
   try {
     const events: Event[] = yield call(Backend.getEvents)
+    events.sort((a: Event, b: Event) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateB.getTime() - dateA.getTime();
+    });
+
     const locations: Location[] = yield call(Backend.getLocations)
     const cities: City[] = yield call(Backend.getCities)
     const countries: Country[] = yield call(Backend.getCountries)
