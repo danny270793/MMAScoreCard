@@ -13,8 +13,10 @@ import {
   faMap,
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
+import { useTranslation } from 'react-i18next'
 
 export const Home: FC = () => {
+  const { t } = useTranslation()
   const dispatch: Dispatch = useDispatch()
 
   useEffect(() => {
@@ -57,7 +59,9 @@ export const Home: FC = () => {
                     {event.date.toISOString().split('T')[0]}
                   </span>{' '}
                   <span className="text-sm text-gray-500">
-                    (in {DateUtils.daysBetween(event.date, new Date())} days)
+                    {t('inXXDays', {
+                      days: DateUtils.daysBetween(event.date, new Date()),
+                    })}
                   </span>
                 </div>
                 <div>
