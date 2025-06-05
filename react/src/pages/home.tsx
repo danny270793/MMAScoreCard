@@ -6,6 +6,12 @@ import {
   selectors as backendSelectors,
 } from "../reducers/backend";
 import type { Event } from "../models/event";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCalendar,
+  faLocation,
+  faMap,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const Home: FC = () => {
   const dispatch: Dispatch = useDispatch();
@@ -37,24 +43,29 @@ export const Home: FC = () => {
                 </div>
               )}
               <div className=" py-4 px-4">
+                <div className="font-bold">{event.name}</div>
+                {event.fight && (
+                  <>
+                    <div className="text-sm text-gray-500">{event.fight}</div>
+                  </>
+                )}
+                <br />
                 <div>
-                  <span className="font-bold">{event.name}</span>
-                  {event.fight && (
-                    <>
-                      {" "}
-                      <span className="text-sm text-gray-500">
-                        {event.fight}
-                      </span>
-                    </>
-                  )}
+                  <FontAwesomeIcon icon={faCalendar} />{" "}
+                  <span className="text-sm text-gray-500">{event.date}</span>
                 </div>
-                <div className="text-sm text-gray-500">{event.date}</div>
-                <div className="text-sm text-gray-500">
-                  {event.location.city.country.name} -{" "}
-                  {event.location.city.name}
+                <div>
+                  <FontAwesomeIcon icon={faMap} />{" "}
+                  <span className="text-sm text-gray-500">
+                    {event.location.city.country.name} -{" "}
+                    {event.location.city.name}
+                  </span>
                 </div>
-                <div className="text-sm text-gray-500">
-                  {event.location.name}
+                <div>
+                  <FontAwesomeIcon icon={faLocation} />{" "}
+                  <span className="text-sm text-gray-500">
+                    {event.location.name}
+                  </span>
                 </div>
               </div>
             </li>
