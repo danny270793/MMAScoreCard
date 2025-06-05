@@ -5,6 +5,7 @@ import { NotFound } from "./pages/not-found.tsx";
 import { Home } from "./pages/home.tsx";
 import { Provider } from "react-redux";
 import { store } from "./reducers/index.ts";
+import "./styles/index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
