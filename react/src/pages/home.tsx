@@ -32,7 +32,9 @@ export const Home: FC = () => {
     <>
       {state === 'getting_events' && <div>Loading events...</div>}
       {state === 'getting_events_error' && (
-        <div>Error loading events: {error?.message}</div>
+        <div>
+          {t('error', { postProcess: 'capitalize' })}: {error?.message}
+        </div>
       )}
       {state === 'getting_events_success' && (
         <ul>
