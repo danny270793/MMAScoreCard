@@ -43,7 +43,7 @@ export const Home: FC = () => {
               {event.status === 'uppcoming' && (
                 <div className="float-right">
                   <div className="text-sm bg-red-500 p-1 text-white">
-                    {event.status}
+                    {t('upcoming', { postProcess: 'capitalize' })}
                   </div>
                 </div>
               )}
