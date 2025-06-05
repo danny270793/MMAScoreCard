@@ -1,7 +1,12 @@
 import type { UnknownAction } from '@reduxjs/toolkit'
 import type { Event } from '../models/event'
 
-export type Type = 'backend/INIT' | 'backend/CLEAR_ERROR' | 'backend/GET_EVENTS' | 'backend/GET_EVENTS_SUCCESS' | 'backend/GET_EVENTS_ERROR'
+export type Type =
+  | 'backend/INIT'
+  | 'backend/CLEAR_ERROR'
+  | 'backend/GET_EVENTS'
+  | 'backend/GET_EVENTS_SUCCESS'
+  | 'backend/GET_EVENTS_ERROR'
 
 export interface Action extends UnknownAction {
   type: Type
@@ -26,10 +31,14 @@ export interface GetEventsSuccessAction extends Action {
 
 export interface GetEventsErrorAction extends Action {
   type: 'backend/GET_EVENTS_ERROR'
-error: Error
+  error: Error
 }
 
-export type State = 'initting' | 'getting_events' | 'getting_events_success' | 'getting_events_error'
+export type State =
+  | 'initting'
+  | 'getting_events'
+  | 'getting_events_success'
+  | 'getting_events_error'
 
 export interface BackendState {
   state: State
@@ -55,23 +64,23 @@ export const reducer: Reducer = (
     case 'backend/CLEAR_ERROR':
       return { ...state, error: undefined }
     case 'backend/GET_EVENTS':
-        return {
-            ...state,
-            state: 'getting_events',
-            error: undefined
-        }
+      return {
+        ...state,
+        state: 'getting_events',
+        error: undefined,
+      }
     case 'backend/GET_EVENTS_SUCCESS':
-        return {
-            ...state,
-            state: 'getting_events_success',
-            events: (action as GetEventsSuccessAction).events,
-        }
+      return {
+        ...state,
+        state: 'getting_events_success',
+        events: (action as GetEventsSuccessAction).events,
+      }
     case 'backend/GET_EVENTS_ERROR':
-        return {
-            ...state,
-            state: 'getting_events_error',
-            error: (action as GetEventsErrorAction).error,
-        }
+      return {
+        ...state,
+        state: 'getting_events_error',
+        error: (action as GetEventsErrorAction).error,
+      }
     default:
       return state
   }
@@ -83,18 +92,18 @@ export const actions = {
   }),
   clearError: (): ClearErrorAction => ({
     type: 'backend/CLEAR_ERROR',
-    }),
-    getEvents: (): GetEventsAction => ({
-        type: 'backend/GET_EVENTS',
-    }),
-    getEventsSuccess: (events: Event[]): GetEventsSuccessAction => ({
-        type: 'backend/GET_EVENTS_SUCCESS',
-        events,
-    }),
-    getEventsError: (error: Error): GetEventsErrorAction => ({
-        type: 'backend/GET_EVENTS_ERROR',
-        error,
-    }),
+  }),
+  getEvents: (): GetEventsAction => ({
+    type: 'backend/GET_EVENTS',
+  }),
+  getEventsSuccess: (events: Event[]): GetEventsSuccessAction => ({
+    type: 'backend/GET_EVENTS_SUCCESS',
+    events,
+  }),
+  getEventsError: (error: Error): GetEventsErrorAction => ({
+    type: 'backend/GET_EVENTS_ERROR',
+    error,
+  }),
 }
 
 export interface Store {

@@ -1,5 +1,5 @@
 export interface City {
-    id: number;
-    name: string;
-    countryId: number
+  id: number
+  name: string
+  countryId: number
 }

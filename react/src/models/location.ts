@@ -1,7 +1,7 @@
-import type { City } from "./city";
+import type { City } from './city'
 
 export interface Location {
-    id: number;
-    name: string;
-    city: City
+  id: number
+  name: string
+  city: City
 }
