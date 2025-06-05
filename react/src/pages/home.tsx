@@ -14,7 +14,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
 import { useTranslation } from 'react-i18next'
-import { Loader } from '../components/loader'
 import { Modal } from '../components/modal'
 
 export const Home: FC = () => {
@@ -37,7 +36,6 @@ export const Home: FC = () => {
 
   return (
     <>
-      {state === 'getting_events' && <Loader />}
       {state === 'getting_events_error' && (
         <Modal
           type="error"
@@ -66,9 +64,24 @@ export const Home: FC = () => {
       <br />
       <br />
       <br />
-      {state === 'getting_events_success' && (
-        <ul className="list max-w-xl mx-auto bg-base-100">
-          {events
+
+      <ul className="list max-w-xl mx-auto bg-base-100">
+        {state === 'getting_events' &&
+          [1, 2, 3, 4, 5, 6, 7].map((i: number) => (
+            <li className="list-row" key={i}>
+              <div className="list-col-grow">
+                <div className="flex flex-col gap-4">
+                  <div className="skeleton h-2 w-64 shrink-0" />
+                  <br />
+                  <div className="skeleton h-2 w-48 shrink-0" />
+                  <div className="skeleton h-2 w-48 shrink-0" />
+                  <div className="skeleton h-2 w-48 shrink-0" />
+                </div>
+              </div>
+            </li>
+          ))}
+        {state === 'getting_events_success' &&
+          events
             .filter(
               (event: Event) =>
                 event.name.toLowerCase().includes(filter.toLowerCase()) ||
@@ -131,8 +144,7 @@ export const Home: FC = () => {
                 )}
               </li>
             ))}
-        </ul>
-      )}
+      </ul>
     </>
   )
 }
