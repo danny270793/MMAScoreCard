@@ -28,15 +28,35 @@ export const Home: FC = () => {
       {state === "getting_events_success" && (
         <ul>
           {events.map((event: Event) => (
-            <li key={event.id}>
-              <div>{event.name}</div>
-              {event.fight && <div>{event.fight}</div>}
-              <div>{event.date}</div>
-              <div>
-                {event.location.city.country.name} - {event.location.city.name}
+            <li className="border-b border-gray-200" key={event.id}>
+              {event.status === "uppcoming" && (
+                <div className="float-right">
+                  <div className="text-sm bg-red-500 p-1 text-white">
+                    {event.status}
+                  </div>
+                </div>
+              )}
+              <div className=" py-4 px-4">
+                <div>
+                  <span className="font-bold">{event.name}</span>
+                  {event.fight && (
+                    <>
+                      {" "}
+                      <span className="text-sm text-gray-500">
+                        {event.fight}
+                      </span>
+                    </>
+                  )}
+                </div>
+                <div className="text-sm text-gray-500">{event.date}</div>
+                <div className="text-sm text-gray-500">
+                  {event.location.city.country.name} -{" "}
+                  {event.location.city.name}
+                </div>
+                <div className="text-sm text-gray-500">
+                  {event.location.name}
+                </div>
               </div>
-              <div>{event.location.name}</div>
-              <div>{event.status}</div>
             </li>
           ))}
         </ul>
