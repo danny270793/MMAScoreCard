@@ -9,7 +9,7 @@ import {
   Searchbar,
   f7,
 } from 'framework7-react'
-import { useEffect, type FC } from 'react'
+import { useEffect, useState, type FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   actions as backendActions,
@@ -29,15 +29,36 @@ import { DateUtils } from '../utils/date-utils'
 export const EventsPage: FC = () => {
   const { t } = useTranslation()
   const dispatch: Dispatch = useDispatch()
+  const [onPullRefreshDone, setOnPullRefreshDone] = useState<
+    (() => void) | undefined
+  >(undefined)
 
   const events: Event[] = useSelector(backendSelectors.getEvents)
   const error: Error | undefined = useSelector(backendSelectors.getError)
   const state: string = useSelector(backendSelectors.getState)
 
-  useEffect(() => {
+  const getAllEvents = () => {
     dispatch(backendActions.getEvents())
+  }
+
+  const onPullRefreshed = async (done: () => void) => {
+    setOnPullRefreshDone(done)
+    getAllEvents()
+  }
+
+  useEffect(() => {
+    getAllEvents()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    if (state === 'getting_events_success') {
+      if (onPullRefreshDone) {
+        onPullRefreshDone()
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state])
 
   useEffect(() => {
     if (!error) {
@@ -54,7 +75,7 @@ export const EventsPage: FC = () => {
   }, [error])
 
   return (
-    <Page>
+    <Page ptr ptrMousewheel={true} onPtrRefresh={onPullRefreshed}>
       <Navbar title={t('events', { postProcess: 'capitalize' })} large>
         <NavRight>
           <Link
