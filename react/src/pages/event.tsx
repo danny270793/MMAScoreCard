@@ -17,7 +17,7 @@ import { DateUtils } from '../utils/date-utils'
 import { useTranslation } from 'react-i18next'
 import { Modal } from '../components/modal'
 
-export const Home: FC = () => {
+export const EventPage: FC = () => {
   const { t } = useTranslation()
   const dispatch: Dispatch = useDispatch()
   const [filter, setFilter] = useState<string>('')
