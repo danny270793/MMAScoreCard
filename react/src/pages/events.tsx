@@ -16,9 +16,11 @@ import {
 import { DateUtils } from '../utils/date-utils'
 import { useTranslation } from 'react-i18next'
 import { Modal } from '../components/modal'
+import { useNavigator, type Navigator } from '../hooks/useNavigator'
 
-export const Home: FC = () => {
+export const EventsPage: FC = () => {
   const { t } = useTranslation()
+  const navigator: Navigator = useNavigator()
   const dispatch: Dispatch = useDispatch()
   const [filter, setFilter] = useState<string>('')
   const [showFilter, setShowFilter] = useState<boolean>(false)
@@ -149,7 +151,11 @@ export const Home: FC = () => {
                   .includes(filter.toLowerCase()),
             )
             .map((event: Event) => (
-              <li className="list-row" key={event.id}>
+              <li
+                className="list-row cursor-pointer hover:bg-base-200"
+                key={event.id}
+                onClick={() => navigator.goToEvent(`${event.id}`)}
+              >
                 <div className="list-col-grow">
                   <div>{event.name}</div>
                   {event.fight && (
