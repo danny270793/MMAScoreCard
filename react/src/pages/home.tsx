@@ -9,6 +9,7 @@ import type { Event } from '../models/event'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCalendar,
+  faClose,
   faLocation,
   faMap,
 } from '@fortawesome/free-solid-svg-icons'
@@ -20,6 +21,7 @@ export const Home: FC = () => {
   const { t } = useTranslation()
   const dispatch: Dispatch = useDispatch()
   const [filter, setFilter] = useState<string>('')
+  const [showFilter, setShowFilter] = useState<boolean>(false)
 
   useEffect(() => {
     dispatch(backendActions.getEvents())
@@ -50,15 +52,65 @@ export const Home: FC = () => {
           {t('events', { postProcess: 'capitalize' })}
         </div>
         <div className="flex gap-2">
-          <input
-            type="text"
-            value={filter}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setFilter(e.target.value)
-            }
-            placeholder={t('search', { postProcess: 'capitalize' })}
-            className="input input-bordered w-48 md:w-auto"
-          />
+          {showFilter && (
+            <div className="join">
+              <label className="input">
+                <svg
+                  className="h-[1em] opacity-50"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeWidth="2.5"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                  </g>
+                </svg>
+                <input
+                  type="search"
+                  required
+                  value={filter}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setFilter(e.target.value)
+                  }
+                  placeholder={t('search', { postProcess: 'capitalize' })}
+                />
+              </label>
+              <button
+                className="btn btn-neutral join-item"
+                onClick={() => setShowFilter(false)}
+              >
+                <FontAwesomeIcon icon={faClose} />
+              </button>
+            </div>
+          )}
+          {!showFilter && (
+            <button
+              className="btn btn-ghost btn-circle"
+              onClick={() => setShowFilter(true)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {' '}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />{' '}
+              </svg>
+            </button>
+          )}
         </div>
       </div>
       <br />
