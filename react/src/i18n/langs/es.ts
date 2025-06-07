@@ -8,4 +8,5 @@ export const es: Lang = {
   events: 'eventos',
   cancel: 'cancelar',
   eventNotFound: 'evento no encontrado',
+  unknownError: 'error desconocido',
 }

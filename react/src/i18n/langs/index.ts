@@ -6,4 +6,5 @@ export interface Lang {
   events: string
   cancel: string
   eventNotFound: string
+  unknownError: string
 }
