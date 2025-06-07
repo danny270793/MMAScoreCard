@@ -9,7 +9,7 @@ import {
   Searchbar,
   f7,
 } from 'framework7-react'
-import { useEffect, useState, type FC } from 'react'
+import { useEffect, type FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   actions as backendActions,
@@ -29,9 +29,6 @@ import { DateUtils } from '../utils/date-utils'
 export const EventsPage: FC = () => {
   const { t } = useTranslation()
   const dispatch: Dispatch = useDispatch()
-  const [onPullRefreshDone, setOnPullRefreshDone] = useState<
-    (() => void) | undefined
-  >(undefined)
 
   const events: Event[] = useSelector(backendSelectors.getEvents)
   const error: Error | undefined = useSelector(backendSelectors.getError)
@@ -42,23 +39,14 @@ export const EventsPage: FC = () => {
   }
 
   const onPullRefreshed = async (done: () => void) => {
-    setOnPullRefreshDone(done)
     getAllEvents()
+    done()
   }
 
   useEffect(() => {
     getAllEvents()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  useEffect(() => {
-    if (state === 'getting_events_success') {
-      if (onPullRefreshDone) {
-        onPullRefreshDone()
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state])
 
   useEffect(() => {
     if (!error) {
@@ -117,7 +105,7 @@ export const EventsPage: FC = () => {
               className="skeleton-text skeleton-effect-wave"
               title={EmptyEvent.name}
               subtitle={EmptyEvent.fight}
-              key={i}
+              key={`skeleton-${i}`}
               after={'uppcoming'}
             >
               <br />
