@@ -7,6 +7,7 @@ export const es: Lang = {
   search: 'buscar',
   events: 'eventos',
   cancel: 'cancelar',
+  eventsNotFound: 'no se encontraron eventos',
   eventNotFound: 'evento no encontrado',
   unknownError: 'error desconocido',
 }

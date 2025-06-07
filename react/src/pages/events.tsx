@@ -47,7 +47,7 @@ export const EventsPage: FC = () => {
     f7.dialog.alert(
       error?.message || t('unknownError', { postProcess: 'capitalize' }),
       () => {
-        dispatch(backendActions.getEvents())
+        dispatch(backendActions.clearError())
       },
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -80,7 +80,7 @@ export const EventsPage: FC = () => {
         inset
       >
         <ListItem
-          subtitle={t('eventNotFound', { postProcess: 'capitalize' })}
+          subtitle={t('eventsNotFound', { postProcess: 'capitalize' })}
         />
       </List>
       <List
@@ -115,7 +115,7 @@ export const EventsPage: FC = () => {
           ))}
         {events.length === 0 && (
           <ListItem
-            subtitle={t('eventNotFound', { postProcess: 'capitalize' })}
+            subtitle={t('eventsNotFound', { postProcess: 'capitalize' })}
           />
         )}
         {events.map((event: Event) => (
