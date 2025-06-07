@@ -6,4 +6,6 @@ export const es: Lang = {
   upcoming: 'próximamente',
   search: 'buscar',
   events: 'eventos',
+  cancel: 'cancelar',
+  eventNotFound: 'evento no encontrado',
 }
