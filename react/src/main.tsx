@@ -2,7 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { NotFound } from './pages/not-found.tsx'
-import { Home } from './pages/home.tsx'
+import { EventsPage } from './pages/events.tsx'
+import { EventPage } from './pages/event.tsx'
 import { Provider } from 'react-redux'
 import { store } from './reducers/index.ts'
 import './styles/index.css'
@@ -13,7 +14,9 @@ createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<EventsPage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/events/:id" element={<EventPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
