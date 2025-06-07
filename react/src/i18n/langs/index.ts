@@ -4,4 +4,7 @@ export interface Lang {
   upcoming: string
   search: string
   events: string
+  cancel: string
+  eventNotFound: string
+  unknownError: string
 }
