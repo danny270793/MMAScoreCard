@@ -6,8 +6,6 @@ import { Provider } from 'react-redux'
 import { store } from './reducers/index.ts'
 import './styles/index.css'
 import './i18n'
-
-import 'framework7/css/bundle'
 import Framework7 from 'framework7/lite-bundle'
 import Framework7React, { App, View } from 'framework7-react'
 import { NotFound } from './pages/not-found.tsx'
