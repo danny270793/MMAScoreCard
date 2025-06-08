@@ -111,7 +111,6 @@ export const mapper = {
     const referee: BackendReferee | undefined = referees.find(
       (referee: BackendReferee) => referee.id === fight.referee,
     )
-    console.log(fight)
     return {
       id: fight.id,
       position: fight.position,
