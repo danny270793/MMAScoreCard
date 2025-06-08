@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "web:build": "cd ../react && npm run build"
+    "web:build": "cd ../react && npm run build",
+    "web:sync": "rm -rf ./www && mkdir ./www && cp -r ../react/dist/* ./www"
   },
   "keywords": [],
   "author": "",
