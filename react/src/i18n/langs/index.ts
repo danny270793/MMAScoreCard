@@ -6,6 +6,14 @@ export interface Lang {
   events: string
   cancel: string
   eventsNotFound: string
+  fightsNotFound: string
   eventNotFound: string
   unknownError: string
+  fights: string
+  event: string
+  mainEvent: string
+  date: string
+  by: string
+  at: string
+  round: string
 }
