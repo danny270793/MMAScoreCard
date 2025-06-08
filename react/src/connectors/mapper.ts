@@ -6,6 +6,14 @@ import type { City as BackendCity } from './backend/models/city'
 import type { City } from '../models/city'
 import type { Country as BackendCountry } from './backend/models/country'
 import type { Country } from '../models/country'
+import type { Fight as BackendFight } from './backend/models/fight'
+import type { Fight } from '../models/fight'
+import type { Category as BackendCategory } from './backend/models/category'
+import type { Category } from '../models/category'
+import type { Referee } from '../models/referee'
+import type { Referee as BackendReferee } from './backend/models/referee'
+import type { Fighter } from '../models/fighter'
+import type { Fighter as BackendFighter } from './backend/models/fighter'
 
 export const mapper = {
   toCountry(country: BackendCountry): Country {
@@ -55,6 +63,97 @@ export const mapper = {
         countries,
       ),
       status: event.status,
+    }
+  },
+  toCategory(category: BackendCategory): Category {
+    return {
+      id: category.id,
+      name: category.name,
+      weight: category.weight,
+    }
+  },
+  toReferee(referee: BackendReferee): Referee {
+    return {
+      id: referee.id,
+      name: referee.name,
+    }
+  },
+  toFighter(
+    fighter: BackendFighter,
+    cities: BackendCity[],
+    countries: BackendCountry[],
+  ): Fighter {
+    return {
+      id: fighter.id,
+      name: fighter.name,
+      nickname: fighter.nickname,
+      city: mapper.toCity(
+        cities.find((city) => city.id === fighter.cityId)!,
+        countries,
+      ),
+      birthday: fighter.birthday ? new Date(fighter.birthday) : undefined,
+      died: fighter.died ? new Date(fighter.died) : undefined,
+      height: fighter.height,
+      weight: fighter.weight,
+      link: fighter.link,
+    }
+  },
+  toFight(
+    fight: BackendFight,
+    categories: BackendCategory[],
+    cities: BackendCity[],
+    countries: BackendCountry[],
+    locations: BackendLocation[],
+    referees: BackendReferee[],
+    fighters: BackendFighter[],
+    events: BackendEvent[],
+  ): Fight {
+    const referee: BackendReferee | undefined = referees.find(
+      (referee: BackendReferee) => referee.id === fight.referee,
+    )
+    console.log(fight)
+    return {
+      id: fight.id,
+      position: fight.position,
+      category: mapper.toCategory(
+        categories.find(
+          (category: BackendCategory) => category.id === fight.categoryId,
+        )!,
+      ),
+      fighterOne: mapper.toFighter(
+        fighters.find(
+          (fighter: BackendFighter) => fighter.id === fight.fighterOne,
+        )!,
+        cities,
+        countries,
+      ),
+      fighterTwo: mapper.toFighter(
+        fighters.find(
+          (fighter: BackendFighter) => fighter.id === fight.fighterTwo,
+        )!,
+        cities,
+        countries,
+      ),
+      referee: !referee
+        ? undefined
+        : mapper.toReferee(
+            referees.find(
+              (referee: BackendReferee) => referee.id === fight.referee,
+            )!,
+          ),
+      mainEvent: Boolean(fight.mainEvent),
+      titleFight: Boolean(fight.titleFight),
+      type: fight.type,
+      method: fight.method,
+      time: fight.time,
+      round: fight.round,
+      decision: fight.decision,
+      event: mapper.toEvent(
+        events.find((event: BackendEvent) => event.id === fight.eventId)!,
+        locations,
+        cities,
+        countries,
+      ),
     }
   },
 }
