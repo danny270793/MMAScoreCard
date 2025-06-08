@@ -65,7 +65,16 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
       <BlockTitle>{t('event', { postProcess: 'capitalize' })}</BlockTitle>
       {event && (
         <List dividersIos mediaList strongIos inset>
-          <ListItem title={event.name} subtitle={event.fight} key={event.id}>
+          <ListItem
+            key={event.id}
+            title={event.name}
+            subtitle={event.fight}
+            after={
+              event.status === 'uppcoming'
+                ? t('upcoming', { postProcess: 'capitalize' })
+                : ''
+            }
+          >
             <br />
             <div>
               <FontAwesomeIcon className="w-4" icon={faCalendar} />{' '}
@@ -111,13 +120,17 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
             title={`${fight.fighterOne.name} vs. ${fight.fighterTwo.name}`}
             subtitle={fight.category.name}
           >
-            <div>
-              {fight.decision} ({fight.method})
-            </div>
-            <div>
-              {t('round', { postProcess: 'capitalize' })} {fight.round}{' '}
-              {t('at')} {DateUtils.secondsToMMSS(fight.time!)}
-            </div>
+            {fight.type === 'done' && (
+              <>
+                <div>
+                  {fight.decision} ({fight.method})
+                </div>
+                <div>
+                  {t('round', { postProcess: 'capitalize' })} {fight.round}{' '}
+                  {t('at')} {DateUtils.secondsToMMSS(fight.time!)}
+                </div>
+              </>
+            )}
           </ListItem>
         ))}
       </List>
