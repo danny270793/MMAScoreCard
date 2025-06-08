@@ -34,17 +34,13 @@ export const EventsPage: FC = () => {
   const error: Error | undefined = useSelector(backendSelectors.getError)
   const state: string = useSelector(backendSelectors.getState)
 
-  const getAllEvents = () => {
-    dispatch(backendActions.getEvents())
-  }
-
   const onPullRefreshed = async (done: () => void) => {
-    getAllEvents()
+    dispatch(backendActions.getEvents())
     done()
   }
 
   useEffect(() => {
-    getAllEvents()
+    dispatch(backendActions.getEvents())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -53,6 +49,7 @@ export const EventsPage: FC = () => {
       return
     }
 
+    console.error(error)
     f7.dialog.alert(
       error?.message || t('unknownError', { postProcess: 'capitalize' }),
       () => {
@@ -146,11 +143,13 @@ export const EventsPage: FC = () => {
               <span className="opacity-60">
                 {event.date.toISOString().split('T')[0]}
               </span>{' '}
-              <span className="opacity-60">
-                {t('inXXDays', {
-                  days: DateUtils.daysBetween(event.date, new Date()),
-                })}
-              </span>
+              {event.status === 'uppcoming' && (
+                <span className="opacity-60">
+                  {t('inXXDays', {
+                    days: DateUtils.daysBetween(event.date, new Date()),
+                  })}
+                </span>
+              )}
             </div>
             <div>
               <FontAwesomeIcon className="w-4" icon={faMap} />{' '}
