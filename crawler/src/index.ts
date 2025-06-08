@@ -159,6 +159,7 @@ async function dropAndCreateTables(database: Database): Promise<void> {
             time: 'INTEGER NULL',
             round: 'INTEGER NULL',
             decision: 'VARCHAR(255) NULL',
+            eventId: 'INTEGER NULL',
         },
         [
             {
@@ -181,6 +182,11 @@ async function dropAndCreateTables(database: Database): Promise<void> {
                 referencedTable: 'referees',
                 referencedColumn: 'id',
             },
+            {
+                column: 'eventId',
+                referencedTable: 'events',
+                referencedColumn: 'id',
+            },
         ],
     )
 }
@@ -199,7 +205,7 @@ async function exportData(database: Database): Promise<void> {
     const promises: Promise<void>[] = tables.map(async (table: string) => {
         const countries: any[] = await database.get(table, {})
         Fs.writeFileSync(
-            Path.join(__dirname, '..', `${table}.json`),
+            Path.join(__dirname, '..', 'exports', `${table}.json`),
             JSON.stringify(countries, null, 2),
         )
     })
@@ -466,7 +472,7 @@ async function main(cache: Cache, database: Database): Promise<void> {
                 name: fight.fighterOne.name,
             })
             const two: any = await database.getFirst('fighters', {
-                name: fight.fighterOne.name,
+                name: fight.fighterTwo.name,
             })
 
             let category: any | undefined = undefined
@@ -478,6 +484,10 @@ async function main(cache: Cache, database: Database): Promise<void> {
                     weight,
                 })
             }
+
+            const savedEvent: any = await database.getFirst('events', {
+                name: event.name,
+            })
 
             if (fight.type === 'done') {
                 const referee: any = await database.getFirst('referees', {
@@ -497,6 +507,7 @@ async function main(cache: Cache, database: Database): Promise<void> {
                     time: fight.time,
                     round: fight.round,
                     decision: fight.decision,
+                    eventId: savedEvent.id,
                 })
             } else {
                 await database.insert('fights', {
@@ -507,6 +518,7 @@ async function main(cache: Cache, database: Database): Promise<void> {
                     mainEvent: fight.mainEvent ? 1 : 0,
                     titleFight: fight.titleFight ? 1 : 0,
                     type: fight.type,
+                    eventId: savedEvent.id,
                 })
             }
         }
@@ -556,5 +568,6 @@ console.log(`${cache.keysCount()} keys in cache`)
 const databasePath: string = Path.join(__dirname, '..', 'database.sqlite')
 const database: Database = new SQLite(databasePath)
 
-main(cache, database).catch(console.error)
-// exportData(database).catch(console.error)
+main(cache, database)
+    .then(() => exportData(database))
+    .catch(console.error)
