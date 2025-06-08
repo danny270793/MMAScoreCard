@@ -31,8 +31,10 @@ export class Backend {
   static async getFighters(): Promise<Fighter[]> {
     return Fighters.map<Fighter>((fighter: unknown) => fighter as Fighter)
   }
-  static async getFights(): Promise<Fight[]> {
-    return Fights.map<Fight>((fight: unknown) => fight as Fight)
+  static async getFights(id: string): Promise<Fight[]> {
+    return Fights.map<Fight>((fight: unknown) => fight as Fight).filter(
+      (fight: Fight) => `${fight.eventId}` === id,
+    )
   }
   static async getLocations(): Promise<Location[]> {
     return Locations.map<Location>((location: unknown) => location as Location)
