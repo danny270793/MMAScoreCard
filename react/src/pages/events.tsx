@@ -34,6 +34,11 @@ export const EventsPage: FC = () => {
   const error: Error | undefined = useSelector(backendSelectors.getError)
   const state: string = useSelector(backendSelectors.getState)
 
+  const onPullRefreshed = async (done: () => void) => {
+    dispatch(backendActions.getEvents())
+    done()
+  }
+
   useEffect(() => {
     dispatch(backendActions.getEvents())
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -44,17 +49,18 @@ export const EventsPage: FC = () => {
       return
     }
 
+    console.error(error)
     f7.dialog.alert(
       error?.message || t('unknownError', { postProcess: 'capitalize' }),
       () => {
-        dispatch(backendActions.getEvents())
+        dispatch(backendActions.clearError())
       },
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error])
 
   return (
-    <Page>
+    <Page ptr ptrMousewheel={true} onPtrRefresh={onPullRefreshed}>
       <Navbar title={t('events', { postProcess: 'capitalize' })} large>
         <NavRight>
           <Link
@@ -80,7 +86,7 @@ export const EventsPage: FC = () => {
         inset
       >
         <ListItem
-          subtitle={t('eventNotFound', { postProcess: 'capitalize' })}
+          subtitle={t('eventsNotFound', { postProcess: 'capitalize' })}
         />
       </List>
       <List
@@ -96,7 +102,7 @@ export const EventsPage: FC = () => {
               className="skeleton-text skeleton-effect-wave"
               title={EmptyEvent.name}
               subtitle={EmptyEvent.fight}
-              key={i}
+              key={`skeleton-${i}`}
               after={'uppcoming'}
             >
               <br />
@@ -115,7 +121,7 @@ export const EventsPage: FC = () => {
           ))}
         {events.length === 0 && (
           <ListItem
-            subtitle={t('eventNotFound', { postProcess: 'capitalize' })}
+            subtitle={t('eventsNotFound', { postProcess: 'capitalize' })}
           />
         )}
         {events.map((event: Event) => (
@@ -137,11 +143,13 @@ export const EventsPage: FC = () => {
               <span className="opacity-60">
                 {event.date.toISOString().split('T')[0]}
               </span>{' '}
-              <span className="opacity-60">
-                {t('inXXDays', {
-                  days: DateUtils.daysBetween(event.date, new Date()),
-                })}
-              </span>
+              {event.status === 'uppcoming' && (
+                <span className="opacity-60">
+                  {t('inXXDays', {
+                    days: DateUtils.daysBetween(event.date, new Date()),
+                  })}
+                </span>
+              )}
             </div>
             <div>
               <FontAwesomeIcon className="w-4" icon={faMap} />{' '}

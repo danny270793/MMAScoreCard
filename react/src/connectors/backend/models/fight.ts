@@ -9,7 +9,8 @@ export interface Fight {
   titleFight: number
   type: 'pending' | 'done'
   method?: string
-  time?: string
+  time?: number
   round?: number
   decision?: string
+  eventId: number
 }
