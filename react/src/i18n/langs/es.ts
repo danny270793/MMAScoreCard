@@ -18,4 +18,5 @@ export const es: Lang = {
   by: 'por',
   at: 'en',
   round: 'ronda',
+  notFound: 'no encontrado',
 }
