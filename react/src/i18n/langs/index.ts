@@ -16,4 +16,5 @@ export interface Lang {
   by: string
   at: string
   round: string
+  notFound: string
 }
