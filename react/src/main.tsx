@@ -13,6 +13,12 @@ import { NotFound } from './pages/not-found.tsx'
 // eslint-disable-next-line react-hooks/rules-of-hooks
 Framework7.use(Framework7React)
 
+if (window.location.href.startsWith('capacitor://')) {
+  if (!window.location.href.startsWith('capacitor://localhost/')) {
+    window.location.href = '/'
+  }
+}
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
