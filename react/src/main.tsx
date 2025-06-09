@@ -33,7 +33,7 @@ createRoot(document.getElementById('root')!).render(
             component: EventPage,
           },
           {
-            path: '*',
+            path: '(.*)',
             component: NotFound,
           },
         ]}
