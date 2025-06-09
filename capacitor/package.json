@@ -8,7 +8,8 @@
     "ios:start": "cap sync ios && cap run ios",
     "ios": "npm run web:build && npm run web:sync && npm run ios:start",
     "android:start": "cap sync android && cap run android",
-    "android": "npm run web:build && npm run web:sync && npm run android:start"
+    "android": "npm run web:build && npm run web:sync && npm run android:start",
+    "icons:generate": "capacitor-assets generate"
   },
   "keywords": [],
   "author": "",
