@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">mmascorecard</string>
-    <string name="title_activity_main">mmascorecard</string>
+    <string name="app_name">MMA ScoreCard</string>
+    <string name="title_activity_main">MMA ScoreCard</string>
     <string name="package_name">io.github.danny270793.mmascorecard</string>
     <string name="custom_url_scheme">io.github.danny270793.mmascorecard</string>
 </resources>
