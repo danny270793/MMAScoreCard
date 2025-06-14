@@ -430,7 +430,7 @@ export class Sherdog {
         const $: cheerio.Root = cheerio.load(html)
 
         const nicknames: string[] = $('span.nickname').get()
-        const nickname: string = $(nicknames[0]).text().trim()
+        const nickname: string = $(nicknames[0]).text().trim().replace(/"/g, '')
 
         const nationalities: string[] = $('span.item.birthplace').get()
         const country: string = $(nationalities[0])
