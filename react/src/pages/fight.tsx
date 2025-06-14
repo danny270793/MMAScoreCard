@@ -141,14 +141,8 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
       <BlockTitle>{t('fight', { postProcess: 'capitalize' })}</BlockTitle>
       <List dividersIos mediaList strongIos inset>
         {state === 'getting_fight' && (
-          <ListItem
-            key={1}
-            className="skeleton-text skeleton-effect-wave"
-            chevronCenter
-            title={`${EmptyFight.fighterOne.name} vs. ${EmptyFight.fighterTwo.name}`}
-            subtitle="fight.titleFight"
-          >
-            <br />
+          <ListItem key={1} className="skeleton-text skeleton-effect-wave">
+            <div>{t('titleFight', { postProcess: 'capitalize' })}</div>
             <div>
               {EmptyFight.category.name} ({EmptyFight.category.weight} lbs)
             </div>
@@ -207,8 +201,28 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
       <BlockTitle>{t('fighters', { postProcess: 'capitalize' })}</BlockTitle>
       <List dividersIos mediaList strongIos inset>
         {state === 'getting_fight' && (
-          <ListItem className="skeleton-text skeleton-effect-wave"></ListItem>
+          <ListItem
+            className="skeleton-text skeleton-effect-wave"
+            title={EmptyFight.fighterOne.name}
+            subtitle={EmptyFight.fighterOne.nickname}
+          >
+            <div slot="media">
+              <FontAwesomeIcon className="w-4" icon={faThumbsUp} />
+            </div>
+          </ListItem>
         )}
+        {state === 'getting_fight' && (
+          <ListItem
+            className="skeleton-text skeleton-effect-wave"
+            title={EmptyFight.fighterTwo.name}
+            subtitle={EmptyFight.fighterTwo.nickname}
+          >
+            <div slot="media">
+              <FontAwesomeIcon className="w-4" icon={faThumbsDown} />
+            </div>
+          </ListItem>
+        )}
+
         {fight && state !== 'getting_fight' && (
           <ListItem
             chevronCenter
@@ -217,7 +231,12 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
             subtitle={fight.fighterOne.nickname}
           >
             <div slot="media">
-              <FontAwesomeIcon className="w-4" icon={faThumbsUp} />
+              {fight.winner === 1 && (
+                <FontAwesomeIcon className="w-4" icon={faThumbsUp} />
+              )}
+              {fight.winner === 2 && (
+                <FontAwesomeIcon className="w-4" icon={faThumbsDown} />
+              )}
             </div>
           </ListItem>
         )}
@@ -229,7 +248,12 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
             subtitle={fight.fighterTwo.nickname}
           >
             <div slot="media">
-              <FontAwesomeIcon className="w-4" icon={faThumbsDown} />
+              {fight.winner === 2 && (
+                <FontAwesomeIcon className="w-4" icon={faThumbsUp} />
+              )}
+              {fight.winner === 1 && (
+                <FontAwesomeIcon className="w-4" icon={faThumbsDown} />
+              )}
             </div>
           </ListItem>
         )}
