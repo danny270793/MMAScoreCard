@@ -460,7 +460,7 @@ async function main(cache: Cache, database: Database): Promise<void> {
                 await database.insert('fighters', {
                     name: fight.fighterTwo.name,
                     link: fight.fighterTwo.link,
-                    nickname: stats.nickname,
+                    nickname: stats.nickname.replace('"', ''),
                     cityId: city.id,
                     birthday: stats.birthday
                         ? stats.birthday.toISOString().split('T')[0]
@@ -581,8 +581,8 @@ console.log(`${cache.keysCount()} keys in cache`)
 const databasePath: string = Path.join(__dirname, '..', 'database.sqlite')
 const database: Database = new SQLite(databasePath)
 
-exportData(database).catch(console.error)
+// exportData(database).catch(console.error)
 
-// main(cache, database)
-//     .then(() => exportData(database))
-//     .catch(console.error)
+main(cache, database)
+    .then(() => exportData(database))
+    .catch(console.error)
