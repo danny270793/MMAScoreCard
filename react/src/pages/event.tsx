@@ -13,10 +13,10 @@ import {
   selectors as backendSelectors,
 } from '../reducers/backend'
 import { useDispatch, useSelector } from 'react-redux'
-import type { Fight } from '../models/fight'
+import { EmptyFight, type Fight } from '../models/fight'
 import { useTranslation } from 'react-i18next'
 import type { Dispatch } from '@reduxjs/toolkit'
-import type { Event } from '../models/event'
+import { EmptyEvent, type Event } from '../models/event'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCalendar,
@@ -27,6 +27,7 @@ import {
   faWeight,
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
+import { Faker } from '../utils/faker'
 
 type EventPageProps = {
   id: string
@@ -74,8 +75,29 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
         backLink
       />
       <BlockTitle>{t('event', { postProcess: 'capitalize' })}</BlockTitle>
-      {event && (
-        <List dividersIos mediaList strongIos inset>
+      <List dividersIos mediaList strongIos inset>
+        {state === 'getting_event' && (
+          <ListItem
+            className="skeleton-text skeleton-effect-wave"
+            title={EmptyEvent.name}
+            subtitle={EmptyEvent.fight}
+            after={'uppcoming'}
+          >
+            <br />
+            <div>
+              {EmptyEvent.date.toISOString().split('T')[0]}
+              {' in 34 days'}
+            </div>
+            <div>
+              {EmptyEvent.location.city.country.name} -{' '}
+              {EmptyEvent.location.city.name}
+            </div>
+            <div>
+              {EmptyEvent.location.name !== '' && EmptyEvent.location.name}
+            </div>
+          </ListItem>
+        )}
+        {state !== 'getting_event' && event && (
           <ListItem
             key={event.id}
             title={event.name}
@@ -115,49 +137,92 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
               )}
             </div>
           </ListItem>
-        </List>
-      )}
+        )}
+      </List>
+
       <BlockTitle>{t('fights', { postProcess: 'capitalize' })}</BlockTitle>
       <List dividersIos mediaList strongIos inset>
-        {state === 'getting_fights' && 'Skeleton'}
-        {fights.length === 0 && (
+        {state === 'getting_event' &&
+          Faker.arrayOfNumbers(5).map((i: number) => (
+            <ListItem
+              className="skeleton-text skeleton-effect-wave"
+              key={i}
+              chevronCenter
+              title={`${EmptyFight.fighterOne.name} vs. ${EmptyFight.fighterTwo.name}`}
+              subtitle="EmptyFight.titleFight"
+            >
+              <br />
+              <div>
+                {EmptyFight.category.name} ({EmptyFight.category.weight} lbs)
+              </div>
+              {EmptyFight.type === 'done' && (
+                <>
+                  <div>
+                    {EmptyFight.decision} ({EmptyFight.method})
+                  </div>
+                  {EmptyFight.decision !== 'Decision' && (
+                    <div>
+                      {t('round', { postProcess: 'capitalize' })}{' '}
+                      {EmptyFight.round} {t('at')}{' '}
+                      {DateUtils.secondsToMMSS(EmptyFight.time!)}
+                    </div>
+                  )}
+                </>
+              )}
+            </ListItem>
+          ))}
+
+        {state !== 'getting_event' && fights.length === 0 && (
           <ListItem
             subtitle={t('fightsNotFound', { postProcess: 'capitalize' })}
           />
         )}
-        {fights.map((fight: Fight) => (
-          <ListItem
-            key={fight.id}
-            link={`/events/${fight.event.id}/fights/${fight.id}`}
-            chevronCenter
-            title={`${fight.fighterOne.name} vs. ${fight.fighterTwo.name}`}
-          >
-            <br />
-            <div>
-              <FontAwesomeIcon className="w-4" icon={faWeight} />{' '}
-              {fight.category.name} ({fight.category.weight} lbs)
-            </div>
-            {fight.type === 'done' && (
-              <>
-                <div>
-                  <FontAwesomeIcon className="w-4" icon={faGavel} />{' '}
-                  {fight.decision} ({fight.method})
-                </div>
-                {fight.decision !== 'Decision' && (
+        {state !== 'getting_event' &&
+          fights.map((fight: Fight) => (
+            <ListItem
+              key={fight.id}
+              link={`/fights/${fight.id}`}
+              chevronCenter
+              title={`${fight.fighterOne.name} vs. ${fight.fighterTwo.name}`}
+              subtitle={
+                fight.titleFight
+                  ? t('titleFight', { postProcess: 'capitalize' })
+                  : ''
+              }
+            >
+              <br />
+              <div>
+                <FontAwesomeIcon className="w-4" icon={faWeight} />{' '}
+                {fight.category.name} ({fight.category.weight} lbs)
+              </div>
+              {fight.type === 'done' && (
+                <>
                   <div>
-                    <FontAwesomeIcon className="w-4" icon={faClock} />{' '}
-                    {t('round', { postProcess: 'capitalize' })} {fight.round}{' '}
-                    {t('at')} {DateUtils.secondsToMMSS(fight.time!)}
+                    <FontAwesomeIcon className="w-4" icon={faGavel} />{' '}
+                    {fight.decision} ({fight.method})
                   </div>
-                )}
-              </>
-            )}
-          </ListItem>
-        ))}
+                  {fight.decision !== 'Decision' && (
+                    <div>
+                      <FontAwesomeIcon className="w-4" icon={faClock} />{' '}
+                      {t('round', { postProcess: 'capitalize' })} {fight.round}{' '}
+                      {t('at')} {DateUtils.secondsToMMSS(fight.time!)}
+                    </div>
+                  )}
+                </>
+              )}
+            </ListItem>
+          ))}
       </List>
       <Toolbar bottom>
         <div />
-        <div>{t('fightsCounter', { fights: fights.length })}</div>
+        {state === 'getting_event' && (
+          <div className="skeleton-text skeleton-effect-wave">
+            {t('fightsCounter', { fights: 0 })}
+          </div>
+        )}
+        {state !== 'getting_event' && (
+          <div>{t('fightsCounter', { fights: fights.length })}</div>
+        )}
         <div />
       </Toolbar>
     </Page>
