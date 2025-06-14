@@ -151,7 +151,7 @@ async function dropAndCreateTables(database: Database): Promise<void> {
             categoryId: 'INTEGER NULL',
             fighterOne: 'INTEGER NOT NULL',
             fighterTwo: 'INTEGER NOT NULL',
-            referee: 'INTEGER NULL',
+            refereeId: 'INTEGER NULL',
             mainEvent: 'INTEGER NOT NULL DEFAULT 0',
             titleFight: 'INTEGER NOT NULL DEFAULT 0',
             type: "VARCHAR(255) NOT NULL CHECK (type IN ('pending', 'done'))",
@@ -178,7 +178,7 @@ async function dropAndCreateTables(database: Database): Promise<void> {
                 referencedColumn: 'id',
             },
             {
-                column: 'referee',
+                column: 'refereeId',
                 referencedTable: 'referees',
                 referencedColumn: 'id',
             },
@@ -215,7 +215,12 @@ async function exportData(database: Database): Promise<void> {
 
         csv.push(...rows.map((row) => {
             const columns: string[] = Object.keys(row)
-            return columns.map((column: string) => `${fieldScaper}${row[column]}${fieldScaper}`).join(fieldSeparator)
+            return columns.map((column: string) => {
+                if(row[column] === null) {
+                    return ''
+                }
+                return `${fieldScaper}${row[column]}${fieldScaper}`
+            }).join(fieldSeparator)
         }))
         Fs.writeFileSync(
             Path.join(__dirname, '..', 'exports', `${table}.csv`),
@@ -512,7 +517,7 @@ async function main(cache: Cache, database: Database): Promise<void> {
                     position: fight.position,
                     fighterOne: one.id,
                     fighterTwo: two.id,
-                    referee: referee.id,
+                    refereeId: referee.id,
                     mainEvent: fight.mainEvent ? 1 : 0,
                     titleFight: fight.titleFight ? 1 : 0,
                     type: fight.type,
@@ -557,7 +562,7 @@ async function main(cache: Cache, database: Database): Promise<void> {
             //     await database.insert('fights', {
             //         fighterOne: fighter.id,
             //         fighterTwo: opponent.id,
-            //         referee: null,
+            //         refereeId: null,
             //         mainEvent: 0,
             //         titleFight: 0,
             //         type: 'done',
