@@ -21,4 +21,6 @@ export interface Lang {
   at: string
   round: string
   notFound: string
+  titleFight: string
+  fight: string
 }
