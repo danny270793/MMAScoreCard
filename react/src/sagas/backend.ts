@@ -3,6 +3,7 @@ import {
   actions as backendActions,
   type Type as BackendTypes,
   type GetEventAction,
+  type GetFightAction,
 } from '../reducers/backend'
 import { Backend } from '../connectors/backend'
 import type { Event } from '../connectors/backend/models/event'
@@ -13,7 +14,7 @@ import type { Fight } from '../connectors/backend/models/fight'
 export const sagas: ForkEffect[] = [
   takeLatest<BackendTypes>('backend/GET_EVENTS', onGetEventsRequested),
   takeLatest<BackendTypes>('backend/GET_EVENT', onGetEventRequested),
-  // takeLatest<BackendTypes>('backend/GET_FIGHT', onGetFightRequested),
+  takeLatest<BackendTypes>('backend/GET_FIGHT', onGetFightRequested),
 ]
 
 function* onGetEventsRequested(): Generator {
@@ -44,17 +45,19 @@ function* onGetEventRequested(action: Action): Generator {
   }
 }
 
-// function* onGetFightRequested(action: Action): Generator {
-//   try {
-//     const castedAction: GetFightAction = action as GetFightAction
+function* onGetFightRequested(action: Action): Generator {
+  try {
+    const castedAction: GetFightAction = action as GetFightAction
 
-//     const fights: Fight[] = yield call(Backend.getFights)
-//     const fight: Fight = fights.filter(
-//       (fight: Fight) => `${fight.id}` === castedAction.id,
-//     )[0]
+    const fight: Fight = yield call(Backend.getFight, castedAction.id)
 
-//     yield put(backendActions.getFightSuccess(fight))
-//   } catch (error) {
-//     yield put(backendActions.getFightError(error as Error))
-//   }
-// }
+    yield put(
+      backendActions.getFightSuccess(
+        mapper.toEvent(fight.events),
+        mapper.toFight(fight),
+      ),
+    )
+  } catch (error) {
+    yield put(backendActions.getFightError(error as Error))
+  }
+}
