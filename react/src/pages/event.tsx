@@ -21,13 +21,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCalendar,
   faClock,
-  faGavel,
   faLocation,
   faMap,
+  faPersonChalkboard,
   faWeight,
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
 import { Faker } from '../utils/faker'
+import { Logger } from '../utils/logger'
+
+const logger: Logger = new Logger('/src/pages/event.tsx')
 
 type EventPageProps = {
   id: string
@@ -48,6 +51,7 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
   }
 
   useEffect(() => {
+    logger.debug(`props.id=${props.id}`)
     dispatch(backendActions.getEvent(props.id))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -198,7 +202,10 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
               {fight.type === 'done' && (
                 <>
                   <div>
-                    <FontAwesomeIcon className="w-4" icon={faGavel} />{' '}
+                    <FontAwesomeIcon
+                      className="w-4"
+                      icon={faPersonChalkboard}
+                    />{' '}
                     {fight.decision} ({fight.method})
                   </div>
                   {fight.decision !== 'Decision' && (
