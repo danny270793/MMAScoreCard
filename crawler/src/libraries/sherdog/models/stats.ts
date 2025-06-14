@@ -1,5 +1,5 @@
 export interface Stats {
-    nickname: string
+    nickname?: string
     country: string
     city: string
     birthday?: Date
