@@ -18,4 +18,5 @@ export interface Fight {
   round?: number
   decision?: string
   events: Event
+  winner?: number
 }
