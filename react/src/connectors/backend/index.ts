@@ -96,6 +96,7 @@ export class Backend {
         `id,position,
         categories(id,name,weight),
         referees(id,name),
+        winner,
         fightertwoid,fightertwoname,fightertwonickname,fightertwobirthday,fightertwodied,fightertwoheight,fightertwoweight,fightertwolink,
         fighteroneid,fighteronename,fighteronenickname,fighteronebirthday,fighteronedied,fighteroneheight,fighteroneweight,fighteronelink,
         mainEvent,titleFight,type,method,time,round,decision,
@@ -112,6 +113,7 @@ export class Backend {
       return {
         id: fight.id,
         position: fight.position,
+        winner: fight.winner,
         categories: {
           id: fight.categories.id,
           name: fight.categories.name,
@@ -216,6 +218,7 @@ export class Backend {
         `id,position,
         categories(id,name,weight),
         referees(id,name),
+        winner,
         fightertwoid,fightertwoname,fightertwonickname,fightertwobirthday,fightertwodied,fightertwoheight,fightertwoweight,fightertwolink,
         fighteroneid,fighteronename,fighteronenickname,fighteronebirthday,fighteronedied,fighteroneheight,fighteroneweight,fighteronelink,
         mainEvent,titleFight,type,method,time,round,decision,
@@ -230,6 +233,7 @@ export class Backend {
     const parsedData: Fight = data.map<Fight>((fight: any) => {
       return {
         id: fight.id,
+        winner: fight.winner,
         position: fight.position,
         categories: {
           id: fight.categories.id,
