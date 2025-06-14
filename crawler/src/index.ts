@@ -203,10 +203,23 @@ async function exportData(database: Database): Promise<void> {
         'fights',
     ]
     const promises: Promise<void>[] = tables.map(async (table: string) => {
-        const countries: any[] = await database.get(table, {})
+        const rows: any[] = await database.get(table, {})
         Fs.writeFileSync(
             Path.join(__dirname, '..', 'exports', `${table}.json`),
-            JSON.stringify(countries, null, 2),
+            JSON.stringify(rows, null, 2),
+        )
+
+        const fieldSeparator: string = ';'
+        const fieldScaper: string = '"'
+        const csv: string[] = [Object.keys(rows[0]).map((row: string) => `${fieldScaper}${row}${fieldScaper}`).join(fieldSeparator)]
+
+        csv.push(...rows.map((row) => {
+            const columns: string[] = Object.keys(row)
+            return columns.map((column: string) => `${fieldScaper}${row[column]}${fieldScaper}`).join(fieldSeparator)
+        }))
+        Fs.writeFileSync(
+            Path.join(__dirname, '..', 'exports', `${table}.csv`),
+            csv.join('\n'),
         )
     })
     console.log('exporting to JSON files')
@@ -568,6 +581,8 @@ console.log(`${cache.keysCount()} keys in cache`)
 const databasePath: string = Path.join(__dirname, '..', 'database.sqlite')
 const database: Database = new SQLite(databasePath)
 
-main(cache, database)
-    .then(() => exportData(database))
-    .catch(console.error)
+exportData(database).catch(console.error)
+
+// main(cache, database)
+//     .then(() => exportData(database))
+//     .catch(console.error)
