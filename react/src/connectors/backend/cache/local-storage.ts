@@ -1,11 +1,19 @@
 import type { Cache } from '.'
+import { Logger } from '../../../utils/logger'
+
+const logger: Logger = new Logger(
+  '/src/connectors/backend/cache/local-storage.ts',
+)
 
 export class LocalStorageCache implements Cache {
   async has(key: string): Promise<boolean> {
     const hasItem: boolean = localStorage.getItem(key) !== null
     if (!hasItem) {
-      console.warn(`Cache miss for key: ${key}`)
+      logger.debug(`Cache miss key=${key}`)
+    } else {
+      logger.debug(`Cache hit key=${key}`)
     }
+
     return hasItem
   }
   async get(key: string): Promise<string> {
