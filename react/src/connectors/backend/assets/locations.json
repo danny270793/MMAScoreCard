@@ -1,0 +1,1477 @@
+[
+  {
+    "id": 1,
+    "name": "UFC Apex,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 2,
+    "name": "Prudential Center,  Newark",
+    "cityId": 2
+  },
+  {
+    "id": 3,
+    "name": "State Farm Arena,  Atlanta",
+    "cityId": 3
+  },
+  {
+    "id": 4,
+    "name": "Baku Crystal Hall",
+    "cityId": 4
+  },
+  {
+    "id": 5,
+    "name": "T-Mobile Arena,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 6,
+    "name": "Bridgestone Arena,  Nashville",
+    "cityId": 5
+  },
+  {
+    "id": 7,
+    "name": "Smoothie King Center,  New Orleans",
+    "cityId": 6
+  },
+  {
+    "id": 8,
+    "name": "Etihad Arena",
+    "cityId": 7
+  },
+  {
+    "id": 9,
+    "name": "United Center,  Chicago",
+    "cityId": 8
+  },
+  {
+    "id": 10,
+    "name": "UFC Performance Institute",
+    "cityId": 9
+  },
+  {
+    "id": 11,
+    "name": "",
+    "cityId": 9
+  },
+  {
+    "id": 12,
+    "name": "Arena Guadalajara,  Guadalajara",
+    "cityId": 10
+  },
+  {
+    "id": 13,
+    "name": "Bell Centre,  Montreal",
+    "cityId": 11
+  },
+  {
+    "id": 14,
+    "name": "Wells Fargo Arena,  Des Moines",
+    "cityId": 12
+  },
+  {
+    "id": 15,
+    "name": "T-Mobile Center,  Kansas City",
+    "cityId": 13
+  },
+  {
+    "id": 16,
+    "name": "Kaseya Center,  Miami",
+    "cityId": 14
+  },
+  {
+    "id": 17,
+    "name": "Arena CDMX,  Mexico City",
+    "cityId": 15
+  },
+  {
+    "id": 18,
+    "name": "O2 Arena,  London",
+    "cityId": 16
+  },
+  {
+    "id": 19,
+    "name": "Climate Pledge Arena,  Seattle",
+    "cityId": 17
+  },
+  {
+    "id": 20,
+    "name": "Qudos Bank Arena,  Sydney",
+    "cityId": 18
+  },
+  {
+    "id": 21,
+    "name": "anb Arena",
+    "cityId": 19
+  },
+  {
+    "id": 22,
+    "name": "Intuit Dome,  Inglewood",
+    "cityId": 20
+  },
+  {
+    "id": 23,
+    "name": "Amalie Arena,  Tampa",
+    "cityId": 14
+  },
+  {
+    "id": 24,
+    "name": "Galaxy Arena",
+    "cityId": 21
+  },
+  {
+    "id": 25,
+    "name": "Madison Square Garden,  New York",
+    "cityId": 22
+  },
+  {
+    "id": 26,
+    "name": "Rogers Place,  Edmonton",
+    "cityId": 23
+  },
+  {
+    "id": 27,
+    "name": "Etihad Arena,  Yas Island",
+    "cityId": 7
+  },
+  {
+    "id": 28,
+    "name": "Delta Center,  Salt Lake City",
+    "cityId": 24
+  },
+  {
+    "id": 29,
+    "name": "Accor Arena",
+    "cityId": 25
+  },
+  {
+    "id": 30,
+    "name": "The Sphere,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 31,
+    "name": "RAC Arena,  Perth",
+    "cityId": 26
+  },
+  {
+    "id": 32,
+    "name": "Co-op Live,  Manchester",
+    "cityId": 27
+  },
+  {
+    "id": 33,
+    "name": "Ball Arena,  Denver",
+    "cityId": 28
+  },
+  {
+    "id": 34,
+    "name": "Kingdom Arena",
+    "cityId": 19
+  },
+  {
+    "id": 35,
+    "name": "KFC Yum! Center,  Louisville",
+    "cityId": 29
+  },
+  {
+    "id": 36,
+    "name": "Enterprise Center,  St. Louis",
+    "cityId": 13
+  },
+  {
+    "id": 37,
+    "name": "Farmasi Arena,  Rio de Janeiro",
+    "cityId": 30
+  },
+  {
+    "id": 38,
+    "name": "Boardwalk Hall,  Atlantic City",
+    "cityId": 2
+  },
+  {
+    "id": 39,
+    "name": "Mexico City Arena,  Mexico City",
+    "cityId": 31
+  },
+  {
+    "id": 40,
+    "name": "Honda Center,  Anaheim",
+    "cityId": 20
+  },
+  {
+    "id": 41,
+    "name": "Scotiabank Arena,  Toronto",
+    "cityId": 32
+  },
+  {
+    "id": 42,
+    "name": "Moody Center,  Austin",
+    "cityId": 33
+  },
+  {
+    "id": 43,
+    "name": "Ibirapuera Gymnasium,  Sao Paulo",
+    "cityId": 34
+  },
+  {
+    "id": 44,
+    "name": "Singapore Indoor Stadium",
+    "cityId": 35
+  },
+  {
+    "id": 45,
+    "name": "TD Garden,  Boston",
+    "cityId": 36
+  },
+  {
+    "id": 46,
+    "name": "Vystar Veterans Memorial Arena,  Jacksonville",
+    "cityId": 14
+  },
+  {
+    "id": 47,
+    "name": "Rogers Arena,  Vancouver",
+    "cityId": 37
+  },
+  {
+    "id": 48,
+    "name": "Spectrum Center,  Charlotte",
+    "cityId": 38
+  },
+  {
+    "id": 49,
+    "name": "AT&T Center,  San Antonio",
+    "cityId": 33
+  },
+  {
+    "id": 50,
+    "name": "The Theater at Virgin Hotels,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 51,
+    "name": "Jeunesse Arena",
+    "cityId": 30
+  },
+  {
+    "id": 52,
+    "name": "Amway Center,  Orlando",
+    "cityId": 14
+  },
+  {
+    "id": 53,
+    "name": "Vivint Arena,  Salt Lake City",
+    "cityId": 24
+  },
+  {
+    "id": 54,
+    "name": "Pechanga Arena,  San Diego",
+    "cityId": 20
+  },
+  {
+    "id": 55,
+    "name": "American Airlines Center,  Dallas",
+    "cityId": 33
+  },
+  {
+    "id": 56,
+    "name": "UBS Arena,  Elmont",
+    "cityId": 22
+  },
+  {
+    "id": 57,
+    "name": "Footprint Center,  Phoenix",
+    "cityId": 39
+  },
+  {
+    "id": 58,
+    "name": "VyStar Veterans Memorial Arena,  Jacksonville",
+    "cityId": 14
+  },
+  {
+    "id": 59,
+    "name": "Nationwide Arena,  Columbus",
+    "cityId": 40
+  },
+  {
+    "id": 60,
+    "name": "Toyota Center,  Houston",
+    "cityId": 33
+  },
+  {
+    "id": 61,
+    "name": "Gila River Arena,  Glendale",
+    "cityId": 39
+  },
+  {
+    "id": 62,
+    "name": "Flash Forum,  Yas Island",
+    "cityId": 7
+  },
+  {
+    "id": 63,
+    "name": "Nilson Nelson Gymnasium,  Brasilia",
+    "cityId": 41
+  },
+  {
+    "id": 64,
+    "name": "Chartway Arena,  Norfolk",
+    "cityId": 42
+  },
+  {
+    "id": 65,
+    "name": "Spark Arena",
+    "cityId": 43
+  },
+  {
+    "id": 66,
+    "name": "Santa Ana Star Center,  Rio Rancho",
+    "cityId": 44
+  },
+  {
+    "id": 67,
+    "name": "PNC Arena,  Raleigh",
+    "cityId": 38
+  },
+  {
+    "id": 68,
+    "name": "Sajik Arena",
+    "cityId": 45
+  },
+  {
+    "id": 69,
+    "name": "Capital One Arena,  Washington",
+    "cityId": 46
+  },
+  {
+    "id": 70,
+    "name": "CSKA Arena",
+    "cityId": 47
+  },
+  {
+    "id": 71,
+    "name": "Docklands Stadium,  Melbourne",
+    "cityId": 48
+  },
+  {
+    "id": 72,
+    "name": "Royal Arena",
+    "cityId": 49
+  },
+  {
+    "id": 73,
+    "name": "Du Arena,  Yas Island",
+    "cityId": 7
+  },
+  {
+    "id": 74,
+    "name": "Shenzhen Universiade Sports Centre,  Shenzhen",
+    "cityId": 50
+  },
+  {
+    "id": 75,
+    "name": "Antel Arena",
+    "cityId": 51
+  },
+  {
+    "id": 76,
+    "name": "Golden 1 Center,  Sacramento",
+    "cityId": 20
+  },
+  {
+    "id": 77,
+    "name": "Target Center,  Minneapolis",
+    "cityId": 52
+  },
+  {
+    "id": 78,
+    "name": "Bon Secours Wellness Arena,  Greenville",
+    "cityId": 53
+  },
+  {
+    "id": 79,
+    "name": "Ericsson Globe",
+    "cityId": 54
+  },
+  {
+    "id": 80,
+    "name": "Blue Cross Arena,  Rochester",
+    "cityId": 22
+  },
+  {
+    "id": 81,
+    "name": "Canadian Tire Centre,  Ottawa",
+    "cityId": 32
+  },
+  {
+    "id": 82,
+    "name": "BB&T Center,  Sunrise",
+    "cityId": 14
+  },
+  {
+    "id": 83,
+    "name": "Yubileyny Sports Complex",
+    "cityId": 55
+  },
+  {
+    "id": 84,
+    "name": "Wells Fargo Center,  Philadelphia",
+    "cityId": 56
+  },
+  {
+    "id": 85,
+    "name": "Intrust Bank Arena,  Wichita",
+    "cityId": 57
+  },
+  {
+    "id": 86,
+    "name": "O2 Arena",
+    "cityId": 58
+  },
+  {
+    "id": 87,
+    "name": "Talking Stick Resort Arena,  Phoenix",
+    "cityId": 39
+  },
+  {
+    "id": 88,
+    "name": "Rod Laver Arena,  Melbourne",
+    "cityId": 48
+  },
+  {
+    "id": 89,
+    "name": "Centro de Formacao Olimpica do Nordeste,  Fortaleza",
+    "cityId": 59
+  },
+  {
+    "id": 90,
+    "name": "EVENT CANCELED - Honda Center,  Anaheim",
+    "cityId": 20
+  },
+  {
+    "id": 91,
+    "name": "Barclays Center,  Brooklyn",
+    "cityId": 22
+  },
+  {
+    "id": 92,
+    "name": "The Forum,  Inglewood",
+    "cityId": 20
+  },
+  {
+    "id": 93,
+    "name": "Fiserv Forum,  Milwaukee",
+    "cityId": 60
+  },
+  {
+    "id": 94,
+    "name": "Adelaide Entertainment Centre,  Adelaide",
+    "cityId": 61
+  },
+  {
+    "id": 95,
+    "name": "Pearl Concert Theater at Palms Casino Resort,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 96,
+    "name": "Cadillac Arena",
+    "cityId": 62
+  },
+  {
+    "id": 97,
+    "name": "Parque Roca Arena",
+    "cityId": 63
+  },
+  {
+    "id": 98,
+    "name": "Pepsi Center,  Denver",
+    "cityId": 28
+  },
+  {
+    "id": 99,
+    "name": "Moncton Events Centre,  Moncton",
+    "cityId": 64
+  },
+  {
+    "id": 100,
+    "name": "Geraldo Jose de Almeida (Ibirapuera) Gymnasium,  Sao Paulo",
+    "cityId": 34
+  },
+  {
+    "id": 101,
+    "name": "Olimpiysky Arena",
+    "cityId": 47
+  },
+  {
+    "id": 102,
+    "name": "Pinnacle Bank Arena,  Lincoln",
+    "cityId": 65
+  },
+  {
+    "id": 103,
+    "name": "Staples Center,  Los Angeles",
+    "cityId": 20
+  },
+  {
+    "id": 104,
+    "name": "Scotiabank Saddledome,  Calgary",
+    "cityId": 23
+  },
+  {
+    "id": 105,
+    "name": "Barclaycard Arena",
+    "cityId": 66
+  },
+  {
+    "id": 106,
+    "name": "CenturyLink Arena,  Boise",
+    "cityId": 67
+  },
+  {
+    "id": 107,
+    "name": "Adirondack Bank Center,  Utica",
+    "cityId": 22
+  },
+  {
+    "id": 108,
+    "name": "Echo Arena,  Liverpool",
+    "cityId": 68
+  },
+  {
+    "id": 109,
+    "name": "Movistar Arena",
+    "cityId": 69
+  },
+  {
+    "id": 110,
+    "name": "Jim Whelan Boardwalk Hall,  Atlantic City",
+    "cityId": 2
+  },
+  {
+    "id": 111,
+    "name": "Frank Erwin Center,  Austin",
+    "cityId": 33
+  },
+  {
+    "id": 112,
+    "name": "Perth Arena,  Perth",
+    "cityId": 26
+  },
+  {
+    "id": 113,
+    "name": "Guilherme Paraense (Mangueirinho) Arena,  Belem",
+    "cityId": 70
+  },
+  {
+    "id": 114,
+    "name": "Scottrade Center,  St. Louis",
+    "cityId": 13
+  },
+  {
+    "id": 115,
+    "name": "MTS Centre,  Winnipeg",
+    "cityId": 71
+  },
+  {
+    "id": 116,
+    "name": "Save Mart Center,  Fresno",
+    "cityId": 20
+  },
+  {
+    "id": 117,
+    "name": "Little Caesars Arena,  Detroit",
+    "cityId": 72
+  },
+  {
+    "id": 118,
+    "name": "Park Theater,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 119,
+    "name": "Mercedez-Benz Arena",
+    "cityId": 9
+  },
+  {
+    "id": 120,
+    "name": "Ted Constant Convocation Center,  Norfolk",
+    "cityId": 42
+  },
+  {
+    "id": 121,
+    "name": "Ergo Arena",
+    "cityId": 73
+  },
+  {
+    "id": 122,
+    "name": "Saitama Super Arena,  Saitama",
+    "cityId": 74
+  },
+  {
+    "id": 123,
+    "name": "PPG Paints Arena,  Pittsburgh",
+    "cityId": 56
+  },
+  {
+    "id": 124,
+    "name": "Ahoy Rotterdam,  Rotterdam",
+    "cityId": 75
+  },
+  {
+    "id": 125,
+    "name": "Nassau Coliseum,  Uniondale",
+    "cityId": 22
+  },
+  {
+    "id": 126,
+    "name": "SSE Hydro Arena",
+    "cityId": 76
+  },
+  {
+    "id": 127,
+    "name": "Chesapeake Energy Arena,  Oklahoma City",
+    "cityId": 77
+  },
+  {
+    "id": 128,
+    "name": "Vector Arena",
+    "cityId": 43
+  },
+  {
+    "id": 129,
+    "name": "HSBC Arena",
+    "cityId": 30
+  },
+  {
+    "id": 130,
+    "name": "Ericsson Globe Arena",
+    "cityId": 54
+  },
+  {
+    "id": 131,
+    "name": "Sprint Center,  Kansas City",
+    "cityId": 13
+  },
+  {
+    "id": 132,
+    "name": "KeyBank Center,  Buffalo",
+    "cityId": 22
+  },
+  {
+    "id": 133,
+    "name": "O2 Arena,  London",
+    "cityId": 78
+  },
+  {
+    "id": 134,
+    "name": "Northeast Olympic Training Center,  Fortaleza",
+    "cityId": 59
+  },
+  {
+    "id": 135,
+    "name": "Scotiabank Centre,  Halifax",
+    "cityId": 79
+  },
+  {
+    "id": 136,
+    "name": "Talking Stick Arena,  Phoenix",
+    "cityId": 39
+  },
+  {
+    "id": 137,
+    "name": "Air Canada Centre,  Toronto",
+    "cityId": 32
+  },
+  {
+    "id": 138,
+    "name": "Times Union Center,  Albany",
+    "cityId": 22
+  },
+  {
+    "id": 139,
+    "name": "Palms Casino Resort,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 140,
+    "name": "SSE Arena",
+    "cityId": 80
+  },
+  {
+    "id": 141,
+    "name": "EVENT CANCELED - Mall of Asia Arena,  Pasay",
+    "cityId": 81
+  },
+  {
+    "id": 142,
+    "name": "Manchester Arena,  Manchester",
+    "cityId": 27
+  },
+  {
+    "id": 143,
+    "name": "Moda Center,  Portland",
+    "cityId": 82
+  },
+  {
+    "id": 144,
+    "name": "State Farm Arena,  Hidalgo",
+    "cityId": 33
+  },
+  {
+    "id": 145,
+    "name": "Quicken Loans Arena,  Cleveland",
+    "cityId": 40
+  },
+  {
+    "id": 146,
+    "name": "Vivint Smart Home Arena,  Salt Lake City",
+    "cityId": 24
+  },
+  {
+    "id": 147,
+    "name": "Philips Arena,  Atlanta",
+    "cityId": 3
+  },
+  {
+    "id": 148,
+    "name": "Denny Sanford Premier Center,  Sioux Falls",
+    "cityId": 83
+  },
+  {
+    "id": 149,
+    "name": "MGM Grand Garden Arena,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 150,
+    "name": "TD Place Arena,  Ottawa",
+    "cityId": 32
+  },
+  {
+    "id": 151,
+    "name": "Mandalay Bay Events Center,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 152,
+    "name": "Arena da Baixada,  Curitiba",
+    "cityId": 84
+  },
+  {
+    "id": 153,
+    "name": "Zagreb Arena",
+    "cityId": 85
+  },
+  {
+    "id": 154,
+    "name": "Brisbane Entertainment Centre,  Brisbane",
+    "cityId": 86
+  },
+  {
+    "id": 155,
+    "name": "Consol Energy Center,  Pittsburgh",
+    "cityId": 56
+  },
+  {
+    "id": 156,
+    "name": "The Chelsea at the Cosmopolitan,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 157,
+    "name": "Olympic Gymnastics Arena",
+    "cityId": 87
+  },
+  {
+    "id": 158,
+    "name": "Monterrey Arena,  Monterrey",
+    "cityId": 88
+  },
+  {
+    "id": 159,
+    "name": "Etihad Stadium,  Melbourne",
+    "cityId": 48
+  },
+  {
+    "id": 160,
+    "name": "Geraldo Jose de Almeida (Ibirapuera) State Gymnasium,  Sao Paulo",
+    "cityId": 34
+  },
+  {
+    "id": 161,
+    "name": "3Arena,  Dublin",
+    "cityId": 89
+  },
+  {
+    "id": 162,
+    "name": "Saitama Super Arena",
+    "cityId": 74
+  },
+  {
+    "id": 163,
+    "name": "SaskTel Centre,  Saskatoon",
+    "cityId": 90
+  },
+  {
+    "id": 164,
+    "name": "HSBC Arena,  Rio de Janeiro",
+    "cityId": 30
+  },
+  {
+    "id": 165,
+    "name": "Valley View Casino Center,  San Diego",
+    "cityId": 20
+  },
+  {
+    "id": 166,
+    "name": "Seminole Hard Rock Hotel and Casino,  Hollywood",
+    "cityId": 14
+  },
+  {
+    "id": 167,
+    "name": "O2 World",
+    "cityId": 91
+  },
+  {
+    "id": 168,
+    "name": "Goiania Arena,  Goiania",
+    "cityId": 92
+  },
+  {
+    "id": 169,
+    "name": "Mall of Asia Arena,  Pasay",
+    "cityId": 81
+  },
+  {
+    "id": 170,
+    "name": "Krakow Arena,  Krakow",
+    "cityId": 93
+  },
+  {
+    "id": 171,
+    "name": "Patriot Center,  Fairfax",
+    "cityId": 42
+  },
+  {
+    "id": 172,
+    "name": "Maracanazinho Gymnasium",
+    "cityId": 30
+  },
+  {
+    "id": 173,
+    "name": "Gigantinho Gymnasium,  Porto Alegre",
+    "cityId": 94
+  },
+  {
+    "id": 174,
+    "name": "1stBank Center,  Broomfield",
+    "cityId": 28
+  },
+  {
+    "id": 175,
+    "name": "Tele2 Arena",
+    "cityId": 54
+  },
+  {
+    "id": 176,
+    "name": "Jose Correa Arena,  Barueri",
+    "cityId": 34
+  },
+  {
+    "id": 177,
+    "name": "US Airways Center,  Phoenix",
+    "cityId": 39
+  },
+  {
+    "id": 178,
+    "name": "Tancredo Neves Municipal Gymnasium,  Uberlandia",
+    "cityId": 95
+  },
+  {
+    "id": 179,
+    "name": "Allphones Arena,  Sydney",
+    "cityId": 18
+  },
+  {
+    "id": 180,
+    "name": "Maracanazinho Gymnasium,  Rio de Janeiro",
+    "cityId": 30
+  },
+  {
+    "id": 181,
+    "name": "Halifax Metro Centre,  Halifax",
+    "cityId": 79
+  },
+  {
+    "id": 182,
+    "name": "Foxwoods Resort Casino,  Mashantucket",
+    "cityId": 96
+  },
+  {
+    "id": 183,
+    "name": "Sleep Train Arena,  Sacramento",
+    "cityId": 20
+  },
+  {
+    "id": 184,
+    "name": "BOK Center,  Tulsa",
+    "cityId": 77
+  },
+  {
+    "id": 185,
+    "name": "Cotai Arena",
+    "cityId": 21
+  },
+  {
+    "id": 186,
+    "name": "Cross Insurance Center,  Bangor",
+    "cityId": 97
+  },
+  {
+    "id": 187,
+    "name": "EVENT CANCELED - Staples Center,  Los Angeles",
+    "cityId": 20
+  },
+  {
+    "id": 188,
+    "name": "SAP Center,  San Jose",
+    "cityId": 20
+  },
+  {
+    "id": 189,
+    "name": "The O2,  Dublin",
+    "cityId": 89
+  },
+  {
+    "id": 190,
+    "name": "Revel Casino Hotel,  Atlantic City",
+    "cityId": 2
+  },
+  {
+    "id": 191,
+    "name": "Tingley Coliseum,  Albuquerque",
+    "cityId": 44
+  },
+  {
+    "id": 192,
+    "name": "U.S. Bank Arena,  Cincinnati",
+    "cityId": 40
+  },
+  {
+    "id": 193,
+    "name": "Baltimore Arena,  Baltimore",
+    "cityId": 98
+  },
+  {
+    "id": 194,
+    "name": "Pepsi Coliseum,  Quebec City",
+    "cityId": 11
+  },
+  {
+    "id": 195,
+    "name": "DU Arena",
+    "cityId": 7
+  },
+  {
+    "id": 196,
+    "name": "Nelio Dias Gymnasium,  Natal",
+    "cityId": 99
+  },
+  {
+    "id": 197,
+    "name": "American Airlines Arena,  Dallas",
+    "cityId": 33
+  },
+  {
+    "id": 198,
+    "name": "Arena Jaragua,  Jaragua do Sul",
+    "cityId": 100
+  },
+  {
+    "id": 199,
+    "name": "The Arena at Gwinnett Center,  Duluth",
+    "cityId": 3
+  },
+  {
+    "id": 200,
+    "name": "Marina Bay Sands",
+    "cityId": 101
+  },
+  {
+    "id": 201,
+    "name": "Fort Campbell,  Hopkinsville",
+    "cityId": 29
+  },
+  {
+    "id": 202,
+    "name": "Phones 4U Arena,  Manchester",
+    "cityId": 27
+  },
+  {
+    "id": 203,
+    "name": "Jose Correa Gymnasium,  Barueri",
+    "cityId": 34
+  },
+  {
+    "id": 204,
+    "name": "Jornalista Felipe Drumond Stadium,  Belo Horizonte",
+    "cityId": 95
+  },
+  {
+    "id": 205,
+    "name": "BMO Harris Bradley Center,  Milwaukee",
+    "cityId": 60
+  },
+  {
+    "id": 206,
+    "name": "Bankers Life Fieldhouse,  Indianapolis",
+    "cityId": 102
+  },
+  {
+    "id": 207,
+    "name": "KeyArena,  Seattle",
+    "cityId": 17
+  },
+  {
+    "id": 208,
+    "name": "Paulo Sarasate Gymnasium,  Fortaleza",
+    "cityId": 59
+  },
+  {
+    "id": 209,
+    "name": "HP Pavilion,  San Jose",
+    "cityId": 20
+  },
+  {
+    "id": 210,
+    "name": "Wembley Arena",
+    "cityId": 103
+  },
+  {
+    "id": 211,
+    "name": "Geraldo Jose de Almeida State Gymnasium",
+    "cityId": 34
+  },
+  {
+    "id": 212,
+    "name": "The Joint at the Hard Rock Hotel & Casino,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 213,
+    "name": "Gold Coast Convention Centre,  Gold Coast",
+    "cityId": 86
+  },
+  {
+    "id": 214,
+    "name": "Key Arena,  Seattle",
+    "cityId": 17
+  },
+  {
+    "id": 215,
+    "name": "Cotai Arena,  Cotai",
+    "cityId": 21
+  },
+  {
+    "id": 216,
+    "name": "Capital FM Arena",
+    "cityId": 104
+  },
+  {
+    "id": 217,
+    "name": "EVENT CANCELED - \nMandalay Bay Events Center,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 218,
+    "name": "HP Pavillion,  San Jose",
+    "cityId": 20
+  },
+  {
+    "id": 219,
+    "name": "Revel Atlantic City,  Atlantic City",
+    "cityId": 2
+  },
+  {
+    "id": 220,
+    "name": "BankAtlantic Center,  Fort Lauderdale",
+    "cityId": 14
+  },
+  {
+    "id": 221,
+    "name": "Izod Center,  East Rutherford",
+    "cityId": 2
+  },
+  {
+    "id": 222,
+    "name": "Phillips Arena,  Atlanta",
+    "cityId": 3
+  },
+  {
+    "id": 223,
+    "name": "Omaha Civic Auditorium,  Omaha",
+    "cityId": 65
+  },
+  {
+    "id": 224,
+    "name": "The Pearl at the Palms,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 225,
+    "name": "LG Arena,  Birmingham",
+    "cityId": 105
+  },
+  {
+    "id": 226,
+    "name": "Verizon Center,  Washington",
+    "cityId": 46
+  },
+  {
+    "id": 227,
+    "name": "Ernest N. Morial Convention Center,  New Orleans",
+    "cityId": 6
+  },
+  {
+    "id": 228,
+    "name": "Bradley Center,  Milwaukee",
+    "cityId": 60
+  },
+  {
+    "id": 229,
+    "name": "Rogers Centre,  Toronto",
+    "cityId": 32
+  },
+  {
+    "id": 230,
+    "name": "Acer Arena,  Sydney",
+    "cityId": 18
+  },
+  {
+    "id": 231,
+    "name": "Fort Hood,  Killeen",
+    "cityId": 33
+  },
+  {
+    "id": 232,
+    "name": "The Palace of Auburn Hills,  Auburn Hills",
+    "cityId": 72
+  },
+  {
+    "id": 233,
+    "name": "Konig Pilsener Arena",
+    "cityId": 106
+  },
+  {
+    "id": 234,
+    "name": "O2 Arena",
+    "cityId": 103
+  },
+  {
+    "id": 235,
+    "name": "Conseco Fieldhouse,  Indianapolis",
+    "cityId": 102
+  },
+  {
+    "id": 236,
+    "name": "Oracle Arena,  Oakland",
+    "cityId": 20
+  },
+  {
+    "id": 237,
+    "name": "San Diego Sports Arena,  San Diego",
+    "cityId": 20
+  },
+  {
+    "id": 238,
+    "name": "GM Place,  Vancouver",
+    "cityId": 37
+  },
+  {
+    "id": 239,
+    "name": "Ferrari World Concert Arena",
+    "cityId": 7
+  },
+  {
+    "id": 240,
+    "name": "Bojangles Coliseum,  Charlotte",
+    "cityId": 38
+  },
+  {
+    "id": 241,
+    "name": "FedEx Forum,  Memphis",
+    "cityId": 5
+  },
+  {
+    "id": 242,
+    "name": "Manchester Evening News Arena,  Manchester",
+    "cityId": 107
+  },
+  {
+    "id": 243,
+    "name": "Cox Convention Center,  Oklahoma City",
+    "cityId": 77
+  },
+  {
+    "id": 244,
+    "name": "Rose Garden Arena,  Portland",
+    "cityId": 82
+  },
+  {
+    "id": 245,
+    "name": "Wachovia Center,  Philadelphia",
+    "cityId": 56
+  },
+  {
+    "id": 246,
+    "name": "Lanxess Arena",
+    "cityId": 108
+  },
+  {
+    "id": 247,
+    "name": "Sommet Center,  Nashville",
+    "cityId": 5
+  },
+  {
+    "id": 248,
+    "name": "USF Sun Dome,  Tampa",
+    "cityId": 14
+  },
+  {
+    "id": 249,
+    "name": "O2 Arena",
+    "cityId": 109
+  },
+  {
+    "id": 250,
+    "name": "Crown Coliseum,  Fayetteville",
+    "cityId": 38
+  },
+  {
+    "id": 251,
+    "name": "Allstate Arena,  Rosemont",
+    "cityId": 8
+  },
+  {
+    "id": 252,
+    "name": "National Indoor Arena,  Birmingham",
+    "cityId": 105
+  },
+  {
+    "id": 253,
+    "name": "Broomfield Event Center,  Broomfield",
+    "cityId": 28
+  },
+  {
+    "id": 254,
+    "name": "Metro Radio Arena,  Newcastle upon Tyne",
+    "cityId": 110
+  },
+  {
+    "id": 255,
+    "name": "ARCO Arena,  Sacramento",
+    "cityId": 20
+  },
+  {
+    "id": 256,
+    "name": "The Odyssey",
+    "cityId": 80
+  },
+  {
+    "id": 257,
+    "name": "Marine Corps Air Station Miramar,  San Diego",
+    "cityId": 20
+  },
+  {
+    "id": 258,
+    "name": "Hard Rock Hotel and Casino,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 259,
+    "name": "Red Rock Casino Resort and Spa,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 260,
+    "name": "Mohegan Sun Arena,  Uncasville",
+    "cityId": 96
+  },
+  {
+    "id": 261,
+    "name": "Cox Pavillion,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 262,
+    "name": "Cox Pavilion,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 263,
+    "name": "Mohegan Sun Arena,  Uncasville",
+    "cityId": 111
+  },
+  {
+    "id": 264,
+    "name": "Thomas and Mack Center,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 265,
+    "name": "American Airlines Arena,  Miami",
+    "cityId": 14
+  },
+  {
+    "id": 266,
+    "name": "Royal Albert Hall",
+    "cityId": 103
+  },
+  {
+    "id": 267,
+    "name": "Bellagio Hotel and Casino,  Las Vegas",
+    "cityId": 1
+  },
+  {
+    "id": 268,
+    "name": "CenturyTel Center,  Bossier City",
+    "cityId": 6
+  },
+  {
+    "id": 269,
+    "name": "Continental Airlines Arena,  East Ruthorford",
+    "cityId": 2
+  },
+  {
+    "id": 270,
+    "name": "Trump Taj Mahal,  Atlantic City",
+    "cityId": 2
+  },
+  {
+    "id": 271,
+    "name": "Differ Ariake",
+    "cityId": 112
+  },
+  {
+    "id": 272,
+    "name": "Lakefront Arena,  New Orleans",
+    "cityId": 6
+  },
+  {
+    "id": 273,
+    "name": "U.S. Cellular Center,  Cedar Rapids",
+    "cityId": 12
+  },
+  {
+    "id": 274,
+    "name": "Yoyogi National Gymnasium",
+    "cityId": 112
+  },
+  {
+    "id": 275,
+    "name": "Lake Charles Civic Center,  Lake Charles",
+    "cityId": 6
+  },
+  {
+    "id": 276,
+    "name": "Tokyo Bay N.K. Hall,  Urayasu",
+    "cityId": 113
+  },
+  {
+    "id": 277,
+    "name": "Boutwell Municipal Auditorium,  Birmingham",
+    "cityId": 114
+  },
+  {
+    "id": 278,
+    "name": "Hollywood Casino,  Bay St. Louis",
+    "cityId": 115
+  },
+  {
+    "id": 279,
+    "name": "Pontchartrain Center,  Kenner",
+    "cityId": 6
+  },
+  {
+    "id": 280,
+    "name": "Portuguesa Gymnasium",
+    "cityId": 34
+  },
+  {
+    "id": 281,
+    "name": "Mobile Civic Center,  Mobile",
+    "cityId": 114
+  },
+  {
+    "id": 282,
+    "name": "Yokohama Arena",
+    "cityId": 116
+  },
+  {
+    "id": 283,
+    "name": "Augusta Civic Center,  Augusta",
+    "cityId": 3
+  },
+  {
+    "id": 284,
+    "name": "Dothan Civic Center Arena,  Dothan",
+    "cityId": 114
+  },
+  {
+    "id": 285,
+    "name": "Alabama State Fair Arena,  Birmingham",
+    "cityId": 114
+  },
+  {
+    "id": 286,
+    "name": "Cobo Arena,  Detroit",
+    "cityId": 72
+  },
+  {
+    "id": 287,
+    "name": "Ruben Rodriguez Coliseum",
+    "cityId": 117
+  },
+  {
+    "id": 288,
+    "name": "Mammoth Gardens,  Denver",
+    "cityId": 28
+  },
+  {
+    "id": 289,
+    "name": "Buffalo Memorial Auditorium,  Buffalo",
+    "cityId": 22
+  },
+  {
+    "id": 290,
+    "name": "Casper Events Center,  Casper",
+    "cityId": 118
+  },
+  {
+    "id": 291,
+    "name": "Bojangles' Coliseum,  Charlotte",
+    "cityId": 38
+  },
+  {
+    "id": 292,
+    "name": "Expo Square Pavilion,  Tulsa",
+    "cityId": 77
+  },
+  {
+    "id": 293,
+    "name": "Grady Cole Center,  Charlotte",
+    "cityId": 38
+  },
+  {
+    "id": 294,
+    "name": "Fillmore Auditorium,  Denver",
+    "cityId": 28
+  },
+  {
+    "id": 295,
+    "name": "McNichols Arena,  Denver",
+    "cityId": 28
+  }
+]

@@ -1,0 +1,6977 @@
+[
+  {
+    "id": 1,
+    "name": "UFC on ESPN 68",
+    "fight": "Blanchfield vs. Barber",
+    "date": "2025-05-31",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-68-Blanchfield-vs-Barber-106885",
+    "status": "uppcoming",
+    "locationId": 1
+  },
+  {
+    "id": 2,
+    "name": "UFC 316",
+    "fight": "Dvalishvili vs. O'Malley 2",
+    "date": "2025-06-07",
+    "link": "https://www.sherdog.com/events/UFC-316-Dvalishvili-vs-OMalley-2-107105",
+    "status": "uppcoming",
+    "locationId": 2
+  },
+  {
+    "id": 3,
+    "name": "UFC on ESPN 69",
+    "fight": "Usman vs. Buckley",
+    "date": "2025-06-14",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-69-Usman-vs-Buckley-107390",
+    "status": "uppcoming",
+    "locationId": 3
+  },
+  {
+    "id": 4,
+    "name": "UFC on ABC 8",
+    "fight": "Hill vs. Rountree",
+    "date": "2025-06-21",
+    "link": "https://www.sherdog.com/events/UFC-on-ABC-8-Hill-vs-Rountree-107376",
+    "status": "uppcoming",
+    "locationId": 4
+  },
+  {
+    "id": 5,
+    "name": "UFC 317",
+    "fight": "Oliveira vs. Topuria",
+    "date": "2025-06-28",
+    "link": "https://www.sherdog.com/events/UFC-317-Oliveira-vs-Topuria-107211",
+    "status": "uppcoming",
+    "locationId": 5
+  },
+  {
+    "id": 6,
+    "name": "UFC on ESPN 70",
+    "fight": "Lewis vs. Teixeira",
+    "date": "2025-07-12",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-70-Lewis-vs-Teixeira-107548",
+    "status": "uppcoming",
+    "locationId": 6
+  },
+  {
+    "id": 7,
+    "name": "UFC 318",
+    "fight": "Holloway vs. Poirier 3",
+    "date": "2025-07-19",
+    "link": "https://www.sherdog.com/events/UFC-318-Holloway-vs-Poirier-3-107850",
+    "status": "uppcoming",
+    "locationId": 7
+  },
+  {
+    "id": 8,
+    "name": "UFC on ABC 9",
+    "fight": "Whittaker vs. de Ridder",
+    "date": "2025-07-26",
+    "link": "https://www.sherdog.com/events/UFC-on-ABC-9-Whittaker-vs-de-Ridder-107385",
+    "status": "uppcoming",
+    "locationId": 8
+  },
+  {
+    "id": 9,
+    "name": "UFC on ESPN 71",
+    "fight": "Albazi vs. Taira",
+    "date": "2025-08-02",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-71-Albazi-vs-Taira-108019",
+    "status": "uppcoming",
+    "locationId": 1
+  },
+  {
+    "id": 10,
+    "name": "UFC Fight Night",
+    "fight": "Dolidze vs. Hernandez",
+    "date": "2025-08-09",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-Dolidze-vs-Hernandez-108028",
+    "status": "uppcoming",
+    "locationId": 1
+  },
+  {
+    "id": 11,
+    "name": "UFC 319",
+    "fight": "Du Plessis vs. Chimaev",
+    "date": "2025-08-16",
+    "link": "https://www.sherdog.com/events/UFC-319-Du-Plessis-vs-Chimaev-108116",
+    "status": "uppcoming",
+    "locationId": 9
+  },
+  {
+    "id": 12,
+    "name": "UFC - Road to UFC Season 4: Shanghai Semifinals 1",
+    "fight": null,
+    "date": "2025-08-22",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-4-Shanghai-Semifinals-1-108193",
+    "status": "uppcoming",
+    "locationId": 10
+  },
+  {
+    "id": 13,
+    "name": "UFC - Road to UFC Season 4: Shanghai Semifinals 2",
+    "fight": null,
+    "date": "2025-08-22",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-4-Shanghai-Semifinals-2-108194",
+    "status": "uppcoming",
+    "locationId": 10
+  },
+  {
+    "id": 14,
+    "name": "UFC Fight Night - August 23",
+    "fight": null,
+    "date": "2025-08-23",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-August-23-108195",
+    "status": "uppcoming",
+    "locationId": 11
+  },
+  {
+    "id": 15,
+    "name": "UFC 320 - Noche UFC: Sept. 13",
+    "fight": null,
+    "date": "2025-09-13",
+    "link": "https://www.sherdog.com/events/UFC-320-Noche-UFC-Sept-13-107492",
+    "status": "uppcoming",
+    "locationId": 12
+  },
+  {
+    "id": 16,
+    "name": "UFC - Road to UFC Season 4: Shanghai Quarterfinals 4",
+    "fight": null,
+    "date": "2025-05-23",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-4-Shanghai-Quarterfinals-4-107462",
+    "status": "past",
+    "locationId": 10
+  },
+  {
+    "id": 17,
+    "name": "UFC - Road to UFC Season 4: Shanghai Quarterfinals 3",
+    "fight": null,
+    "date": "2025-05-23",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-4-Shanghai-Quarterfinals-3-107461",
+    "status": "past",
+    "locationId": 10
+  },
+  {
+    "id": 18,
+    "name": "UFC - Road to UFC Season 4: Shanghai Quarterfinals 2",
+    "fight": null,
+    "date": "2025-05-22",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-4-Shanghai-Quarterfinals-2-107456",
+    "status": "past",
+    "locationId": 10
+  },
+  {
+    "id": 19,
+    "name": "UFC - Road to UFC Season 4: Shanghai Quarterfinals 1",
+    "fight": null,
+    "date": "2025-05-22",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-4-Shanghai-Quarterfinals-1-107457",
+    "status": "past",
+    "locationId": 10
+  },
+  {
+    "id": 20,
+    "name": "UFC Fight Night 256",
+    "fight": "Burns vs. Morales",
+    "date": "2025-05-17",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-256-Burns-vs-Morales-107121",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 21,
+    "name": "UFC 315",
+    "fight": "Muhammad vs. Della Maddalena",
+    "date": "2025-05-10",
+    "link": "https://www.sherdog.com/events/UFC-315-Muhammad-vs-Della-Maddalena-106942",
+    "status": "past",
+    "locationId": 13
+  },
+  {
+    "id": 22,
+    "name": "UFC on ESPN 67",
+    "fight": "Sandhagen vs. Figueiredo",
+    "date": "2025-05-03",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-67-Sandhagen-vs-Figueiredo-106884",
+    "status": "past",
+    "locationId": 14
+  },
+  {
+    "id": 23,
+    "name": "UFC on ESPN 66",
+    "fight": "Garry vs. Prates",
+    "date": "2025-04-26",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-66-Garry-vs-Prates-106862",
+    "status": "past",
+    "locationId": 15
+  },
+  {
+    "id": 24,
+    "name": "UFC 314",
+    "fight": "Volkanovski vs. Lopes",
+    "date": "2025-04-12",
+    "link": "https://www.sherdog.com/events/UFC-314-Volkanovski-vs-Lopes-106606",
+    "status": "past",
+    "locationId": 16
+  },
+  {
+    "id": 25,
+    "name": "UFC on ESPN 65",
+    "fight": "Emmett vs. Murphy",
+    "date": "2025-04-05",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-65-Emmett-vs-Murphy-106343",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 26,
+    "name": "UFC on ESPN 64",
+    "fight": "Moreno vs. Erceg",
+    "date": "2025-03-29",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-64-Moreno-vs-Erceg-105790",
+    "status": "past",
+    "locationId": 17
+  },
+  {
+    "id": 27,
+    "name": "UFC Fight Night 255",
+    "fight": "Edwards vs. Brady",
+    "date": "2025-03-22",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-255-Edwards-vs-Brady-105670",
+    "status": "past",
+    "locationId": 18
+  },
+  {
+    "id": 28,
+    "name": "UFC Fight Night 254",
+    "fight": "Vettori vs. Dolidze 2",
+    "date": "2025-03-15",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-254-Vettori-vs-Dolidze-2-105789",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 29,
+    "name": "UFC 313",
+    "fight": "Pereira vs. Ankalaev",
+    "date": "2025-03-08",
+    "link": "https://www.sherdog.com/events/UFC-313-Pereira-vs-Ankalaev-105788",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 30,
+    "name": "UFC Fight Night 253",
+    "fight": "Kape vs. Almabayev",
+    "date": "2025-03-01",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-253-Kape-vs-Almabayev-105575",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 31,
+    "name": "UFC Fight Night 252",
+    "fight": "Cejudo vs. Song",
+    "date": "2025-02-22",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-252-Cejudo-vs-Song-105576",
+    "status": "past",
+    "locationId": 19
+  },
+  {
+    "id": 32,
+    "name": "UFC Fight Night 251",
+    "fight": "Cannonier vs. Rodrigues",
+    "date": "2025-02-15",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-251-Cannonier-vs-Rodrigues-105577",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 33,
+    "name": "UFC 312",
+    "fight": "Du Plessis vs. Strickland 2",
+    "date": "2025-02-08",
+    "link": "https://www.sherdog.com/events/UFC-312-Du-Plessis-vs-Strickland-2-105092",
+    "status": "past",
+    "locationId": 20
+  },
+  {
+    "id": 34,
+    "name": "UFC Fight Night 250",
+    "fight": "Adesanya vs. Imavov",
+    "date": "2025-02-01",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-250-Adesanya-vs-Imavov-105177",
+    "status": "past",
+    "locationId": 21
+  },
+  {
+    "id": 35,
+    "name": "UFC 311",
+    "fight": "Makhachev vs. Moicano",
+    "date": "2025-01-18",
+    "link": "https://www.sherdog.com/events/UFC-311-Makhachev-vs-Moicano-104927",
+    "status": "past",
+    "locationId": 22
+  },
+  {
+    "id": 36,
+    "name": "UFC Fight Night 249",
+    "fight": "Dern vs. Ribas 2",
+    "date": "2025-01-11",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-249-Dern-vs-Ribas-2-104817",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 37,
+    "name": "UFC on ESPN 63",
+    "fight": "Covington vs. Buckley",
+    "date": "2024-12-14",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-63-Covington-vs-Buckley-104113",
+    "status": "past",
+    "locationId": 23
+  },
+  {
+    "id": 38,
+    "name": "UFC 310",
+    "fight": "Pantoja vs. Asakura",
+    "date": "2024-12-07",
+    "link": "https://www.sherdog.com/events/UFC-310-Pantoja-vs-Asakura-103714",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 39,
+    "name": "UFC Fight Night 248",
+    "fight": "Yan vs. Figueiredo",
+    "date": "2024-11-23",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-248-Yan-vs-Figueiredo-104112",
+    "status": "past",
+    "locationId": 24
+  },
+  {
+    "id": 40,
+    "name": "UFC 309",
+    "fight": "Jones vs. Miocic",
+    "date": "2024-11-16",
+    "link": "https://www.sherdog.com/events/UFC-309-Jones-vs-Miocic-103896",
+    "status": "past",
+    "locationId": 25
+  },
+  {
+    "id": 41,
+    "name": "UFC Fight Night 247",
+    "fight": "Magny vs. Prates",
+    "date": "2024-11-09",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-247-Magny-vs-Prates-103893",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 42,
+    "name": "UFC Fight Night 246",
+    "fight": "Moreno vs. Albazi",
+    "date": "2024-11-02",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-246-Moreno-vs-Albazi-103864",
+    "status": "past",
+    "locationId": 26
+  },
+  {
+    "id": 43,
+    "name": "UFC 308",
+    "fight": "Topuria vs. Holloway",
+    "date": "2024-10-26",
+    "link": "https://www.sherdog.com/events/UFC-308-Topuria-vs-Holloway-102482",
+    "status": "past",
+    "locationId": 27
+  },
+  {
+    "id": 44,
+    "name": "UFC Fight Night 245",
+    "fight": "Hernandez vs. Pereira",
+    "date": "2024-10-19",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-245-Hernandez-vs-Pereira-103837",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 45,
+    "name": "UFC Fight Night 244",
+    "fight": "Royval vs. Taira",
+    "date": "2024-10-12",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-244-Royval-vs-Taira-103715",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 46,
+    "name": "UFC 307",
+    "fight": "Pereira vs. Rountree",
+    "date": "2024-10-05",
+    "link": "https://www.sherdog.com/events/UFC-307-Pereira-vs-Rountree-103193",
+    "status": "past",
+    "locationId": 28
+  },
+  {
+    "id": 47,
+    "name": "UFC Fight Night 243",
+    "fight": "Moicano vs. St. Denis",
+    "date": "2024-09-28",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-243-Moicano-vs-St-Denis-102194",
+    "status": "past",
+    "locationId": 29
+  },
+  {
+    "id": 48,
+    "name": "UFC 306",
+    "fight": "Noche UFC: O'Malley vs. Dvalishvili",
+    "date": "2024-09-14",
+    "link": "https://www.sherdog.com/events/UFC-306-Noche-UFC-OMalley-vs-Dvalishvili-100837",
+    "status": "past",
+    "locationId": 30
+  },
+  {
+    "id": 49,
+    "name": "UFC Fight Night 242",
+    "fight": "Burns vs. Brady",
+    "date": "2024-09-07",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-242-Burns-vs-Brady-103192",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 50,
+    "name": "UFC on ESPN 62",
+    "fight": "Cannonier vs. Borralho",
+    "date": "2024-08-24",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-62-Cannonier-vs-Borralho-103286",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 51,
+    "name": "UFC - Road to UFC Season 3: Las Vegas Semifinals 2",
+    "fight": null,
+    "date": "2024-08-23",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-3-Las-Vegas-Semifinals-2-103685",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 52,
+    "name": "UFC - Road to UFC Season 3: Las Vegas Semifinals 1",
+    "fight": null,
+    "date": "2024-08-23",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-3-Las-Vegas-Semifinals-1-103684",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 53,
+    "name": "UFC 305",
+    "fight": "Du Plessis vs. Adesanya",
+    "date": "2024-08-17",
+    "link": "https://www.sherdog.com/events/UFC-305-Du-Plessis-vs-Adesanya-102302",
+    "status": "past",
+    "locationId": 31
+  },
+  {
+    "id": 54,
+    "name": "UFC on ESPN 61",
+    "fight": "Tybura vs. Spivac 2",
+    "date": "2024-08-10",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-61-Tybura-vs-Spivac-2-102682",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 55,
+    "name": "UFC on ABC 7",
+    "fight": "Sandhagen vs. Nurmagomedov",
+    "date": "2024-08-03",
+    "link": "https://www.sherdog.com/events/UFC-on-ABC-7-Sandhagen-vs-Nurmagomedov-101959",
+    "status": "past",
+    "locationId": 8
+  },
+  {
+    "id": 56,
+    "name": "UFC 304",
+    "fight": "Edwards vs. Muhammad 2",
+    "date": "2024-07-27",
+    "link": "https://www.sherdog.com/events/UFC-304-Edwards-vs-Muhammad-2-102683",
+    "status": "past",
+    "locationId": 32
+  },
+  {
+    "id": 57,
+    "name": "UFC on ESPN 60",
+    "fight": "Lemos vs. Jandiroba",
+    "date": "2024-07-20",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-60-Lemos-vs-Jandiroba-102684",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 58,
+    "name": "UFC on ESPN 59",
+    "fight": "Namajunas vs. Cortez",
+    "date": "2024-07-13",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-59-Namajunas-vs-Cortez-102307",
+    "status": "past",
+    "locationId": 33
+  },
+  {
+    "id": 59,
+    "name": "UFC 303",
+    "fight": "Pereira vs. Prochazka 2",
+    "date": "2024-06-29",
+    "link": "https://www.sherdog.com/events/UFC-303-Pereira-vs-Prochazka-2-101573",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 60,
+    "name": "UFC on ABC 6",
+    "fight": "Whittaker vs. Aliskerov",
+    "date": "2024-06-22",
+    "link": "https://www.sherdog.com/events/UFC-on-ABC-6-Whittaker-vs-Aliskerov-101352",
+    "status": "past",
+    "locationId": 34
+  },
+  {
+    "id": 61,
+    "name": "UFC on ESPN 58",
+    "fight": "Perez vs. Taira",
+    "date": "2024-06-15",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-58-Perez-vs-Taira-102196",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 62,
+    "name": "UFC on ESPN 57",
+    "fight": "Cannonier vs. Imavov",
+    "date": "2024-06-08",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-57-Cannonier-vs-Imavov-102220",
+    "status": "past",
+    "locationId": 35
+  },
+  {
+    "id": 63,
+    "name": "UFC 302",
+    "fight": "Makhachev vs. Poirier",
+    "date": "2024-06-01",
+    "link": "https://www.sherdog.com/events/UFC-302-Makhachev-vs-Poirier-101617",
+    "status": "past",
+    "locationId": 2
+  },
+  {
+    "id": 64,
+    "name": "UFC - Road to UFC Season 3: Shanghai Quarterfinals 4",
+    "fight": null,
+    "date": "2024-05-19",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-3-Shanghai-Quarterfinals-4-102630",
+    "status": "past",
+    "locationId": 10
+  },
+  {
+    "id": 65,
+    "name": "UFC - Road to UFC Season 3: Shanghai Quarterfinals 3",
+    "fight": null,
+    "date": "2024-05-19",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-3-Shanghai-Quarterfinals-3-102629",
+    "status": "past",
+    "locationId": 10
+  },
+  {
+    "id": 66,
+    "name": "UFC Fight Night 241",
+    "fight": "Barboza vs. Murphy",
+    "date": "2024-05-18",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-241-Barboza-vs-Murphy-101602",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 67,
+    "name": "UFC - Road to UFC Season 3: Shanghai Quarterfinals 2",
+    "fight": null,
+    "date": "2024-05-18",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-3-Shanghai-Quarterfinals-2-102628",
+    "status": "past",
+    "locationId": 10
+  },
+  {
+    "id": 68,
+    "name": "UFC - Road to UFC Season 3: Shanghai Quarterfinals 1",
+    "fight": null,
+    "date": "2024-05-18",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-3-Shanghai-Quarterfinals-1-102627",
+    "status": "past",
+    "locationId": 10
+  },
+  {
+    "id": 69,
+    "name": "UFC on ESPN 56",
+    "fight": "Lewis vs. Nascimento",
+    "date": "2024-05-11",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-56-Lewis-vs-Nascimento-101616",
+    "status": "past",
+    "locationId": 36
+  },
+  {
+    "id": 70,
+    "name": "UFC 301",
+    "fight": "Pantoja vs. Erceg",
+    "date": "2024-05-04",
+    "link": "https://www.sherdog.com/events/UFC-301-Pantoja-vs-Erceg-101242",
+    "status": "past",
+    "locationId": 37
+  },
+  {
+    "id": 71,
+    "name": "UFC on ESPN 55",
+    "fight": "Nicolau vs. Perez",
+    "date": "2024-04-27",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-55-Nicolau-vs-Perez-101241",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 72,
+    "name": "UFC 300",
+    "fight": "Pereira vs. Hill",
+    "date": "2024-04-13",
+    "link": "https://www.sherdog.com/events/UFC-300-Pereira-vs-Hill-100836",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 73,
+    "name": "UFC Fight Night 240",
+    "fight": "Allen vs. Curtis 2",
+    "date": "2024-04-06",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-240-Allen-vs-Curtis-2-100903",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 74,
+    "name": "UFC on ESPN 54",
+    "fight": "Blanchfield vs. Fiorot",
+    "date": "2024-03-30",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-54-Blanchfield-vs-Fiorot-100718",
+    "status": "past",
+    "locationId": 38
+  },
+  {
+    "id": 75,
+    "name": "UFC on ESPN 53",
+    "fight": "Ribas vs. Namajunas",
+    "date": "2024-03-23",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-53-Ribas-vs-Namajunas-100735",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 76,
+    "name": "UFC Fight Night 239",
+    "fight": "Tuivasa vs. Tybura",
+    "date": "2024-03-16",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-239-Tuivasa-vs-Tybura-100734",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 77,
+    "name": "UFC 299",
+    "fight": "O'Malley vs. Vera 2",
+    "date": "2024-03-09",
+    "link": "https://www.sherdog.com/events/UFC-299-OMalley-vs-Vera-2-100287",
+    "status": "past",
+    "locationId": 16
+  },
+  {
+    "id": 78,
+    "name": "UFC Fight Night 238",
+    "fight": "Rozenstruik vs. Gaziev",
+    "date": "2024-03-02",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-238-Rozenstruik-vs-Gaziev-100072",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 79,
+    "name": "UFC Fight Night 237",
+    "fight": "Moreno vs. Royval 2",
+    "date": "2024-02-24",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-237-Moreno-vs-Royval-2-100468",
+    "status": "past",
+    "locationId": 39
+  },
+  {
+    "id": 80,
+    "name": "UFC 298",
+    "fight": "Volkanovski vs. Topuria",
+    "date": "2024-02-17",
+    "link": "https://www.sherdog.com/events/UFC-298-Volkanovski-vs-Topuria-100286",
+    "status": "past",
+    "locationId": 40
+  },
+  {
+    "id": 81,
+    "name": "UFC Fight Night 236",
+    "fight": "Hermansson vs. Pyfer",
+    "date": "2024-02-10",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-236-Hermansson-vs-Pyfer-100402",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 82,
+    "name": "UFC - Road to UFC Season 2: Las Vegas Finals",
+    "fight": null,
+    "date": "2024-02-03",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-2-Las-Vegas-Finals-100833",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 83,
+    "name": "UFC Fight Night 235",
+    "fight": "Dolidze vs. Imavov",
+    "date": "2024-02-03",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-235-Dolidze-vs-Imavov-100145",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 84,
+    "name": "UFC 297",
+    "fight": "Strickland vs. Du Plessis",
+    "date": "2024-01-20",
+    "link": "https://www.sherdog.com/events/UFC-297-Strickland-vs-Du-Plessis-99740",
+    "status": "past",
+    "locationId": 41
+  },
+  {
+    "id": 85,
+    "name": "UFC Fight Night 234",
+    "fight": "Ankalaev vs. Walker 2",
+    "date": "2024-01-13",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-234-Ankalaev-vs-Walker-2-99605",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 86,
+    "name": "UFC 296",
+    "fight": "Edwards vs. Covington",
+    "date": "2023-12-16",
+    "link": "https://www.sherdog.com/events/UFC-296-Edwards-vs-Covington-98050",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 87,
+    "name": "UFC Fight Night 233",
+    "fight": "Song vs. Gutierrez",
+    "date": "2023-12-09",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-233-Song-vs-Gutierrez-99468",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 88,
+    "name": "UFC on ESPN 52",
+    "fight": "Dariush vs. Tsarukyan",
+    "date": "2023-12-02",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-52-Dariush-vs-Tsarukyan-99135",
+    "status": "past",
+    "locationId": 42
+  },
+  {
+    "id": 89,
+    "name": "UFC Fight Night 232",
+    "fight": "Allen vs. Craig",
+    "date": "2023-11-18",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-232-Allen-vs-Craig-98054",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 90,
+    "name": "UFC 295",
+    "fight": "Prochazka vs. Pereira",
+    "date": "2023-11-11",
+    "link": "https://www.sherdog.com/events/UFC-295-Prochazka-vs-Pereira-98494",
+    "status": "past",
+    "locationId": 25
+  },
+  {
+    "id": 91,
+    "name": "UFC Fight Night 231",
+    "fight": "Almeida vs. Lewis",
+    "date": "2023-11-04",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-231-Almeida-vs-Lewis-98060",
+    "status": "past",
+    "locationId": 43
+  },
+  {
+    "id": 92,
+    "name": "UFC 294",
+    "fight": "Makhachev vs. Volkanovski 2",
+    "date": "2023-10-21",
+    "link": "https://www.sherdog.com/events/UFC-294-Makhachev-vs-Volkanovski-2-97019",
+    "status": "past",
+    "locationId": 27
+  },
+  {
+    "id": 93,
+    "name": "UFC Fight Night 230",
+    "fight": "Yusuff vs. Barboza",
+    "date": "2023-10-14",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-230-Yusuff-vs-Barboza-98595",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 94,
+    "name": "UFC Fight Night 229",
+    "fight": "Dawson vs. Green",
+    "date": "2023-10-07",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-229-Dawson-vs-Green-98053",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 95,
+    "name": "UFC Fight Night 228",
+    "fight": "Fiziev vs. Gamrot",
+    "date": "2023-09-23",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-228-Fiziev-vs-Gamrot-98052",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 96,
+    "name": "UFC Fight Night 227",
+    "fight": "Grasso vs. Shevchenko 2",
+    "date": "2023-09-16",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-227-Grasso-vs-Shevchenko-2-98051",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 97,
+    "name": "UFC 293",
+    "fight": "Adesanya vs. Strickland",
+    "date": "2023-09-09",
+    "link": "https://www.sherdog.com/events/UFC-293-Adesanya-vs-Strickland-98049",
+    "status": "past",
+    "locationId": 20
+  },
+  {
+    "id": 98,
+    "name": "UFC Fight Night 226",
+    "fight": "Gane vs. Spivak",
+    "date": "2023-09-02",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-226-Gane-vs-Spivak-98110",
+    "status": "past",
+    "locationId": 29
+  },
+  {
+    "id": 99,
+    "name": "UFC - Road to UFC Season 2: Singapore Semifinals 2",
+    "fight": null,
+    "date": "2023-08-27",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-2-Singapore-Semifinals-2-98226",
+    "status": "past",
+    "locationId": 44
+  },
+  {
+    "id": 100,
+    "name": "UFC - Road to UFC Season 2: Singapore Semifinals 1",
+    "fight": null,
+    "date": "2023-08-27",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-2-Singapore-Semifinals-1-98225",
+    "status": "past",
+    "locationId": 44
+  },
+  {
+    "id": 101,
+    "name": "UFC Fight Night 225",
+    "fight": "Holloway vs. Korean Zombie",
+    "date": "2023-08-26",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-225-Holloway-vs-Korean-Zombie-98155",
+    "status": "past",
+    "locationId": 44
+  },
+  {
+    "id": 102,
+    "name": "UFC 292",
+    "fight": "Sterling vs. O'Malley",
+    "date": "2023-08-19",
+    "link": "https://www.sherdog.com/events/UFC-292-Sterling-vs-OMalley-97584",
+    "status": "past",
+    "locationId": 45
+  },
+  {
+    "id": 103,
+    "name": "UFC on ESPN 51",
+    "fight": "Luque vs. dos Anjos",
+    "date": "2023-08-12",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-51-Luque-vs-dos-Anjos-97766",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 104,
+    "name": "UFC on ESPN 50",
+    "fight": "Sandhagen vs. Font",
+    "date": "2023-08-05",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-50-Sandhagen-vs-Font-97864",
+    "status": "past",
+    "locationId": 6
+  },
+  {
+    "id": 105,
+    "name": "UFC 291",
+    "fight": "Poirier vs. Gaethje 2",
+    "date": "2023-07-29",
+    "link": "https://www.sherdog.com/events/UFC-291-Poirier-vs-Gaethje-2-97463",
+    "status": "past",
+    "locationId": 28
+  },
+  {
+    "id": 106,
+    "name": "UFC Fight Night 224",
+    "fight": "Aspinall vs. Tybura",
+    "date": "2023-07-22",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-224-Aspinall-vs-Tybura-97203",
+    "status": "past",
+    "locationId": 18
+  },
+  {
+    "id": 107,
+    "name": "UFC on ESPN 49",
+    "fight": "Holm vs. Bueno Silva",
+    "date": "2023-07-15",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-49-Holm-vs-Bueno-Silva-97533",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 108,
+    "name": "UFC 290",
+    "fight": "Volkanovski vs. Rodriguez",
+    "date": "2023-07-08",
+    "link": "https://www.sherdog.com/events/UFC-290-Volkanovski-vs-Rodriguez-96757",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 109,
+    "name": "UFC on ESPN 48",
+    "fight": "Strickland vs. Magomedov",
+    "date": "2023-07-01",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-48-Strickland-vs-Magomedov-97462",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 110,
+    "name": "UFC on ABC 5",
+    "fight": "Emmett vs. Topuria",
+    "date": "2023-06-24",
+    "link": "https://www.sherdog.com/events/UFC-on-ABC-5-Emmett-vs-Topuria-97149",
+    "status": "past",
+    "locationId": 46
+  },
+  {
+    "id": 111,
+    "name": "UFC on ESPN 47",
+    "fight": "Vettori vs. Cannonier",
+    "date": "2023-06-17",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-47-Vettori-vs-Cannonier-97116",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 112,
+    "name": "UFC 289",
+    "fight": "Nunes vs. Aldana",
+    "date": "2023-06-10",
+    "link": "https://www.sherdog.com/events/UFC-289-Nunes-vs-Aldana-97020",
+    "status": "past",
+    "locationId": 47
+  },
+  {
+    "id": 113,
+    "name": "UFC on ESPN 46",
+    "fight": "Kara",
+    "date": "2023-06-03",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-46-KaraFrance-vs-Albazi-96960",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 114,
+    "name": "UFC - Road to UFC Season 2: Shanghai Quarterfinals 4",
+    "fight": null,
+    "date": "2023-05-28",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-2-Shanghai-Quarterfinals-4-97379",
+    "status": "past",
+    "locationId": 10
+  },
+  {
+    "id": 115,
+    "name": "UFC - Road to UFC Season 2: Shanghai Quarterfinals 3",
+    "fight": null,
+    "date": "2023-05-28",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-2-Shanghai-Quarterfinals-3-97378",
+    "status": "past",
+    "locationId": 10
+  },
+  {
+    "id": 116,
+    "name": "UFC - Road to UFC Season 2: Shanghai Quarterfinals 2",
+    "fight": null,
+    "date": "2023-05-27",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-2-Shanghai-Quarterfinals-2-97376",
+    "status": "past",
+    "locationId": 10
+  },
+  {
+    "id": 117,
+    "name": "UFC - Road to UFC Season 2: Shanghai Quarterfinals 1",
+    "fight": null,
+    "date": "2023-05-27",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Season-2-Shanghai-Quarterfinals-1-97375",
+    "status": "past",
+    "locationId": 10
+  },
+  {
+    "id": 118,
+    "name": "UFC Fight Night 223",
+    "fight": "Dern vs. Hill",
+    "date": "2023-05-20",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-223-Dern-vs-Hill-96689",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 119,
+    "name": "UFC on ABC 4",
+    "fight": "Rozenstruik vs. Almeida",
+    "date": "2023-05-13",
+    "link": "https://www.sherdog.com/events/UFC-on-ABC-4-Rozenstruik-vs-Almeida-96527",
+    "status": "past",
+    "locationId": 48
+  },
+  {
+    "id": 120,
+    "name": "UFC 288",
+    "fight": "Sterling vs. Cejudo",
+    "date": "2023-05-06",
+    "link": "https://www.sherdog.com/events/UFC-288-Sterling-vs-Cejudo-96351",
+    "status": "past",
+    "locationId": 2
+  },
+  {
+    "id": 121,
+    "name": "UFC on ESPN 45",
+    "fight": "Song vs. Simon",
+    "date": "2023-04-29",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-45-Song-vs-Simon-96350",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 122,
+    "name": "UFC Fight Night 222",
+    "fight": "Pavlovich vs. Blaydes",
+    "date": "2023-04-22",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-222-Pavlovich-vs-Blaydes-96236",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 123,
+    "name": "UFC on ESPN 44",
+    "fight": "Holloway vs. Allen",
+    "date": "2023-04-15",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-44-Holloway-vs-Allen-96235",
+    "status": "past",
+    "locationId": 15
+  },
+  {
+    "id": 124,
+    "name": "UFC 287",
+    "fight": "Pereira vs. Adesanya 2",
+    "date": "2023-04-08",
+    "link": "https://www.sherdog.com/events/UFC-287-Pereira-vs-Adesanya-2-96031",
+    "status": "past",
+    "locationId": 16
+  },
+  {
+    "id": 125,
+    "name": "UFC on ESPN 43",
+    "fight": "Vera vs. Sandhagen",
+    "date": "2023-03-25",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-43-Vera-vs-Sandhagen-95704",
+    "status": "past",
+    "locationId": 49
+  },
+  {
+    "id": 126,
+    "name": "UFC 286",
+    "fight": "Edwards vs. Usman 3",
+    "date": "2023-03-18",
+    "link": "https://www.sherdog.com/events/UFC-286-Edwards-vs-Usman-3-95795",
+    "status": "past",
+    "locationId": 18
+  },
+  {
+    "id": 127,
+    "name": "UFC Fight Night 221",
+    "fight": "Yan vs. Dvalishvili",
+    "date": "2023-03-11",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-221-Yan-vs-Dvalishvili-95615",
+    "status": "past",
+    "locationId": 50
+  },
+  {
+    "id": 128,
+    "name": "UFC 285",
+    "fight": "Jones vs. Gane",
+    "date": "2023-03-04",
+    "link": "https://www.sherdog.com/events/UFC-285-Jones-vs-Gane-95232",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 129,
+    "name": "UFC Fight Night 220",
+    "fight": "Muniz vs. Allen",
+    "date": "2023-02-25",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-220-Muniz-vs-Allen-95560",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 130,
+    "name": "UFC Fight Night 219",
+    "fight": "Andrade vs. Blanchfield",
+    "date": "2023-02-18",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-219-Andrade-vs-Blanchfield-95326",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 131,
+    "name": "UFC 284",
+    "fight": "Makhachev vs. Volkanovski",
+    "date": "2023-02-11",
+    "link": "https://www.sherdog.com/events/UFC-284-Makhachev-vs-Volkanovski-95031",
+    "status": "past",
+    "locationId": 31
+  },
+  {
+    "id": 132,
+    "name": "UFC Fight Night 218",
+    "fight": "Lewis vs. Spivak",
+    "date": "2023-02-04",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-218-Lewis-vs-Spivak-95166",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 133,
+    "name": "UFC 283",
+    "fight": "Teixeira vs. Hill",
+    "date": "2023-01-21",
+    "link": "https://www.sherdog.com/events/UFC-283-Teixeira-vs-Hill-94331",
+    "status": "past",
+    "locationId": 51
+  },
+  {
+    "id": 134,
+    "name": "UFC Fight Night 217",
+    "fight": "Strickland vs. Imavov",
+    "date": "2023-01-14",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-217-Strickland-vs-Imavov-94946",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 135,
+    "name": "UFC Fight Night 216",
+    "fight": "Cannonier vs. Strickland",
+    "date": "2022-12-17",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-216-Cannonier-vs-Strickland-94047",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 136,
+    "name": "UFC 282",
+    "fight": "Blachowicz vs. Ankalaev",
+    "date": "2022-12-10",
+    "link": "https://www.sherdog.com/events/UFC-282-Blachowicz-vs-Ankalaev-94042",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 137,
+    "name": "UFC on ESPN 42",
+    "fight": "Thompson vs. Holland",
+    "date": "2022-12-03",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-42-Thompson-vs-Holland-94046",
+    "status": "past",
+    "locationId": 52
+  },
+  {
+    "id": 138,
+    "name": "UFC Fight Night 215",
+    "fight": "Nzechukwu vs. Cutelaba",
+    "date": "2022-11-19",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-215-Nzechukwu-vs-Cutelaba-94045",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 139,
+    "name": "UFC 281",
+    "fight": "Adesanya vs. Pereira",
+    "date": "2022-11-12",
+    "link": "https://www.sherdog.com/events/UFC-281-Adesanya-vs-Pereira-94041",
+    "status": "past",
+    "locationId": 25
+  },
+  {
+    "id": 140,
+    "name": "UFC Fight Night 214",
+    "fight": "Rodriguez vs. Lemos",
+    "date": "2022-11-05",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-214-Rodriguez-vs-Lemos-94043",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 141,
+    "name": "UFC Fight Night 213",
+    "fight": "Kattar vs. Allen",
+    "date": "2022-10-29",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-213-Kattar-vs-Allen-94044",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 142,
+    "name": "UFC - Road to UFC: Abu Dhabi Semifinals 2",
+    "fight": null,
+    "date": "2022-10-23",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Abu-Dhabi-Semifinals-2-94742",
+    "status": "past",
+    "locationId": 27
+  },
+  {
+    "id": 143,
+    "name": "UFC - Road to UFC: Abu Dhabi Semifinals 1",
+    "fight": null,
+    "date": "2022-10-23",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Abu-Dhabi-Semifinals-1-94741",
+    "status": "past",
+    "locationId": 27
+  },
+  {
+    "id": 144,
+    "name": "UFC 280",
+    "fight": "Oliveira vs. Makhachev",
+    "date": "2022-10-22",
+    "link": "https://www.sherdog.com/events/UFC-280-Oliveira-vs-Makhachev-92490",
+    "status": "past",
+    "locationId": 27
+  },
+  {
+    "id": 145,
+    "name": "UFC Fight Night 212",
+    "fight": "Grasso vs. Araujo",
+    "date": "2022-10-15",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-212-Grasso-vs-Araujo-93809",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 146,
+    "name": "UFC Fight Night 211",
+    "fight": "Dern vs. Yan",
+    "date": "2022-10-01",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-211-Dern-vs-Yan-93426",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 147,
+    "name": "UFC Fight Night 210",
+    "fight": "Sandhagen vs. Song",
+    "date": "2022-09-17",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-210-Sandhagen-vs-Song-93612",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 148,
+    "name": "UFC 279",
+    "fight": "Diaz vs. Ferguson",
+    "date": "2022-09-10",
+    "link": "https://www.sherdog.com/events/UFC-279-Diaz-vs-Ferguson-93247",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 149,
+    "name": "UFC Fight Night 209",
+    "fight": "Gane vs. Tuivasa",
+    "date": "2022-09-03",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-209-Gane-vs-Tuivasa-93036",
+    "status": "past",
+    "locationId": 29
+  },
+  {
+    "id": 150,
+    "name": "UFC 278",
+    "fight": "Usman vs. Edwards 2",
+    "date": "2022-08-20",
+    "link": "https://www.sherdog.com/events/UFC-278-Usman-vs-Edwards-2-93201",
+    "status": "past",
+    "locationId": 53
+  },
+  {
+    "id": 151,
+    "name": "UFC on ESPN 41",
+    "fight": "Vera vs. Cruz",
+    "date": "2022-08-13",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-41-Vera-vs-Cruz-93192",
+    "status": "past",
+    "locationId": 54
+  },
+  {
+    "id": 152,
+    "name": "UFC on ESPN 40",
+    "fight": "Santos vs. Hill",
+    "date": "2022-08-06",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-40-Santos-vs-Hill-93076",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 153,
+    "name": "UFC 277",
+    "fight": "Pena vs. Nunes 2",
+    "date": "2022-07-30",
+    "link": "https://www.sherdog.com/events/UFC-277-Pena-vs-Nunes-2-92633",
+    "status": "past",
+    "locationId": 55
+  },
+  {
+    "id": 154,
+    "name": "UFC Fight Night 208",
+    "fight": "Blaydes vs. Aspinall",
+    "date": "2022-07-23",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-208-Blaydes-vs-Aspinall-92906",
+    "status": "past",
+    "locationId": 18
+  },
+  {
+    "id": 155,
+    "name": "UFC on ABC 3",
+    "fight": "Ortega vs. Rodriguez",
+    "date": "2022-07-16",
+    "link": "https://www.sherdog.com/events/UFC-on-ABC-3-Ortega-vs-Rodriguez-92792",
+    "status": "past",
+    "locationId": 56
+  },
+  {
+    "id": 156,
+    "name": "UFC on ESPN 39",
+    "fight": "Dos Anjos vs. Fiziev",
+    "date": "2022-07-09",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-39-Dos-Anjos-vs-Fiziev-92738",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 157,
+    "name": "UFC 276",
+    "fight": "Adesanya vs. Cannonier",
+    "date": "2022-07-02",
+    "link": "https://www.sherdog.com/events/UFC-276-Adesanya-vs-Cannonier-91882",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 158,
+    "name": "UFC on ESPN 38",
+    "fight": "Tsarukyan vs. Gamrot",
+    "date": "2022-06-25",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-38-Tsarukyan-vs-Gamrot-92636",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 159,
+    "name": "UFC on ESPN 37",
+    "fight": "Kattar vs. Emmett",
+    "date": "2022-06-18",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-37-Kattar-vs-Emmett-92670",
+    "status": "past",
+    "locationId": 42
+  },
+  {
+    "id": 160,
+    "name": "UFC 275",
+    "fight": "Teixeira vs. Prochazka",
+    "date": "2022-06-12",
+    "link": "https://www.sherdog.com/events/UFC-275-Teixeira-vs-Prochazka-92186",
+    "status": "past",
+    "locationId": 44
+  },
+  {
+    "id": 161,
+    "name": "UFC - Road to UFC: Singapore Quarterfinals 4",
+    "fight": null,
+    "date": "2022-06-10",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Singapore-Quarterfinals-4-92929",
+    "status": "past",
+    "locationId": 44
+  },
+  {
+    "id": 162,
+    "name": "UFC - Road to UFC: Singapore Quarterfinals 3",
+    "fight": null,
+    "date": "2022-06-10",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Singapore-Quarterfinals-3-92928",
+    "status": "past",
+    "locationId": 44
+  },
+  {
+    "id": 163,
+    "name": "UFC - Road to UFC: Singapore Quarterfinals 2",
+    "fight": null,
+    "date": "2022-06-09",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Singapore-Quarterfinals-2-92919",
+    "status": "past",
+    "locationId": 44
+  },
+  {
+    "id": 164,
+    "name": "UFC - Road to UFC: Singapore Quarterfinals 1",
+    "fight": null,
+    "date": "2022-06-09",
+    "link": "https://www.sherdog.com/events/UFC-Road-to-UFC-Singapore-Quarterfinals-1-92918",
+    "status": "past",
+    "locationId": 44
+  },
+  {
+    "id": 165,
+    "name": "UFC Fight Night 207",
+    "fight": "Volkov vs. Rozenstruik",
+    "date": "2022-06-04",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-207-Volkov-vs-Rozenstruik-92057",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 166,
+    "name": "UFC Fight Night 206",
+    "fight": "Holm vs. Vieira",
+    "date": "2022-05-21",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-206-Holm-vs-Vieira-91978",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 167,
+    "name": "UFC on ESPN 36",
+    "fight": "Blachowicz vs. Rakic",
+    "date": "2022-05-14",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-36-Blachowicz-vs-Rakic-91795",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 168,
+    "name": "UFC 274",
+    "fight": "Oliveira vs. Gaethje",
+    "date": "2022-05-07",
+    "link": "https://www.sherdog.com/events/UFC-274-Oliveira-vs-Gaethje-91512",
+    "status": "past",
+    "locationId": 57
+  },
+  {
+    "id": 169,
+    "name": "UFC on ESPN 35",
+    "fight": "Font vs. Vera",
+    "date": "2022-04-30",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-35-Font-vs-Vera-91854",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 170,
+    "name": "UFC Fight Night 205",
+    "fight": "Lemos vs. Andrade",
+    "date": "2022-04-23",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-205-Lemos-vs-Andrade-91797",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 171,
+    "name": "UFC on ESPN 34",
+    "fight": "Luque vs. Muhammad 2",
+    "date": "2022-04-16",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-34-Luque-vs-Muhammad-2-91735",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 172,
+    "name": "UFC 273",
+    "fight": "Volkanovski vs. Korean Zombie",
+    "date": "2022-04-09",
+    "link": "https://www.sherdog.com/events/UFC-273-Volkanovski-vs-Korean-Zombie-91679",
+    "status": "past",
+    "locationId": 58
+  },
+  {
+    "id": 173,
+    "name": "UFC on ESPN 33",
+    "fight": "Blaydes vs. Daukaus",
+    "date": "2022-03-26",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-33-Blaydes-vs-Daukaus-91130",
+    "status": "past",
+    "locationId": 59
+  },
+  {
+    "id": 174,
+    "name": "UFC Fight Night 204",
+    "fight": "Volkov vs. Aspinall",
+    "date": "2022-03-19",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-204-Volkov-vs-Aspinall-91036",
+    "status": "past",
+    "locationId": 18
+  },
+  {
+    "id": 175,
+    "name": "UFC Fight Night 203",
+    "fight": "Santos vs. Ankalaev",
+    "date": "2022-03-12",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-203-Santos-vs-Ankalaev-91131",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 176,
+    "name": "UFC 272",
+    "fight": "Covington vs. Masvidal",
+    "date": "2022-03-05",
+    "link": "https://www.sherdog.com/events/UFC-272-Covington-vs-Masvidal-91278",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 177,
+    "name": "UFC Fight Night 202",
+    "fight": "Makhachev vs. Green",
+    "date": "2022-02-26",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-202-Makhachev-vs-Green-90846",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 178,
+    "name": "UFC Fight Night 201",
+    "fight": "Walker vs. Hill",
+    "date": "2022-02-19",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-201-Walker-vs-Hill-90843",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 179,
+    "name": "UFC 271",
+    "fight": "Adesanya vs. Whittaker 2",
+    "date": "2022-02-12",
+    "link": "https://www.sherdog.com/events/UFC-271-Adesanya-vs-Whittaker-2-90742",
+    "status": "past",
+    "locationId": 60
+  },
+  {
+    "id": 180,
+    "name": "UFC Fight Night 200",
+    "fight": "Hermansson vs. Strickland",
+    "date": "2022-02-05",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-200-Hermansson-vs-Strickland-90688",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 181,
+    "name": "UFC 270",
+    "fight": "Ngannou vs. Gane",
+    "date": "2022-01-22",
+    "link": "https://www.sherdog.com/events/UFC-270-Ngannou-vs-Gane-90612",
+    "status": "past",
+    "locationId": 40
+  },
+  {
+    "id": 182,
+    "name": "UFC on ESPN 32",
+    "fight": "Kattar vs. Chikadze",
+    "date": "2022-01-15",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-32-Kattar-vs-Chikadze-90552",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 183,
+    "name": "UFC Fight Night 199",
+    "fight": "Lewis vs. Daukaus",
+    "date": "2021-12-18",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-199-Lewis-vs-Daukaus-90256",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 184,
+    "name": "UFC 269",
+    "fight": "Oliveira vs. Poirier",
+    "date": "2021-12-11",
+    "link": "https://www.sherdog.com/events/UFC-269-Oliveira-vs-Poirier-90120",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 185,
+    "name": "UFC on ESPN 31",
+    "fight": "Font vs. Aldo",
+    "date": "2021-12-04",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-31-Font-vs-Aldo-90320",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 186,
+    "name": "UFC Fight Night 198",
+    "fight": "Vieira vs. Tate",
+    "date": "2021-11-20",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-198-Vieira-vs-Tate-90119",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 187,
+    "name": "UFC Fight Night 197",
+    "fight": "Holloway vs. Rodriguez",
+    "date": "2021-11-13",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-197-Holloway-vs-Rodriguez-90118",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 188,
+    "name": "UFC 268",
+    "fight": "Usman vs. Covington 2",
+    "date": "2021-11-06",
+    "link": "https://www.sherdog.com/events/UFC-268-Usman-vs-Covington-2-90043",
+    "status": "past",
+    "locationId": 25
+  },
+  {
+    "id": 189,
+    "name": "UFC 267",
+    "fight": "Blachowicz vs. Teixeira",
+    "date": "2021-10-30",
+    "link": "https://www.sherdog.com/events/UFC-267-Blachowicz-vs-Teixeira-89819",
+    "status": "past",
+    "locationId": 27
+  },
+  {
+    "id": 190,
+    "name": "UFC Fight Night 196",
+    "fight": "Costa vs. Vettori",
+    "date": "2021-10-23",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-196-Costa-vs-Vettori-89999",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 191,
+    "name": "UFC Fight Night 195",
+    "fight": "Ladd vs. Dumont",
+    "date": "2021-10-16",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-195-Ladd-vs-Dumont-89887",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 192,
+    "name": "UFC Fight Night 194",
+    "fight": "Dern vs. Rodriguez",
+    "date": "2021-10-09",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-194-Dern-vs-Rodriguez-89818",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 193,
+    "name": "UFC Fight Night 193",
+    "fight": "Santos vs. Walker",
+    "date": "2021-10-02",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-193-Santos-vs-Walker-89377",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 194,
+    "name": "UFC 266",
+    "fight": "Volkanovski vs. Ortega",
+    "date": "2021-09-25",
+    "link": "https://www.sherdog.com/events/UFC-266-Volkanovski-vs-Ortega-89141",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 195,
+    "name": "UFC Fight Night 192",
+    "fight": "Smith vs. Spann",
+    "date": "2021-09-18",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-192-Smith-vs-Spann-89440",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 196,
+    "name": "UFC Fight Night 191",
+    "fight": "Brunson vs. Till",
+    "date": "2021-09-04",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-191-Brunson-vs-Till-89657",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 197,
+    "name": "UFC on ESPN 30",
+    "fight": "Barboza vs. Chikadze",
+    "date": "2021-08-28",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-30-Barboza-vs-Chikadze-89337",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 198,
+    "name": "UFC on ESPN 29",
+    "fight": "Cannonier vs. Gastelum",
+    "date": "2021-08-21",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-29-Cannonier-vs-Gastelum-89378",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 199,
+    "name": "UFC 265",
+    "fight": "Lewis vs. Gane",
+    "date": "2021-08-07",
+    "link": "https://www.sherdog.com/events/UFC-265-Lewis-vs-Gane-89140",
+    "status": "past",
+    "locationId": 60
+  },
+  {
+    "id": 200,
+    "name": "UFC on ESPN 28",
+    "fight": "Hall vs. Strickland",
+    "date": "2021-07-31",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-28-Hall-vs-Strickland-89161",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 201,
+    "name": "UFC on ESPN 27",
+    "fight": "Sandhagen vs. Dillashaw",
+    "date": "2021-07-24",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-27-Sandhagen-vs-Dillashaw-89119",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 202,
+    "name": "UFC on ESPN 26",
+    "fight": "Makhachev vs. Moises",
+    "date": "2021-07-17",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-26-Makhachev-vs-Moises-88983",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 203,
+    "name": "UFC 264",
+    "fight": "Poirier vs. McGregor 3",
+    "date": "2021-07-10",
+    "link": "https://www.sherdog.com/events/UFC-264-Poirier-vs-McGregor-3-88969",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 204,
+    "name": "UFC Fight Night 190",
+    "fight": "Gane vs. Volkov",
+    "date": "2021-06-26",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-190-Gane-vs-Volkov-88824",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 205,
+    "name": "UFC on ESPN 25",
+    "fight": "Korean Zombie vs. Ige",
+    "date": "2021-06-19",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-25-Korean-Zombie-vs-Ige-88795",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 206,
+    "name": "UFC 263",
+    "fight": "Adesanya vs. Vettori 2",
+    "date": "2021-06-12",
+    "link": "https://www.sherdog.com/events/UFC-263-Adesanya-vs-Vettori-2-88760",
+    "status": "past",
+    "locationId": 61
+  },
+  {
+    "id": 207,
+    "name": "UFC Fight Night 189",
+    "fight": "Rozenstruik vs. Sakai",
+    "date": "2021-06-05",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-189-Rozenstruik-vs-Sakai-88821",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 208,
+    "name": "UFC Fight Night 188",
+    "fight": "Font vs. Garbrandt",
+    "date": "2021-05-22",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-188-Font-vs-Garbrandt-88695",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 209,
+    "name": "UFC 262",
+    "fight": "Oliveira vs. Chandler",
+    "date": "2021-05-15",
+    "link": "https://www.sherdog.com/events/UFC-262-Oliveira-vs-Chandler-88694",
+    "status": "past",
+    "locationId": 60
+  },
+  {
+    "id": 210,
+    "name": "UFC on ESPN 24",
+    "fight": "Rodriguez vs. Waterson",
+    "date": "2021-05-08",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-24-Rodriguez-vs-Waterson-88639",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 211,
+    "name": "UFC on ESPN 23",
+    "fight": "Reyes vs. Prochazka",
+    "date": "2021-05-01",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-23-Reyes-vs-Prochazka-88625",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 212,
+    "name": "UFC 261",
+    "fight": "Usman vs. Masvidal 2",
+    "date": "2021-04-24",
+    "link": "https://www.sherdog.com/events/UFC-261-Usman-vs-Masvidal-2-88587",
+    "status": "past",
+    "locationId": 58
+  },
+  {
+    "id": 213,
+    "name": "UFC on ESPN 22",
+    "fight": "Whittaker vs. Gastelum",
+    "date": "2021-04-17",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-22-Whittaker-vs-Gastelum-88505",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 214,
+    "name": "UFC on ABC 2",
+    "fight": "Vettori vs. Holland",
+    "date": "2021-04-10",
+    "link": "https://www.sherdog.com/events/UFC-on-ABC-2-Vettori-vs-Holland-88319",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 215,
+    "name": "UFC 260",
+    "fight": "Miocic vs. Ngannou 2",
+    "date": "2021-03-27",
+    "link": "https://www.sherdog.com/events/UFC-260-Miocic-vs-Ngannou-2-88377",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 216,
+    "name": "UFC on ESPN 21",
+    "fight": "Brunson vs. Holland",
+    "date": "2021-03-20",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-21-Brunson-vs-Holland-88172",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 217,
+    "name": "UFC Fight Night 187",
+    "fight": "Edwards vs. Muhammad",
+    "date": "2021-03-13",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-187-Edwards-vs-Muhammad-88284",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 218,
+    "name": "UFC 259",
+    "fight": "Blachowicz vs. Adesanya",
+    "date": "2021-03-06",
+    "link": "https://www.sherdog.com/events/UFC-259-Blachowicz-vs-Adesanya-88003",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 219,
+    "name": "UFC Fight Night 186",
+    "fight": "Rozenstruik vs. Gane",
+    "date": "2021-02-27",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-186-Rozenstruik-vs-Gane-87903",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 220,
+    "name": "UFC Fight Night 185",
+    "fight": "Blaydes vs. Lewis",
+    "date": "2021-02-20",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-185-Blaydes-vs-Lewis-88022",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 221,
+    "name": "UFC 258",
+    "fight": "Usman vs. Burns",
+    "date": "2021-02-13",
+    "link": "https://www.sherdog.com/events/UFC-258-Usman-vs-Burns-87797",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 222,
+    "name": "UFC Fight Night 184",
+    "fight": "Overeem vs. Volkov",
+    "date": "2021-02-06",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-184-Overeem-vs-Volkov-87802",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 223,
+    "name": "UFC 257",
+    "fight": "Poirier vs. McGregor 2",
+    "date": "2021-01-23",
+    "link": "https://www.sherdog.com/events/UFC-257-Poirier-vs-McGregor-2-87798",
+    "status": "past",
+    "locationId": 27
+  },
+  {
+    "id": 224,
+    "name": "UFC on ESPN 20",
+    "fight": "Chiesa vs. Magny",
+    "date": "2021-01-20",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-20-Chiesa-vs-Magny-88171",
+    "status": "past",
+    "locationId": 27
+  },
+  {
+    "id": 225,
+    "name": "UFC on ABC 1",
+    "fight": "Holloway vs. Kattar",
+    "date": "2021-01-16",
+    "link": "https://www.sherdog.com/events/UFC-on-ABC-1-Holloway-vs-Kattar-87759",
+    "status": "past",
+    "locationId": 27
+  },
+  {
+    "id": 226,
+    "name": "UFC Fight Night 183",
+    "fight": "Thompson vs. Neal",
+    "date": "2020-12-19",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-183-Thompson-vs-Neal-87646",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 227,
+    "name": "UFC 256",
+    "fight": "Figueiredo vs. Moreno",
+    "date": "2020-12-12",
+    "link": "https://www.sherdog.com/events/UFC-256-Figueiredo-vs-Moreno-87401",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 228,
+    "name": "UFC on ESPN 19",
+    "fight": "Hermansson vs. Vettori",
+    "date": "2020-12-05",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-19-Hermansson-vs-Vettori-87402",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 229,
+    "name": "UFC on ESPN 18",
+    "fight": "Smith vs. Clark",
+    "date": "2020-11-28",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-18-Smith-vs-Clark-87392",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 230,
+    "name": "UFC 255",
+    "fight": "Figueiredo vs. Perez",
+    "date": "2020-11-21",
+    "link": "https://www.sherdog.com/events/UFC-255-Figueiredo-vs-Perez-87312",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 231,
+    "name": "UFC Fight Night 182",
+    "fight": "Felder vs. dos Anjos",
+    "date": "2020-11-14",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-182-Felder-vs-dos-Anjos-87393",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 232,
+    "name": "UFC on ESPN 17",
+    "fight": "Santos vs. Teixeira",
+    "date": "2020-11-07",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-17-Santos-vs-Teixeira-87362",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 233,
+    "name": "UFC Fight Night 181",
+    "fight": "Hall vs. Silva",
+    "date": "2020-10-31",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-181-Hall-vs-Silva-87364",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 234,
+    "name": "UFC 254",
+    "fight": "Nurmagomedov vs. Gaethje",
+    "date": "2020-10-24",
+    "link": "https://www.sherdog.com/events/UFC-254-Nurmagomedov-vs-Gaethje-87041",
+    "status": "past",
+    "locationId": 62
+  },
+  {
+    "id": 235,
+    "name": "UFC Fight Night 180",
+    "fight": "Ortega vs. Korean Zombie",
+    "date": "2020-10-17",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-180-Ortega-vs-Korean-Zombie-87277",
+    "status": "past",
+    "locationId": 62
+  },
+  {
+    "id": 236,
+    "name": "UFC Fight Night 179",
+    "fight": "Moraes vs. Sandhagen",
+    "date": "2020-10-10",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-179-Moraes-vs-Sandhagen-87307",
+    "status": "past",
+    "locationId": 62
+  },
+  {
+    "id": 237,
+    "name": "UFC on ESPN 16",
+    "fight": "Holm vs. Aldana",
+    "date": "2020-10-03",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-16-Holm-vs-Aldana-87223",
+    "status": "past",
+    "locationId": 62
+  },
+  {
+    "id": 238,
+    "name": "UFC 253",
+    "fight": "Adesanya vs. Costa",
+    "date": "2020-09-26",
+    "link": "https://www.sherdog.com/events/UFC-253-Adesanya-vs-Costa-86797",
+    "status": "past",
+    "locationId": 62
+  },
+  {
+    "id": 239,
+    "name": "UFC Fight Night 178",
+    "fight": "Covington vs. Woodley",
+    "date": "2020-09-19",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-178-Covington-vs-Woodley-87021",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 240,
+    "name": "UFC Fight Night 177",
+    "fight": "Waterson vs. Hill",
+    "date": "2020-09-12",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-177-Waterson-vs-Hill-86969",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 241,
+    "name": "UFC Fight Night 176",
+    "fight": "Overeem vs. Sakai",
+    "date": "2020-09-05",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-176-Overeem-vs-Sakai-87045",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 242,
+    "name": "UFC Fight Night 175",
+    "fight": "Smith vs. Rakic",
+    "date": "2020-08-29",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-175-Smith-vs-Rakic-86829",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 243,
+    "name": "UFC on ESPN 15",
+    "fight": "Munhoz vs. Edgar",
+    "date": "2020-08-22",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-15-Munhoz-vs-Edgar-86802",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 244,
+    "name": "UFC 252",
+    "fight": "Miocic vs. Cormier 3",
+    "date": "2020-08-15",
+    "link": "https://www.sherdog.com/events/UFC-252-Miocic-vs-Cormier-3-85053",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 245,
+    "name": "UFC Fight Night 174",
+    "fight": "Lewis vs. Oleynik",
+    "date": "2020-08-08",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-174-Lewis-vs-Oleynik-86828",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 246,
+    "name": "UFC Fight Night 173",
+    "fight": "Brunson vs. Shahbazyan",
+    "date": "2020-08-01",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-173-Brunson-vs-Shahbazyan-86792",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 247,
+    "name": "UFC on ESPN 14",
+    "fight": "Whittaker vs. Till",
+    "date": "2020-07-25",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-14-Whittaker-vs-Till-86682",
+    "status": "past",
+    "locationId": 62
+  },
+  {
+    "id": 248,
+    "name": "UFC Fight Night 172",
+    "fight": "Figueiredo vs. Benavidez 2",
+    "date": "2020-07-18",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-172-Figueiredo-vs-Benavidez-2-86639",
+    "status": "past",
+    "locationId": 62
+  },
+  {
+    "id": 249,
+    "name": "UFC on ESPN 13",
+    "fight": "Kattar vs. Ige",
+    "date": "2020-07-15",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-13-Kattar-vs-Ige-86749",
+    "status": "past",
+    "locationId": 62
+  },
+  {
+    "id": 250,
+    "name": "UFC 251",
+    "fight": "Usman vs. Masvidal",
+    "date": "2020-07-11",
+    "link": "https://www.sherdog.com/events/UFC-251-Usman-vs-Masvidal-86573",
+    "status": "past",
+    "locationId": 62
+  },
+  {
+    "id": 251,
+    "name": "UFC on ESPN 12",
+    "fight": "Poirier vs. Hooker",
+    "date": "2020-06-27",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-12-Poirier-vs-Hooker-85439",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 252,
+    "name": "UFC on ESPN 11",
+    "fight": "Blaydes vs. Volkov",
+    "date": "2020-06-20",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-11-Blaydes-vs-Volkov-85753",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 253,
+    "name": "UFC on ESPN 10",
+    "fight": "Eye vs. Calvillo",
+    "date": "2020-06-13",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-10-Eye-vs-Calvillo-85485",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 254,
+    "name": "UFC 250",
+    "fight": "Nunes vs. Spencer",
+    "date": "2020-06-06",
+    "link": "https://www.sherdog.com/events/UFC-250-Nunes-vs-Spencer-85345",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 255,
+    "name": "UFC on ESPN 9",
+    "fight": "Woodley vs. Burns",
+    "date": "2020-05-30",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-9-Woodley-vs-Burns-86414",
+    "status": "past",
+    "locationId": 1
+  },
+  {
+    "id": 256,
+    "name": "UFC on ESPN 8",
+    "fight": "Overeem vs. Harris",
+    "date": "2020-05-16",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-8-Overeem-vs-Harris-85255",
+    "status": "past",
+    "locationId": 58
+  },
+  {
+    "id": 257,
+    "name": "UFC Fight Night 171",
+    "fight": "Smith vs. Teixeira",
+    "date": "2020-05-13",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-171-Smith-vs-Teixeira-86413",
+    "status": "past",
+    "locationId": 58
+  },
+  {
+    "id": 258,
+    "name": "UFC 249",
+    "fight": "Ferguson vs. Gaethje",
+    "date": "2020-05-09",
+    "link": "https://www.sherdog.com/events/UFC-249-Ferguson-vs-Gaethje-84357",
+    "status": "past",
+    "locationId": 58
+  },
+  {
+    "id": 259,
+    "name": "UFC Fight Night 170",
+    "fight": "Lee vs. Oliveira",
+    "date": "2020-03-14",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-170-Lee-vs-Oliveira-82429",
+    "status": "past",
+    "locationId": 63
+  },
+  {
+    "id": 260,
+    "name": "UFC 248",
+    "fight": "Adesanya vs. Romero",
+    "date": "2020-03-07",
+    "link": "https://www.sherdog.com/events/UFC-248-Adesanya-vs-Romero-83251",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 261,
+    "name": "UFC Fight Night 169",
+    "fight": "Benavidez vs. Figueiredo",
+    "date": "2020-02-29",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-169-Benavidez-vs-Figueiredo-83479",
+    "status": "past",
+    "locationId": 64
+  },
+  {
+    "id": 262,
+    "name": "UFC Fight Night 168",
+    "fight": "Felder vs. Hooker",
+    "date": "2020-02-23",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-168-Felder-vs-Hooker-82983",
+    "status": "past",
+    "locationId": 65
+  },
+  {
+    "id": 263,
+    "name": "UFC Fight Night 167",
+    "fight": "Anderson vs. Blachowicz 2",
+    "date": "2020-02-15",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-167-Anderson-vs-Blachowicz-2-82977",
+    "status": "past",
+    "locationId": 66
+  },
+  {
+    "id": 264,
+    "name": "UFC 247",
+    "fight": "Jones vs. Reyes",
+    "date": "2020-02-08",
+    "link": "https://www.sherdog.com/events/UFC-247-Jones-vs-Reyes-82427",
+    "status": "past",
+    "locationId": 60
+  },
+  {
+    "id": 265,
+    "name": "UFC Fight Night 166",
+    "fight": "Blaydes vs. dos Santos",
+    "date": "2020-01-25",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-166-Blaydes-vs-dos-Santos-82247",
+    "status": "past",
+    "locationId": 67
+  },
+  {
+    "id": 266,
+    "name": "UFC 246",
+    "fight": "McGregor vs. Cerrone",
+    "date": "2020-01-18",
+    "link": "https://www.sherdog.com/events/UFC-246-McGregor-vs-Cerrone-82425",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 267,
+    "name": "UFC Fight Night 165",
+    "fight": "Edgar vs. Korean Zombie",
+    "date": "2019-12-21",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-165-Edgar-vs-Korean-Zombie-76609",
+    "status": "past",
+    "locationId": 68
+  },
+  {
+    "id": 268,
+    "name": "UFC 245",
+    "fight": "Usman vs. Covington",
+    "date": "2019-12-14",
+    "link": "https://www.sherdog.com/events/UFC-245-Usman-vs-Covington-76607",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 269,
+    "name": "UFC on ESPN 7",
+    "fight": "Overeem vs. Rozenstruik",
+    "date": "2019-12-07",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-7-Overeem-vs-Rozenstruik-76605",
+    "status": "past",
+    "locationId": 69
+  },
+  {
+    "id": 270,
+    "name": "UFC Fight Night 164",
+    "fight": "Blachowicz vs. Jacare",
+    "date": "2019-11-16",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-164-Blachowicz-vs-Jacare-76601",
+    "status": "past",
+    "locationId": 43
+  },
+  {
+    "id": 271,
+    "name": "UFC Fight Night 163",
+    "fight": "Magomedsharipov vs. Kattar",
+    "date": "2019-11-09",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-163-Magomedsharipov-vs-Kattar-79823",
+    "status": "past",
+    "locationId": 70
+  },
+  {
+    "id": 272,
+    "name": "UFC 244",
+    "fight": "Masvidal vs. Diaz",
+    "date": "2019-11-02",
+    "link": "https://www.sherdog.com/events/UFC-244-Masvidal-vs-Diaz-76599",
+    "status": "past",
+    "locationId": 25
+  },
+  {
+    "id": 273,
+    "name": "UFC Fight Night 162",
+    "fight": "Maia vs. Askren",
+    "date": "2019-10-26",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-162-Maia-vs-Askren-76597",
+    "status": "past",
+    "locationId": 44
+  },
+  {
+    "id": 274,
+    "name": "UFC on ESPN 6",
+    "fight": "Reyes vs. Weidman",
+    "date": "2019-10-18",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-6-Reyes-vs-Weidman-76595",
+    "status": "past",
+    "locationId": 45
+  },
+  {
+    "id": 275,
+    "name": "UFC Fight Night 161",
+    "fight": "Jedrzejczyk vs. Waterson",
+    "date": "2019-10-12",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-161-Jedrzejczyk-vs-Waterson-76593",
+    "status": "past",
+    "locationId": 23
+  },
+  {
+    "id": 276,
+    "name": "UFC 243",
+    "fight": "Whittaker vs. Adesanya",
+    "date": "2019-10-05",
+    "link": "https://www.sherdog.com/events/UFC-243-Whittaker-vs-Adesanya-76591",
+    "status": "past",
+    "locationId": 71
+  },
+  {
+    "id": 277,
+    "name": "UFC Fight Night 160",
+    "fight": "Hermansson vs. Cannonier",
+    "date": "2019-09-28",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-160-Hermansson-vs-Cannonier-76589",
+    "status": "past",
+    "locationId": 72
+  },
+  {
+    "id": 278,
+    "name": "UFC Fight Night 159",
+    "fight": "Rodriguez vs. Stephens",
+    "date": "2019-09-21",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-159-Rodriguez-vs-Stephens-76587",
+    "status": "past",
+    "locationId": 39
+  },
+  {
+    "id": 279,
+    "name": "UFC Fight Night 158",
+    "fight": "Cowboy vs. Gaethje",
+    "date": "2019-09-14",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-158-Cowboy-vs-Gaethje-76585",
+    "status": "past",
+    "locationId": 47
+  },
+  {
+    "id": 280,
+    "name": "UFC 242",
+    "fight": "Khabib vs. Poirier",
+    "date": "2019-09-07",
+    "link": "https://www.sherdog.com/events/UFC-242-Khabib-vs-Poirier-76401",
+    "status": "past",
+    "locationId": 73
+  },
+  {
+    "id": 281,
+    "name": "UFC Fight Night 157",
+    "fight": "Andrade vs. Zhang",
+    "date": "2019-08-31",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-157-Andrade-vs-Zhang-76583",
+    "status": "past",
+    "locationId": 74
+  },
+  {
+    "id": 282,
+    "name": "UFC 241",
+    "fight": "Cormier vs. Miocic 2",
+    "date": "2019-08-17",
+    "link": "https://www.sherdog.com/events/UFC-241-Cormier-vs-Miocic-2-76383",
+    "status": "past",
+    "locationId": 40
+  },
+  {
+    "id": 283,
+    "name": "UFC Fight Night 156",
+    "fight": "Shevchenko vs. Carmouche 2",
+    "date": "2019-08-10",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-156-Shevchenko-vs-Carmouche-2-76581",
+    "status": "past",
+    "locationId": 75
+  },
+  {
+    "id": 284,
+    "name": "UFC on ESPN 5",
+    "fight": "Covington vs. Lawler",
+    "date": "2019-08-03",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-5-Covington-vs-Lawler-76579",
+    "status": "past",
+    "locationId": 2
+  },
+  {
+    "id": 285,
+    "name": "UFC 240",
+    "fight": "Holloway vs. Edgar",
+    "date": "2019-07-27",
+    "link": "https://www.sherdog.com/events/UFC-240-Holloway-vs-Edgar-76577",
+    "status": "past",
+    "locationId": 26
+  },
+  {
+    "id": 286,
+    "name": "UFC on ESPN 4",
+    "fight": "Dos Anjos vs. Edwards",
+    "date": "2019-07-20",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-4-Dos-Anjos-vs-Edwards-76575",
+    "status": "past",
+    "locationId": 49
+  },
+  {
+    "id": 287,
+    "name": "UFC Fight Night 155",
+    "fight": "De Randamie vs. Ladd",
+    "date": "2019-07-13",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-155-De-Randamie-vs-Ladd-76573",
+    "status": "past",
+    "locationId": 76
+  },
+  {
+    "id": 288,
+    "name": "UFC 239",
+    "fight": "Jones vs. Santos",
+    "date": "2019-07-06",
+    "link": "https://www.sherdog.com/events/UFC-239-Jones-vs-Santos-75113",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 289,
+    "name": "UFC on ESPN 3",
+    "fight": "Ngannou vs. Dos Santos",
+    "date": "2019-06-29",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-3-Ngannou-vs-Dos-Santos-73351",
+    "status": "past",
+    "locationId": 77
+  },
+  {
+    "id": 290,
+    "name": "UFC Fight Night 154",
+    "fight": "Moicano vs. The Korean Zombie",
+    "date": "2019-06-22",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-154-Moicano-vs-The-Korean-Zombie-73349",
+    "status": "past",
+    "locationId": 78
+  },
+  {
+    "id": 291,
+    "name": "UFC 238",
+    "fight": "Cejudo vs. Moraes",
+    "date": "2019-06-08",
+    "link": "https://www.sherdog.com/events/UFC-238-Cejudo-vs-Moraes-73347",
+    "status": "past",
+    "locationId": 9
+  },
+  {
+    "id": 292,
+    "name": "UFC Fight Night 153",
+    "fight": "Gustafsson vs. Smith",
+    "date": "2019-06-01",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-153-Gustafsson-vs-Smith-73345",
+    "status": "past",
+    "locationId": 79
+  },
+  {
+    "id": 293,
+    "name": "UFC Fight Night 152",
+    "fight": "Dos Anjos vs. Lee",
+    "date": "2019-05-18",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-152-Dos-Anjos-vs-Lee-73343",
+    "status": "past",
+    "locationId": 80
+  },
+  {
+    "id": 294,
+    "name": "UFC 237",
+    "fight": "Namajunas vs. Andrade",
+    "date": "2019-05-11",
+    "link": "https://www.sherdog.com/events/UFC-237-Namajunas-vs-Andrade-73341",
+    "status": "past",
+    "locationId": 51
+  },
+  {
+    "id": 295,
+    "name": "UFC Fight Night 151",
+    "fight": "Iaquinta vs. Cowboy",
+    "date": "2019-05-04",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-151-Iaquinta-vs-Cowboy-73339",
+    "status": "past",
+    "locationId": 81
+  },
+  {
+    "id": 296,
+    "name": "UFC Fight Night 150",
+    "fight": "Jacare vs. Hermansson",
+    "date": "2019-04-27",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-150-Jacare-vs-Hermansson-73337",
+    "status": "past",
+    "locationId": 82
+  },
+  {
+    "id": 297,
+    "name": "UFC Fight Night 149",
+    "fight": "Overeem vs. Oleynik",
+    "date": "2019-04-20",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-149-Overeem-vs-Oleynik-73335",
+    "status": "past",
+    "locationId": 83
+  },
+  {
+    "id": 298,
+    "name": "UFC 236",
+    "fight": "Holloway vs. Poirier",
+    "date": "2019-04-13",
+    "link": "https://www.sherdog.com/events/UFC-236-Holloway-vs-Poirier-73333",
+    "status": "past",
+    "locationId": 3
+  },
+  {
+    "id": 299,
+    "name": "UFC on ESPN 2",
+    "fight": "Barboza vs. Gaethje",
+    "date": "2019-03-30",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-2-Barboza-vs-Gaethje-72035",
+    "status": "past",
+    "locationId": 84
+  },
+  {
+    "id": 300,
+    "name": "UFC Fight Night 148",
+    "fight": "Thompson vs. Pettis",
+    "date": "2019-03-23",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-148-Thompson-vs-Pettis-72033",
+    "status": "past",
+    "locationId": 6
+  },
+  {
+    "id": 301,
+    "name": "UFC Fight Night 147",
+    "fight": "Till vs. Masvidal",
+    "date": "2019-03-16",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-147-Till-vs-Masvidal-72031",
+    "status": "past",
+    "locationId": 18
+  },
+  {
+    "id": 302,
+    "name": "UFC Fight Night 146",
+    "fight": "Lewis vs. Dos Santos",
+    "date": "2019-03-09",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-146-Lewis-vs-Dos-Santos-72029",
+    "status": "past",
+    "locationId": 85
+  },
+  {
+    "id": 303,
+    "name": "UFC 235",
+    "fight": "Jones vs. Smith",
+    "date": "2019-03-02",
+    "link": "https://www.sherdog.com/events/UFC-235-Jones-vs-Smith-72027",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 304,
+    "name": "UFC Fight Night 145",
+    "fight": "Blachowicz vs. Santos",
+    "date": "2019-02-23",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-145-Blachowicz-vs-Santos-72051",
+    "status": "past",
+    "locationId": 86
+  },
+  {
+    "id": 305,
+    "name": "UFC on ESPN 1",
+    "fight": "Ngannou vs. Velasquez",
+    "date": "2019-02-17",
+    "link": "https://www.sherdog.com/events/UFC-on-ESPN-1-Ngannou-vs-Velasquez-72025",
+    "status": "past",
+    "locationId": 87
+  },
+  {
+    "id": 306,
+    "name": "UFC 234",
+    "fight": "Adesanya vs. Silva",
+    "date": "2019-02-09",
+    "link": "https://www.sherdog.com/events/UFC-234-Adesanya-vs-Silva-72011",
+    "status": "past",
+    "locationId": 88
+  },
+  {
+    "id": 307,
+    "name": "UFC Fight Night 144",
+    "fight": "Assuncao vs. Moraes 2",
+    "date": "2019-02-02",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-144-Assuncao-vs-Moraes-2-72023",
+    "status": "past",
+    "locationId": 89
+  },
+  {
+    "id": 308,
+    "name": "UFC 233 - Ultimate Fighting Championship 233",
+    "fight": null,
+    "date": "2019-01-26",
+    "link": "https://www.sherdog.com/events/UFC-233-Ultimate-Fighting-Championship-233-72021",
+    "status": "past",
+    "locationId": 90
+  },
+  {
+    "id": 309,
+    "name": "UFC Fight Night 143",
+    "fight": "Cejudo vs. Dillashaw",
+    "date": "2019-01-19",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-143-Cejudo-vs-Dillashaw-72019",
+    "status": "past",
+    "locationId": 91
+  },
+  {
+    "id": 310,
+    "name": "UFC 232",
+    "fight": "Jones vs. Gustafsson 2",
+    "date": "2018-12-29",
+    "link": "https://www.sherdog.com/events/UFC-232-Jones-vs-Gustafsson-2-69297",
+    "status": "past",
+    "locationId": 92
+  },
+  {
+    "id": 311,
+    "name": "UFC on Fox 31",
+    "fight": "Iaquinta vs. Lee 2",
+    "date": "2018-12-15",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-31-Iaquinta-vs-Lee-2-69295",
+    "status": "past",
+    "locationId": 93
+  },
+  {
+    "id": 312,
+    "name": "UFC 231",
+    "fight": "Holloway vs. Ortega",
+    "date": "2018-12-08",
+    "link": "https://www.sherdog.com/events/UFC-231-Holloway-vs-Ortega-69293",
+    "status": "past",
+    "locationId": 41
+  },
+  {
+    "id": 313,
+    "name": "UFC Fight Night 142",
+    "fight": "Dos Santos vs. Tuivasa",
+    "date": "2018-12-01",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-142-Dos-Santos-vs-Tuivasa-69291",
+    "status": "past",
+    "locationId": 94
+  },
+  {
+    "id": 314,
+    "name": "UFC - The Ultimate Fighter 28 Finale",
+    "fight": null,
+    "date": "2018-11-30",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-28-Finale-69289",
+    "status": "past",
+    "locationId": 95
+  },
+  {
+    "id": 315,
+    "name": "UFC Fight Night 141",
+    "fight": "Blaydes vs. Ngannou 2",
+    "date": "2018-11-24",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-141-Blaydes-vs-Ngannou-2-69287",
+    "status": "past",
+    "locationId": 96
+  },
+  {
+    "id": 316,
+    "name": "UFC Fight Night 140",
+    "fight": "Magny vs. Ponzinibbio",
+    "date": "2018-11-17",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-140-Magny-vs-Ponzinibbio-69285",
+    "status": "past",
+    "locationId": 97
+  },
+  {
+    "id": 317,
+    "name": "UFC Fight Night 139",
+    "fight": "Korean Zombie vs. Rodriguez",
+    "date": "2018-11-10",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-139-Korean-Zombie-vs-Rodriguez-69283",
+    "status": "past",
+    "locationId": 98
+  },
+  {
+    "id": 318,
+    "name": "UFC 230",
+    "fight": "Cormier vs. Lewis",
+    "date": "2018-11-03",
+    "link": "https://www.sherdog.com/events/UFC-230-Cormier-vs-Lewis-69281",
+    "status": "past",
+    "locationId": 25
+  },
+  {
+    "id": 319,
+    "name": "UFC Fight Night 138",
+    "fight": "Oezdemir vs. Smith",
+    "date": "2018-10-27",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-138-Oezdemir-vs-Smith-69279",
+    "status": "past",
+    "locationId": 99
+  },
+  {
+    "id": 320,
+    "name": "UFC 229",
+    "fight": "Nurmagomedov vs. McGregor",
+    "date": "2018-10-06",
+    "link": "https://www.sherdog.com/events/UFC-229-Nurmagomedov-vs-McGregor-69277",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 321,
+    "name": "UFC Fight Night 137",
+    "fight": "Santos vs. Anders",
+    "date": "2018-09-22",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-137-Santos-vs-Anders-69275",
+    "status": "past",
+    "locationId": 100
+  },
+  {
+    "id": 322,
+    "name": "UFC Fight Night 136",
+    "fight": "Hunt vs. Oleynik",
+    "date": "2018-09-15",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-136-Hunt-vs-Oleynik-68195",
+    "status": "past",
+    "locationId": 101
+  },
+  {
+    "id": 323,
+    "name": "UFC 228",
+    "fight": "Woodley vs. Till",
+    "date": "2018-09-08",
+    "link": "https://www.sherdog.com/events/UFC-228-Woodley-vs-Till-69273",
+    "status": "past",
+    "locationId": 55
+  },
+  {
+    "id": 324,
+    "name": "UFC Fight Night 135",
+    "fight": "Gaethje vs. Vick",
+    "date": "2018-08-25",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-135-Gaethje-vs-Vick-66979",
+    "status": "past",
+    "locationId": 102
+  },
+  {
+    "id": 325,
+    "name": "UFC 227",
+    "fight": "Dillashaw vs. Garbrandt 2",
+    "date": "2018-08-04",
+    "link": "https://www.sherdog.com/events/UFC-227-Dillashaw-vs-Garbrandt-2-66977",
+    "status": "past",
+    "locationId": 103
+  },
+  {
+    "id": 326,
+    "name": "UFC on Fox 30",
+    "fight": "Alvarez vs. Poirier 2",
+    "date": "2018-07-28",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-30-Alvarez-vs-Poirier-2-66975",
+    "status": "past",
+    "locationId": 104
+  },
+  {
+    "id": 327,
+    "name": "UFC Fight Night 134",
+    "fight": "Shogun vs. Smith",
+    "date": "2018-07-22",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-134-Shogun-vs-Smith-66973",
+    "status": "past",
+    "locationId": 105
+  },
+  {
+    "id": 328,
+    "name": "UFC Fight Night 133",
+    "fight": "Dos Santos vs. Ivanov",
+    "date": "2018-07-14",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-133-Dos-Santos-vs-Ivanov-66971",
+    "status": "past",
+    "locationId": 106
+  },
+  {
+    "id": 329,
+    "name": "UFC 226",
+    "fight": "Miocic vs. Cormier",
+    "date": "2018-07-07",
+    "link": "https://www.sherdog.com/events/UFC-226-Miocic-vs-Cormier-65367",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 330,
+    "name": "UFC - The Ultimate Fighter 27 Finale",
+    "fight": null,
+    "date": "2018-07-06",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-27-Finale-65583",
+    "status": "past",
+    "locationId": 95
+  },
+  {
+    "id": 331,
+    "name": "UFC Fight Night 132",
+    "fight": "Cerrone vs. Edwards",
+    "date": "2018-06-23",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-132-Cerrone-vs-Edwards-67121",
+    "status": "past",
+    "locationId": 44
+  },
+  {
+    "id": 332,
+    "name": "UFC 225",
+    "fight": "Whittaker vs. Romero 2",
+    "date": "2018-06-09",
+    "link": "https://www.sherdog.com/events/UFC-225-Whittaker-vs-Romero-2-65421",
+    "status": "past",
+    "locationId": 9
+  },
+  {
+    "id": 333,
+    "name": "UFC Fight Night 131",
+    "fight": "Rivera vs. Moraes",
+    "date": "2018-06-01",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-131-Rivera-vs-Moraes-65423",
+    "status": "past",
+    "locationId": 107
+  },
+  {
+    "id": 334,
+    "name": "UFC Fight Night 130",
+    "fight": "Thompson vs. Till",
+    "date": "2018-05-27",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-130-Thompson-vs-Till-66253",
+    "status": "past",
+    "locationId": 108
+  },
+  {
+    "id": 335,
+    "name": "UFC Fight Night 129",
+    "fight": "Maia vs. Usman",
+    "date": "2018-05-19",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-129-Maia-vs-Usman-65581",
+    "status": "past",
+    "locationId": 109
+  },
+  {
+    "id": 336,
+    "name": "UFC 224",
+    "fight": "Nunes vs. Pennington",
+    "date": "2018-05-12",
+    "link": "https://www.sherdog.com/events/UFC-224-Nunes-vs-Pennington-65419",
+    "status": "past",
+    "locationId": 51
+  },
+  {
+    "id": 337,
+    "name": "UFC Fight Night 128",
+    "fight": "Barboza vs. Lee",
+    "date": "2018-04-21",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-128-Barboza-vs-Lee-65387",
+    "status": "past",
+    "locationId": 110
+  },
+  {
+    "id": 338,
+    "name": "UFC on Fox 29",
+    "fight": "Poirier vs. Gaethje",
+    "date": "2018-04-14",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-29-Poirier-vs-Gaethje-65327",
+    "status": "past",
+    "locationId": 61
+  },
+  {
+    "id": 339,
+    "name": "UFC 223",
+    "fight": "Khabib vs. Iaquinta",
+    "date": "2018-04-07",
+    "link": "https://www.sherdog.com/events/UFC-223-Khabib-vs-Iaquinta-65291",
+    "status": "past",
+    "locationId": 91
+  },
+  {
+    "id": 340,
+    "name": "UFC Fight Night 127",
+    "fight": "Werdum vs. Volkov",
+    "date": "2018-03-17",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-127-Werdum-vs-Volkov-63975",
+    "status": "past",
+    "locationId": 18
+  },
+  {
+    "id": 341,
+    "name": "UFC 222",
+    "fight": "Cyborg vs. Kunitskaya",
+    "date": "2018-03-03",
+    "link": "https://www.sherdog.com/events/UFC-222-Cyborg-vs-Kunitskaya-63771",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 342,
+    "name": "UFC on Fox 28",
+    "fight": "Emmett vs. Stephens",
+    "date": "2018-02-24",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-28-Emmett-vs-Stephens-63973",
+    "status": "past",
+    "locationId": 52
+  },
+  {
+    "id": 343,
+    "name": "UFC Fight Night 126",
+    "fight": "Cerrone vs. Medeiros",
+    "date": "2018-02-18",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-126-Cerrone-vs-Medeiros-63971",
+    "status": "past",
+    "locationId": 111
+  },
+  {
+    "id": 344,
+    "name": "UFC 221",
+    "fight": "Romero vs. Rockhold",
+    "date": "2018-02-10",
+    "link": "https://www.sherdog.com/events/UFC-221-Romero-vs-Rockhold-63769",
+    "status": "past",
+    "locationId": 112
+  },
+  {
+    "id": 345,
+    "name": "UFC Fight Night 125",
+    "fight": "Machida vs. Anders",
+    "date": "2018-02-03",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-125-Machida-vs-Anders-63767",
+    "status": "past",
+    "locationId": 113
+  },
+  {
+    "id": 346,
+    "name": "UFC on Fox 27",
+    "fight": "Jacare vs. Brunson 2",
+    "date": "2018-01-27",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-27-Jacare-vs-Brunson-2-63969",
+    "status": "past",
+    "locationId": 48
+  },
+  {
+    "id": 347,
+    "name": "UFC 220",
+    "fight": "Miocic vs. Ngannou",
+    "date": "2018-01-20",
+    "link": "https://www.sherdog.com/events/UFC-220-Miocic-vs-Ngannou-63763",
+    "status": "past",
+    "locationId": 45
+  },
+  {
+    "id": 348,
+    "name": "UFC Fight Night 124",
+    "fight": "Stephens vs. Choi",
+    "date": "2018-01-14",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-124-Stephens-vs-Choi-63765",
+    "status": "past",
+    "locationId": 114
+  },
+  {
+    "id": 349,
+    "name": "UFC 219",
+    "fight": "Cyborg vs. Holm",
+    "date": "2017-12-30",
+    "link": "https://www.sherdog.com/events/UFC-219-Cyborg-vs-Holm-61993",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 350,
+    "name": "UFC on Fox 26",
+    "fight": "Lawler vs. dos Anjos",
+    "date": "2017-12-16",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-26-Lawler-vs-dos-Anjos-62621",
+    "status": "past",
+    "locationId": 115
+  },
+  {
+    "id": 351,
+    "name": "UFC Fight Night 123",
+    "fight": "Swanson vs. Ortega",
+    "date": "2017-12-09",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-123-Swanson-vs-Ortega-62623",
+    "status": "past",
+    "locationId": 116
+  },
+  {
+    "id": 352,
+    "name": "UFC 218",
+    "fight": "Holloway vs. Aldo 2",
+    "date": "2017-12-02",
+    "link": "https://www.sherdog.com/events/UFC-218-Holloway-vs-Aldo-2-61991",
+    "status": "past",
+    "locationId": 117
+  },
+  {
+    "id": 353,
+    "name": "UFC - The Ultimate Fighter 26 Finale",
+    "fight": null,
+    "date": "2017-12-01",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-26-Finale-61987",
+    "status": "past",
+    "locationId": 118
+  },
+  {
+    "id": 354,
+    "name": "UFC Fight Night 122",
+    "fight": "Bisping vs. Gastelum",
+    "date": "2017-11-25",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-122-Bisping-vs-Gastelum-62001",
+    "status": "past",
+    "locationId": 119
+  },
+  {
+    "id": 355,
+    "name": "UFC Fight Night 121",
+    "fight": "Werdum vs. Tybura",
+    "date": "2017-11-18",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-121-Werdum-vs-Tybura-61985",
+    "status": "past",
+    "locationId": 20
+  },
+  {
+    "id": 356,
+    "name": "UFC Fight Night 120",
+    "fight": "Poirier vs. Pettis",
+    "date": "2017-11-11",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-120-Poirier-vs-Pettis-62649",
+    "status": "past",
+    "locationId": 120
+  },
+  {
+    "id": 357,
+    "name": "UFC 217",
+    "fight": "Bisping vs. St. Pierre",
+    "date": "2017-11-04",
+    "link": "https://www.sherdog.com/events/UFC-217-Bisping-vs-St-Pierre-61989",
+    "status": "past",
+    "locationId": 25
+  },
+  {
+    "id": 358,
+    "name": "UFC Fight Night 119",
+    "fight": "Brunson vs. Machida",
+    "date": "2017-10-28",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-119-Brunson-vs-Machida-61997",
+    "status": "past",
+    "locationId": 100
+  },
+  {
+    "id": 359,
+    "name": "UFC Fight Night 118",
+    "fight": "Cerrone vs. Till",
+    "date": "2017-10-21",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-118-Cerrone-vs-Till-58753",
+    "status": "past",
+    "locationId": 121
+  },
+  {
+    "id": 360,
+    "name": "UFC 216",
+    "fight": "Ferguson vs. Lee",
+    "date": "2017-10-07",
+    "link": "https://www.sherdog.com/events/UFC-216-Ferguson-vs-Lee-61983",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 361,
+    "name": "UFC Fight Night 117",
+    "fight": "St. Preux vs. Okami",
+    "date": "2017-09-22",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-117-St-Preux-vs-Okami-60113",
+    "status": "past",
+    "locationId": 122
+  },
+  {
+    "id": 362,
+    "name": "UFC Fight Night 116",
+    "fight": "Rockhold vs. Branch",
+    "date": "2017-09-16",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-116-Rockhold-vs-Branch-61995",
+    "status": "past",
+    "locationId": 123
+  },
+  {
+    "id": 363,
+    "name": "UFC 215",
+    "fight": "Nunes vs. Shevchenko 2",
+    "date": "2017-09-09",
+    "link": "https://www.sherdog.com/events/UFC-215-Nunes-vs-Shevchenko-2-59759",
+    "status": "past",
+    "locationId": 26
+  },
+  {
+    "id": 364,
+    "name": "UFC Fight Night 115",
+    "fight": "Volkov vs. Struve",
+    "date": "2017-09-02",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-115-Volkov-vs-Struve-58751",
+    "status": "past",
+    "locationId": 124
+  },
+  {
+    "id": 365,
+    "name": "UFC Fight Night 114",
+    "fight": "Pettis vs. Moreno",
+    "date": "2017-08-05",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-114-Pettis-vs-Moreno-60029",
+    "status": "past",
+    "locationId": 39
+  },
+  {
+    "id": 366,
+    "name": "UFC 214",
+    "fight": "Cormier vs. Jones 2",
+    "date": "2017-07-29",
+    "link": "https://www.sherdog.com/events/UFC-214-Cormier-vs-Jones-2-57825",
+    "status": "past",
+    "locationId": 40
+  },
+  {
+    "id": 367,
+    "name": "UFC on Fox 25",
+    "fight": "Weidman vs. Gastelum",
+    "date": "2017-07-22",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-25-Weidman-vs-Gastelum-59505",
+    "status": "past",
+    "locationId": 125
+  },
+  {
+    "id": 368,
+    "name": "UFC Fight Night 113",
+    "fight": "Nelson vs. Ponzinibbio",
+    "date": "2017-07-16",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-113-Nelson-vs-Ponzinibbio-58749",
+    "status": "past",
+    "locationId": 126
+  },
+  {
+    "id": 369,
+    "name": "UFC 213",
+    "fight": "Romero vs. Whittaker",
+    "date": "2017-07-08",
+    "link": "https://www.sherdog.com/events/UFC-213-Romero-vs-Whittaker-59011",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 370,
+    "name": "UFC - The Ultimate Fighter 25 Finale",
+    "fight": null,
+    "date": "2017-07-07",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-25-Finale-59007",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 371,
+    "name": "UFC Fight Night 112",
+    "fight": "Chiesa vs. Lee",
+    "date": "2017-06-25",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-112-Chiesa-vs-Lee-58847",
+    "status": "past",
+    "locationId": 127
+  },
+  {
+    "id": 372,
+    "name": "UFC Fight Night 111",
+    "fight": "Holm vs. Correia",
+    "date": "2017-06-17",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-111-Holm-vs-Correia-58241",
+    "status": "past",
+    "locationId": 44
+  },
+  {
+    "id": 373,
+    "name": "UFC Fight Night 110",
+    "fight": "Hunt vs. Lewis",
+    "date": "2017-06-10",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-110-Hunt-vs-Lewis-58411",
+    "status": "past",
+    "locationId": 128
+  },
+  {
+    "id": 374,
+    "name": "UFC 212",
+    "fight": "Aldo vs. Holloway",
+    "date": "2017-06-03",
+    "link": "https://www.sherdog.com/events/UFC-212-Aldo-vs-Holloway-57993",
+    "status": "past",
+    "locationId": 129
+  },
+  {
+    "id": 375,
+    "name": "UFC Fight Night 109",
+    "fight": "Gustafsson vs. Teixeira",
+    "date": "2017-05-28",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-109-Gustafsson-vs-Teixeira-58405",
+    "status": "past",
+    "locationId": 130
+  },
+  {
+    "id": 376,
+    "name": "UFC 211",
+    "fight": "Miocic vs. Dos Santos 2",
+    "date": "2017-05-13",
+    "link": "https://www.sherdog.com/events/UFC-211-Miocic-vs-Dos-Santos-2-57823",
+    "status": "past",
+    "locationId": 55
+  },
+  {
+    "id": 377,
+    "name": "UFC Fight Night 108",
+    "fight": "Swanson vs. Lobov",
+    "date": "2017-04-22",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-108-Swanson-vs-Lobov-57969",
+    "status": "past",
+    "locationId": 6
+  },
+  {
+    "id": 378,
+    "name": "UFC on Fox 24",
+    "fight": "Johnson vs. Reis",
+    "date": "2017-04-15",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-24-Johnson-vs-Reis-57971",
+    "status": "past",
+    "locationId": 131
+  },
+  {
+    "id": 379,
+    "name": "UFC 210",
+    "fight": "Cormier vs. Johnson 2",
+    "date": "2017-04-08",
+    "link": "https://www.sherdog.com/events/UFC-210-Cormier-vs-Johnson-2-57531",
+    "status": "past",
+    "locationId": 132
+  },
+  {
+    "id": 380,
+    "name": "UFC Fight Night 107",
+    "fight": "Manuwa vs. Anderson",
+    "date": "2017-03-18",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-107-Manuwa-vs-Anderson-56259",
+    "status": "past",
+    "locationId": 133
+  },
+  {
+    "id": 381,
+    "name": "UFC Fight Night 106",
+    "fight": "Belfort vs. Gastelum",
+    "date": "2017-03-11",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-106-Belfort-vs-Gastelum-56257",
+    "status": "past",
+    "locationId": 134
+  },
+  {
+    "id": 382,
+    "name": "UFC 209",
+    "fight": "Woodley vs. Thompson 2",
+    "date": "2017-03-04",
+    "link": "https://www.sherdog.com/events/UFC-209-Woodley-vs-Thompson-2-56255",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 383,
+    "name": "UFC Fight Night 105",
+    "fight": "Lewis vs. Browne",
+    "date": "2017-02-19",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-105-Lewis-vs-Browne-56251",
+    "status": "past",
+    "locationId": 135
+  },
+  {
+    "id": 384,
+    "name": "UFC 208",
+    "fight": "Holm vs. De Randamie",
+    "date": "2017-02-11",
+    "link": "https://www.sherdog.com/events/UFC-208-Holm-vs-De-Randamie-56249",
+    "status": "past",
+    "locationId": 91
+  },
+  {
+    "id": 385,
+    "name": "UFC Fight Night 104",
+    "fight": "Bermudez vs. Korean Zombie",
+    "date": "2017-02-04",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-104-Bermudez-vs-Korean-Zombie-56247",
+    "status": "past",
+    "locationId": 60
+  },
+  {
+    "id": 386,
+    "name": "UFC on Fox 23",
+    "fight": "Shevchenko vs. Pena",
+    "date": "2017-01-28",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-23-Shevchenko-vs-Pena-56245",
+    "status": "past",
+    "locationId": 98
+  },
+  {
+    "id": 387,
+    "name": "UFC Fight Night 103",
+    "fight": "Rodriguez vs. Penn",
+    "date": "2017-01-15",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-103-Rodriguez-vs-Penn-56239",
+    "status": "past",
+    "locationId": 136
+  },
+  {
+    "id": 388,
+    "name": "UFC 207",
+    "fight": "Nunes vs. Rousey",
+    "date": "2016-12-30",
+    "link": "https://www.sherdog.com/events/UFC-207-Nunes-vs-Rousey-55005",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 389,
+    "name": "UFC on Fox 22",
+    "fight": "VanZant vs. Waterson",
+    "date": "2016-12-17",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-22-VanZant-vs-Waterson-55003",
+    "status": "past",
+    "locationId": 76
+  },
+  {
+    "id": 390,
+    "name": "UFC 206",
+    "fight": "Holloway vs. Pettis",
+    "date": "2016-12-10",
+    "link": "https://www.sherdog.com/events/UFC-206-Holloway-vs-Pettis-55001",
+    "status": "past",
+    "locationId": 137
+  },
+  {
+    "id": 391,
+    "name": "UFC Fight Night 102",
+    "fight": "Lewis vs. Abdurakhimov",
+    "date": "2016-12-09",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-102-Lewis-vs-Abdurakhimov-54999",
+    "status": "past",
+    "locationId": 138
+  },
+  {
+    "id": 392,
+    "name": "UFC - The Ultimate Fighter 24 Finale",
+    "fight": null,
+    "date": "2016-12-03",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-24-Finale-54997",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 393,
+    "name": "UFC Fight Night 101",
+    "fight": "Whittaker vs. Brunson",
+    "date": "2016-11-26",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-101-Whittaker-vs-Brunson-54995",
+    "status": "past",
+    "locationId": 88
+  },
+  {
+    "id": 394,
+    "name": "UFC Fight Night 100",
+    "fight": "Bader vs. Nogueira 2",
+    "date": "2016-11-19",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-100-Bader-vs-Nogueira-2-54993",
+    "status": "past",
+    "locationId": 43
+  },
+  {
+    "id": 395,
+    "name": "UFC Fight Night 99",
+    "fight": "Mousasi vs. Hall 2",
+    "date": "2016-11-19",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-99-Mousasi-vs-Hall-2-54983",
+    "status": "past",
+    "locationId": 140
+  },
+  {
+    "id": 396,
+    "name": "UFC 205",
+    "fight": "Alvarez vs. McGregor",
+    "date": "2016-11-12",
+    "link": "https://www.sherdog.com/events/UFC-205-Alvarez-vs-McGregor-52249",
+    "status": "past",
+    "locationId": 25
+  },
+  {
+    "id": 397,
+    "name": "UFC Fight Night 98",
+    "fight": "Dos Anjos vs. Ferguson",
+    "date": "2016-11-05",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-98-Dos-Anjos-vs-Ferguson-51653",
+    "status": "past",
+    "locationId": 39
+  },
+  {
+    "id": 398,
+    "name": "UFC Fight Night 97",
+    "fight": "Lamas vs. Penn",
+    "date": "2016-10-15",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-97-Lamas-vs-Penn-90890",
+    "status": "past",
+    "locationId": 141
+  },
+  {
+    "id": 399,
+    "name": "UFC 204",
+    "fight": "Bisping vs. Henderson 2",
+    "date": "2016-10-08",
+    "link": "https://www.sherdog.com/events/UFC-204-Bisping-vs-Henderson-2-54381",
+    "status": "past",
+    "locationId": 142
+  },
+  {
+    "id": 400,
+    "name": "UFC Fight Night 96",
+    "fight": "Lineker vs. Dodson",
+    "date": "2016-10-01",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-96-Lineker-vs-Dodson-54089",
+    "status": "past",
+    "locationId": 143
+  },
+  {
+    "id": 401,
+    "name": "UFC Fight Night 95",
+    "fight": "Cyborg vs. Lansberg",
+    "date": "2016-09-24",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-95-Cyborg-vs-Lansberg-53641",
+    "status": "past",
+    "locationId": 63
+  },
+  {
+    "id": 402,
+    "name": "UFC Fight Night 94",
+    "fight": "Poirier vs. Johnson",
+    "date": "2016-09-17",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-94-Poirier-vs-Johnson-53639",
+    "status": "past",
+    "locationId": 144
+  },
+  {
+    "id": 403,
+    "name": "UFC 203",
+    "fight": "Miocic vs. Overeem",
+    "date": "2016-09-10",
+    "link": "https://www.sherdog.com/events/UFC-203-Miocic-vs-Overeem-52565",
+    "status": "past",
+    "locationId": 145
+  },
+  {
+    "id": 404,
+    "name": "UFC Fight Night 93",
+    "fight": "Arlovski vs. Barnett",
+    "date": "2016-09-03",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-93-Arlovski-vs-Barnett-52185",
+    "status": "past",
+    "locationId": 105
+  },
+  {
+    "id": 405,
+    "name": "UFC on Fox 21",
+    "fight": "Maia vs. Condit",
+    "date": "2016-08-27",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-21-Maia-vs-Condit-52945",
+    "status": "past",
+    "locationId": 47
+  },
+  {
+    "id": 406,
+    "name": "UFC 202",
+    "fight": "Diaz vs. McGregor 2",
+    "date": "2016-08-20",
+    "link": "https://www.sherdog.com/events/UFC-202-Diaz-vs-McGregor-2-52567",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 407,
+    "name": "UFC Fight Night 92",
+    "fight": "Rodriguez vs. Caceres",
+    "date": "2016-08-06",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-92-Rodriguez-vs-Caceres-52851",
+    "status": "past",
+    "locationId": 146
+  },
+  {
+    "id": 408,
+    "name": "UFC 201",
+    "fight": "Lawler vs. Woodley",
+    "date": "2016-07-30",
+    "link": "https://www.sherdog.com/events/UFC-201-Lawler-vs-Woodley-52199",
+    "status": "past",
+    "locationId": 147
+  },
+  {
+    "id": 409,
+    "name": "UFC on Fox 20",
+    "fight": "Holm vs. Shevchenko",
+    "date": "2016-07-23",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-20-Holm-vs-Shevchenko-51563",
+    "status": "past",
+    "locationId": 9
+  },
+  {
+    "id": 410,
+    "name": "UFC Fight Night 91",
+    "fight": "McDonald vs. Lineker",
+    "date": "2016-07-13",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-91-McDonald-vs-Lineker-51841",
+    "status": "past",
+    "locationId": 148
+  },
+  {
+    "id": 411,
+    "name": "UFC 200",
+    "fight": "Tate vs. Nunes",
+    "date": "2016-07-09",
+    "link": "https://www.sherdog.com/events/UFC-200-Tate-vs-Nunes-47285",
+    "status": "past",
+    "locationId": 5
+  },
+  {
+    "id": 412,
+    "name": "UFC  - The Ultimate Fighter 23 Finale",
+    "fight": null,
+    "date": "2016-07-08",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-23-Finale-50075",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 413,
+    "name": "UFC Fight Night 90",
+    "fight": "Dos Anjos vs. Alvarez",
+    "date": "2016-07-07",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-90-Dos-Anjos-vs-Alvarez-50943",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 414,
+    "name": "UFC Fight Night 89",
+    "fight": "MacDonald vs. Thompson",
+    "date": "2016-06-18",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-89-MacDonald-vs-Thompson-50939",
+    "status": "past",
+    "locationId": 150
+  },
+  {
+    "id": 415,
+    "name": "UFC 199",
+    "fight": "Rockhold vs. Bisping 2",
+    "date": "2016-06-04",
+    "link": "https://www.sherdog.com/events/UFC-199-Rockhold-vs-Bisping-2-50937",
+    "status": "past",
+    "locationId": 92
+  },
+  {
+    "id": 416,
+    "name": "UFC Fight Night 88",
+    "fight": "Almeida vs. Garbrandt",
+    "date": "2016-05-29",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-88-Almeida-vs-Garbrandt-50941",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 417,
+    "name": "UFC 198",
+    "fight": "Werdum vs. Miocic",
+    "date": "2016-05-14",
+    "link": "https://www.sherdog.com/events/UFC-198-Werdum-vs-Miocic-50217",
+    "status": "past",
+    "locationId": 152
+  },
+  {
+    "id": 418,
+    "name": "UFC Fight Night 87",
+    "fight": "Overeem vs. Arlovski",
+    "date": "2016-05-08",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-87-Overeem-vs-Arlovski-50621",
+    "status": "past",
+    "locationId": 124
+  },
+  {
+    "id": 419,
+    "name": "UFC 197",
+    "fight": "Jones vs. St. Preux",
+    "date": "2016-04-23",
+    "link": "https://www.sherdog.com/events/UFC-197-Jones-vs-St-Preux-50485",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 420,
+    "name": "UFC on Fox 19",
+    "fight": "Teixeira vs. Evans",
+    "date": "2016-04-16",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-19-Teixeira-vs-Evans-50261",
+    "status": "past",
+    "locationId": 23
+  },
+  {
+    "id": 421,
+    "name": "UFC Fight Night 86",
+    "fight": "Rothwell vs. Dos Santos",
+    "date": "2016-04-10",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-86-Rothwell-vs-Dos-Santos-50295",
+    "status": "past",
+    "locationId": 153
+  },
+  {
+    "id": 422,
+    "name": "UFC Fight Night 85",
+    "fight": "Hunt vs. Mir",
+    "date": "2016-03-19",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-85-Hunt-vs-Mir-47939",
+    "status": "past",
+    "locationId": 154
+  },
+  {
+    "id": 423,
+    "name": "UFC 196",
+    "fight": "McGregor vs. Diaz",
+    "date": "2016-03-05",
+    "link": "https://www.sherdog.com/events/UFC-196-McGregor-vs-Diaz-47931",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 424,
+    "name": "UFC Fight Night 84",
+    "fight": "Silva vs. Bisping",
+    "date": "2016-02-27",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-84-Silva-vs-Bisping-47937",
+    "status": "past",
+    "locationId": 18
+  },
+  {
+    "id": 425,
+    "name": "UFC Fight Night 83",
+    "fight": "Cerrone vs. Oliveira",
+    "date": "2016-02-21",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-83-Cerrone-vs-Oliveira-47935",
+    "status": "past",
+    "locationId": 155
+  },
+  {
+    "id": 426,
+    "name": "UFC Fight Night 82",
+    "fight": "Hendricks vs. Thompson",
+    "date": "2016-02-06",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-82-Hendricks-vs-Thompson-47929",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 427,
+    "name": "UFC on Fox 18",
+    "fight": "Johnson vs. Bader",
+    "date": "2016-01-30",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-18-Johnson-vs-Bader-47933",
+    "status": "past",
+    "locationId": 2
+  },
+  {
+    "id": 428,
+    "name": "UFC Fight Night 81",
+    "fight": "Dillashaw vs. Cruz",
+    "date": "2016-01-17",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-81-Dillashaw-vs-Cruz-47783",
+    "status": "past",
+    "locationId": 45
+  },
+  {
+    "id": 429,
+    "name": "UFC 195",
+    "fight": "Lawler vs. Condit",
+    "date": "2016-01-02",
+    "link": "https://www.sherdog.com/events/UFC-195-Lawler-vs-Condit-47465",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 430,
+    "name": "UFC on Fox 17",
+    "fight": "Dos Anjos vs. Cerrone 2",
+    "date": "2015-12-19",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-17-Dos-Anjos-vs-Cerrone-2-42249",
+    "status": "past",
+    "locationId": 52
+  },
+  {
+    "id": 431,
+    "name": "UFC 194",
+    "fight": "Aldo vs. McGregor",
+    "date": "2015-12-12",
+    "link": "https://www.sherdog.com/events/UFC-194-Aldo-vs-McGregor-42245",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 432,
+    "name": "UFC - The Ultimate Fighter 22 Finale",
+    "fight": null,
+    "date": "2015-12-11",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-22-Finale-47439",
+    "status": "past",
+    "locationId": 156
+  },
+  {
+    "id": 433,
+    "name": "UFC Fight Night 80",
+    "fight": "Namajunas vs. VanZant",
+    "date": "2015-12-10",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-80-Namajunas-vs-VanZant-47669",
+    "status": "past",
+    "locationId": 156
+  },
+  {
+    "id": 434,
+    "name": "UFC Fight Night 79",
+    "fight": "Henderson vs. Masvidal",
+    "date": "2015-11-28",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-79-Henderson-vs-Masvidal-42243",
+    "status": "past",
+    "locationId": 157
+  },
+  {
+    "id": 435,
+    "name": "UFC Fight Night 78",
+    "fight": "Magny vs. Gastelum",
+    "date": "2015-11-21",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-78-Magny-vs-Gastelum-42241",
+    "status": "past",
+    "locationId": 158
+  },
+  {
+    "id": 436,
+    "name": "UFC 193",
+    "fight": "Rousey vs. Holm",
+    "date": "2015-11-14",
+    "link": "https://www.sherdog.com/events/UFC-193-Rousey-vs-Holm-42239",
+    "status": "past",
+    "locationId": 159
+  },
+  {
+    "id": 437,
+    "name": "UFC Fight Night 77",
+    "fight": "Belfort vs. Henderson 3",
+    "date": "2015-11-07",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-77-Belfort-vs-Henderson-3-42237",
+    "status": "past",
+    "locationId": 160
+  },
+  {
+    "id": 438,
+    "name": "UFC Fight Night 76",
+    "fight": "Holohan vs. Smolka",
+    "date": "2015-10-24",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-76-Holohan-vs-Smolka-47107",
+    "status": "past",
+    "locationId": 161
+  },
+  {
+    "id": 439,
+    "name": "UFC 192",
+    "fight": "Cormier vs. Gustafsson",
+    "date": "2015-10-03",
+    "link": "https://www.sherdog.com/events/UFC-192-Cormier-vs-Gustafsson-42235",
+    "status": "past",
+    "locationId": 60
+  },
+  {
+    "id": 440,
+    "name": "UFC Fight Night 75",
+    "fight": "Barnett vs. Nelson",
+    "date": "2015-09-26",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-75-Barnett-vs-Nelson-45847",
+    "status": "past",
+    "locationId": 162
+  },
+  {
+    "id": 441,
+    "name": "UFC 191",
+    "fight": "Johnson vs. Dodson 2",
+    "date": "2015-09-05",
+    "link": "https://www.sherdog.com/events/UFC-191-Johnson-vs-Dodson-2-42229",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 442,
+    "name": "UFC Fight Night 74",
+    "fight": "Holloway vs. Oliveira",
+    "date": "2015-08-23",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-74-Holloway-vs-Oliveira-42225",
+    "status": "past",
+    "locationId": 163
+  },
+  {
+    "id": 443,
+    "name": "UFC Fight Night 73",
+    "fight": "Teixeira vs. St. Preux",
+    "date": "2015-08-08",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-73-Teixeira-vs-St-Preux-42223",
+    "status": "past",
+    "locationId": 6
+  },
+  {
+    "id": 444,
+    "name": "UFC 190",
+    "fight": "Rousey vs. Correia",
+    "date": "2015-08-01",
+    "link": "https://www.sherdog.com/events/UFC-190-Rousey-vs-Correia-42221",
+    "status": "past",
+    "locationId": 164
+  },
+  {
+    "id": 445,
+    "name": "UFC on Fox 16",
+    "fight": "Dillashaw vs. Barao 2",
+    "date": "2015-07-25",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-16-Dillashaw-vs-Barao-2-42219",
+    "status": "past",
+    "locationId": 9
+  },
+  {
+    "id": 446,
+    "name": "UFC Fight Night 72",
+    "fight": "Bisping vs. Leites",
+    "date": "2015-07-18",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-72-Bisping-vs-Leites-42217",
+    "status": "past",
+    "locationId": 126
+  },
+  {
+    "id": 447,
+    "name": "UFC Fight Night 71",
+    "fight": "Mir vs. Duffee",
+    "date": "2015-07-15",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-71-Mir-vs-Duffee-42215",
+    "status": "past",
+    "locationId": 165
+  },
+  {
+    "id": 448,
+    "name": "UFC - The Ultimate Fighter 21 Finale",
+    "fight": null,
+    "date": "2015-07-12",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-21-Finale-42213",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 449,
+    "name": "UFC 189",
+    "fight": "Mendes vs. McGregor",
+    "date": "2015-07-11",
+    "link": "https://www.sherdog.com/events/UFC-189-Mendes-vs-McGregor-42211",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 450,
+    "name": "UFC Fight Night 70",
+    "fight": "Machida vs. Romero",
+    "date": "2015-06-27",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-70-Machida-vs-Romero-42209",
+    "status": "past",
+    "locationId": 166
+  },
+  {
+    "id": 451,
+    "name": "UFC Fight Night 69",
+    "fight": "Jedrzejczyk vs. Penne",
+    "date": "2015-06-20",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-69-Jedrzejczyk-vs-Penne-42207",
+    "status": "past",
+    "locationId": 167
+  },
+  {
+    "id": 452,
+    "name": "UFC 188",
+    "fight": "Velasquez vs. Werdum",
+    "date": "2015-06-13",
+    "link": "https://www.sherdog.com/events/UFC-188-Velasquez-vs-Werdum-42205",
+    "status": "past",
+    "locationId": 39
+  },
+  {
+    "id": 453,
+    "name": "UFC Fight Night 68",
+    "fight": "Boetsch vs. Henderson",
+    "date": "2015-06-06",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-68-Boetsch-vs-Henderson-42203",
+    "status": "past",
+    "locationId": 7
+  },
+  {
+    "id": 454,
+    "name": "UFC Fight Night 67",
+    "fight": "Condit vs. Alves",
+    "date": "2015-05-30",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-67-Condit-vs-Alves-42201",
+    "status": "past",
+    "locationId": 168
+  },
+  {
+    "id": 455,
+    "name": "UFC 187",
+    "fight": "Johnson vs. Cormier",
+    "date": "2015-05-23",
+    "link": "https://www.sherdog.com/events/UFC-187-Johnson-vs-Cormier-42199",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 456,
+    "name": "UFC Fight Night 66",
+    "fight": "Edgar vs. Faber",
+    "date": "2015-05-16",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-66-Edgar-vs-Faber-42197",
+    "status": "past",
+    "locationId": 169
+  },
+  {
+    "id": 457,
+    "name": "UFC Fight Night 65",
+    "fight": "Miocic vs. Hunt",
+    "date": "2015-05-10",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-65-Miocic-vs-Hunt-42195",
+    "status": "past",
+    "locationId": 94
+  },
+  {
+    "id": 458,
+    "name": "UFC 186",
+    "fight": "Johnson vs. Horiguchi",
+    "date": "2015-04-25",
+    "link": "https://www.sherdog.com/events/UFC-186-Johnson-vs-Horiguchi-42193",
+    "status": "past",
+    "locationId": 13
+  },
+  {
+    "id": 459,
+    "name": "UFC on Fox 15",
+    "fight": "Machida vs. Rockhold",
+    "date": "2015-04-18",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-15-Machida-vs-Rockhold-42191",
+    "status": "past",
+    "locationId": 2
+  },
+  {
+    "id": 460,
+    "name": "UFC Fight Night 64",
+    "fight": "Gonzaga vs. Cro Cop 2",
+    "date": "2015-04-11",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-64-Gonzaga-vs-Cro-Cop-2-42189",
+    "status": "past",
+    "locationId": 170
+  },
+  {
+    "id": 461,
+    "name": "UFC Fight Night 63",
+    "fight": "Mendes vs. Lamas",
+    "date": "2015-04-04",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-63-Mendes-vs-Lamas-42187",
+    "status": "past",
+    "locationId": 171
+  },
+  {
+    "id": 462,
+    "name": "UFC Fight Night 62",
+    "fight": "Maia vs. LaFlare",
+    "date": "2015-03-21",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-62-Maia-vs-LaFlare-42185",
+    "status": "past",
+    "locationId": 172
+  },
+  {
+    "id": 463,
+    "name": "UFC 185",
+    "fight": "Pettis vs. dos Anjos",
+    "date": "2015-03-14",
+    "link": "https://www.sherdog.com/events/UFC-185-Pettis-vs-dos-Anjos-42183",
+    "status": "past",
+    "locationId": 55
+  },
+  {
+    "id": 464,
+    "name": "UFC 184",
+    "fight": "Rousey vs. Zingano",
+    "date": "2015-02-28",
+    "link": "https://www.sherdog.com/events/UFC-184-Rousey-vs-Zingano-41893",
+    "status": "past",
+    "locationId": 103
+  },
+  {
+    "id": 465,
+    "name": "UFC Fight Night 61",
+    "fight": "Bigfoot vs. Mir",
+    "date": "2015-02-22",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-61-Bigfoot-vs-Mir-38843",
+    "status": "past",
+    "locationId": 173
+  },
+  {
+    "id": 466,
+    "name": "UFC Fight Night 60",
+    "fight": "Henderson vs. Thatch",
+    "date": "2015-02-14",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-60-Henderson-vs-Thatch-42065",
+    "status": "past",
+    "locationId": 174
+  },
+  {
+    "id": 467,
+    "name": "UFC 183",
+    "fight": "Silva vs. Diaz",
+    "date": "2015-01-31",
+    "link": "https://www.sherdog.com/events/UFC-183-Silva-vs-Diaz-39291",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 468,
+    "name": "UFC on Fox 14",
+    "fight": "Gustafsson vs. Johnson",
+    "date": "2015-01-24",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-14-Gustafsson-vs-Johnson-42123",
+    "status": "past",
+    "locationId": 175
+  },
+  {
+    "id": 469,
+    "name": "UFC Fight Night 59",
+    "fight": "McGregor vs. Siver",
+    "date": "2015-01-18",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-59-McGregor-vs-Siver-41773",
+    "status": "past",
+    "locationId": 45
+  },
+  {
+    "id": 470,
+    "name": "UFC 182",
+    "fight": "Jones vs. Cormier",
+    "date": "2015-01-03",
+    "link": "https://www.sherdog.com/events/UFC-182-Jones-vs-Cormier-38841",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 471,
+    "name": "UFC Fight Night 58",
+    "fight": "Machida vs. Dollaway",
+    "date": "2014-12-20",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-58-Machida-vs-Dollaway-40613",
+    "status": "past",
+    "locationId": 176
+  },
+  {
+    "id": 472,
+    "name": "UFC on Fox 13",
+    "fight": "Dos Santos vs. Miocic",
+    "date": "2014-12-13",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-13-Dos-Santos-vs-Miocic-38839",
+    "status": "past",
+    "locationId": 177
+  },
+  {
+    "id": 473,
+    "name": "UFC - The Ultimate Fighter 20 Finale",
+    "fight": null,
+    "date": "2014-12-12",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-20-Finale-40679",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 474,
+    "name": "UFC 181",
+    "fight": "Hendricks vs. Lawler 2",
+    "date": "2014-12-06",
+    "link": "https://www.sherdog.com/events/UFC-181-Hendricks-vs-Lawler-2-35511",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 475,
+    "name": "UFC Fight Night 57",
+    "fight": "Edgar vs. Swanson",
+    "date": "2014-11-22",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-57-Edgar-vs-Swanson-39915",
+    "status": "past",
+    "locationId": 111
+  },
+  {
+    "id": 476,
+    "name": "UFC 180",
+    "fight": "Werdum vs. Hunt",
+    "date": "2014-11-15",
+    "link": "https://www.sherdog.com/events/UFC-180-Werdum-vs-Hunt-37549",
+    "status": "past",
+    "locationId": 39
+  },
+  {
+    "id": 477,
+    "name": "UFC Fight Night 56",
+    "fight": "Shogun vs. St. Preux",
+    "date": "2014-11-08",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-56-Shogun-vs-St-Preux-40223",
+    "status": "past",
+    "locationId": 178
+  },
+  {
+    "id": 478,
+    "name": "UFC Fight Night 55",
+    "fight": "Rockhold vs. Bisping",
+    "date": "2014-11-07",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-55-Rockhold-vs-Bisping-40339",
+    "status": "past",
+    "locationId": 179
+  },
+  {
+    "id": 479,
+    "name": "UFC 179",
+    "fight": "Aldo vs. Mendes 2",
+    "date": "2014-10-25",
+    "link": "https://www.sherdog.com/events/UFC-179-Aldo-vs-Mendes-2-37749",
+    "status": "past",
+    "locationId": 180
+  },
+  {
+    "id": 480,
+    "name": "UFC Fight Night 54",
+    "fight": "MacDonald vs. Saffiedine",
+    "date": "2014-10-04",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-54-MacDonald-vs-Saffiedine-35509",
+    "status": "past",
+    "locationId": 181
+  },
+  {
+    "id": 481,
+    "name": "UFC Fight Night 53",
+    "fight": "Nelson vs. Story",
+    "date": "2014-10-04",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-53-Nelson-vs-Story-37747",
+    "status": "past",
+    "locationId": 130
+  },
+  {
+    "id": 482,
+    "name": "UFC 178",
+    "fight": "Johnson vs. Cariaso",
+    "date": "2014-09-27",
+    "link": "https://www.sherdog.com/events/UFC-178-Johnson-vs-Cariaso-35507",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 483,
+    "name": "UFC Fight Night 52",
+    "fight": "Hunt vs. Nelson",
+    "date": "2014-09-20",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-52-Hunt-vs-Nelson-37745",
+    "status": "past",
+    "locationId": 162
+  },
+  {
+    "id": 484,
+    "name": "UFC Fight Night 51",
+    "fight": "Bigfoot vs. Arlovski 2",
+    "date": "2014-09-13",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-51-Bigfoot-vs-Arlovski-2-37743",
+    "status": "past",
+    "locationId": 63
+  },
+  {
+    "id": 485,
+    "name": "UFC Fight Night 50",
+    "fight": "Jacare vs. Mousasi 2",
+    "date": "2014-09-05",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-50-Jacare-vs-Mousasi-2-38431",
+    "status": "past",
+    "locationId": 182
+  },
+  {
+    "id": 486,
+    "name": "UFC 177",
+    "fight": "Dillashaw vs. Soto",
+    "date": "2014-08-30",
+    "link": "https://www.sherdog.com/events/UFC-177-Dillashaw-vs-Soto-38011",
+    "status": "past",
+    "locationId": 183
+  },
+  {
+    "id": 487,
+    "name": "UFC Fight Night 49",
+    "fight": "Henderson vs. dos Anjos",
+    "date": "2014-08-23",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-49-Henderson-vs-dos-Anjos-37361",
+    "status": "past",
+    "locationId": 184
+  },
+  {
+    "id": 488,
+    "name": "UFC Fight Night 48",
+    "fight": "Bisping vs. Le",
+    "date": "2014-08-23",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-48-Bisping-vs-Le-37741",
+    "status": "past",
+    "locationId": 185
+  },
+  {
+    "id": 489,
+    "name": "UFC Fight Night 47",
+    "fight": "Bader vs. St. Preux",
+    "date": "2014-08-16",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-47-Bader-vs-St-Preux-37727",
+    "status": "past",
+    "locationId": 186
+  },
+  {
+    "id": 490,
+    "name": "UFC 176",
+    "fight": "Aldo vs. Mendes 2",
+    "date": "2014-08-02",
+    "link": "https://www.sherdog.com/events/UFC-176-Aldo-vs-Mendes-2-37609",
+    "status": "past",
+    "locationId": 187
+  },
+  {
+    "id": 491,
+    "name": "UFC on Fox 12",
+    "fight": "Lawler vs. Brown",
+    "date": "2014-07-26",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-12-Lawler-vs-Brown-37719",
+    "status": "past",
+    "locationId": 188
+  },
+  {
+    "id": 492,
+    "name": "UFC Fight Night 46",
+    "fight": "McGregor vs. Brandao",
+    "date": "2014-07-19",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-46-McGregor-vs-Brandao-36425",
+    "status": "past",
+    "locationId": 189
+  },
+  {
+    "id": 493,
+    "name": "UFC Fight Night 45",
+    "fight": "Cerrone vs. Miller",
+    "date": "2014-07-16",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-45-Cerrone-vs-Miller-37359",
+    "status": "past",
+    "locationId": 190
+  },
+  {
+    "id": 494,
+    "name": "UFC - The Ultimate Fighter 19 Finale",
+    "fight": null,
+    "date": "2014-07-06",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-19-Finale-36737",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 495,
+    "name": "UFC 175",
+    "fight": "Weidman vs. Machida",
+    "date": "2014-07-05",
+    "link": "https://www.sherdog.com/events/UFC-175-Weidman-vs-Machida-36735",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 496,
+    "name": "UFC Fight Night 44",
+    "fight": "Swanson vs. Stephens",
+    "date": "2014-06-28",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-44-Swanson-vs-Stephens-36731",
+    "status": "past",
+    "locationId": 49
+  },
+  {
+    "id": 497,
+    "name": "UFC Fight Night 43",
+    "fight": "Te Huna vs. Marquardt",
+    "date": "2014-06-28",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-43-Te-Huna-vs-Marquardt-37109",
+    "status": "past",
+    "locationId": 128
+  },
+  {
+    "id": 498,
+    "name": "UFC 174",
+    "fight": "Johnson vs. Bagautinov",
+    "date": "2014-06-14",
+    "link": "https://www.sherdog.com/events/UFC-174-Johnson-vs-Bagautinov-35505",
+    "status": "past",
+    "locationId": 47
+  },
+  {
+    "id": 499,
+    "name": "UFC Fight Night 42",
+    "fight": "Henderson vs. Khabilov",
+    "date": "2014-06-07",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-42-Henderson-vs-Khabilov-36711",
+    "status": "past",
+    "locationId": 191
+  },
+  {
+    "id": 500,
+    "name": "UFC Fight Night 41",
+    "fight": "Munoz vs. Mousasi",
+    "date": "2014-05-31",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-41-Munoz-vs-Mousasi-36427",
+    "status": "past",
+    "locationId": 167
+  },
+  {
+    "id": 501,
+    "name": "UFC - The Ultimate Fighter Brazil 3 Finale",
+    "fight": null,
+    "date": "2014-05-31",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-Brazil-3-Finale-35955",
+    "status": "past",
+    "locationId": 100
+  },
+  {
+    "id": 502,
+    "name": "UFC 173",
+    "fight": "Barao vs. Dillashaw",
+    "date": "2014-05-24",
+    "link": "https://www.sherdog.com/events/UFC-173-Barao-vs-Dillashaw-35617",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 503,
+    "name": "UFC Fight Night 40",
+    "fight": "Brown vs. Silva",
+    "date": "2014-05-10",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-40-Brown-vs-Silva-36085",
+    "status": "past",
+    "locationId": 192
+  },
+  {
+    "id": 504,
+    "name": "UFC 172",
+    "fight": "Jones vs. Teixeira",
+    "date": "2014-04-26",
+    "link": "https://www.sherdog.com/events/UFC-172-Jones-vs-Teixeira-34401",
+    "status": "past",
+    "locationId": 193
+  },
+  {
+    "id": 505,
+    "name": "UFC on Fox 11",
+    "fight": "Werdum vs. Browne",
+    "date": "2014-04-19",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-11-Werdum-vs-Browne-35107",
+    "status": "past",
+    "locationId": 52
+  },
+  {
+    "id": 506,
+    "name": "UFC - The Ultimate Fighter Nations Finale",
+    "fight": null,
+    "date": "2014-04-16",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-Nations-Finale-35503",
+    "status": "past",
+    "locationId": 194
+  },
+  {
+    "id": 507,
+    "name": "UFC Fight Night 39",
+    "fight": "Nogueira vs. Nelson",
+    "date": "2014-04-11",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-39-Nogueira-vs-Nelson-35669",
+    "status": "past",
+    "locationId": 195
+  },
+  {
+    "id": 508,
+    "name": "UFC Fight Night 38",
+    "fight": "Shogun vs. Henderson 2",
+    "date": "2014-03-23",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-38-Shogun-vs-Henderson-2-35299",
+    "status": "past",
+    "locationId": 196
+  },
+  {
+    "id": 509,
+    "name": "UFC 171",
+    "fight": "Hendricks vs. Lawler",
+    "date": "2014-03-15",
+    "link": "https://www.sherdog.com/events/UFC-171-Hendricks-vs-Lawler-33949",
+    "status": "past",
+    "locationId": 197
+  },
+  {
+    "id": 510,
+    "name": "UFC Fight Night 37",
+    "fight": "Gustafsson vs. Manuwa",
+    "date": "2014-03-08",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-37-Gustafsson-vs-Manuwa-33383",
+    "status": "past",
+    "locationId": 18
+  },
+  {
+    "id": 511,
+    "name": "UFC - The Ultimate Fighter China Finale",
+    "fight": null,
+    "date": "2014-03-01",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-China-Finale-34819",
+    "status": "past",
+    "locationId": 185
+  },
+  {
+    "id": 512,
+    "name": "UFC 170",
+    "fight": "Rousey vs. McMann",
+    "date": "2014-02-22",
+    "link": "https://www.sherdog.com/events/UFC-170-Rousey-vs-McMann-33337",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 513,
+    "name": "UFC Fight Night 36",
+    "fight": "Machida vs. Mousasi",
+    "date": "2014-02-15",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-36-Machida-vs-Mousasi-33523",
+    "status": "past",
+    "locationId": 198
+  },
+  {
+    "id": 514,
+    "name": "UFC 169",
+    "fight": "Barao vs. Faber 2",
+    "date": "2014-02-01",
+    "link": "https://www.sherdog.com/events/UFC-169-Barao-vs-Faber-2-32773",
+    "status": "past",
+    "locationId": 2
+  },
+  {
+    "id": 515,
+    "name": "UFC on Fox 10",
+    "fight": "Henderson vs. Thomson",
+    "date": "2014-01-25",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-10-Henderson-vs-Thomson-33335",
+    "status": "past",
+    "locationId": 9
+  },
+  {
+    "id": 516,
+    "name": "UFC Fight Night 35",
+    "fight": "Rockhold vs. Philippou",
+    "date": "2014-01-15",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-35-Rockhold-vs-Philippou-33929",
+    "status": "past",
+    "locationId": 199
+  },
+  {
+    "id": 517,
+    "name": "UFC Fight Night 34",
+    "fight": "Saffiedine vs. Lim",
+    "date": "2014-01-04",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-34-Saffiedine-vs-Lim-32999",
+    "status": "past",
+    "locationId": 200
+  },
+  {
+    "id": 518,
+    "name": "UFC 168",
+    "fight": "Weidman vs. Silva 2",
+    "date": "2013-12-28",
+    "link": "https://www.sherdog.com/events/UFC-168-Weidman-vs-Silva-2-31257",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 519,
+    "name": "UFC on Fox 9",
+    "fight": "Johnson vs. Benavidez 2",
+    "date": "2013-12-14",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-9-Johnson-vs-Benavidez-2-26217",
+    "status": "past",
+    "locationId": 183
+  },
+  {
+    "id": 520,
+    "name": "UFC Fight Night 33",
+    "fight": "Hunt vs. Bigfoot",
+    "date": "2013-12-07",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-33-Hunt-vs-Bigfoot-32293",
+    "status": "past",
+    "locationId": 154
+  },
+  {
+    "id": 521,
+    "name": "UFC - The Ultimate Fighter 18 Finale",
+    "fight": null,
+    "date": "2013-11-30",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-18-Finale-32325",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 522,
+    "name": "UFC 167",
+    "fight": "St. Pierre vs. Hendricks",
+    "date": "2013-11-16",
+    "link": "https://www.sherdog.com/events/UFC-167-St-Pierre-vs-Hendricks-30815",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 523,
+    "name": "UFC Fight Night 32",
+    "fight": "Belfort vs. Henderson",
+    "date": "2013-11-09",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-32-Belfort-vs-Henderson-32067",
+    "status": "past",
+    "locationId": 168
+  },
+  {
+    "id": 524,
+    "name": "UFC Fight Night 31 - Fight for the Troops 3",
+    "fight": null,
+    "date": "2013-11-06",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-31-Fight-for-the-Troops-3-32077",
+    "status": "past",
+    "locationId": 201
+  },
+  {
+    "id": 525,
+    "name": "UFC Fight Night 30",
+    "fight": "Machida vs. Munoz",
+    "date": "2013-10-26",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-30-Machida-vs-Munoz-31371",
+    "status": "past",
+    "locationId": 202
+  },
+  {
+    "id": 526,
+    "name": "UFC 166",
+    "fight": "Velasquez vs. Dos Santos 3",
+    "date": "2013-10-19",
+    "link": "https://www.sherdog.com/events/UFC-166-Velasquez-vs-Dos-Santos-3-30813",
+    "status": "past",
+    "locationId": 60
+  },
+  {
+    "id": 527,
+    "name": "UFC Fight Night 29",
+    "fight": "Maia vs. Shields",
+    "date": "2013-10-09",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-29-Maia-vs-Shields-31869",
+    "status": "past",
+    "locationId": 203
+  },
+  {
+    "id": 528,
+    "name": "UFC 165",
+    "fight": "Jones vs. Gustafsson",
+    "date": "2013-09-21",
+    "link": "https://www.sherdog.com/events/UFC-165-Jones-vs-Gustafsson-30249",
+    "status": "past",
+    "locationId": 137
+  },
+  {
+    "id": 529,
+    "name": "UFC Fight Night 28",
+    "fight": "Teixeira vs. Bader",
+    "date": "2013-09-04",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-28-Teixeira-vs-Bader-30213",
+    "status": "past",
+    "locationId": 204
+  },
+  {
+    "id": 530,
+    "name": "UFC 164",
+    "fight": "Henderson vs. Pettis 2",
+    "date": "2013-08-31",
+    "link": "https://www.sherdog.com/events/UFC-164-Henderson-vs-Pettis-2-28701",
+    "status": "past",
+    "locationId": 205
+  },
+  {
+    "id": 531,
+    "name": "UFC Fight Night 27",
+    "fight": "Condit vs. Kampmann 2",
+    "date": "2013-08-28",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-27-Condit-vs-Kampmann-2-30211",
+    "status": "past",
+    "locationId": 206
+  },
+  {
+    "id": 532,
+    "name": "UFC Fight Night 26",
+    "fight": "Shogun vs. Sonnen",
+    "date": "2013-08-17",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-26-Shogun-vs-Sonnen-29795",
+    "status": "past",
+    "locationId": 45
+  },
+  {
+    "id": 533,
+    "name": "UFC 163",
+    "fight": "Aldo vs. Korean Zombie",
+    "date": "2013-08-03",
+    "link": "https://www.sherdog.com/events/UFC-163-Aldo-vs-Korean-Zombie-28015",
+    "status": "past",
+    "locationId": 129
+  },
+  {
+    "id": 534,
+    "name": "UFC on Fox 8",
+    "fight": "Johnson vs. Moraga",
+    "date": "2013-07-27",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-8-Johnson-vs-Moraga-26215",
+    "status": "past",
+    "locationId": 207
+  },
+  {
+    "id": 535,
+    "name": "UFC 162",
+    "fight": "Silva vs. Weidman",
+    "date": "2013-07-06",
+    "link": "https://www.sherdog.com/events/UFC-162-Silva-vs-Weidman-28459",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 536,
+    "name": "UFC 161",
+    "fight": "Evans vs. Henderson",
+    "date": "2013-06-15",
+    "link": "https://www.sherdog.com/events/UFC-161-Evans-vs-Henderson-28457",
+    "status": "past",
+    "locationId": 115
+  },
+  {
+    "id": 537,
+    "name": "UFC on Fuel TV 10",
+    "fight": "Nogueira vs. Werdum",
+    "date": "2013-06-08",
+    "link": "https://www.sherdog.com/events/UFC-on-Fuel-TV-10-Nogueira-vs-Werdum-26101",
+    "status": "past",
+    "locationId": 208
+  },
+  {
+    "id": 538,
+    "name": "UFC 160",
+    "fight": "Velasquez vs. Bigfoot 2",
+    "date": "2013-05-25",
+    "link": "https://www.sherdog.com/events/UFC-160-Velasquez-vs-Bigfoot-2-28051",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 539,
+    "name": "UFC on FX 8",
+    "fight": "Belfort vs. Rockhold",
+    "date": "2013-05-18",
+    "link": "https://www.sherdog.com/events/UFC-on-FX-8-Belfort-vs-Rockhold-28215",
+    "status": "past",
+    "locationId": 198
+  },
+  {
+    "id": 540,
+    "name": "UFC 159",
+    "fight": "Jones vs. Sonnen",
+    "date": "2013-04-27",
+    "link": "https://www.sherdog.com/events/UFC-159-Jones-vs-Sonnen-25825",
+    "status": "past",
+    "locationId": 2
+  },
+  {
+    "id": 541,
+    "name": "UFC on Fox 7",
+    "fight": "Henderson vs. Melendez",
+    "date": "2013-04-20",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-7-Henderson-vs-Melendez-26213",
+    "status": "past",
+    "locationId": 209
+  },
+  {
+    "id": 542,
+    "name": "UFC - The Ultimate Fighter 17 Finale",
+    "fight": null,
+    "date": "2013-04-13",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-17-Finale-28023",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 543,
+    "name": "UFC on Fuel TV 9",
+    "fight": "Mousasi vs. Latifi",
+    "date": "2013-04-06",
+    "link": "https://www.sherdog.com/events/UFC-on-Fuel-TV-9-Mousasi-vs-Latifi-27589",
+    "status": "past",
+    "locationId": 130
+  },
+  {
+    "id": 544,
+    "name": "UFC 158",
+    "fight": "St. Pierre vs. Diaz",
+    "date": "2013-03-16",
+    "link": "https://www.sherdog.com/events/UFC-158-St-Pierre-vs-Diaz-27073",
+    "status": "past",
+    "locationId": 13
+  },
+  {
+    "id": 545,
+    "name": "UFC on Fuel TV 8",
+    "fight": "Silva vs. Stann",
+    "date": "2013-03-03",
+    "link": "https://www.sherdog.com/events/UFC-on-Fuel-TV-8-Silva-vs-Stann-26333",
+    "status": "past",
+    "locationId": 162
+  },
+  {
+    "id": 546,
+    "name": "UFC 157",
+    "fight": "Rousey vs. Carmouche",
+    "date": "2013-02-23",
+    "link": "https://www.sherdog.com/events/UFC-157-Rousey-vs-Carmouche-26381",
+    "status": "past",
+    "locationId": 40
+  },
+  {
+    "id": 547,
+    "name": "UFC on Fuel TV 7",
+    "fight": "Barao vs. McDonald",
+    "date": "2013-02-16",
+    "link": "https://www.sherdog.com/events/UFC-on-Fuel-TV-7-Barao-vs-McDonald-26459",
+    "status": "past",
+    "locationId": 210
+  },
+  {
+    "id": 548,
+    "name": "UFC 156",
+    "fight": "Aldo vs. Edgar",
+    "date": "2013-02-02",
+    "link": "https://www.sherdog.com/events/UFC-156-Aldo-vs-Edgar-26099",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 549,
+    "name": "UFC on Fox 6",
+    "fight": "Johnson vs. Dodson",
+    "date": "2013-01-26",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-6-Johnson-vs-Dodson-26199",
+    "status": "past",
+    "locationId": 9
+  },
+  {
+    "id": 550,
+    "name": "UFC on FX 7",
+    "fight": "Belfort vs. Bisping",
+    "date": "2013-01-19",
+    "link": "https://www.sherdog.com/events/UFC-on-FX-7-Belfort-vs-Bisping-26135",
+    "status": "past",
+    "locationId": 211
+  },
+  {
+    "id": 551,
+    "name": "UFC 155",
+    "fight": "Dos Santos vs. Velasquez 2",
+    "date": "2012-12-29",
+    "link": "https://www.sherdog.com/events/UFC-155-Dos-Santos-vs-Velasquez-2-24185",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 552,
+    "name": "UFC - The Ultimate Fighter 16 Finale",
+    "fight": null,
+    "date": "2012-12-15",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-16-Finale-24719",
+    "status": "past",
+    "locationId": 212
+  },
+  {
+    "id": 553,
+    "name": "UFC on FX 6",
+    "fight": "Sotiropoulos vs. Pearson",
+    "date": "2012-12-15",
+    "link": "https://www.sherdog.com/events/UFC-on-FX-6-Sotiropoulos-vs-Pearson-24707",
+    "status": "past",
+    "locationId": 213
+  },
+  {
+    "id": 554,
+    "name": "UFC on Fox 5",
+    "fight": "Henderson vs. Diaz",
+    "date": "2012-12-08",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-5-Henderson-vs-Diaz-23169",
+    "status": "past",
+    "locationId": 214
+  },
+  {
+    "id": 555,
+    "name": "UFC 154",
+    "fight": "St. Pierre vs. Condit",
+    "date": "2012-11-17",
+    "link": "https://www.sherdog.com/events/UFC-154-St-Pierre-vs-Condit-21047",
+    "status": "past",
+    "locationId": 13
+  },
+  {
+    "id": 556,
+    "name": "UFC on Fuel TV 6",
+    "fight": "Franklin vs. Le",
+    "date": "2012-11-10",
+    "link": "https://www.sherdog.com/events/UFC-on-Fuel-TV-6-Franklin-vs-Le-23437",
+    "status": "past",
+    "locationId": 215
+  },
+  {
+    "id": 557,
+    "name": "UFC 153",
+    "fight": "Silva vs. Bonnar",
+    "date": "2012-10-13",
+    "link": "https://www.sherdog.com/events/UFC-153-Silva-vs-Bonnar-23527",
+    "status": "past",
+    "locationId": 129
+  },
+  {
+    "id": 558,
+    "name": "UFC on FX 5",
+    "fight": "Browne vs. Bigfoot",
+    "date": "2012-10-05",
+    "link": "https://www.sherdog.com/events/UFC-on-FX-5-Browne-vs-Bigfoot-22541",
+    "status": "past",
+    "locationId": 77
+  },
+  {
+    "id": 559,
+    "name": "UFC on Fuel TV 5",
+    "fight": "Struve vs. Miocic",
+    "date": "2012-09-29",
+    "link": "https://www.sherdog.com/events/UFC-on-Fuel-TV-5-Struve-vs-Miocic-22725",
+    "status": "past",
+    "locationId": 216
+  },
+  {
+    "id": 560,
+    "name": "UFC 152",
+    "fight": "Jones vs. Belfort",
+    "date": "2012-09-22",
+    "link": "https://www.sherdog.com/events/UFC-152-Jones-vs-Belfort-21045",
+    "status": "past",
+    "locationId": 137
+  },
+  {
+    "id": 561,
+    "name": "UFC 151",
+    "fight": "Jones vs. Henderson",
+    "date": "2012-09-01",
+    "link": "https://www.sherdog.com/events/UFC-151-Jones-vs-Henderson-25809",
+    "status": "past",
+    "locationId": 217
+  },
+  {
+    "id": 562,
+    "name": "UFC 150",
+    "fight": "Henderson vs. Edgar 2",
+    "date": "2012-08-11",
+    "link": "https://www.sherdog.com/events/UFC-150-Henderson-vs-Edgar-2-22013",
+    "status": "past",
+    "locationId": 98
+  },
+  {
+    "id": 563,
+    "name": "UFC on Fox 4",
+    "fight": "Shogun vs. Vera",
+    "date": "2012-08-04",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-4-Shogun-vs-Vera-20081",
+    "status": "past",
+    "locationId": 103
+  },
+  {
+    "id": 564,
+    "name": "UFC 149",
+    "fight": "Faber vs. Barao",
+    "date": "2012-07-21",
+    "link": "https://www.sherdog.com/events/UFC-149-Faber-vs-Barao-20821",
+    "status": "past",
+    "locationId": 104
+  },
+  {
+    "id": 565,
+    "name": "UFC on Fuel TV 4",
+    "fight": "Munoz vs. Weidman",
+    "date": "2012-07-11",
+    "link": "https://www.sherdog.com/events/UFC-on-Fuel-TV-4-Munoz-vs-Weidman-21725",
+    "status": "past",
+    "locationId": 218
+  },
+  {
+    "id": 566,
+    "name": "UFC 148",
+    "fight": "Silva vs. Sonnen 2",
+    "date": "2012-07-07",
+    "link": "https://www.sherdog.com/events/UFC-148-Silva-vs-Sonnen-2-20355",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 567,
+    "name": "UFC 147",
+    "fight": "Silva vs. Franklin 2",
+    "date": "2012-06-23",
+    "link": "https://www.sherdog.com/events/UFC-147-Silva-vs-Franklin-2-19449",
+    "status": "past",
+    "locationId": 204
+  },
+  {
+    "id": 568,
+    "name": "UFC on FX 4",
+    "fight": "Maynard vs. Guida",
+    "date": "2012-06-22",
+    "link": "https://www.sherdog.com/events/UFC-on-FX-4-Maynard-vs-Guida-20385",
+    "status": "past",
+    "locationId": 219
+  },
+  {
+    "id": 569,
+    "name": "UFC on FX 3",
+    "fight": "Johnson vs. McCall",
+    "date": "2012-06-08",
+    "link": "https://www.sherdog.com/events/UFC-on-FX-3-Johnson-vs-McCall-21037",
+    "status": "past",
+    "locationId": 220
+  },
+  {
+    "id": 570,
+    "name": "UFC - The Ultimate Fighter 15 Finale",
+    "fight": null,
+    "date": "2012-06-01",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-15-Finale-19325",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 571,
+    "name": "UFC 146",
+    "fight": "Dos Santos vs. Mir",
+    "date": "2012-05-26",
+    "link": "https://www.sherdog.com/events/UFC-146-Dos-Santos-vs-Mir-20353",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 572,
+    "name": "UFC on Fuel TV 3",
+    "fight": "Korean Zombie vs. Poirier",
+    "date": "2012-05-15",
+    "link": "https://www.sherdog.com/events/UFC-on-Fuel-TV-3-Korean-Zombie-vs-Poirier-20203",
+    "status": "past",
+    "locationId": 171
+  },
+  {
+    "id": 573,
+    "name": "UFC on Fox 3",
+    "fight": "Diaz vs. Miller",
+    "date": "2012-05-05",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-3-Diaz-vs-Miller-20039",
+    "status": "past",
+    "locationId": 221
+  },
+  {
+    "id": 574,
+    "name": "UFC 145",
+    "fight": "Jones vs. Evans",
+    "date": "2012-04-21",
+    "link": "https://www.sherdog.com/events/UFC-145-Jones-vs-Evans-20031",
+    "status": "past",
+    "locationId": 222
+  },
+  {
+    "id": 575,
+    "name": "UFC on Fuel TV 2",
+    "fight": "Gustafsson vs. Silva",
+    "date": "2012-04-14",
+    "link": "https://www.sherdog.com/events/UFC-on-Fuel-TV-2-Gustafsson-vs-Silva-19857",
+    "status": "past",
+    "locationId": 130
+  },
+  {
+    "id": 576,
+    "name": "UFC on FX 2",
+    "fight": "Alves vs. Kampmann",
+    "date": "2012-03-03",
+    "link": "https://www.sherdog.com/events/UFC-on-FX-2-Alves-vs-Kampmann-19379",
+    "status": "past",
+    "locationId": 179
+  },
+  {
+    "id": 577,
+    "name": "UFC 144",
+    "fight": "Edgar vs. Henderson",
+    "date": "2012-02-26",
+    "link": "https://www.sherdog.com/events/UFC-144-Edgar-vs-Henderson-18347",
+    "status": "past",
+    "locationId": 162
+  },
+  {
+    "id": 578,
+    "name": "UFC on Fuel TV 1",
+    "fight": "Sanchez vs. Ellenberger",
+    "date": "2012-02-15",
+    "link": "https://www.sherdog.com/events/UFC-on-Fuel-TV-1-Sanchez-vs-Ellenberger-19187",
+    "status": "past",
+    "locationId": 223
+  },
+  {
+    "id": 579,
+    "name": "UFC 143",
+    "fight": "Diaz vs. Condit",
+    "date": "2012-02-04",
+    "link": "https://www.sherdog.com/events/UFC-143-Diaz-vs-Condit-18945",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 580,
+    "name": "UFC on Fox 2",
+    "fight": "Evans vs. Davis",
+    "date": "2012-01-28",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-2-Evans-vs-Davis-19039",
+    "status": "past",
+    "locationId": 9
+  },
+  {
+    "id": 581,
+    "name": "UFC on FX 1",
+    "fight": "Guillard vs. Miller",
+    "date": "2012-01-20",
+    "link": "https://www.sherdog.com/events/UFC-on-FX-1-Guillard-vs-Miller-19068",
+    "status": "past",
+    "locationId": 6
+  },
+  {
+    "id": 582,
+    "name": "UFC 142",
+    "fight": "Aldo vs. Mendes",
+    "date": "2012-01-14",
+    "link": "https://www.sherdog.com/events/UFC-142-Aldo-vs-Mendes-18901",
+    "status": "past",
+    "locationId": 129
+  },
+  {
+    "id": 583,
+    "name": "UFC 141",
+    "fight": "Lesnar vs. Overeem",
+    "date": "2011-12-30",
+    "link": "https://www.sherdog.com/events/UFC-141-Lesnar-vs-Overeem-18346",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 584,
+    "name": "UFC 140",
+    "fight": "Jones vs. Machida",
+    "date": "2011-12-10",
+    "link": "https://www.sherdog.com/events/UFC-140-Jones-vs-Machida-17274",
+    "status": "past",
+    "locationId": 137
+  },
+  {
+    "id": 585,
+    "name": "UFC - The Ultimate Fighter 14 Finale",
+    "fight": null,
+    "date": "2011-12-03",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-14-Finale-17424",
+    "status": "past",
+    "locationId": 224
+  },
+  {
+    "id": 586,
+    "name": "UFC 139",
+    "fight": "Shogun vs. Henderson",
+    "date": "2011-11-19",
+    "link": "https://www.sherdog.com/events/UFC-139-Shogun-vs-Henderson-17551",
+    "status": "past",
+    "locationId": 218
+  },
+  {
+    "id": 587,
+    "name": "UFC on Fox 1",
+    "fight": "Velasquez vs. Dos Santos",
+    "date": "2011-11-12",
+    "link": "https://www.sherdog.com/events/UFC-on-Fox-1-Velasquez-vs-Dos-Santos-18201",
+    "status": "past",
+    "locationId": 40
+  },
+  {
+    "id": 588,
+    "name": "UFC 138",
+    "fight": "Leben vs. Munoz",
+    "date": "2011-11-05",
+    "link": "https://www.sherdog.com/events/UFC-138-Leben-vs-Munoz-17824",
+    "status": "past",
+    "locationId": 225
+  },
+  {
+    "id": 589,
+    "name": "UFC 137",
+    "fight": "Penn vs. Diaz",
+    "date": "2011-10-29",
+    "link": "https://www.sherdog.com/events/UFC-137-Penn-vs-Diaz-17377",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 590,
+    "name": "UFC 136",
+    "fight": "Edgar vs. Maynard 3",
+    "date": "2011-10-08",
+    "link": "https://www.sherdog.com/events/UFC-136-Edgar-vs-Maynard-3-17391",
+    "status": "past",
+    "locationId": 60
+  },
+  {
+    "id": 591,
+    "name": "UFC Live 6",
+    "fight": "Cruz vs. Johnson",
+    "date": "2011-10-01",
+    "link": "https://www.sherdog.com/events/UFC-Live-6-Cruz-vs-Johnson-17789",
+    "status": "past",
+    "locationId": 226
+  },
+  {
+    "id": 592,
+    "name": "UFC 135",
+    "fight": "Jones vs. Rampage",
+    "date": "2011-09-24",
+    "link": "https://www.sherdog.com/events/UFC-135-Jones-vs-Rampage-17043",
+    "status": "past",
+    "locationId": 98
+  },
+  {
+    "id": 593,
+    "name": "UFC Fight Night 25",
+    "fight": "Shields vs. Ellenberger",
+    "date": "2011-09-17",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-25-Shields-vs-Ellenberger-16712",
+    "status": "past",
+    "locationId": 227
+  },
+  {
+    "id": 594,
+    "name": "UFC 134",
+    "fight": "Silva vs. Okami",
+    "date": "2011-08-27",
+    "link": "https://www.sherdog.com/events/UFC-134-Silva-vs-Okami-15454",
+    "status": "past",
+    "locationId": 129
+  },
+  {
+    "id": 595,
+    "name": "UFC Live 5",
+    "fight": "Hardy vs. Lytle",
+    "date": "2011-08-14",
+    "link": "https://www.sherdog.com/events/UFC-Live-5-Hardy-vs-Lytle-16967",
+    "status": "past",
+    "locationId": 228
+  },
+  {
+    "id": 596,
+    "name": "UFC 133",
+    "fight": "Evans vs. Ortiz 2",
+    "date": "2011-08-06",
+    "link": "https://www.sherdog.com/events/UFC-133-Evans-vs-Ortiz-2-16787",
+    "status": "past",
+    "locationId": 84
+  },
+  {
+    "id": 597,
+    "name": "UFC 132",
+    "fight": "Cruz vs. Faber 2",
+    "date": "2011-07-02",
+    "link": "https://www.sherdog.com/events/UFC-132-Cruz-vs-Faber-2-16495",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 598,
+    "name": "UFC Live 4",
+    "fight": "Kongo vs. Barry",
+    "date": "2011-06-26",
+    "link": "https://www.sherdog.com/events/UFC-Live-4-Kongo-vs-Barry-16309",
+    "status": "past",
+    "locationId": 155
+  },
+  {
+    "id": 599,
+    "name": "UFC 131",
+    "fight": "Dos Santos vs. Carwin",
+    "date": "2011-06-11",
+    "link": "https://www.sherdog.com/events/UFC-131-Dos-Santos-vs-Carwin-15720",
+    "status": "past",
+    "locationId": 47
+  },
+  {
+    "id": 600,
+    "name": "UFC - The Ultimate Fighter 13 Finale",
+    "fight": null,
+    "date": "2011-06-04",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-13-Finale-15811",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 601,
+    "name": "UFC 130",
+    "fight": "Rampage vs. Hamill",
+    "date": "2011-05-28",
+    "link": "https://www.sherdog.com/events/UFC-130-Rampage-vs-Hamill-15685",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 602,
+    "name": "UFC 129",
+    "fight": "St. Pierre vs. Shields",
+    "date": "2011-04-30",
+    "link": "https://www.sherdog.com/events/UFC-129-St-Pierre-vs-Shields-15427",
+    "status": "past",
+    "locationId": 229
+  },
+  {
+    "id": 603,
+    "name": "UFC Fight Night 24",
+    "fight": "Nogueira vs. Davis",
+    "date": "2011-03-26",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-24-Nogueira-vs-Davis-15559",
+    "status": "past",
+    "locationId": 214
+  },
+  {
+    "id": 604,
+    "name": "UFC 128",
+    "fight": "Shogun vs. Jones",
+    "date": "2011-03-19",
+    "link": "https://www.sherdog.com/events/UFC-128-Shogun-vs-Jones-15483",
+    "status": "past",
+    "locationId": 2
+  },
+  {
+    "id": 605,
+    "name": "UFC Live 3",
+    "fight": "Sanchez vs. Kampmann",
+    "date": "2011-03-03",
+    "link": "https://www.sherdog.com/events/UFC-Live-3-Sanchez-vs-Kampmann-15438",
+    "status": "past",
+    "locationId": 35
+  },
+  {
+    "id": 606,
+    "name": "UFC 127",
+    "fight": "Penn vs. Fitch",
+    "date": "2011-02-27",
+    "link": "https://www.sherdog.com/events/UFC-127-Penn-vs-Fitch-15202",
+    "status": "past",
+    "locationId": 230
+  },
+  {
+    "id": 607,
+    "name": "UFC 126",
+    "fight": "Silva vs. Belfort",
+    "date": "2011-02-05",
+    "link": "https://www.sherdog.com/events/UFC-126-Silva-vs-Belfort-15104",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 608,
+    "name": "UFC Fight Night 23 - Fight for the Troops 2",
+    "fight": null,
+    "date": "2011-01-22",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-23-Fight-for-the-Troops-2-15120",
+    "status": "past",
+    "locationId": 231
+  },
+  {
+    "id": 609,
+    "name": "UFC 125 - Resolution",
+    "fight": null,
+    "date": "2011-01-01",
+    "link": "https://www.sherdog.com/events/UFC-125-Resolution-14530",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 610,
+    "name": "UFC 124",
+    "fight": "St. Pierre vs. Koscheck 2",
+    "date": "2010-12-11",
+    "link": "https://www.sherdog.com/events/UFC-124-St-Pierre-vs-Koscheck-2-14504",
+    "status": "past",
+    "locationId": 13
+  },
+  {
+    "id": 611,
+    "name": "UFC - The Ultimate Fighter 12 Finale",
+    "fight": null,
+    "date": "2010-12-04",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-12-Finale-14462",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 612,
+    "name": "UFC 123",
+    "fight": "Rampage vs. Machida",
+    "date": "2010-11-20",
+    "link": "https://www.sherdog.com/events/UFC-123-Rampage-vs-Machida-14529",
+    "status": "past",
+    "locationId": 232
+  },
+  {
+    "id": 613,
+    "name": "UFC 122",
+    "fight": "Marquardt vs. Okami",
+    "date": "2010-11-13",
+    "link": "https://www.sherdog.com/events/UFC-122-Marquardt-vs-Okami-14430",
+    "status": "past",
+    "locationId": 233
+  },
+  {
+    "id": 614,
+    "name": "UFC 121",
+    "fight": "Lesnar vs. Velasquez",
+    "date": "2010-10-23",
+    "link": "https://www.sherdog.com/events/UFC-121-Lesnar-vs-Velasquez-14039",
+    "status": "past",
+    "locationId": 40
+  },
+  {
+    "id": 615,
+    "name": "UFC 120",
+    "fight": "Bisping vs. Akiyama",
+    "date": "2010-10-16",
+    "link": "https://www.sherdog.com/events/UFC-120-Bisping-vs-Akiyama-14025",
+    "status": "past",
+    "locationId": 234
+  },
+  {
+    "id": 616,
+    "name": "UFC 119",
+    "fight": "Mir vs. Cro Cop",
+    "date": "2010-09-25",
+    "link": "https://www.sherdog.com/events/UFC-119-Mir-vs-Cro-Cop-13732",
+    "status": "past",
+    "locationId": 235
+  },
+  {
+    "id": 617,
+    "name": "UFC Fight Night 22",
+    "fight": "Marquardt vs. Palhares",
+    "date": "2010-09-15",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-22-Marquardt-vs-Palhares-14024",
+    "status": "past",
+    "locationId": 111
+  },
+  {
+    "id": 618,
+    "name": "UFC 118",
+    "fight": "Edgar vs. Penn 2",
+    "date": "2010-08-28",
+    "link": "https://www.sherdog.com/events/UFC-118-Edgar-vs-Penn-2-13380",
+    "status": "past",
+    "locationId": 45
+  },
+  {
+    "id": 619,
+    "name": "UFC 117",
+    "fight": "Silva vs. Sonnen",
+    "date": "2010-08-07",
+    "link": "https://www.sherdog.com/events/UFC-117-Silva-vs-Sonnen-13310",
+    "status": "past",
+    "locationId": 236
+  },
+  {
+    "id": 620,
+    "name": "UFC Live 2",
+    "fight": "Jones vs. Matyushenko",
+    "date": "2010-08-01",
+    "link": "https://www.sherdog.com/events/UFC-Live-2-Jones-vs-Matyushenko-13294",
+    "status": "past",
+    "locationId": 237
+  },
+  {
+    "id": 621,
+    "name": "UFC 116",
+    "fight": "Lesnar vs. Carwin",
+    "date": "2010-07-03",
+    "link": "https://www.sherdog.com/events/UFC-116-Lesnar-vs-Carwin-12765",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 622,
+    "name": "UFC - The Ultimate Fighter 11 Finale",
+    "fight": null,
+    "date": "2010-06-19",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-11-Finale-12897",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 623,
+    "name": "UFC 115",
+    "fight": "Liddell vs. Franklin",
+    "date": "2010-06-12",
+    "link": "https://www.sherdog.com/events/UFC-115-Liddell-vs-Franklin-12447",
+    "status": "past",
+    "locationId": 238
+  },
+  {
+    "id": 624,
+    "name": "UFC 114",
+    "fight": "Rampage vs. Evans",
+    "date": "2010-05-29",
+    "link": "https://www.sherdog.com/events/UFC-114-Rampage-vs-Evans-12446",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 625,
+    "name": "UFC 113",
+    "fight": "Machida vs. Shogun 2",
+    "date": "2010-05-08",
+    "link": "https://www.sherdog.com/events/UFC-113-Machida-vs-Shogun-2-12390",
+    "status": "past",
+    "locationId": 13
+  },
+  {
+    "id": 626,
+    "name": "UFC 112 - Invincible",
+    "fight": null,
+    "date": "2010-04-10",
+    "link": "https://www.sherdog.com/events/UFC-112-Invincible-12184",
+    "status": "past",
+    "locationId": 239
+  },
+  {
+    "id": 627,
+    "name": "UFC Fight Night 21",
+    "fight": "Florian vs. Gomi",
+    "date": "2010-03-31",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-21-Florian-vs-Gomi-12474",
+    "status": "past",
+    "locationId": 240
+  },
+  {
+    "id": 628,
+    "name": "UFC 111",
+    "fight": "St. Pierre vs. Hardy",
+    "date": "2010-03-27",
+    "link": "https://www.sherdog.com/events/UFC-111-St-Pierre-vs-Hardy-12131",
+    "status": "past",
+    "locationId": 2
+  },
+  {
+    "id": 629,
+    "name": "UFC Live 1",
+    "fight": "Vera vs. Jones",
+    "date": "2010-03-21",
+    "link": "https://www.sherdog.com/events/UFC-Live-1-Vera-vs-Jones-12389",
+    "status": "past",
+    "locationId": 174
+  },
+  {
+    "id": 630,
+    "name": "UFC 110",
+    "fight": "Nogueira vs. Velasquez",
+    "date": "2010-02-20",
+    "link": "https://www.sherdog.com/events/UFC-110-Nogueira-vs-Velasquez-11792",
+    "status": "past",
+    "locationId": 230
+  },
+  {
+    "id": 631,
+    "name": "UFC 109 - Relentless",
+    "fight": null,
+    "date": "2010-02-06",
+    "link": "https://www.sherdog.com/events/UFC-109-Relentless-11741",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 632,
+    "name": "UFC Fight Night 20",
+    "fight": "Maynard vs. Diaz",
+    "date": "2010-01-11",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-20-Maynard-vs-Diaz-11617",
+    "status": "past",
+    "locationId": 171
+  },
+  {
+    "id": 633,
+    "name": "UFC 108",
+    "fight": "Evans vs. Silva",
+    "date": "2010-01-02",
+    "link": "https://www.sherdog.com/events/UFC-108-Evans-vs-Silva-11471",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 634,
+    "name": "UFC 107",
+    "fight": "Penn vs. Sanchez",
+    "date": "2009-12-12",
+    "link": "https://www.sherdog.com/events/UFC-107-Penn-vs-Sanchez-11118",
+    "status": "past",
+    "locationId": 241
+  },
+  {
+    "id": 635,
+    "name": "UFC - The Ultimate Fighter 10 Finale",
+    "fight": null,
+    "date": "2009-12-05",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-10-Finale-11054",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 636,
+    "name": "UFC 106",
+    "fight": "Ortiz vs. Griffin 2",
+    "date": "2009-11-21",
+    "link": "https://www.sherdog.com/events/UFC-106-Ortiz-vs-Griffin-2-11053",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 637,
+    "name": "UFC 105",
+    "fight": "Couture vs. Vera",
+    "date": "2009-11-14",
+    "link": "https://www.sherdog.com/events/UFC-105-Couture-vs-Vera-11052",
+    "status": "past",
+    "locationId": 242
+  },
+  {
+    "id": 638,
+    "name": "UFC 104",
+    "fight": "Machida vs. Shogun",
+    "date": "2009-10-24",
+    "link": "https://www.sherdog.com/events/UFC-104-Machida-vs-Shogun-10333",
+    "status": "past",
+    "locationId": 103
+  },
+  {
+    "id": 639,
+    "name": "UFC 103",
+    "fight": "Franklin vs. Belfort",
+    "date": "2009-09-19",
+    "link": "https://www.sherdog.com/events/UFC-103-Franklin-vs-Belfort-10444",
+    "status": "past",
+    "locationId": 55
+  },
+  {
+    "id": 640,
+    "name": "UFC Fight Night 19",
+    "fight": "Diaz vs. Guillard",
+    "date": "2009-09-16",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-19-Diaz-vs-Guillard-10443",
+    "status": "past",
+    "locationId": 243
+  },
+  {
+    "id": 641,
+    "name": "UFC 102",
+    "fight": "Couture vs. Nogueira",
+    "date": "2009-08-29",
+    "link": "https://www.sherdog.com/events/UFC-102-Couture-vs-Nogueira-10147",
+    "status": "past",
+    "locationId": 244
+  },
+  {
+    "id": 642,
+    "name": "UFC 101 - Declaration",
+    "fight": null,
+    "date": "2009-08-08",
+    "link": "https://www.sherdog.com/events/UFC-101-Declaration-9925",
+    "status": "past",
+    "locationId": 245
+  },
+  {
+    "id": 643,
+    "name": "UFC 100",
+    "fight": "Lesnar vs. Mir 2",
+    "date": "2009-07-11",
+    "link": "https://www.sherdog.com/events/UFC-100-Lesnar-vs-Mir-2-9568",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 644,
+    "name": "UFC - The Ultimate Fighter 9 Finale",
+    "fight": null,
+    "date": "2009-06-20",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-9-Finale-9751",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 645,
+    "name": "UFC 99 - The Comeback",
+    "fight": null,
+    "date": "2009-06-13",
+    "link": "https://www.sherdog.com/events/UFC-99-The-Comeback-9297",
+    "status": "past",
+    "locationId": 246
+  },
+  {
+    "id": 646,
+    "name": "UFC 98",
+    "fight": "Evans vs. Machida",
+    "date": "2009-05-23",
+    "link": "https://www.sherdog.com/events/UFC-98-Evans-vs-Machida-9529",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 647,
+    "name": "UFC 97 - Redemption",
+    "fight": null,
+    "date": "2009-04-18",
+    "link": "https://www.sherdog.com/events/UFC-97-Redemption-9432",
+    "status": "past",
+    "locationId": 13
+  },
+  {
+    "id": 648,
+    "name": "UFC Fight Night 18",
+    "fight": "Condit vs. Kampmann",
+    "date": "2009-04-01",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-18-Condit-vs-Kampmann-9448",
+    "status": "past",
+    "locationId": 247
+  },
+  {
+    "id": 649,
+    "name": "UFC 96",
+    "fight": "Jackson vs. Jardine",
+    "date": "2009-03-07",
+    "link": "https://www.sherdog.com/events/UFC-96-Jackson-vs-Jardine-9427",
+    "status": "past",
+    "locationId": 59
+  },
+  {
+    "id": 650,
+    "name": "UFC 95",
+    "fight": "Sanchez vs. Stevenson",
+    "date": "2009-02-21",
+    "link": "https://www.sherdog.com/events/UFC-95-Sanchez-vs-Stevenson-9250",
+    "status": "past",
+    "locationId": 234
+  },
+  {
+    "id": 651,
+    "name": "UFC Fight Night 17",
+    "fight": "Lauzon vs. Stephens",
+    "date": "2009-02-07",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-17-Lauzon-vs-Stephens-9307",
+    "status": "past",
+    "locationId": 248
+  },
+  {
+    "id": 652,
+    "name": "UFC 94",
+    "fight": "St. Pierre vs. Penn 2",
+    "date": "2009-01-31",
+    "link": "https://www.sherdog.com/events/UFC-94-St-Pierre-vs-Penn-2-8465",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 653,
+    "name": "UFC 93",
+    "fight": "Franklin vs. Henderson",
+    "date": "2009-01-17",
+    "link": "https://www.sherdog.com/events/UFC-93-Franklin-vs-Henderson-8864",
+    "status": "past",
+    "locationId": 249
+  },
+  {
+    "id": 654,
+    "name": "UFC 92 - The Ultimate 2008",
+    "fight": null,
+    "date": "2008-12-27",
+    "link": "https://www.sherdog.com/events/UFC-92-The-Ultimate-2008-8732",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 655,
+    "name": "UFC - The Ultimate Fighter 8 Finale",
+    "fight": null,
+    "date": "2008-12-13",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-8-Finale-8765",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 656,
+    "name": "UFC Fight Night 16 - Fight for the Troops 1",
+    "fight": null,
+    "date": "2008-12-10",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-16-Fight-for-the-Troops-1-8724",
+    "status": "past",
+    "locationId": 250
+  },
+  {
+    "id": 657,
+    "name": "UFC 91",
+    "fight": "Couture vs. Lesnar",
+    "date": "2008-11-15",
+    "link": "https://www.sherdog.com/events/UFC-91-Couture-vs-Lesnar-8406",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 658,
+    "name": "UFC 90",
+    "fight": "Silva vs. Cote",
+    "date": "2008-10-25",
+    "link": "https://www.sherdog.com/events/UFC-90-Silva-vs-Cote-8188",
+    "status": "past",
+    "locationId": 251
+  },
+  {
+    "id": 659,
+    "name": "UFC 89",
+    "fight": "Bisping vs. Leben",
+    "date": "2008-10-18",
+    "link": "https://www.sherdog.com/events/UFC-89-Bisping-vs-Leben-8070",
+    "status": "past",
+    "locationId": 252
+  },
+  {
+    "id": 660,
+    "name": "UFC Fight Night 15",
+    "fight": "Diaz vs. Neer",
+    "date": "2008-09-17",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-15-Diaz-vs-Neer-7916",
+    "status": "past",
+    "locationId": 223
+  },
+  {
+    "id": 661,
+    "name": "UFC 88 - Breakthrough",
+    "fight": null,
+    "date": "2008-09-06",
+    "link": "https://www.sherdog.com/events/UFC-88-Breakthrough-7837",
+    "status": "past",
+    "locationId": 147
+  },
+  {
+    "id": 662,
+    "name": "UFC 87 - Seek and Destroy",
+    "fight": null,
+    "date": "2008-08-09",
+    "link": "https://www.sherdog.com/events/UFC-87-Seek-and-Destroy-6779",
+    "status": "past",
+    "locationId": 77
+  },
+  {
+    "id": 663,
+    "name": "UFC Fight Night 14",
+    "fight": "Silva vs. Irvin",
+    "date": "2008-07-19",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-14-Silva-vs-Irvin-7835",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 664,
+    "name": "UFC 86",
+    "fight": "Jackson vs. Griffin",
+    "date": "2008-07-05",
+    "link": "https://www.sherdog.com/events/UFC-86-Jackson-vs-Griffin-7021",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 665,
+    "name": "UFC - The Ultimate Fighter 7 Finale",
+    "fight": null,
+    "date": "2008-06-21",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-7-Finale-6954",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 666,
+    "name": "UFC 85 - Bedlam",
+    "fight": null,
+    "date": "2008-06-07",
+    "link": "https://www.sherdog.com/events/UFC-85-Bedlam-6778",
+    "status": "past",
+    "locationId": 234
+  },
+  {
+    "id": 667,
+    "name": "UFC 84 - Ill Will",
+    "fight": null,
+    "date": "2008-05-24",
+    "link": "https://www.sherdog.com/events/UFC-84-Ill-Will-6394",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 668,
+    "name": "UFC 83",
+    "fight": "Serra vs. St. Pierre 2",
+    "date": "2008-04-19",
+    "link": "https://www.sherdog.com/events/UFC-83-Serra-vs-St-Pierre-2-6339",
+    "status": "past",
+    "locationId": 13
+  },
+  {
+    "id": 669,
+    "name": "UFC Fight Night 13",
+    "fight": "Florian vs. Lauzon",
+    "date": "2008-04-02",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-13-Florian-vs-Lauzon-6552",
+    "status": "past",
+    "locationId": 253
+  },
+  {
+    "id": 670,
+    "name": "UFC 82 - Pride of a Champion",
+    "fight": null,
+    "date": "2008-03-01",
+    "link": "https://www.sherdog.com/events/UFC-82-Pride-of-a-Champion-6039",
+    "status": "past",
+    "locationId": 59
+  },
+  {
+    "id": 671,
+    "name": "UFC 81 - Breaking Point",
+    "fight": null,
+    "date": "2008-02-02",
+    "link": "https://www.sherdog.com/events/UFC-81-Breaking-Point-6038",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 672,
+    "name": "UFC Fight Night 12",
+    "fight": "Swick vs. Burkman",
+    "date": "2008-01-23",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-12-Swick-vs-Burkman-6179",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 673,
+    "name": "UFC 80 - Rapid Fire",
+    "fight": null,
+    "date": "2008-01-19",
+    "link": "https://www.sherdog.com/events/UFC-80-Rapid-Fire-5982",
+    "status": "past",
+    "locationId": 254
+  },
+  {
+    "id": 674,
+    "name": "UFC 79 - Nemesis",
+    "fight": null,
+    "date": "2007-12-29",
+    "link": "https://www.sherdog.com/events/UFC-79-Nemesis-5458",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 675,
+    "name": "UFC - The Ultimate Fighter 6 Finale",
+    "fight": null,
+    "date": "2007-12-08",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-6-Finale-5459",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 676,
+    "name": "UFC 78 - Validation",
+    "fight": null,
+    "date": "2007-11-17",
+    "link": "https://www.sherdog.com/events/UFC-78-Validation-5708",
+    "status": "past",
+    "locationId": 2
+  },
+  {
+    "id": 677,
+    "name": "UFC 77 - Hostile Territory",
+    "fight": null,
+    "date": "2007-10-20",
+    "link": "https://www.sherdog.com/events/UFC-77-Hostile-Territory-5482",
+    "status": "past",
+    "locationId": 192
+  },
+  {
+    "id": 678,
+    "name": "UFC 76 - Knockout",
+    "fight": null,
+    "date": "2007-09-22",
+    "link": "https://www.sherdog.com/events/UFC-76-Knockout-5417",
+    "status": "past",
+    "locationId": 40
+  },
+  {
+    "id": 679,
+    "name": "UFC Fight Night 11",
+    "fight": "Thomas vs. Florian",
+    "date": "2007-09-19",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-11-Thomas-vs-Florian-5454",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 680,
+    "name": "UFC 75",
+    "fight": "Champion vs. Champion",
+    "date": "2007-09-08",
+    "link": "https://www.sherdog.com/events/UFC-75-Champion-vs-Champion-5298",
+    "status": "past",
+    "locationId": 234
+  },
+  {
+    "id": 681,
+    "name": "UFC 74 - Respect",
+    "fight": null,
+    "date": "2007-08-25",
+    "link": "https://www.sherdog.com/events/UFC-74-Respect-5297",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 682,
+    "name": "UFC 73 - Stacked",
+    "fight": null,
+    "date": "2007-07-07",
+    "link": "https://www.sherdog.com/events/UFC-73-Stacked-5158",
+    "status": "past",
+    "locationId": 255
+  },
+  {
+    "id": 683,
+    "name": "UFC - The Ultimate Fighter 5 Finale",
+    "fight": null,
+    "date": "2007-06-23",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-5-Finale-4681",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 684,
+    "name": "UFC 72 - Victory",
+    "fight": null,
+    "date": "2007-06-16",
+    "link": "https://www.sherdog.com/events/UFC-72-Victory-5084",
+    "status": "past",
+    "locationId": 256
+  },
+  {
+    "id": 685,
+    "name": "UFC Fight Night 10",
+    "fight": "Stout vs. Fisher 2",
+    "date": "2007-06-12",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-10-Stout-vs-Fisher-2-5227",
+    "status": "past",
+    "locationId": 166
+  },
+  {
+    "id": 686,
+    "name": "UFC 71",
+    "fight": "Liddell vs. Jackson",
+    "date": "2007-05-26",
+    "link": "https://www.sherdog.com/events/UFC-71-Liddell-vs-Jackson-4993",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 687,
+    "name": "UFC 70 - Nations Collide",
+    "fight": null,
+    "date": "2007-04-21",
+    "link": "https://www.sherdog.com/events/UFC-70-Nations-Collide-4862",
+    "status": "past",
+    "locationId": 242
+  },
+  {
+    "id": 688,
+    "name": "UFC 69 - Shootout",
+    "fight": null,
+    "date": "2007-04-07",
+    "link": "https://www.sherdog.com/events/UFC-69-Shootout-4663",
+    "status": "past",
+    "locationId": 60
+  },
+  {
+    "id": 689,
+    "name": "UFC Fight Night 9",
+    "fight": "Stevenson vs. Guillard",
+    "date": "2007-04-05",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-9-Stevenson-vs-Guillard-4682",
+    "status": "past",
+    "locationId": 139
+  },
+  {
+    "id": 690,
+    "name": "UFC 68 - Uprising",
+    "fight": null,
+    "date": "2007-03-03",
+    "link": "https://www.sherdog.com/events/UFC-68-Uprising-4662",
+    "status": "past",
+    "locationId": 59
+  },
+  {
+    "id": 691,
+    "name": "UFC 67 - All or Nothing",
+    "fight": null,
+    "date": "2007-02-03",
+    "link": "https://www.sherdog.com/events/UFC-67-All-or-Nothing-4311",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 692,
+    "name": "UFC Fight Night 8",
+    "fight": "Evans vs. Salmon",
+    "date": "2007-01-25",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-8-Evans-vs-Salmon-4664",
+    "status": "past",
+    "locationId": 166
+  },
+  {
+    "id": 693,
+    "name": "UFC 66",
+    "fight": "Liddell vs. Ortiz 2",
+    "date": "2006-12-30",
+    "link": "https://www.sherdog.com/events/UFC-66-Liddell-vs-Ortiz-2-4312",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 694,
+    "name": "UFC Fight Night 7",
+    "fight": "Sanchez vs. Riggs",
+    "date": "2006-12-13",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-7-Sanchez-vs-Riggs-4626",
+    "status": "past",
+    "locationId": 257
+  },
+  {
+    "id": 695,
+    "name": "UFC 65 - Bad Intentions",
+    "fight": null,
+    "date": "2006-11-18",
+    "link": "https://www.sherdog.com/events/UFC-65-Bad-Intentions-4313",
+    "status": "past",
+    "locationId": 255
+  },
+  {
+    "id": 696,
+    "name": "UFC - The Ultimate Fighter 4 Finale",
+    "fight": null,
+    "date": "2006-11-11",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-4-Finale-4314",
+    "status": "past",
+    "locationId": 258
+  },
+  {
+    "id": 697,
+    "name": "UFC 64 - Unstoppable",
+    "fight": null,
+    "date": "2006-10-14",
+    "link": "https://www.sherdog.com/events/UFC-64-Unstoppable-4181",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 698,
+    "name": "UFC Fight Night 6.5",
+    "fight": "Ortiz vs. Shamrock 3",
+    "date": "2006-10-10",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-65-Ortiz-vs-Shamrock-3-4112",
+    "status": "past",
+    "locationId": 166
+  },
+  {
+    "id": 699,
+    "name": "UFC 63",
+    "fight": "Hughes vs. Penn 2",
+    "date": "2006-09-23",
+    "link": "https://www.sherdog.com/events/UFC-63-Hughes-vs-Penn-2-4094",
+    "status": "past",
+    "locationId": 40
+  },
+  {
+    "id": 700,
+    "name": "UFC 62",
+    "fight": "Liddell vs. Sobral",
+    "date": "2006-08-26",
+    "link": "https://www.sherdog.com/events/UFC-62-Liddell-vs-Sobral-4027",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 701,
+    "name": "UFC Fight Night 6",
+    "fight": "Sanchez vs. Parisyan",
+    "date": "2006-08-17",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-6-Sanchez-vs-Parisyan-4026",
+    "status": "past",
+    "locationId": 259
+  },
+  {
+    "id": 702,
+    "name": "UFC 61 - Bitter Rivals",
+    "fight": null,
+    "date": "2006-07-08",
+    "link": "https://www.sherdog.com/events/UFC-61-Bitter-Rivals-3910",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 703,
+    "name": "UFC Fight Night 5",
+    "fight": "Leben vs. Silva",
+    "date": "2006-06-28",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-5-Leben-vs-Silva-3815",
+    "status": "past",
+    "locationId": 258
+  },
+  {
+    "id": 704,
+    "name": "UFC - The Ultimate Fighter 3 Finale",
+    "fight": null,
+    "date": "2006-06-24",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-3-Finale-3952",
+    "status": "past",
+    "locationId": 258
+  },
+  {
+    "id": 705,
+    "name": "UFC 60",
+    "fight": "Hughes vs. Gracie",
+    "date": "2006-05-27",
+    "link": "https://www.sherdog.com/events/UFC-60-Hughes-vs-Gracie-3666",
+    "status": "past",
+    "locationId": 103
+  },
+  {
+    "id": 706,
+    "name": "UFC 59 - Reality Check",
+    "fight": null,
+    "date": "2006-04-15",
+    "link": "https://www.sherdog.com/events/UFC-59-Reality-Check-3577",
+    "status": "past",
+    "locationId": 40
+  },
+  {
+    "id": 707,
+    "name": "UFC Fight Night 4",
+    "fight": "Bonnar vs. Jardine",
+    "date": "2006-04-06",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-4-Bonnar-vs-Jardine-3665",
+    "status": "past",
+    "locationId": 258
+  },
+  {
+    "id": 708,
+    "name": "UFC 58",
+    "fight": "USA vs. Canada",
+    "date": "2006-03-04",
+    "link": "https://www.sherdog.com/events/UFC-58-USA-vs-Canada-3512",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 709,
+    "name": "UFC 57",
+    "fight": "Liddell vs. Couture 3",
+    "date": "2006-02-04",
+    "link": "https://www.sherdog.com/events/UFC-57-Liddell-vs-Couture-3-3508",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 710,
+    "name": "UFC Fight Night 3",
+    "fight": "Sylvia vs. Silva",
+    "date": "2006-01-16",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-3-Sylvia-vs-Silva-3486",
+    "status": "past",
+    "locationId": 258
+  },
+  {
+    "id": 711,
+    "name": "UFC 56 - Full Force",
+    "fight": null,
+    "date": "2005-11-19",
+    "link": "https://www.sherdog.com/events/UFC-56-Full-Force-3328",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 712,
+    "name": "UFC - The Ultimate Fighter 2 Finale",
+    "fight": null,
+    "date": "2005-11-05",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-2-Finale-3375",
+    "status": "past",
+    "locationId": 258
+  },
+  {
+    "id": 713,
+    "name": "UFC 55 - Fury",
+    "fight": null,
+    "date": "2005-10-07",
+    "link": "https://www.sherdog.com/events/UFC-55-Fury-3250",
+    "status": "past",
+    "locationId": 260
+  },
+  {
+    "id": 714,
+    "name": "UFC Fight Night 2",
+    "fight": "Loiseau vs. Tanner",
+    "date": "2005-10-03",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-2-Loiseau-vs-Tanner-3255",
+    "status": "past",
+    "locationId": 258
+  },
+  {
+    "id": 715,
+    "name": "UFC 54 - Boiling Point",
+    "fight": null,
+    "date": "2005-08-20",
+    "link": "https://www.sherdog.com/events/UFC-54-Boiling-Point-3093",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 716,
+    "name": "UFC Fight Night 1",
+    "fight": "Marquardt vs. Salaverry",
+    "date": "2005-08-06",
+    "link": "https://www.sherdog.com/events/UFC-Fight-Night-1-Marquardt-vs-Salaverry-3100",
+    "status": "past",
+    "locationId": 261
+  },
+  {
+    "id": 717,
+    "name": "UFC 53 - Heavy Hitters",
+    "fight": null,
+    "date": "2005-06-04",
+    "link": "https://www.sherdog.com/events/UFC-53-Heavy-Hitters-3054",
+    "status": "past",
+    "locationId": 38
+  },
+  {
+    "id": 718,
+    "name": "UFC 52",
+    "fight": "Couture vs. Liddell 2",
+    "date": "2005-04-16",
+    "link": "https://www.sherdog.com/events/UFC-52-Couture-vs-Liddell-2-2930",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 719,
+    "name": "UFC - The Ultimate Fighter 1 Finale",
+    "fight": null,
+    "date": "2005-04-09",
+    "link": "https://www.sherdog.com/events/UFC-The-Ultimate-Fighter-1-Finale-2971",
+    "status": "past",
+    "locationId": 262
+  },
+  {
+    "id": 720,
+    "name": "UFC 51 - Super Saturday",
+    "fight": null,
+    "date": "2005-02-05",
+    "link": "https://www.sherdog.com/events/UFC-51-Super-Saturday-2690",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 721,
+    "name": "UFC 50 - The War of '04",
+    "fight": null,
+    "date": "2004-10-22",
+    "link": "https://www.sherdog.com/events/UFC-50-The-War-of-04-2512",
+    "status": "past",
+    "locationId": 38
+  },
+  {
+    "id": 722,
+    "name": "UFC 49 - Unfinished Business",
+    "fight": null,
+    "date": "2004-08-21",
+    "link": "https://www.sherdog.com/events/UFC-49-Unfinished-Business-2400",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 723,
+    "name": "UFC 48 - Payback",
+    "fight": null,
+    "date": "2004-06-19",
+    "link": "https://www.sherdog.com/events/UFC-48-Payback-2203",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 724,
+    "name": "UFC 47 - It's On",
+    "fight": null,
+    "date": "2004-04-02",
+    "link": "https://www.sherdog.com/events/UFC-47-Its-On-2121",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 725,
+    "name": "UFC 46 - Supernatural",
+    "fight": null,
+    "date": "2004-01-31",
+    "link": "https://www.sherdog.com/events/UFC-46-Supernatural-1943",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 726,
+    "name": "UFC 45 - Revolution",
+    "fight": null,
+    "date": "2003-11-21",
+    "link": "https://www.sherdog.com/events/UFC-45-Revolution-1863",
+    "status": "past",
+    "locationId": 263
+  },
+  {
+    "id": 727,
+    "name": "UFC 44 - Undisputed",
+    "fight": null,
+    "date": "2003-09-26",
+    "link": "https://www.sherdog.com/events/UFC-44-Undisputed-1688",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 728,
+    "name": "UFC 43 - Meltdown",
+    "fight": null,
+    "date": "2003-06-06",
+    "link": "https://www.sherdog.com/events/UFC-43-Meltdown-1614",
+    "status": "past",
+    "locationId": 264
+  },
+  {
+    "id": 729,
+    "name": "UFC 42 - Sudden Impact",
+    "fight": null,
+    "date": "2003-04-25",
+    "link": "https://www.sherdog.com/events/UFC-42-Sudden-Impact-1469",
+    "status": "past",
+    "locationId": 265
+  },
+  {
+    "id": 730,
+    "name": "UFC 41 - Onslaught",
+    "fight": null,
+    "date": "2003-02-28",
+    "link": "https://www.sherdog.com/events/UFC-41-Onslaught-1424",
+    "status": "past",
+    "locationId": 38
+  },
+  {
+    "id": 731,
+    "name": "UFC 40 - Vendetta",
+    "fight": null,
+    "date": "2002-11-22",
+    "link": "https://www.sherdog.com/events/UFC-40-Vendetta-1220",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 732,
+    "name": "UFC 39 - The Warriors Return",
+    "fight": null,
+    "date": "2002-09-27",
+    "link": "https://www.sherdog.com/events/UFC-39-The-Warriors-Return-1085",
+    "status": "past",
+    "locationId": 263
+  },
+  {
+    "id": 733,
+    "name": "UFC 38 - Brawl at the Hall",
+    "fight": null,
+    "date": "2002-07-13",
+    "link": "https://www.sherdog.com/events/UFC-38-Brawl-at-the-Hall-923",
+    "status": "past",
+    "locationId": 266
+  },
+  {
+    "id": 734,
+    "name": "UFC 37.5 - As Real As It Gets",
+    "fight": null,
+    "date": "2002-06-22",
+    "link": "https://www.sherdog.com/events/UFC-375-As-Real-As-It-Gets-901",
+    "status": "past",
+    "locationId": 267
+  },
+  {
+    "id": 735,
+    "name": "UFC 37 - High Impact",
+    "fight": null,
+    "date": "2002-05-10",
+    "link": "https://www.sherdog.com/events/UFC-37-High-Impact-850",
+    "status": "past",
+    "locationId": 268
+  },
+  {
+    "id": 736,
+    "name": "UFC 36 - Worlds Collide",
+    "fight": null,
+    "date": "2002-03-22",
+    "link": "https://www.sherdog.com/events/UFC-36-Worlds-Collide-771",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 737,
+    "name": "UFC 35 - Throwdown",
+    "fight": null,
+    "date": "2002-01-11",
+    "link": "https://www.sherdog.com/events/UFC-35-Throwdown-668",
+    "status": "past",
+    "locationId": 263
+  },
+  {
+    "id": 738,
+    "name": "UFC 34 - High Voltage",
+    "fight": null,
+    "date": "2001-11-02",
+    "link": "https://www.sherdog.com/events/UFC-34-High-Voltage-540",
+    "status": "past",
+    "locationId": 149
+  },
+  {
+    "id": 739,
+    "name": "UFC 33 - Victory in Vegas",
+    "fight": null,
+    "date": "2001-09-28",
+    "link": "https://www.sherdog.com/events/UFC-33-Victory-in-Vegas-430",
+    "status": "past",
+    "locationId": 151
+  },
+  {
+    "id": 740,
+    "name": "UFC 32 - Showdown in the Meadowlands",
+    "fight": null,
+    "date": "2001-06-29",
+    "link": "https://www.sherdog.com/events/UFC-32-Showdown-in-the-Meadowlands-429",
+    "status": "past",
+    "locationId": 269
+  },
+  {
+    "id": 741,
+    "name": "UFC 31 - Locked & Loaded",
+    "fight": null,
+    "date": "2001-05-04",
+    "link": "https://www.sherdog.com/events/UFC-31-Locked-Loaded-282",
+    "status": "past",
+    "locationId": 270
+  },
+  {
+    "id": 742,
+    "name": "UFC 30 - Battle on the Boardwalk",
+    "fight": null,
+    "date": "2001-02-23",
+    "link": "https://www.sherdog.com/events/UFC-30-Battle-on-the-Boardwalk-40",
+    "status": "past",
+    "locationId": 270
+  },
+  {
+    "id": 743,
+    "name": "UFC 29 - Defense of the Belts",
+    "fight": null,
+    "date": "2000-12-16",
+    "link": "https://www.sherdog.com/events/UFC-29-Defense-of-the-Belts-39",
+    "status": "past",
+    "locationId": 271
+  },
+  {
+    "id": 744,
+    "name": "UFC 28 - High Stakes",
+    "fight": null,
+    "date": "2000-11-17",
+    "link": "https://www.sherdog.com/events/UFC-28-High-Stakes-38",
+    "status": "past",
+    "locationId": 270
+  },
+  {
+    "id": 745,
+    "name": "UFC 27 - Ultimate Bad Boyz",
+    "fight": null,
+    "date": "2000-09-22",
+    "link": "https://www.sherdog.com/events/UFC-27-Ultimate-Bad-Boyz-37",
+    "status": "past",
+    "locationId": 272
+  },
+  {
+    "id": 746,
+    "name": "UFC 26 - Ultimate Field of Dreams",
+    "fight": null,
+    "date": "2000-06-09",
+    "link": "https://www.sherdog.com/events/UFC-26-Ultimate-Field-of-Dreams-36",
+    "status": "past",
+    "locationId": 273
+  },
+  {
+    "id": 747,
+    "name": "UFC 25 - Ultimate Japan 3",
+    "fight": null,
+    "date": "2000-04-14",
+    "link": "https://www.sherdog.com/events/UFC-25-Ultimate-Japan-3-35",
+    "status": "past",
+    "locationId": 274
+  },
+  {
+    "id": 748,
+    "name": "UFC 24 - First Defense",
+    "fight": null,
+    "date": "2000-03-10",
+    "link": "https://www.sherdog.com/events/UFC-24-First-Defense-34",
+    "status": "past",
+    "locationId": 275
+  },
+  {
+    "id": 749,
+    "name": "UFC 23 - Ultimate Japan 2",
+    "fight": null,
+    "date": "1999-11-19",
+    "link": "https://www.sherdog.com/events/UFC-23-Ultimate-Japan-2-33",
+    "status": "past",
+    "locationId": 276
+  },
+  {
+    "id": 750,
+    "name": "UFC 22 - There Can Be Only One Champion",
+    "fight": null,
+    "date": "1999-09-24",
+    "link": "https://www.sherdog.com/events/UFC-22-There-Can-Be-Only-One-Champion-32",
+    "status": "past",
+    "locationId": 275
+  },
+  {
+    "id": 751,
+    "name": "UFC 21 - Return of the Champions",
+    "fight": null,
+    "date": "1999-07-16",
+    "link": "https://www.sherdog.com/events/UFC-21-Return-of-the-Champions-31",
+    "status": "past",
+    "locationId": 273
+  },
+  {
+    "id": 752,
+    "name": "UFC 20 - Battle for the Gold",
+    "fight": null,
+    "date": "1999-05-07",
+    "link": "https://www.sherdog.com/events/UFC-20-Battle-for-the-Gold-30",
+    "status": "past",
+    "locationId": 277
+  },
+  {
+    "id": 753,
+    "name": "UFC 19 - Ultimate Young Guns",
+    "fight": null,
+    "date": "1999-03-05",
+    "link": "https://www.sherdog.com/events/UFC-19-Ultimate-Young-Guns-29",
+    "status": "past",
+    "locationId": 278
+  },
+  {
+    "id": 754,
+    "name": "UFC 18 - Road to the Heavyweight Title",
+    "fight": null,
+    "date": "1999-01-08",
+    "link": "https://www.sherdog.com/events/UFC-18-Road-to-the-Heavyweight-Title-28",
+    "status": "past",
+    "locationId": 279
+  },
+  {
+    "id": 755,
+    "name": "UFC 17.5 - Ultimate Brazil",
+    "fight": null,
+    "date": "1998-10-16",
+    "link": "https://www.sherdog.com/events/UFC-175-Ultimate-Brazil-27",
+    "status": "past",
+    "locationId": 280
+  },
+  {
+    "id": 756,
+    "name": "UFC 17 - Redemption",
+    "fight": null,
+    "date": "1998-05-15",
+    "link": "https://www.sherdog.com/events/UFC-17-Redemption-26",
+    "status": "past",
+    "locationId": 281
+  },
+  {
+    "id": 757,
+    "name": "UFC 16 - Battle in the Bayou",
+    "fight": null,
+    "date": "1998-03-13",
+    "link": "https://www.sherdog.com/events/UFC-16-Battle-in-the-Bayou-25",
+    "status": "past",
+    "locationId": 279
+  },
+  {
+    "id": 758,
+    "name": "UFC 15.5 - Ultimate Japan 1",
+    "fight": null,
+    "date": "1997-12-21",
+    "link": "https://www.sherdog.com/events/UFC-155-Ultimate-Japan-1-24",
+    "status": "past",
+    "locationId": 282
+  },
+  {
+    "id": 759,
+    "name": "UFC 15 - Collision Course",
+    "fight": null,
+    "date": "1997-10-17",
+    "link": "https://www.sherdog.com/events/UFC-15-Collision-Course-23",
+    "status": "past",
+    "locationId": 278
+  },
+  {
+    "id": 760,
+    "name": "UFC 14 - Showdown",
+    "fight": null,
+    "date": "1997-07-27",
+    "link": "https://www.sherdog.com/events/UFC-14-Showdown-22",
+    "status": "past",
+    "locationId": 277
+  },
+  {
+    "id": 761,
+    "name": "UFC 13 - The Ultimate Force",
+    "fight": null,
+    "date": "1997-05-30",
+    "link": "https://www.sherdog.com/events/UFC-13-The-Ultimate-Force-21",
+    "status": "past",
+    "locationId": 283
+  },
+  {
+    "id": 762,
+    "name": "UFC 12 - Judgement Day",
+    "fight": null,
+    "date": "1997-02-07",
+    "link": "https://www.sherdog.com/events/UFC-12-Judgement-Day-20",
+    "status": "past",
+    "locationId": 284
+  },
+  {
+    "id": 763,
+    "name": "UFC - Ultimate Ultimate 1996",
+    "fight": null,
+    "date": "1996-12-07",
+    "link": "https://www.sherdog.com/events/UFC-Ultimate-Ultimate-1996-19",
+    "status": "past",
+    "locationId": 285
+  },
+  {
+    "id": 764,
+    "name": "UFC 11 - The Proving Ground",
+    "fight": null,
+    "date": "1996-09-20",
+    "link": "https://www.sherdog.com/events/UFC-11-The-Proving-Ground-18",
+    "status": "past",
+    "locationId": 283
+  },
+  {
+    "id": 765,
+    "name": "UFC 10 - The Tournament",
+    "fight": null,
+    "date": "1996-07-12",
+    "link": "https://www.sherdog.com/events/UFC-10-The-Tournament-17",
+    "status": "past",
+    "locationId": 285
+  },
+  {
+    "id": 766,
+    "name": "UFC 9 - Motor City Madness",
+    "fight": null,
+    "date": "1996-05-17",
+    "link": "https://www.sherdog.com/events/UFC-9-Motor-City-Madness-16",
+    "status": "past",
+    "locationId": 286
+  },
+  {
+    "id": 767,
+    "name": "UFC 8",
+    "fight": "David vs. Goliath",
+    "date": "1996-02-16",
+    "link": "https://www.sherdog.com/events/UFC-8-David-vs-Goliath-15",
+    "status": "past",
+    "locationId": 287
+  },
+  {
+    "id": 768,
+    "name": "UFC - Ultimate Ultimate 1995",
+    "fight": null,
+    "date": "1995-12-16",
+    "link": "https://www.sherdog.com/events/UFC-Ultimate-Ultimate-1995-14",
+    "status": "past",
+    "locationId": 288
+  },
+  {
+    "id": 769,
+    "name": "UFC 7 - The Brawl in Buffalo",
+    "fight": null,
+    "date": "1995-09-08",
+    "link": "https://www.sherdog.com/events/UFC-7-The-Brawl-in-Buffalo-13",
+    "status": "past",
+    "locationId": 289
+  },
+  {
+    "id": 770,
+    "name": "UFC 6 - Clash of the Titans",
+    "fight": null,
+    "date": "1995-07-14",
+    "link": "https://www.sherdog.com/events/UFC-6-Clash-of-the-Titans-12",
+    "status": "past",
+    "locationId": 290
+  },
+  {
+    "id": 771,
+    "name": "UFC 5 - The Return of the Beast",
+    "fight": null,
+    "date": "1995-04-07",
+    "link": "https://www.sherdog.com/events/UFC-5-The-Return-of-the-Beast-11",
+    "status": "past",
+    "locationId": 291
+  },
+  {
+    "id": 772,
+    "name": "UFC 4 - Revenge of the Warriors",
+    "fight": null,
+    "date": "1994-12-16",
+    "link": "https://www.sherdog.com/events/UFC-4-Revenge-of-the-Warriors-10",
+    "status": "past",
+    "locationId": 292
+  },
+  {
+    "id": 773,
+    "name": "UFC 3 - The American Dream",
+    "fight": null,
+    "date": "1994-09-09",
+    "link": "https://www.sherdog.com/events/UFC-3-The-American-Dream-9",
+    "status": "past",
+    "locationId": 293
+  },
+  {
+    "id": 774,
+    "name": "UFC 2 - No Way Out",
+    "fight": null,
+    "date": "1994-03-11",
+    "link": "https://www.sherdog.com/events/UFC-2-No-Way-Out-8",
+    "status": "past",
+    "locationId": 294
+  },
+  {
+    "id": 775,
+    "name": "UFC 1 - The Beginning",
+    "fight": null,
+    "date": "1993-11-12",
+    "link": "https://www.sherdog.com/events/UFC-1-The-Beginning-7",
+    "status": "past",
+    "locationId": 295
+  }
+]
