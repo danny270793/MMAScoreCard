@@ -76,6 +76,7 @@ export const mapper = {
   toFight(fight: BackendFight): Fight {
     return {
       id: fight.id,
+      winner: fight.winner,
       position: fight.position,
       category: mapper.toCategory(fight.categories),
       fighterOne: mapper.toFighter(fight.fighterOne),
