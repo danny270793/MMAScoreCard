@@ -22,46 +22,28 @@ export const mapper = {
       name: country.name,
     }
   },
-  toCity(city: BackendCity, countries: BackendCountry[]): City {
+  toCity(city: BackendCity): City {
     return {
       id: city.id,
       name: city.name,
-      country: mapper.toCountry(
-        countries.find((country) => country.id === city.countryId)!,
-      ),
+      country: mapper.toCountry(city.countries),
     }
   },
-  toLocation(
-    location: BackendLocation,
-    cities: BackendCity[],
-    countries: BackendCountry[],
-  ): Location {
+  toLocation(location: BackendLocation): Location {
     return {
       id: location.id,
       name: location.name,
-      city: mapper.toCity(
-        cities.find((city) => city.id === location.cityId)!,
-        countries,
-      ),
+      city: mapper.toCity(location.cities),
     }
   },
-  toEvent(
-    event: BackendEvent,
-    locations: BackendLocation[],
-    cities: BackendCity[],
-    countries: BackendCountry[],
-  ): Event {
+  toEvent(event: BackendEvent): Event {
     return {
       id: event.id,
       name: event.name,
       fight: event.fight,
       date: new Date(event.date),
       link: event.link,
-      location: mapper.toLocation(
-        locations.find((location) => location.id === event.locationId)!,
-        cities,
-        countries,
-      ),
+      location: mapper.toLocation(event.locations),
       status: event.status,
     }
   },
@@ -78,19 +60,12 @@ export const mapper = {
       name: referee.name,
     }
   },
-  toFighter(
-    fighter: BackendFighter,
-    cities: BackendCity[],
-    countries: BackendCountry[],
-  ): Fighter {
+  toFighter(fighter: BackendFighter): Fighter {
     return {
       id: fighter.id,
       name: fighter.name,
       nickname: fighter.nickname,
-      city: mapper.toCity(
-        cities.find((city) => city.id === fighter.cityId)!,
-        countries,
-      ),
+      city: mapper.toCity(fighter.cities),
       birthday: fighter.birthday ? new Date(fighter.birthday) : undefined,
       died: fighter.died ? new Date(fighter.died) : undefined,
       height: fighter.height,
@@ -98,61 +73,23 @@ export const mapper = {
       link: fighter.link,
     }
   },
-  toFight(
-    fight: BackendFight,
-    categories: BackendCategory[],
-    cities: BackendCity[],
-    countries: BackendCountry[],
-    locations: BackendLocation[],
-    referees: BackendReferee[],
-    fighters: BackendFighter[],
-    events: BackendEvent[],
-  ): Fight {
-    const referee: BackendReferee | undefined = referees.find(
-      (referee: BackendReferee) => referee.id === fight.referee,
-    )
+  toFight(fight: BackendFight): Fight {
     return {
       id: fight.id,
+      winner: fight.winner,
       position: fight.position,
-      category: mapper.toCategory(
-        categories.find(
-          (category: BackendCategory) => category.id === fight.categoryId,
-        )!,
-      ),
-      fighterOne: mapper.toFighter(
-        fighters.find(
-          (fighter: BackendFighter) => fighter.id === fight.fighterOne,
-        )!,
-        cities,
-        countries,
-      ),
-      fighterTwo: mapper.toFighter(
-        fighters.find(
-          (fighter: BackendFighter) => fighter.id === fight.fighterTwo,
-        )!,
-        cities,
-        countries,
-      ),
-      referee: !referee
-        ? undefined
-        : mapper.toReferee(
-            referees.find(
-              (referee: BackendReferee) => referee.id === fight.referee,
-            )!,
-          ),
-      mainEvent: Boolean(fight.mainEvent),
-      titleFight: Boolean(fight.titleFight),
+      category: mapper.toCategory(fight.categories),
+      fighterOne: mapper.toFighter(fight.fighterOne),
+      fighterTwo: mapper.toFighter(fight.fighterTwo),
+      referee: !fight.referees ? undefined : mapper.toReferee(fight.referees),
+      mainEvent: fight.mainEvent,
+      titleFight: fight.titleFight,
       type: fight.type,
       method: fight.method,
       time: fight.time,
       round: fight.round,
       decision: fight.decision,
-      event: mapper.toEvent(
-        events.find((event: BackendEvent) => event.id === fight.eventId)!,
-        locations,
-        cities,
-        countries,
-      ),
+      event: mapper.toEvent(fight.events),
     }
   },
 }

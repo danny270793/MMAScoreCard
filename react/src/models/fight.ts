@@ -1,6 +1,6 @@
-import type { Category } from './category'
-import type { Event } from './event'
-import type { Fighter } from './fighter'
+import { EmptyCategory, type Category } from './category'
+import { EmptyEvent, type Event } from './event'
+import { EmptyFighter, type Fighter } from './fighter'
 import type { Referee } from './referee'
 
 export interface Fight {
@@ -18,4 +18,22 @@ export interface Fight {
   round?: number
   decision?: string
   event: Event
+  winner?: number
+}
+
+export const EmptyFight: Fight = {
+  id: 0,
+  position: 1,
+  category: EmptyCategory,
+  fighterOne: EmptyFighter,
+  fighterTwo: EmptyFighter,
+  referee: undefined,
+  mainEvent: false,
+  titleFight: true,
+  type: 'done',
+  method: 'method',
+  time: 120,
+  round: 4,
+  decision: 'decision',
+  event: EmptyEvent,
 }

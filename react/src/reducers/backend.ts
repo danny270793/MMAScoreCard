@@ -11,6 +11,9 @@ export type Type =
   | 'backend/GET_EVENT'
   | 'backend/GET_EVENT_SUCCESS'
   | 'backend/GET_EVENT_ERROR'
+  | 'backend/GET_FIGHT'
+  | 'backend/GET_FIGHT_SUCCESS'
+  | 'backend/GET_FIGHT_ERROR'
 
 export interface Action extends UnknownAction {
   type: Type
@@ -54,6 +57,22 @@ export interface GetEventErrorAction extends Action {
   error: Error
 }
 
+export interface GetFightAction extends Action {
+  type: 'backend/GET_FIGHT'
+  id: string
+}
+
+export interface GetFightSuccessAction extends Action {
+  type: 'backend/GET_FIGHT_SUCCESS'
+  event: Event
+  fight: Fight
+}
+
+export interface GetFightErrorAction extends Action {
+  type: 'backend/GET_FIGHT_ERROR'
+  error: Error
+}
+
 export type State =
   | 'initting'
   | 'getting_events'
@@ -62,6 +81,9 @@ export type State =
   | 'getting_event'
   | 'getting_event_success'
   | 'getting_event_error'
+  | 'getting_fight'
+  | 'getting_fight_success'
+  | 'getting_fight_error'
 
 export interface BackendState {
   state: State
@@ -69,6 +91,7 @@ export interface BackendState {
   events: Event[]
   event: Event | undefined
   fights: Fight[]
+  fight: Fight | undefined
 }
 
 export const initialState: BackendState = {
@@ -77,6 +100,7 @@ export const initialState: BackendState = {
   events: [],
   event: undefined,
   fights: [],
+  fight: undefined,
 }
 
 type Reducer = (state: BackendState, action: UnknownAction) => BackendState
@@ -130,6 +154,26 @@ export const reducer: Reducer = (
         error: (action as GetEventErrorAction).error,
       }
 
+    case 'backend/GET_FIGHT':
+      return {
+        ...state,
+        state: 'getting_fight',
+        error: undefined,
+      }
+    case 'backend/GET_FIGHT_SUCCESS':
+      return {
+        ...state,
+        state: 'getting_fight_success',
+        event: (action as GetFightSuccessAction).event,
+        fight: (action as GetFightSuccessAction).fight,
+      }
+    case 'backend/GET_FIGHT_ERROR':
+      return {
+        ...state,
+        state: 'getting_fight_error',
+        error: (action as GetFightErrorAction).error,
+      }
+
     default:
       return state
   }
@@ -142,6 +186,7 @@ export const actions = {
   clearError: (): ClearErrorAction => ({
     type: 'backend/CLEAR_ERROR',
   }),
+
   getEvents: (): GetEventsAction => ({
     type: 'backend/GET_EVENTS',
   }),
@@ -153,6 +198,7 @@ export const actions = {
     type: 'backend/GET_EVENTS_ERROR',
     error,
   }),
+
   getEvent: (id: string) => ({
     type: 'backend/GET_EVENT',
     id,
@@ -164,6 +210,20 @@ export const actions = {
   }),
   getEventError: (error: Error): GetEventErrorAction => ({
     type: 'backend/GET_EVENT_ERROR',
+    error,
+  }),
+
+  getFight: (id: string) => ({
+    type: 'backend/GET_FIGHT',
+    id,
+  }),
+  getFightSuccess: (event: Event, fight: Fight): GetFightSuccessAction => ({
+    type: 'backend/GET_FIGHT_SUCCESS',
+    event,
+    fight,
+  }),
+  getFightError: (error: Error): GetFightErrorAction => ({
+    type: 'backend/GET_FIGHT_ERROR',
     error,
   }),
 }
@@ -178,4 +238,5 @@ export const selectors = {
   getEvents: (state: Store): Event[] => state.backend.events,
   getEvent: (state: Store): Event | undefined => state.backend.event,
   getFights: (state: Store): Fight[] => state.backend.fights,
+  getFight: (state: Store): Fight | undefined => state.backend.fight,
 }
