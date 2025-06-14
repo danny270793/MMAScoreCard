@@ -1,4 +1,12 @@
-import { BlockTitle, f7, List, ListItem, Navbar, Page } from 'framework7-react'
+import {
+  BlockTitle,
+  f7,
+  List,
+  ListItem,
+  Navbar,
+  Page,
+  Toolbar,
+} from 'framework7-react'
 import { useEffect, type FC } from 'react'
 import {
   actions as backendActions,
@@ -12,8 +20,11 @@ import type { Event } from '../models/event'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCalendar,
+  faClock,
+  faGavel,
   faLocation,
   faMap,
+  faWeight,
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
 
@@ -117,23 +128,38 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
         {fights.map((fight: Fight) => (
           <ListItem
             key={fight.id}
+            link={`/events/${fight.event.id}/fights/${fight.id}`}
+            chevronCenter
             title={`${fight.fighterOne.name} vs. ${fight.fighterTwo.name}`}
-            subtitle={fight.category.name}
           >
+            <br />
+            <div>
+              <FontAwesomeIcon className="w-4" icon={faWeight} />{' '}
+              {fight.category.name} ({fight.category.weight} lbs)
+            </div>
             {fight.type === 'done' && (
               <>
                 <div>
+                  <FontAwesomeIcon className="w-4" icon={faGavel} />{' '}
                   {fight.decision} ({fight.method})
                 </div>
-                <div>
-                  {t('round', { postProcess: 'capitalize' })} {fight.round}{' '}
-                  {t('at')} {DateUtils.secondsToMMSS(fight.time!)}
-                </div>
+                {fight.decision !== 'Decision' && (
+                  <div>
+                    <FontAwesomeIcon className="w-4" icon={faClock} />{' '}
+                    {t('round', { postProcess: 'capitalize' })} {fight.round}{' '}
+                    {t('at')} {DateUtils.secondsToMMSS(fight.time!)}
+                  </div>
+                )}
               </>
             )}
           </ListItem>
         ))}
       </List>
+      <Toolbar bottom>
+        <div />
+        <div>{t('fightsCounter', { fights: fights.length })}</div>
+        <div />
+      </Toolbar>
     </Page>
   )
 }
