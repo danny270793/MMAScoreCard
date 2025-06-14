@@ -15,7 +15,8 @@ const supabaseKey: string = import.meta.env.VITE_SUPABASE_ANON_KEY
 const supabase: SupabaseClient = createClient(supabaseUrl, supabaseKey)
 
 export class Backend {
-  static cache: Cache | undefined = new LocalStorageCache()
+  static cache: Cache | undefined =
+    import.meta.env.MODE === 'development' ? new LocalStorageCache() : undefined
 
   static async getEvents(): Promise<Event[]> {
     const key: string = 'events'
@@ -40,7 +41,7 @@ export class Backend {
   }
 
   static async getEvent(id: string): Promise<Event> {
-    const key: string = 'event'
+    const key: string = `event_${id}`
     if (Backend.cache && (await Backend.cache.has(key))) {
       const event: string = await Backend.cache.get(key)
       return JSON.parse(event)[0]
