@@ -460,7 +460,7 @@ async function main(cache: Cache, database: Database): Promise<void> {
                 await database.insert('fighters', {
                     name: fight.fighterTwo.name,
                     link: fight.fighterTwo.link,
-                    nickname: stats.nickname.replace('"', ''),
+                    nickname: stats.nickname,
                     cityId: city.id,
                     birthday: stats.birthday
                         ? stats.birthday.toISOString().split('T')[0]
