@@ -17,11 +17,15 @@ import {
   faGavel,
   faLocation,
   faMap,
+  faPersonChalkboard,
   faThumbsDown,
   faThumbsUp,
   faWeight,
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
+import { Logger } from '../utils/logger'
+
+const logger: Logger = new Logger('/src/pages/fight.tsx')
 
 type FightPageProps = {
   id: string
@@ -42,6 +46,7 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
   }
 
   useEffect(() => {
+    logger.debug(`props.id=${props.id}`)
     dispatch(backendActions.getFight(props.id))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -177,7 +182,7 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
             {fight.type === 'done' && (
               <>
                 <div>
-                  <FontAwesomeIcon className="w-4" icon={faGavel} />{' '}
+                  <FontAwesomeIcon className="w-4" icon={faPersonChalkboard} />{' '}
                   {fight.decision} ({fight.method})
                 </div>
                 {fight.decision !== 'Decision' && (
