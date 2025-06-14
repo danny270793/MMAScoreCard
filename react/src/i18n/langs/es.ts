@@ -25,4 +25,5 @@ export const es: Lang = {
   notFound: 'no encontrado',
   titleFight: 'pelea por el título',
   fight: 'pelea',
+  fighters: 'peleadores',
 }
