@@ -23,4 +23,5 @@ export interface Lang {
   notFound: string
   titleFight: string
   fight: string
+  fighters: string
 }
