@@ -9,6 +9,7 @@ import './i18n'
 import Framework7 from 'framework7/lite-bundle'
 import Framework7React, { App, View } from 'framework7-react'
 import { NotFound } from './pages/not-found.tsx'
+import { FightPage } from './pages/fight.tsx'
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 Framework7.use(Framework7React)
@@ -37,6 +38,10 @@ createRoot(document.getElementById('root')!).render(
           {
             path: '/events/:id',
             component: EventPage,
+          },
+          {
+            path: '/fights/:id',
+            component: FightPage,
           },
           {
             path: '(.*)',

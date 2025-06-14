@@ -1,4 +1,4 @@
-import type { Location } from './location'
+import { EmptyLocation, type Location } from './location'
 
 export interface Event {
   id: number
@@ -14,16 +14,8 @@ export const EmptyEvent: Event = {
   date: new Date(),
   id: 1,
   link: '',
-  name: 'ufc 350',
+  name: 'event name',
   status: 'uppcomming',
-  fight: 'tom aspinall vs. jones jones',
-  location: {
-    id: 1,
-    name: 'Madison Square Garden',
-    city: {
-      id: 1,
-      name: 'New York',
-      country: { id: 1, name: 'USA' },
-    },
-  },
+  fight: 'fighter one vs. fighter two',
+  location: EmptyLocation,
 }
