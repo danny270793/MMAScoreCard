@@ -23,4 +23,6 @@ export const es: Lang = {
   at: 'a los',
   round: 'ronda',
   notFound: 'no encontrado',
+  titleFight: 'pelea por el título',
+  fight: 'pelea',
 }
