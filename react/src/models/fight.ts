@@ -18,6 +18,7 @@ export interface Fight {
   round?: number
   decision?: string
   event: Event
+  winner?: number
 }
 
 export const EmptyFight: Fight = {
