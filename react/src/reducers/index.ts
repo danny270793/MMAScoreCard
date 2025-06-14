@@ -8,6 +8,9 @@ import {
 import { reducer as backendReducer, type BackendState } from './backend'
 import createSagaMiddleware, { type SagaMiddleware } from 'redux-saga'
 import { rootSagas } from '../sagas'
+import { Logger } from '../utils/logger'
+
+const logger: Logger = new Logger('/src/reducers/index.ts')
 
 export type RootReducer = { backend: BackendState }
 
@@ -16,9 +19,7 @@ export const rootReducer: Reducer<RootReducer> = combineReducers({
 })
 
 const storeLogger: Middleware = () => (next) => (action) => {
-  if (import.meta.env.MODE === 'development') {
-    console.log(`Dispatching action: ${(action as UnknownAction).type}`)
-  }
+  logger.debug(`Dispatching action: ${(action as UnknownAction).type}`)
   return next(action)
 }
 
