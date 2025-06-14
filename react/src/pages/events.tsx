@@ -8,6 +8,7 @@ import {
   Page,
   Searchbar,
   f7,
+  Toolbar,
 } from 'framework7-react'
 import { useEffect, type FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -23,6 +24,7 @@ import {
   faCalendar,
   faLocation,
   faMap,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
 
@@ -63,11 +65,9 @@ export const EventsPage: FC = () => {
     <Page ptr ptrMousewheel={true} onPtrRefresh={onPullRefreshed}>
       <Navbar title={t('events', { postProcess: 'capitalize' })} large>
         <NavRight>
-          <Link
-            searchbarEnable=".searchbar"
-            iconIos="f7:search"
-            iconMd="material:search"
-          />
+          <Link searchbarEnable=".searchbar">
+            <FontAwesomeIcon icon={faSearch} />
+          </Link>
         </NavRight>
         <Searchbar
           className="searchbar"
@@ -168,6 +168,11 @@ export const EventsPage: FC = () => {
           </ListItem>
         ))}
       </List>
+      <Toolbar bottom>
+        <div />
+        <div>{t('eventsCounter', { events: events.length })}</div>
+        <div />
+      </Toolbar>
     </Page>
   )
 }
