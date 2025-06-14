@@ -491,7 +491,7 @@ export class Sherdog {
         }
 
         return {
-            nickname,
+            nickname: nickname === '' ? undefined : nickname,
             country,
             city,
             died: deadAt ?? undefined,
