@@ -13,9 +13,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCalendar,
   faClock,
+  faCrown,
   faGavel,
   faLocation,
   faMap,
+  faThumbsDown,
+  faThumbsUp,
   faWeight,
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
@@ -166,18 +169,13 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
           </ListItem>
         )}
         {fight && state !== 'getting_fight' && (
-          <ListItem
-            key={fight.id}
-            link={`/fights/${fight.id}`}
-            chevronCenter
-            title={`${fight.fighterOne.name} vs. ${fight.fighterTwo.name}`}
-            subtitle={
-              fight.titleFight
-                ? t('titleFight', { postProcess: 'capitalize' })
-                : ''
-            }
-          >
-            <br />
+          <ListItem key={fight.id}>
+            {fight.titleFight && (
+              <div>
+                <FontAwesomeIcon className="w-4" icon={faCrown} />{' '}
+                {t('titleFight', { postProcess: 'capitalize' })}
+              </div>
+            )}
             <div>
               <FontAwesomeIcon className="w-4" icon={faWeight} />{' '}
               {fight.category.name} ({fight.category.weight} lbs)
@@ -195,8 +193,44 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
                     {t('at')} {DateUtils.secondsToMMSS(fight.time!)}
                   </div>
                 )}
+                {fight.referee && (
+                  <div>
+                    <FontAwesomeIcon className="w-4" icon={faGavel} />{' '}
+                    {fight.referee.name}
+                  </div>
+                )}
               </>
             )}
+          </ListItem>
+        )}
+      </List>
+      <BlockTitle>{t('fighters', { postProcess: 'capitalize' })}</BlockTitle>
+      <List dividersIos mediaList strongIos inset>
+        {state === 'getting_fight' && (
+          <ListItem className="skeleton-text skeleton-effect-wave"></ListItem>
+        )}
+        {fight && state !== 'getting_fight' && (
+          <ListItem
+            chevronCenter
+            link={`/fighters/${fight.fighterOne.id}`}
+            title={fight.fighterOne.name}
+            subtitle={fight.fighterOne.nickname}
+          >
+            <div slot="media">
+              <FontAwesomeIcon className="w-4" icon={faThumbsUp} />
+            </div>
+          </ListItem>
+        )}
+        {fight && state !== 'getting_fight' && (
+          <ListItem
+            chevronCenter
+            link={`/fighters/${fight.fighterTwo.id}`}
+            title={fight.fighterTwo.name}
+            subtitle={fight.fighterTwo.nickname}
+          >
+            <div slot="media">
+              <FontAwesomeIcon className="w-4" icon={faThumbsDown} />
+            </div>
           </ListItem>
         )}
       </List>
