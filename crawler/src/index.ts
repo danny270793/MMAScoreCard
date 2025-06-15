@@ -158,6 +158,7 @@ async function dropAndCreateTables(database: Database): Promise<void> {
             method: 'VARCHAR(255) NULL',
             time: 'INTEGER NULL',
             round: 'INTEGER NULL',
+            winner: 'INTEGER NULL',
             decision: 'VARCHAR(255) NULL',
             eventId: 'INTEGER NULL',
         },
@@ -211,17 +212,25 @@ async function exportData(database: Database): Promise<void> {
 
         const fieldSeparator: string = ';'
         const fieldScaper: string = '"'
-        const csv: string[] = [Object.keys(rows[0]).map((row: string) => `${fieldScaper}${row}${fieldScaper}`).join(fieldSeparator)]
+        const csv: string[] = [
+            Object.keys(rows[0])
+                .map((row: string) => `${fieldScaper}${row}${fieldScaper}`)
+                .join(fieldSeparator),
+        ]
 
-        csv.push(...rows.map((row) => {
-            const columns: string[] = Object.keys(row)
-            return columns.map((column: string) => {
-                if(row[column] === null) {
-                    return ''
-                }
-                return `${fieldScaper}${row[column]}${fieldScaper}`
-            }).join(fieldSeparator)
-        }))
+        csv.push(
+            ...rows.map((row) => {
+                const columns: string[] = Object.keys(row)
+                return columns
+                    .map((column: string) => {
+                        if (row[column] === null) {
+                            return ''
+                        }
+                        return `${fieldScaper}${row[column]}${fieldScaper}`
+                    })
+                    .join(fieldSeparator)
+            }),
+        )
         Fs.writeFileSync(
             Path.join(__dirname, '..', 'exports', `${table}.csv`),
             csv.join('\n'),
@@ -512,6 +521,11 @@ async function main(cache: Cache, database: Database): Promise<void> {
                     name: fight.referee,
                 })
 
+                console.log({
+                    fighterOne: fight.fighterOne,
+                    fighterTwo: fight.fighterTwo,
+                })
+
                 await database.insert('fights', {
                     categoryId: category ? category.id : null,
                     position: fight.position,
@@ -526,6 +540,12 @@ async function main(cache: Cache, database: Database): Promise<void> {
                     round: fight.round,
                     decision: fight.decision,
                     eventId: savedEvent.id,
+                    winner:
+                        fight.fighterOne.result === 'win'
+                            ? 1
+                            : fight.fighterTwo.result === 'win'
+                              ? 2
+                              : null,
                 })
             } else {
                 await database.insert('fights', {
