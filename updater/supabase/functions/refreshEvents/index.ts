@@ -51,16 +51,22 @@ Deno.serve(async (req)=>{
         }
       }
     });
-    const supabaseLocations: any[] = await getTable(supabase, 'locations')
-    const supabaseCountries: any[] = await getTable(supabase, 'countries')
-    const supabaseCities: any[] = await getTable(supabase, 'cities')
-    const supabaseEvents: any[] = await getTable(supabase, 'events')
-
+    
     logger.debug('getting sherdog events')
     const sherdog: Sherdog = new Sherdog()
     const sherdogEvents: Event[] = await sherdog.getEventsFromPage(1)
 
+    logger.debug('deleting not completed events')
+    const { error } = await supabase
+      .from('events')
+      .delete()
+      .eq('status', 'uppcoming')
+    if(error) {
+      throw error
+    }
+
     logger.debug('add new countries')
+    const supabaseCountries: any[] = await getTable(supabase, 'countries')
     const countriesToAdd: unknown[] = []
     for(const sherdogEvent of sherdogEvents) {
       const countryExists: boolean = supabaseCountries.filter(country => sherdogEvent.country === country.name).length > 0
@@ -76,6 +82,7 @@ Deno.serve(async (req)=>{
     }
 
     logger.debug('add new cities')
+    const supabaseCities: any[] = await getTable(supabase, 'cities')
     const citiesToAdd: unknown[] = []
     for(const sherdogEvent of sherdogEvents) {
       const country: any = supabaseCountries.filter(country => sherdogEvent.country === country.name)[0]
@@ -92,6 +99,7 @@ Deno.serve(async (req)=>{
     }
 
     logger.debug('add new locations')
+    const supabaseLocations: any[] = await getTable(supabase, 'locations')
     const locationsToAdd: unknown[] = []
     for(const sherdogEvent of sherdogEvents) {
       const city: any = supabaseCities.filter(city => sherdogEvent.city === city.name)[0]
@@ -108,6 +116,7 @@ Deno.serve(async (req)=>{
     }
 
     logger.debug('add new events')
+    const supabaseEvents: any[] = await getTable(supabase, 'events')
     const eventsToAdd: unknown[] = []
     for(const sherdogEvent of sherdogEvents) {
       const location: any = supabaseLocations.filter(location => sherdogEvent.location === location.name)[0]
