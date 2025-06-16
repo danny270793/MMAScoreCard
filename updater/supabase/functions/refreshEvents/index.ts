@@ -43,20 +43,50 @@ function sendResponse(data: any, status: number = 200) {
   );
 }
 
-async function getTable(supabase, table: string) {
-  const { data, error } = await supabase.from(table).select("*");
+async function getTableSince(supabase, table: string, lastId: number) {
+  const { data, error } = await supabase
+    .from(table)
+    .select("*")
+    .gt("id", lastId)
+    .order("id", { ascending: true });
   if (error) {
     throw error;
   }
+
+  logger.debug(`table ${table} has ${data.length} records since id=${lastId}`);
   return data;
 }
 
+async function getTable(supabase, table: string) {
+  logger.debug(`fetching table ${table}`);
+
+  const rows: any[] = [];
+
+  let hasMoreRecods: boolean = true;
+  let lastId: number = 0;
+  while (hasMoreRecods) {
+    const currentPageRows: any[] = await getTableSince(supabase, table, lastId);
+    rows.push(...currentPageRows);
+    lastId = rows[rows.length - 1].id;
+    hasMoreRecods = currentPageRows.length === 1000;
+  }
+
+  logger.debug(`table ${table} has ${rows.length} records`);
+  return rows;
+}
+
 async function insertInTable(supabase, table: string, rows: unknown[]) {
-  console.log(`into table "${table}" insert ${JSON.stringify(rows, null, 0)}`);
   const { error } = await supabase.from(table).insert(rows);
 
   if (error) {
-    console.error(error);
+    logger.error(
+      `error inserting into table=${table} the values ${JSON.stringify(
+        rows,
+        null,
+        0
+      )}`,
+      error
+    );
     throw error;
   }
 
@@ -317,46 +347,7 @@ async function main(supabase) {
     const fights: Fight[] = await sherdog.getFightsFromEvent(sherdogEvent);
 
     for (const fight of fights) {
-      if (fight.type !== "done") {
-        continue;
-      }
-
-      //fighter one
-      const fighterOneStats: Stats = await sherdog.getStatsFighter(
-        fight.fighterOne
-      );
-      if (
-        supabaseCountries.filter(
-          (country) => country.name === fighterOneStats.country
-        ).length === 0
-      ) {
-        supabaseCountries.length = 0;
-        supabaseCountries.push(
-          ...(await insertInTable(supabase, "countries", [
-            { name: fighterOneStats.country },
-          ]))
-        );
-      }
-
-      if (
-        supabaseCities.filter((city) => city.name === fighterOneStats.city)
-          .length === 0
-      ) {
-        const country = supabaseCountries.filter(
-          (country) => country.name === fighterOneStats.country
-        )[0];
-        supabaseCities.length = 0;
-        supabaseCities.push(
-          ...(await insertInTable(supabase, "cities", [
-            { name: fighterOneStats.city, countryId: country.id },
-          ]))
-        );
-      }
-
-      const fighterOneCity = supabaseCities.filter(
-        (city) => city.name === fighterOneStats.city
-      )[0];
-
+      // fighter one
       const fighterOneExists: boolean =
         supabaseFighters.filter(
           (fighter) => fighter.name === fight.fighterOne.name
@@ -366,6 +357,51 @@ async function main(supabase) {
           (fighter: any) => fighter.name === fight.fighterOne.name
         ).length > 0;
       if (!fighterOneExists && !fighterOneAlreadyAdded) {
+        logger.debug(
+          `fighter one ${fight.fighterOne.name} is not on database, so get stats`
+        );
+        const fighterOneStats: Stats = await sherdog.getStatsFighter(
+          fight.fighterOne
+        );
+
+        if (
+          supabaseCountries.filter(
+            (country) => country.name === fighterOneStats.country
+          ).length === 0
+        ) {
+          logger.debug(
+            `country ${fighterOneStats.country} is not on database, so insert country`
+          );
+          supabaseCountries.length = 0;
+          supabaseCountries.push(
+            ...(await insertInTable(supabase, "countries", [
+              { name: fighterOneStats.country },
+            ]))
+          );
+        }
+
+        if (
+          supabaseCities.filter((city) => city.name === fighterOneStats.city)
+            .length === 0
+        ) {
+          logger.debug(
+            `city ${fighterOneStats.city} is not on database, so insert city`
+          );
+          const country = supabaseCountries.filter(
+            (country) => country.name === fighterOneStats.country
+          )[0];
+          supabaseCities.length = 0;
+          supabaseCities.push(
+            ...(await insertInTable(supabase, "cities", [
+              { name: fighterOneStats.city, countryId: country.id },
+            ]))
+          );
+        }
+
+        const fighterOneCity = supabaseCities.filter(
+          (city) => city.name === fighterOneStats.city
+        )[0];
+
         fightersToAdd.push({
           name: fight.fighterOne.name,
           link: fight.fighterOne.link,
@@ -382,42 +418,7 @@ async function main(supabase) {
         });
       }
 
-      //fighter two
-      const fighterTwoStats: Stats = await sherdog.getStatsFighter(
-        fight.fighterTwo
-      );
-      if (
-        supabaseCountries.filter(
-          (country) => country.name === fighterTwoStats.country
-        ).length === 0
-      ) {
-        supabaseCountries.length = 0;
-        supabaseCountries.push(
-          ...(await insertInTable(supabase, "countries", [
-            { name: fighterTwoStats.country },
-          ]))
-        );
-      }
-
-      if (
-        supabaseCities.filter((city) => city.name === fighterTwoStats.city)
-          .length === 0
-      ) {
-        const country = supabaseCountries.filter(
-          (country) => country.name === fighterTwoStats.country
-        )[0];
-        supabaseCities.length = 0;
-        supabaseCities.push(
-          ...(await insertInTable(supabase, "cities", [
-            { name: fighterTwoStats.city, countryId: country.id },
-          ]))
-        );
-      }
-
-      const fighterTwoCity = supabaseCities.filter(
-        (city) => city.name === fighterTwoStats.city
-      )[0];
-
+      // fighter two
       const fighterTwoExists: boolean =
         supabaseFighters.filter(
           (fighter) => fighter.name === fight.fighterTwo.name
@@ -427,6 +428,51 @@ async function main(supabase) {
           (fighter: any) => fighter.name === fight.fighterTwo.name
         ).length > 0;
       if (!fighterTwoExists && !fighterTwoAlreadyAdded) {
+        logger.debug(
+          `fighter two ${fight.fighterTwo.name} is not on database, so get stats`
+        );
+        const fighterTwoStats: Stats = await sherdog.getStatsFighter(
+          fight.fighterTwo
+        );
+        if (
+          supabaseCountries.filter(
+            (country) => country.name === fighterTwoStats.country
+          ).length === 0
+        ) {
+          logger.debug(
+            `country ${fighterTwoStats.country} is not on database, so insert country`
+          );
+          supabaseCountries.length = 0;
+          supabaseCountries.push(
+            ...(await insertInTable(supabase, "countries", [
+              { name: fighterTwoStats.country },
+            ]))
+          );
+        }
+
+        if (
+          supabaseCities.filter((city) => city.name === fighterTwoStats.city)
+            .length === 0
+        ) {
+          logger.debug(
+            `city ${fighterTwoStats.city} is not on database, so insert city`
+          );
+
+          const country = supabaseCountries.filter(
+            (country) => country.name === fighterTwoStats.country
+          )[0];
+          supabaseCities.length = 0;
+          supabaseCities.push(
+            ...(await insertInTable(supabase, "cities", [
+              { name: fighterTwoStats.city, countryId: country.id },
+            ]))
+          );
+        }
+
+        const fighterTwoCity = supabaseCities.filter(
+          (city) => city.name === fighterTwoStats.city
+        )[0];
+
         fightersToAdd.push({
           name: fight.fighterTwo.name,
           link: fight.fighterTwo.link,
@@ -479,8 +525,8 @@ async function main(supabase) {
         fightsToAdd.push({
           categoryId: category ? category.id : null,
           position: fight.position,
-          fighterOne: one.id,
-          fighterTwo: two.id,
+          fighterOneId: one.id,
+          fighterTwoId: two.id,
           refereeId: referee.id,
           mainEvent: fight.mainEvent ? 1 : 0,
           titleFight: fight.titleFight ? 1 : 0,
@@ -501,8 +547,8 @@ async function main(supabase) {
         fightsToAdd.push({
           categoryId: category ? category.id : null,
           position: fight.position,
-          fighterOne: one.id,
-          fighterTwo: two.id,
+          fighterOneId: one.id,
+          fighterTwoId: two.id,
           mainEvent: fight.mainEvent ? 1 : 0,
           titleFight: fight.titleFight ? 1 : 0,
           type: fight.type,
@@ -529,12 +575,14 @@ async function main2(supabase) {
   const cache: Cache = new MemoryCache();
   sherdog.setCache(cache);
 
-  logger.debug("getting events");
-  const sherdogEvents: Event[] = await sherdog.getEventsFromPage(1);
+  // logger.debug("getting events");
+  // const sherdogEvents: Event[] = await sherdog.getEventsFromPage(1);
 
-  const fights = sherdog.getFightsFromEvent(sherdogEvents[4]);
+  // const fights = sherdog.getFightsFromEvent(sherdogEvents[4]);
 
-  return fights;
+  // return fights;
+
+  return await getTable(supabase, "fighters");
 }
 
 Deno.serve(async (req) => {
