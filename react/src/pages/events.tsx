@@ -27,6 +27,9 @@ import {
   faSearch,
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
+import { Logger } from '../utils/logger'
+
+const logger: Logger = new Logger('/src/pages/events.tsx')
 
 export const EventsPage: FC = () => {
   const { t } = useTranslation()
@@ -51,7 +54,7 @@ export const EventsPage: FC = () => {
       return
     }
 
-    console.error(error)
+    logger.error('error on component', error)
     f7.dialog.alert(
       error?.message || t('unknownError', { postProcess: 'capitalize' }),
       () => {

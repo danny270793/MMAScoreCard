@@ -56,7 +56,7 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
       return
     }
 
-    console.error(error)
+    logger.error('error on component', error)
     f7.dialog.alert(
       error?.message || t('unknownError', { postProcess: 'capitalize' }),
       () => {
