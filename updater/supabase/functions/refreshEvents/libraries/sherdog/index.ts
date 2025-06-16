@@ -403,8 +403,8 @@ export class Sherdog {
 
     return {
       nickname,
-      country,
-      city,
+      country: country.trim() === "" ? null : city,
+      city: city.trim() === "" ? null : city,
       died: deadAt ?? undefined,
       birthday: birthday ?? undefined,
       height: parseFloat(height!),
