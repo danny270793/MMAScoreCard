@@ -140,15 +140,16 @@ export class Sherdog {
 
         const position = parseInt(cells[0].textContent!.trim());
 
-        // cells[1].querySelectorAll("br").forEach((br) => {
-        //   br.replaceWith(document.createTextNode("\n"));
-        // });
-        // cells[3].querySelectorAll("br").forEach((br) => {
-        //   br.replaceWith(document.createTextNode("\n"));
-        // });
+        cells[1].querySelectorAll("br").forEach((br) => {
+          br.replaceWith(document.createTextNode("\n"));
+        });
 
         const nameOneParts = cells[1].textContent!.trim().split("\n");
-        const fighterOne = nameOneParts[0].trim();
+        const fighterOne = cells[1]
+          .textContent!.trim()
+          .replace(nameOneParts[nameOneParts.length - 1], "")
+          .replace("\n", " ")
+          .trim();
         const fighterOneLink =
           cells[1].querySelector("a")?.getAttribute("href") || "";
 
@@ -157,8 +158,16 @@ export class Sherdog {
         category = category.replace("TITLE FIGHT", "").trim();
         const categoryParts = category.split("lb");
 
+        cells[3].querySelectorAll("br").forEach((br) => {
+          br.replaceWith(document.createTextNode("\n"));
+        });
+
         const nameTwoParts = cells[3].textContent!.trim().split("\n");
-        const fighterTwo = nameTwoParts[0].trim();
+        const fighterTwo = cells[3]
+          .textContent!.trim()
+          .replace(nameTwoParts[nameTwoParts.length - 1], "")
+          .replace("\n", " ")
+          .trim();
         const fighterTwoLink =
           cells[3].querySelector("a")?.getAttribute("href") || "";
 
@@ -242,15 +251,14 @@ export class Sherdog {
       const leftSide = (resume as HTMLTableRowElement).querySelector(
         "div.fighter.left_side"
       )!;
-      const rightSide = (resume as HTMLTableRowElement).querySelector(
-        "div.fighter.right_side"
-      )!;
-
-      const fighterOne = leftSide.textContent!.split("\n")[0].trim();
+      const fighterOne = leftSide.textContent!.trim().split("\n")[0].trim();
       const fighterOneLink =
         leftSide.querySelector("a")?.getAttribute("href") || "";
 
-      const fighterTwo = rightSide.textContent!.split("\n")[0].trim();
+      const rightSide = (resume as HTMLTableRowElement).querySelector(
+        "div.fighter.right_side"
+      )!;
+      const fighterTwo = rightSide.textContent!.trim().split("\n")[0].trim();
       const fighterTwoLink =
         rightSide.querySelector("a")?.getAttribute("href") || "";
 
