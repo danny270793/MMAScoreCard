@@ -6,6 +6,7 @@ import { Event } from "./libraries/sherdog/models/event.ts";
 import { DoneFight, Fight } from "./libraries/sherdog/models/fight.ts";
 import { MemoryCache } from "./libraries/cache/memory-cache.ts"
 import { Cache } from "./libraries/cache/index.ts";
+import { Stats } from "./libraries/sherdog/models/stats.ts";
 
 const logger: Logger = new Logger('/index.ts')
 
@@ -23,7 +24,8 @@ const weights: Record<string, number> = {
 
 function sendResponse(data: any|Error) {
   return new Response(JSON.stringify((data instanceof Error) ? {
-      message: data?.message ?? data
+      message: data?.message ?? data,
+      stack: data?.stack
     } : {
     ...data
   }), {
@@ -43,11 +45,13 @@ async function getTable(supabase, table: string) {
 }
 
 async function insertInTable(supabase, table: string, rows: unknown[]) {
-  const { data, error } = await supabase
+  console.log(`into table "${table}" insert ${JSON.stringify(rows, null, 0)}`)
+  const { error } = await supabase
     .from(table)
     .insert(rows)
 
   if (error) {
+    console.error(error)
     throw error;
   }
 
@@ -117,11 +121,11 @@ Deno.serve(async (req)=>{
 
     logger.debug('add new locations')
     const supabaseLocations: any[] = await getTable(supabase, 'locations')
-    const locationsToAdd: unknown[] = []
+    const locationsToAdd: any[] = []
     for(const sherdogEvent of sherdogEvents) {
       const city: any = supabaseCities.filter(city => sherdogEvent.city === city.name)[0]
       const locationExists: boolean = supabaseLocations.filter(location => sherdogEvent.location === location.name).length > 0
-      const locationAlreadyAdded: boolean = locationsToAdd.filter((location: any) => sherdogEvent.location === location.name).length > 0
+      const locationAlreadyAdded: boolean = locationsToAdd.filter(location => sherdogEvent.location === location.name).length > 0
       if(!locationExists && !locationAlreadyAdded) {
         locationsToAdd.push({name: sherdogEvent.location, cityId: city.id})
       }
@@ -158,6 +162,14 @@ Deno.serve(async (req)=>{
 
     const addedEvents = supabaseEvents.filter(supabaseEvent => eventsToAdd.filter((eventToAdd: any) => eventToAdd.name === supabaseEvent.name).length > 0)
     logger.debug(`addedEvents.length=${addedEvents.length}`)
+
+    logger.debug('preload all data')
+    const fightPromises: Promise<Fight[]>[] = []
+    for(const sherdogEvent of addedEvents) {
+      fightPromises.push(sherdog.getFightsFromEvent(sherdogEvent))
+    }
+    logger.debug(`preloading ${fightPromises.length} requests`)
+    await Promise.all(fightPromises)
 
     logger.debug('add new categories')
     const supabaseCategories: any[] = await getTable(supabase, 'categories')
@@ -211,6 +223,178 @@ Deno.serve(async (req)=>{
       logger.debug(`${refereesToAdd.length} referees added`)
       supabaseReferees.length = 0
       supabaseReferees.push(...await insertInTable(supabase, 'referees', refereesToAdd))
+    }
+
+    logger.debug('preload all data')
+    const fighterOneStatPromises: Promise<Stats>[] = []
+    for(const sherdogEvent of addedEvents) {
+      const fights: Fight[] = await sherdog.getFightsFromEvent(sherdogEvent)
+      for (const fight of fights) {
+        if(fight.type !== 'done') {
+          continue
+        }
+
+        fighterOneStatPromises.push(sherdog.getStatsFighter(
+          fight.fighterOne,
+        ))
+      }
+    }
+    logger.debug(`preloading ${fighterOneStatPromises.length} fighter one requests`)
+    await Promise.all(fighterOneStatPromises)
+
+    const fighterTwoStatPromises: Promise<Stats>[] = []
+    for(const sherdogEvent of addedEvents) {
+      const fights: Fight[] = await sherdog.getFightsFromEvent(sherdogEvent)
+      for (const fight of fights) {
+        if(fight.type !== 'done') {
+          continue
+        }
+
+        fighterTwoStatPromises.push(sherdog.getStatsFighter(
+          fight.fighterTwo,
+        ))
+      }
+    }
+    logger.debug(`preloading ${fighterTwoStatPromises.length} fighter two requests`)
+    await Promise.all(fighterTwoStatPromises)
+
+    logger.debug('add new fighters')
+    const supabaseFighters: any[] = await getTable(supabase, 'fighters')
+    const fightersToAdd: unknown[] = []
+    for(const sherdogEvent of addedEvents) {
+      const fights: Fight[] = await sherdog.getFightsFromEvent(sherdogEvent)
+      
+      for (const fight of fights) {
+        //fighter one
+        const fighterOneStats: Stats = await sherdog.getStatsFighter(
+          fight.fighterOne,
+        )
+        if(supabaseCountries.filter(country => country.name === fighterOneStats.country).length === 0) {
+          supabaseCountries.length = 0
+          supabaseCountries.push(...await insertInTable(supabase, 'countries', { name: fighterOneStats.country }))
+        }
+
+        if(supabaseCities.filter(city => city.name === fighterOneStats.city).length === 0) {
+          const country = supabaseCountries.filter(country => country.name === fighterOneStats.country)[0]
+          supabaseCities.length = 0
+          supabaseCities.push(...await insertInTable(supabase, 'cities', { name: fighterOneStats.city, countryId: country.id }))
+        }
+
+        const fighterOneCity = supabaseCities.filter(city => city.name === fighterOneStats.city)[0]
+
+        const fighterOneExists: boolean = supabaseFighters.filter(fighter => fighter.name === fight.fighterOne.name).length > 0
+        const fighterOneAlreadyAdded: boolean = fightersToAdd.filter((fighter: any) => fighter.name === fight.fighterOne.name).length > 0
+        if(!fighterOneExists && !fighterOneAlreadyAdded) {
+          fightersToAdd.push({
+            name: fight.fighterOne.name,
+            link: fight.fighterOne.link,
+            nickname: fighterOneStats.nickname,
+            cityId: fighterOneCity.id,
+            birthday: fighterOneStats.birthday
+                ? fighterOneStats.birthday.toISOString().split('T')[0]
+                : undefined,
+            died: fighterOneStats.died
+                ? fighterOneStats.died.toISOString().split('T')[0]
+                : null,
+            height: fighterOneStats.height,
+            weight: fighterOneStats.weight,
+          })
+        }
+
+        //fighter two
+        const fighterTwoStats: Stats = await sherdog.getStatsFighter(
+          fight.fighterTwo,
+        )
+        if(supabaseCountries.filter(country => country.name === fighterTwoStats.country).length === 0) {
+          supabaseCountries.length = 0
+          supabaseCountries.push(...await insertInTable(supabase, 'countries', { name: fighterTwoStats.country }))
+        }
+
+        if(supabaseCities.filter(city => city.name === fighterTwoStats.city).length === 0) {
+          const country = supabaseCountries.filter(country => country.name === fighterTwoStats.country)[0]
+          supabaseCities.length = 0
+          supabaseCities.push(...await insertInTable(supabase, 'cities', { name: fighterTwoStats.city, countryId: country.id }))
+        }
+
+        const fighterTwoCity = supabaseCities.filter(city => city.name === fighterTwoStats.city)[0]
+
+        const fighterTwoExists: boolean = supabaseFighters.filter(fighter => fighter.name === fight.fighterTwo.name).length > 0
+        const fighterTwoAlreadyAdded: boolean = fightersToAdd.filter((fighter: any) => fighter.name === fight.fighterTwo.name).length > 0
+        if(!fighterTwoExists && !fighterTwoAlreadyAdded) {
+          fightersToAdd.push({
+            name: fight.fighterTwo.name,
+            link: fight.fighterTwo.link,
+            nickname: fighterTwoStats.nickname,
+            cityId: fighterTwoCity.id,
+            birthday: fighterTwoStats.birthday
+                ? fighterTwoStats.birthday.toISOString().split('T')[0]
+                : undefined,
+            died: fighterTwoStats.died
+                ? fighterTwoStats.died.toISOString().split('T')[0]
+                : null,
+            height: fighterTwoStats.height,
+            weight: fighterTwoStats.weight,
+          })
+        }
+      }
+    }
+    if(fightersToAdd.length > 0) {
+      logger.debug(`${fightersToAdd.length} fighters added`)
+      supabaseFighters.length = 0
+      supabaseFighters.push(...await insertInTable(supabase, 'fighters', fightersToAdd))
+    }
+
+    logger.debug('add new fights')
+    const supabaseFights: any[] = await getTable(supabase, 'fights')
+    const fightsToAdd: unknown[] = []
+    for(const sherdogEvent of addedEvents) {
+      const fights: Fight[] = await sherdog.getFightsFromEvent(sherdogEvent)
+      for (const fight of fights) {
+        const event = supabaseEvents.filter(event => event.name === sherdogEvent.name)[0]
+        const one = supabaseFighters.filter(fighter => fighter.name === fight.fighterOne.name)[0]
+        const two = supabaseFighters.filter(fighter => fighter.name === fight.fighterTwo.name)[0]
+        const category = supabaseCategories.filter(category => category.name === fight.category?.name && category.weight === fight.category?.weight)[0]
+        if (fight.type === 'done') {
+          const referee = supabaseReferees.filter(referee => referee.name === fight.referee)[0]
+          fightsToAdd.push({
+            categoryId: category ? category.id : null,
+            position: fight.position,
+            fighterOne: one.id,
+            fighterTwo: two.id,
+            refereeId: referee.id,
+            mainEvent: fight.mainEvent ? 1 : 0,
+            titleFight: fight.titleFight ? 1 : 0,
+            type: fight.type,
+            method: fight.method,
+            time: fight.time,
+            round: fight.round,
+            decision: fight.decision,
+            winner:
+              fight.fighterOne.result === 'win'
+                  ? 1
+                  : fight.fighterTwo.result === 'win'
+                    ? 2
+                    : null,
+            eventId: event.id,
+          })
+        } else {
+          fightsToAdd.push({
+            categoryId: category ? category.id : null,
+            position: fight.position,
+            fighterOne: one.id,
+            fighterTwo: two.id,
+            mainEvent: fight.mainEvent ? 1 : 0,
+            titleFight: fight.titleFight ? 1 : 0,
+            type: fight.type,
+            eventId: event.id,
+          })
+        }
+      }
+    }
+    if(fightsToAdd.length > 0) {
+      logger.debug(`${fightsToAdd.length} fights added`)
+      supabaseFights.length = 0
+      supabaseFights.push(...await insertInTable(supabase, 'fights', fightsToAdd))
     }
 
     return sendResponse(supabaseEvents)
