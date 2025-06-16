@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "deploy": "supabase functions deploy refreshEvents",
+    "execute": "curl -L -X POST 'https://knsaeosmukziznfcfqzq.supabase.co/functions/v1/refreshEvents' -H \"Authorization: Bearer $SUPABASE_KEY\" -H 'Content-Type: application/json' --data '{\"name\":\"Functions\"}'"
+  },
+  "devDependencies": {
+    "supabase": "^2.24.3"
+  }
+}
