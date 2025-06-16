@@ -1,12 +1,16 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from 'jsr:@supabase/supabase-js@2';
 import { Logger } from './libraries/logger.ts'
+import { Sherdog } from './libraries/sherdog/index.ts'
 
 const logger: Logger = new Logger('/index.ts')
 
 Deno.serve(async (req)=>{
   try {
     logger.debug('function called')
+
+    const sherdog: Sherdog = new Sherdog()
+    logger.debug(`${sherdog}`)
 
     const url: string = Deno.env.get('SUPABASE_URL') ?? ''
     const key: string = Deno.env.get('SUPABASE_ANON_KEY') ?? ''
