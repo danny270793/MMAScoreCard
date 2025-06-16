@@ -110,95 +110,89 @@ export class Backend {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const parsedData: Fight[] = data.map<Fight>((fight: any) => {
-      return {
-        id: fight.id,
-        position: fight.position,
-        winner: fight.winner,
-        categories: {
-          id: fight.categories.id,
-          name: fight.categories.name,
-          weight: fight.categories.weight,
-        } as Category,
-        fighterOne: {
-          id: fight.fighteroneid,
-          name: fight.fighteronename,
-          nickname: fight.fighteronenickname,
-          cities: {
-            id: fight.fighteronecityid,
-            name: fight.fighteronecityname,
-            countries: {
-              id: fight.fighteronecountryid,
-              name: fight.fighteronecountryname,
-            } as Country,
-          } as City,
-          birthday: fight.fighteronebirthday
-            ? new Date(fight.fighteronebirthday)
-            : undefined,
-          died: fight.fighteronedied
-            ? new Date(fight.fighteronedied)
-            : undefined,
-          height: fight.fighteroneheight,
-          weight: fight.fighteroneweight,
-          link: fight.fighteronelink,
-        } as Fighter,
-        fighterTwo: {
-          id: fight.fightertwoid,
-          name: fight.fightertwoname,
-          nickname: fight.fightertwonickname,
-          cities: {
-            id: fight.fightertwocityid,
-            name: fight.fightertwocityname,
-            countries: {
-              id: fight.fightertwocountryid,
-              name: fight.fightertwocountryname,
-            } as Country,
-          } as City,
-          birthday: fight.fightertwobirthday
-            ? new Date(fight.fightertwobirthday)
-            : undefined,
-          died: fight.fightertwodied
-            ? new Date(fight.fightertwodied)
-            : undefined,
-          height: fight.fightertwoheight,
-          weight: fight.fightertwoweight,
-          link: fight.fightertwolink,
-        } as Fighter,
-        referees: fight.referees
-          ? ({
-              id: fight.referees.id,
-              name: fight.referees.name,
-            } as Referee)
+    const parsedData: Fight[] = data.map<Fight>((fight: any) => ({
+      id: fight.id,
+      position: fight.position,
+      winner: fight.winner,
+      categories: {
+        id: fight.categories.id,
+        name: fight.categories.name,
+        weight: fight.categories.weight,
+      } as Category,
+      fighterOne: {
+        id: fight.fighteroneid,
+        name: fight.fighteronename,
+        nickname: fight.fighteronenickname,
+        cities: {
+          id: fight.fighteronecityid,
+          name: fight.fighteronecityname,
+          countries: {
+            id: fight.fighteronecountryid,
+            name: fight.fighteronecountryname,
+          } as Country,
+        } as City,
+        birthday: fight.fighteronebirthday
+          ? new Date(fight.fighteronebirthday)
           : undefined,
-        mainEvent: fight.mainEvent,
-        titleFight: fight.titleFight,
-        type: fight.type,
-        method: fight.method,
-        time: fight.time,
-        round: fight.round,
-        decision: fight.decision,
-        events: {
-          id: fight.events.id,
-          name: fight.events.name,
-          fight: fight.events.fight,
-          date: fight.events.date,
-          link: fight.events.link,
-          locations: {
-            id: fight.events.locations.id,
-            name: fight.events.locations.name,
-            cities: {
-              id: fight.events.locations.cities.id,
-              name: fight.events.locations.cities.name,
-              countries: {
-                id: fight.events.locations.cities.countries.id,
-                name: fight.events.locations.cities.countries.name,
-              } as Country,
-            } as City,
-          } as Location,
-          status: fight.events.status,
-        } as Event,
-      }
-    })
+        died: fight.fighteronedied ? new Date(fight.fighteronedied) : undefined,
+        height: fight.fighteroneheight,
+        weight: fight.fighteroneweight,
+        link: fight.fighteronelink,
+      } as Fighter,
+      fighterTwo: {
+        id: fight.fightertwoid,
+        name: fight.fightertwoname,
+        nickname: fight.fightertwonickname,
+        cities: {
+          id: fight.fightertwocityid,
+          name: fight.fightertwocityname,
+          countries: {
+            id: fight.fightertwocountryid,
+            name: fight.fightertwocountryname,
+          } as Country,
+        } as City,
+        birthday: fight.fightertwobirthday
+          ? new Date(fight.fightertwobirthday)
+          : undefined,
+        died: fight.fightertwodied ? new Date(fight.fightertwodied) : undefined,
+        height: fight.fightertwoheight,
+        weight: fight.fightertwoweight,
+        link: fight.fightertwolink,
+      } as Fighter,
+      referees: fight.referees
+        ? ({
+            id: fight.referees.id,
+            name: fight.referees.name,
+          } as Referee)
+        : undefined,
+      mainEvent: fight.mainEvent,
+      titleFight: fight.titleFight,
+      type: fight.type,
+      method: fight.method,
+      time: fight.time,
+      round: fight.round,
+      decision: fight.decision,
+      events: {
+        id: fight.events.id,
+        name: fight.events.name,
+        fight: fight.events.fight,
+        date: fight.events.date,
+        link: fight.events.link,
+        locations: {
+          id: fight.events.locations.id,
+          name: fight.events.locations.name,
+          cities: {
+            id: fight.events.locations.cities.id,
+            name: fight.events.locations.cities.name,
+            countries: {
+              id: fight.events.locations.cities.countries.id,
+              name: fight.events.locations.cities.countries.name,
+            } as Country,
+          } as City,
+        } as Location,
+        status: fight.events.status,
+      } as Event,
+    }))
 
     if (Backend.cache) {
       await Backend.cache.set(key, parsedData)
