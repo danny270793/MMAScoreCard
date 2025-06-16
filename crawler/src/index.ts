@@ -521,11 +521,6 @@ async function main(cache: Cache, database: Database): Promise<void> {
                     name: fight.referee,
                 })
 
-                console.log({
-                    fighterOne: fight.fighterOne,
-                    fighterTwo: fight.fighterTwo,
-                })
-
                 await database.insert('fights', {
                     categoryId: category ? category.id : null,
                     position: fight.position,
