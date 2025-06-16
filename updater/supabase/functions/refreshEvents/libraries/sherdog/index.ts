@@ -203,7 +203,7 @@ export class Sherdog {
           const round = parseInt(cells[5].textContent!.trim());
           const time = Utils.timeToSeconds(cells[6].textContent!.trim());
 
-          const method = rawMethod?.replace(")", "").trim();
+          const method = rawMethod.split(")")[0].trim();
           const resultOne = nameOneParts[nameOneParts.length - 1].trim();
           const resultTwo = nameTwoParts[nameTwoParts.length - 1].trim();
 
@@ -298,9 +298,14 @@ export class Sherdog {
           type: "pending",
         });
       } else {
-        const resultOne = leftSide.textContent!.split("\n").pop()?.trim() || "";
+        const resultOne =
+          leftSide.querySelector("span.final_result")?.textContent?.trim() ||
+          "";
+        console.log(`resultOne=${resultOne}`);
         const resultTwo =
-          rightSide.textContent!.split("\n").pop()?.trim() || "";
+          rightSide.querySelector("span.final_result")?.textContent?.trim() ||
+          "";
+        console.log(`resultTwo=${resultTwo}`);
 
         for (const row of table.querySelectorAll("tr")) {
           const cells = row.querySelectorAll("td");

@@ -53,13 +53,10 @@ async function getTableSince(supabase, table: string, lastId: number) {
     throw error;
   }
 
-  logger.debug(`table ${table} has ${data.length} records since id=${lastId}`);
   return data;
 }
 
 async function getTable(supabase, table: string) {
-  logger.debug(`fetching table ${table}`);
-
   const rows: any[] = [];
 
   let hasMoreRecods: boolean = true;
@@ -71,7 +68,6 @@ async function getTable(supabase, table: string) {
     hasMoreRecods = currentPageRows.length === 1000;
   }
 
-  logger.debug(`table ${table} has ${rows.length} records`);
   return rows;
 }
 
@@ -513,11 +509,16 @@ async function main(supabase) {
       const two = supabaseFighters.filter(
         (fighter) => fighter.name === fight.fighterTwo.name
       )[0];
-      const category = supabaseCategories.filter(
-        (category) =>
-          category.name === fight.category?.name &&
-          category.weight === fight.category?.weight
-      )[0];
+
+      const category = supabaseCategories.filter((category) => {
+        if (fight.category?.weight) {
+          return (
+            category.name === fight.category?.name &&
+            category.weight === fight.category?.weight
+          );
+        }
+        return category.name === fight.category?.name;
+      })[0];
       if (fight.type === "done") {
         const referee = supabaseReferees.filter(
           (referee) => referee.name === fight.referee
