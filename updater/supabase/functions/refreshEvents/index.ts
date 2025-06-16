@@ -3,8 +3,23 @@ import { createClient } from 'jsr:@supabase/supabase-js@2';
 import { Logger } from './libraries/logger.ts'
 import { Sherdog } from './libraries/sherdog/index.ts'
 import { Event } from "./libraries/sherdog/models/event.ts";
+import { DoneFight, Fight } from "./libraries/sherdog/models/fight.ts";
+import { MemoryCache } from "./libraries/cache/memory-cache.ts"
+import { Cache } from "./libraries/cache/index.ts";
 
 const logger: Logger = new Logger('/index.ts')
+
+const weights: Record<string, number> = {
+    Strawweight: 115,
+    Flyweight: 125,
+    Bantamweight: 135,
+    Featherweight: 145,
+    Lightweight: 155,
+    Welterweight: 170,
+    Middleweight: 185,
+    'Light Heavyweight': 205,
+    Heavyweight: 225,
+}
 
 function sendResponse(data: any|Error) {
   return new Response(JSON.stringify((data instanceof Error) ? {
@@ -53,7 +68,9 @@ Deno.serve(async (req)=>{
     });
     
     logger.debug('getting sherdog events')
+    const cache: Cache = new MemoryCache()
     const sherdog: Sherdog = new Sherdog()
+    sherdog.setCache(cache)
     const sherdogEvents: Event[] = await sherdog.getEventsFromPage(1)
 
     logger.debug('deleting not completed events')
@@ -136,7 +153,64 @@ Deno.serve(async (req)=>{
     if(eventsToAdd.length > 0) {
       logger.debug(`${eventsToAdd.length} events added`)
       supabaseEvents.length = 0
-      supabaseEvents.push(...await insertInTable(supabase, 'events', eventsToAdd))      
+      supabaseEvents.push(...await insertInTable(supabase, 'events', eventsToAdd))
+    }
+
+    const addedEvents = supabaseEvents.filter(supabaseEvent => eventsToAdd.filter((eventToAdd: any) => eventToAdd.name === supabaseEvent.name).length > 0)
+    logger.debug(`addedEvents.length=${addedEvents.length}`)
+
+    logger.debug('add new categories')
+    const supabaseCategories: any[] = await getTable(supabase, 'categories')
+    const categoriesToAdd: unknown[] = []
+    for(const sherdogEvent of addedEvents) {
+      const fights: Fight[] = await sherdog.getFightsFromEvent(sherdogEvent)
+      
+      for (const fight of fights) {
+        if (!fight.category) {
+          continue
+        }
+
+        const categoryExists: boolean = supabaseCategories.filter(category =>
+          fight.category!.name === category.name &&
+          weights[fight.category!.name] === category.weight
+        ).length > 0
+        const categoryAlreadyAdded: boolean = categoriesToAdd.filter((category: any) =>
+          fight.category!.name === category.name &&
+          weights[fight.category!.name] === category.weight
+        ).length > 0
+        if(!categoryExists && !categoryAlreadyAdded) {
+          categoriesToAdd.push({name: fight.category.name, weight: weights[fight.category.name]})
+        }
+      }
+    }
+    if(categoriesToAdd.length > 0) {
+      logger.debug(`${categoriesToAdd.length} categories added`)
+      supabaseCategories.length = 0
+      supabaseCategories.push(...await insertInTable(supabase, 'categories', categoriesToAdd))
+    }
+
+    logger.debug('add new referees')
+    const supabaseReferees: any[] = await getTable(supabase, 'referees')
+    const refereesToAdd: unknown[] = []
+    for(const sherdogEvent of addedEvents) {
+      const fights: Fight[] = await sherdog.getFightsFromEvent(sherdogEvent)
+      
+      for (const fight of fights) {
+        if (fight.type === 'pending') {
+          continue
+        }
+
+        const refereeExists: boolean = supabaseReferees.filter(referee => fight.referee === referee.name).length > 0
+        const refereeAlreadyAdded: boolean = refereesToAdd.filter((referee: any) => fight.referee === referee.name).length > 0
+        if(!refereeExists && !refereeAlreadyAdded) {
+          refereesToAdd.push({name: fight.referee})
+        }
+      }
+    }
+    if(refereesToAdd.length > 0) {
+      logger.debug(`${refereesToAdd.length} referees added`)
+      supabaseReferees.length = 0
+      supabaseReferees.push(...await insertInTable(supabase, 'referees', refereesToAdd))
     }
 
     return sendResponse(supabaseEvents)
