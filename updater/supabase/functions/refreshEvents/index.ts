@@ -22,8 +22,8 @@ const weights: Record<string, number> = {
     Heavyweight: 225,
 }
 
-function sendResponse(data: any|Error) {
-  return new Response(JSON.stringify((data instanceof Error) ? {
+function sendResponse(data: any|Error, status: number = 200) {
+  return new Response(JSON.stringify(status !== 200 ? {
       message: data?.message ?? data,
       stack: data?.stack
     } : {
@@ -32,7 +32,7 @@ function sendResponse(data: any|Error) {
     headers: {
       'Content-Type': 'application/json'
     },
-    status: (data instanceof Error) ? 500 : 200
+    status: status
   });
 }
 
@@ -271,13 +271,13 @@ Deno.serve(async (req)=>{
         )
         if(supabaseCountries.filter(country => country.name === fighterOneStats.country).length === 0) {
           supabaseCountries.length = 0
-          supabaseCountries.push(...await insertInTable(supabase, 'countries', { name: fighterOneStats.country }))
+          supabaseCountries.push(...await insertInTable(supabase, 'countries', [{ name: fighterOneStats.country }]))
         }
 
         if(supabaseCities.filter(city => city.name === fighterOneStats.city).length === 0) {
           const country = supabaseCountries.filter(country => country.name === fighterOneStats.country)[0]
           supabaseCities.length = 0
-          supabaseCities.push(...await insertInTable(supabase, 'cities', { name: fighterOneStats.city, countryId: country.id }))
+          supabaseCities.push(...await insertInTable(supabase, 'cities', [{ name: fighterOneStats.city, countryId: country.id }]))
         }
 
         const fighterOneCity = supabaseCities.filter(city => city.name === fighterOneStats.city)[0]
@@ -307,13 +307,13 @@ Deno.serve(async (req)=>{
         )
         if(supabaseCountries.filter(country => country.name === fighterTwoStats.country).length === 0) {
           supabaseCountries.length = 0
-          supabaseCountries.push(...await insertInTable(supabase, 'countries', { name: fighterTwoStats.country }))
+          supabaseCountries.push(...await insertInTable(supabase, 'countries', [{ name: fighterTwoStats.country }]))
         }
 
         if(supabaseCities.filter(city => city.name === fighterTwoStats.city).length === 0) {
           const country = supabaseCountries.filter(country => country.name === fighterTwoStats.country)[0]
           supabaseCities.length = 0
-          supabaseCities.push(...await insertInTable(supabase, 'cities', { name: fighterTwoStats.city, countryId: country.id }))
+          supabaseCities.push(...await insertInTable(supabase, 'cities', [{ name: fighterTwoStats.city, countryId: country.id }]))
         }
 
         const fighterTwoCity = supabaseCities.filter(city => city.name === fighterTwoStats.city)[0]
@@ -399,6 +399,6 @@ Deno.serve(async (req)=>{
 
     return sendResponse(supabaseEvents)
   } catch (err) {
-    return sendResponse(err)
+    return sendResponse(err, 500)
   }
 });
