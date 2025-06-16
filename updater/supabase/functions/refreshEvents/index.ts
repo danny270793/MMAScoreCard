@@ -35,6 +35,8 @@ async function insertInTable(supabase, table: string, rows: unknown[]) {
   if (error) {
     throw error;
   }
+
+  return await getTable(supabase, table)
 }
 
 Deno.serve(async (req)=>{
@@ -49,10 +51,10 @@ Deno.serve(async (req)=>{
         }
       }
     });
-    const supabaseLocations = await getTable(supabase, 'locations')
-    const supabaseCountries = await getTable(supabase, 'countries')
-    const supabaseCities = await getTable(supabase, 'cities')
-    const supabaseEvents = await getTable(supabase, 'events')
+    const supabaseLocations: any[] = await getTable(supabase, 'locations')
+    const supabaseCountries: any[] = await getTable(supabase, 'countries')
+    const supabaseCities: any[] = await getTable(supabase, 'cities')
+    const supabaseEvents: any[] = await getTable(supabase, 'events')
 
     logger.debug('getting sherdog events')
     const sherdog: Sherdog = new Sherdog()
@@ -69,7 +71,8 @@ Deno.serve(async (req)=>{
     }
     if(countriesToAdd.length > 0) {
       logger.debug(`${countriesToAdd.length} countries added`)
-      await insertInTable(supabase, 'countries', countriesToAdd)
+      supabaseCountries.length = 0
+      supabaseCountries.push(...await insertInTable(supabase, 'countries', countriesToAdd))
     }
 
     logger.debug('add new cities')
@@ -84,7 +87,8 @@ Deno.serve(async (req)=>{
     }
     if(citiesToAdd.length > 0) {
       logger.debug(`${citiesToAdd.length} cities added`)
-      await insertInTable(supabase, 'cities', citiesToAdd)
+      supabaseCities.length = 0
+      supabaseCities.push(...await insertInTable(supabase, 'cities', citiesToAdd)) 
     }
 
     logger.debug('add new locations')
@@ -99,7 +103,8 @@ Deno.serve(async (req)=>{
     }
     if(locationsToAdd.length > 0) {
       logger.debug(`${locationsToAdd.length} locations added`)
-      await insertInTable(supabase, 'locations', locationsToAdd)
+      supabaseLocations.length = 0
+      supabaseLocations.push(...await insertInTable(supabase, 'locations', locationsToAdd))
     }
 
     logger.debug('add new events')
@@ -121,9 +126,9 @@ Deno.serve(async (req)=>{
     }
     if(eventsToAdd.length > 0) {
       logger.debug(`${eventsToAdd.length} events added`)
-      await insertInTable(supabase, 'events', eventsToAdd)
+      supabaseEvents.length = 0
+      supabaseEvents.push(...await insertInTable(supabase, 'events', eventsToAdd))      
     }
-  
 
     return sendResponse(supabaseEvents)
   } catch (err) {
