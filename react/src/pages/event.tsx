@@ -61,7 +61,7 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
       return
     }
 
-    console.error(error)
+    logger.error('error on component', error)
     f7.dialog.alert(
       error?.message || t('unknownError', { postProcess: 'capitalize' }),
       () => {
