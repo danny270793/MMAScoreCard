@@ -510,8 +510,6 @@ async function main(supabase) {
         (fighter) => fighter.name === fight.fighterTwo.name
       )[0];
 
-      logger.debug(JSON.stringify(fight));
-
       const category = supabaseCategories.filter((category) => {
         if (fight.category?.weight) {
           return (
