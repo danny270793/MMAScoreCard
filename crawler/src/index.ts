@@ -204,7 +204,10 @@ async function exportData(database: Database): Promise<void> {
         'fights',
     ]
     const promises: Promise<void>[] = tables.map(async (table: string) => {
-        const rows: any[] = await database.get(table, {})
+        const rows: any[] = (await database.get(table, {})).map((row: any) => {
+            delete row['id']
+            return row
+        })
         Fs.writeFileSync(
             Path.join(__dirname, '..', 'exports', `${table}.json`),
             JSON.stringify(rows, null, 2),
@@ -521,11 +524,6 @@ async function main(cache: Cache, database: Database): Promise<void> {
                     name: fight.referee,
                 })
 
-                console.log({
-                    fighterOne: fight.fighterOne,
-                    fighterTwo: fight.fighterTwo,
-                })
-
                 await database.insert('fights', {
                     categoryId: category ? category.id : null,
                     position: fight.position,
@@ -606,8 +604,8 @@ console.log(`${cache.keysCount()} keys in cache`)
 const databasePath: string = Path.join(__dirname, '..', 'database.sqlite')
 const database: Database = new SQLite(databasePath)
 
-// exportData(database).catch(console.error)
+exportData(database).catch(console.error)
 
-main(cache, database)
-    .then(() => exportData(database))
-    .catch(console.error)
+// main(cache, database)
+//     .then(() => exportData(database))
+//     .catch(console.error)
