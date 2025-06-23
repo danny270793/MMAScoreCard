@@ -80,8 +80,22 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
       return t('technicalDecision', { postProcess: 'capitalize' })
     } else if (decision === 'No Contest') {
       return t('noContest', { postProcess: 'capitalize' })
+    } else if (decision === 'Technical Submission') {
+      return t('technicalSubmission', { postProcess: 'capitalize' })
     }
     return decision
+  }
+  const getDecisionMethodName = (method: string): string => {
+    if (method === 'Unanimous') {
+      return t('unanimous', { postProcess: 'capitalize' })
+    } else if (method === 'Split') {
+      return t('split', { postProcess: 'capitalize' })
+    } else if (method === 'Punches') {
+      return t('punches', { postProcess: 'capitalize' })
+    } else if (method === 'Punch') {
+      return t('punch', { postProcess: 'capitalize' })
+    }
+    return method
   }
 
   const getCategoryName = (categoryName: string): string => {
@@ -248,7 +262,7 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
                       icon={faPersonChalkboard}
                     />{' '}
                     {fight.decision && getDecisionName(fight.decision)} (
-                    {fight.method})
+                    {fight.method && getDecisionMethodName(fight.method)})
                   </div>
                   {fight.decision !== 'Decision' && (
                     <div>
