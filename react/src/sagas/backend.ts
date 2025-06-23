@@ -4,17 +4,20 @@ import {
   type Type as BackendTypes,
   type GetEventAction,
   type GetFightAction,
+  type GetFighterAction,
 } from '../reducers/backend'
 import { Backend } from '../connectors/backend'
 import type { Event } from '../connectors/backend/models/event'
 import { mapper } from '../connectors/mapper'
 import type { Action } from '@reduxjs/toolkit'
 import type { Fight } from '../connectors/backend/models/fight'
+import type { Fighter } from '../connectors/backend/models/fighter'
 
 export const sagas: ForkEffect[] = [
   takeLatest<BackendTypes>('backend/GET_EVENTS', onGetEventsRequested),
   takeLatest<BackendTypes>('backend/GET_EVENT', onGetEventRequested),
   takeLatest<BackendTypes>('backend/GET_FIGHT', onGetFightRequested),
+  takeLatest<BackendTypes>('backend/GET_FIGHTER', onGetFighterRequested),
 ]
 
 function* onGetEventsRequested(): Generator {
@@ -59,5 +62,29 @@ function* onGetFightRequested(action: Action): Generator {
     )
   } catch (error) {
     yield put(backendActions.getFightError(error as Error))
+  }
+}
+
+function* onGetFighterRequested(action: Action): Generator {
+  try {
+    const castedAction: GetFighterAction = action as GetFighterAction
+
+    const fighter: Fighter = yield call(Backend.getFighter, castedAction.id)
+    const fights: Fight[] = yield call(
+      Backend.getFightsFromFighter,
+      castedAction.id,
+    )
+
+    yield put(
+      backendActions.getFighterSuccess(
+        mapper.toFighter(fighter),
+        fights
+          .filter((fight: Fight) => fight.type !== 'pending')
+          .map(mapper.toFight)
+          .sort((b, a) => a.event.date.getTime() - b.event.date.getTime()),
+      ),
+    )
+  } catch (error) {
+    yield put(backendActions.getFighterError(error as Error))
   }
 }

@@ -65,7 +65,7 @@ export const mapper = {
       id: fighter.id,
       name: fighter.name,
       nickname: fighter.nickname,
-      city: mapper.toCity(fighter.cities),
+      city: fighter.cities ? mapper.toCity(fighter.cities) : undefined,
       birthday: fighter.birthday ? new Date(fighter.birthday) : undefined,
       died: fighter.died ? new Date(fighter.died) : undefined,
       height: fighter.height,
