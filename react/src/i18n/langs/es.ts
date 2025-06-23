@@ -264,4 +264,8 @@ export const es: Lang = {
   height: 'altura',
   city: 'ciudad',
   country: 'país',
+  record: 'récord',
+  wins: 'victorias',
+  losses: 'derrotas',
+  draws: 'empates',
 }

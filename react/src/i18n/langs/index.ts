@@ -262,4 +262,8 @@ export interface Lang {
   weight: string
   city: string
   country: string
+  record: string
+  wins: string
+  losses: string
+  draws: string
 }
