@@ -135,7 +135,7 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
   }
   const worstLossStreak: Streak = streaks
     .filter((streak: Streak) => streak.type === 'loss')
-    .sort((a: Streak, b: Streak) => a.count - b.count)[0] || {
+    .sort((b: Streak, a: Streak) => a.count - b.count)[0] || {
     type: 'loss',
     count: 0,
   }
@@ -144,7 +144,9 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
   ).length
   const octagonTime: string = DateUtils.secondsToHHMMSS(
     fights
-      .map((fight: Fight) => fight.time)
+      .map(
+        (fight: Fight) => ((fight.round || 1) - 1) * 5 * 60 + (fight.time || 0),
+      )
       .reduce((acc: number, time: number | undefined) => acc + (time || 0), 0),
   )
 
@@ -375,7 +377,7 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
           fights.map((fight: Fight) => (
             <div key={fight.id} className="timeline-item">
               <div className="timeline-item-date">
-                {fight.event.date.toISOString().split('T')[0]}
+                {fight.event.date.toISOString().split('T')[0].replace('-', ' ')}
               </div>
               <div className="timeline-item-divider" />
               <div className="timeline-item-content">
