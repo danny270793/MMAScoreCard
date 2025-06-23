@@ -66,7 +66,7 @@ export class Backend {
     const key: string = `fighter_${id}`
     if (Backend.cache && (await Backend.cache.has(key))) {
       const fights: string = await Backend.cache.get(key)
-      return JSON.parse(fights)
+      return JSON.parse(fights)[0]
     }
 
     const { data, error } = await supabase
