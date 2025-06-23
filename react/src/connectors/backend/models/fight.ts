@@ -6,7 +6,7 @@ import type { Referee } from './referee'
 export interface Fight {
   id: number
   position: number
-  categories: Category
+  categories?: Category
   fighterOne: Fighter
   fighterTwo: Fighter
   referees?: Referee
