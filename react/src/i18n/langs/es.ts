@@ -257,4 +257,11 @@ export const es: Lang = {
   armlock: 'llave de brazo',
   ankleLock: 'llave de tobillo',
   fighter: 'peleador',
+  name: 'nombre',
+  nickname: 'apodo',
+  age: 'edad',
+  weight: 'peso',
+  height: 'altura',
+  city: 'ciudad',
+  country: 'país',
 }
