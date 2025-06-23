@@ -71,6 +71,19 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error])
 
+  const getDecisionName = (decision: string): string => {
+    if (decision === 'Decision') {
+      return t('decision', { postProcess: 'capitalize' })
+    } else if (decision === 'Submission') {
+      return t('submission', { postProcess: 'capitalize' })
+    } else if (decision === 'Technical Decision') {
+      return t('technicalDecision', { postProcess: 'capitalize' })
+    } else if (decision === 'No Contest') {
+      return t('noContest', { postProcess: 'capitalize' })
+    }
+    return decision
+  }
+
   const getCategoryName = (categoryName: string): string => {
     if (categoryName === 'Strawweight') {
       return t('Strawweight', { postProcess: 'capitalize' })
@@ -230,7 +243,8 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
                       className="w-4"
                       icon={faPersonChalkboard}
                     />{' '}
-                    {fight.decision} ({fight.method})
+                    {fight.decision && getDecisionName(fight.decision)} (
+                    {fight.method})
                   </div>
                   {fight.decision !== 'Decision' && (
                     <div>
