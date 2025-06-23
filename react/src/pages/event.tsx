@@ -224,11 +224,11 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
         <div />
         {state === 'getting_event' && (
           <div className="skeleton-text skeleton-effect-wave">
-            {t('fightsCounter', { fights: 0 })}
+            {t('fightsCounter', { count: 0 })}
           </div>
         )}
         {state !== 'getting_event' && (
-          <div>{t('fightsCounter', { fights: fights.length })}</div>
+          <div>{t('fightsCounter', { count: fights.length })}</div>
         )}
         <div />
       </Toolbar>
