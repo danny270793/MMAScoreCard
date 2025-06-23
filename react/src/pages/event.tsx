@@ -192,9 +192,11 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
               subtitle="EmptyFight.titleFight"
             >
               <br />
-              <div>
-                {EmptyFight.category.name} ({EmptyFight.category.weight} lbs)
-              </div>
+              {EmptyFight.category && (
+                <div>
+                  {EmptyFight.category.name} ({EmptyFight.category.weight} lbs)
+                </div>
+              )}
               {EmptyFight.type === 'done' && (
                 <>
                   <div>
@@ -231,11 +233,13 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
               }
             >
               <br />
-              <div>
-                <FontAwesomeIcon className="w-4" icon={faWeight} />{' '}
-                {getCategoryName(fight.category.name)} ({fight.category.weight}{' '}
-                lbs)
-              </div>
+              {fight.category && (
+                <div>
+                  <FontAwesomeIcon className="w-4" icon={faWeight} />{' '}
+                  {getCategoryName(fight.category.name)} (
+                  {fight.category.weight} lbs)
+                </div>
+              )}
               {fight.type === 'done' && (
                 <>
                   <div>
