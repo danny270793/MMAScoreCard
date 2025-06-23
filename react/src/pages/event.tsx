@@ -71,6 +71,29 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error])
 
+  const getCategoryName = (categoryName: string): string => {
+    if (categoryName === 'Strawweight') {
+      return t('Strawweight', { postProcess: 'capitalize' })
+    } else if (categoryName === 'Flyweight') {
+      return t('Flyweight', { postProcess: 'capitalize' })
+    } else if (categoryName === 'Bantamweight') {
+      return t('Bantamweight', { postProcess: 'capitalize' })
+    } else if (categoryName === 'Featherweight') {
+      return t('Featherweight', { postProcess: 'capitalize' })
+    } else if (categoryName === 'Lightweight') {
+      return t('Lightweight', { postProcess: 'capitalize' })
+    } else if (categoryName === 'Welterweight') {
+      return t('Welterweight', { postProcess: 'capitalize' })
+    } else if (categoryName === 'Middleweight') {
+      return t('Middleweight', { postProcess: 'capitalize' })
+    } else if (categoryName === 'Light Heavyweight') {
+      return t('Light Heavyweight', { postProcess: 'capitalize' })
+    } else if (categoryName === 'Heavyweight') {
+      return t('Heavyweight', { postProcess: 'capitalize' })
+    }
+    return categoryName
+  }
+
   return (
     <Page ptr ptrMousewheel={true} onPtrRefresh={onPullRefreshed}>
       <Navbar
@@ -197,7 +220,8 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
               <br />
               <div>
                 <FontAwesomeIcon className="w-4" icon={faWeight} />{' '}
-                {fight.category.name} ({fight.category.weight} lbs)
+                {getCategoryName(fight.category.name)} ({fight.category.weight}{' '}
+                lbs)
               </div>
               {fight.type === 'done' && (
                 <>
