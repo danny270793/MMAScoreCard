@@ -1,4 +1,4 @@
-import { BlockTitle, f7, Navbar, Page } from 'framework7-react'
+import { BlockTitle, f7, List, ListItem, Navbar, Page } from 'framework7-react'
 import { useEffect, type FC } from 'react'
 import {
   actions as backendActions,
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import type { Dispatch } from '@reduxjs/toolkit'
 import { Logger } from '../utils/logger'
-import type { Fighter } from '../models/fighter'
+import { EmptyFighter, type Fighter } from '../models/fighter'
 
 const logger: Logger = new Logger('/src/pages/fighter.tsx')
 
@@ -50,6 +50,13 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error])
 
+  const cmToFeetInches = (cm: number): string => {
+    const totalInches: number = cm / 2.54
+    const feet: number = Math.floor(totalInches / 12)
+    const inches: number = Math.round(totalInches % 12)
+    return `${feet}'${inches}''`
+  }
+
   return (
     <Page ptr ptrMousewheel={true} onPtrRefresh={onPullRefreshed}>
       <Navbar
@@ -63,67 +70,78 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
       />
 
       <BlockTitle>{t('fighter', { postProcess: 'capitalize' })}</BlockTitle>
-      {state}
-      {JSON.stringify(fighter, null, 2)}
-      {/* <List dividersIos mediaList strongIos inset>
-        {state === 'getting_fight' && (
+      {state === 'getting_fighter' && (
+        <List
+          className="skeleton-text skeleton-effect-wave"
+          dividersIos
+          mediaList
+          strongIos
+          inset
+        >
           <ListItem
-            className="skeleton-text skeleton-effect-wave"
-            title={EmptyFight.fighterOne.name}
-            subtitle={EmptyFight.fighterOne.nickname}
-          >
-            <div slot="media">
-              <FontAwesomeIcon className="w-4" icon={faThumbsUp} />
-            </div>
-          </ListItem>
-        )}
-        {state === 'getting_fight' && (
+            after={EmptyFighter.name}
+            title={t('name', { postProcess: 'capitalize' })}
+          />
           <ListItem
-            className="skeleton-text skeleton-effect-wave"
-            title={EmptyFight.fighterTwo.name}
-            subtitle={EmptyFight.fighterTwo.nickname}
-          >
-            <div slot="media">
-              <FontAwesomeIcon className="w-4" icon={faThumbsDown} />
-            </div>
-          </ListItem>
-        )}
-
-        {fight && state !== 'getting_fight' && (
+            after={EmptyFighter.nickname}
+            title={t('nickname', { postProcess: 'capitalize' })}
+          />
+          {EmptyFighter.city?.country && (
+            <ListItem
+              after={EmptyFighter.city.country.name}
+              title={t('country', { postProcess: 'capitalize' })}
+            />
+          )}
+          {EmptyFighter.city && (
+            <ListItem
+              after={EmptyFighter.city.name}
+              title={t('city', { postProcess: 'capitalize' })}
+            />
+          )}
           <ListItem
-            chevronCenter
-            link={`/fighters/${fight.fighterOne.id}`}
-            title={fight.fighterOne.name}
-            subtitle={fight.fighterOne.nickname}
-          >
-            <div slot="media">
-              {fight.winner === 1 && (
-                <FontAwesomeIcon className="w-4" icon={faThumbsUp} />
-              )}
-              {fight.winner === 2 && (
-                <FontAwesomeIcon className="w-4" icon={faThumbsDown} />
-              )}
-            </div>
-          </ListItem>
-        )}
-        {fight && state !== 'getting_fight' && (
+            after={EmptyFighter.weight}
+            title={t('weight', { postProcess: 'capitalize' })}
+          />
           <ListItem
-            chevronCenter
-            link={`/fighters/${fight.fighterTwo.id}`}
-            title={fight.fighterTwo.name}
-            subtitle={fight.fighterTwo.nickname}
-          >
-            <div slot="media">
-              {fight.winner === 2 && (
-                <FontAwesomeIcon className="w-4" icon={faThumbsUp} />
-              )}
-              {fight.winner === 1 && (
-                <FontAwesomeIcon className="w-4" icon={faThumbsDown} />
-              )}
-            </div>
+            after={EmptyFighter.height}
+            title={t('height', { postProcess: 'capitalize' })}
+          />
+        </List>
+      )}
+      {state !== 'getting_fighter' && fighter && (
+        <List dividersIos mediaList strongIos inset>
+          <ListItem
+            after={fighter.name}
+            title={t('name', { postProcess: 'capitalize' })}
+          />
+          <ListItem
+            after={fighter.nickname}
+            title={t('nickname', { postProcess: 'capitalize' })}
+          />
+          {fighter.city?.country && (
+            <ListItem
+              after={fighter.city.country.name}
+              title={t('country', { postProcess: 'capitalize' })}
+            />
+          )}
+          {fighter.city && (
+            <ListItem
+              after={fighter.city.name}
+              title={t('city', { postProcess: 'capitalize' })}
+            />
+          )}
+          <ListItem title={t('height', { postProcess: 'capitalize' })}>
+            <span slot="after">
+              {cmToFeetInches(fighter.height)} / {fighter.height} cm
+            </span>
           </ListItem>
-        )}
-      </List> */}
+          <ListItem title={t('weight', { postProcess: 'capitalize' })}>
+            <span slot="after">
+              {(fighter.weight * 2.2).toFixed(2)} lbs / {fighter.weight} kgs
+            </span>
+          </ListItem>
+        </List>
+      )}
     </Page>
   )
 }
