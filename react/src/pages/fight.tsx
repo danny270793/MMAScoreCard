@@ -24,6 +24,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
 import { Logger } from '../utils/logger'
+import { TranslationUtils } from '../utils/translations'
 
 const logger: Logger = new Logger('/src/pages/fight.tsx')
 
@@ -180,14 +181,20 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
             {fight.category && (
               <div>
                 <FontAwesomeIcon className="w-4" icon={faWeight} />{' '}
-                {fight.category.name} ({fight.category.weight} lbs)
+                {TranslationUtils.getCategoryName(t, fight.category.name)} (
+                {fight.category.weight} lbs)
               </div>
             )}
             {fight.type === 'done' && (
               <>
                 <div>
                   <FontAwesomeIcon className="w-4" icon={faPersonChalkboard} />{' '}
-                  {fight.decision} ({fight.method})
+                  {fight.decision &&
+                    TranslationUtils.getDecisionName(t, fight.decision)}{' '}
+                  (
+                  {fight.method &&
+                    TranslationUtils.getDecisionMethodName(t, fight.method)}
+                  )
                 </div>
                 {fight.decision !== 'Decision' && (
                   <div>
