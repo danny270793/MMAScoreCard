@@ -24,6 +24,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
 import { Logger } from '../utils/logger'
+import { TranslationUtils } from '../utils/translations'
 
 const logger: Logger = new Logger('/src/pages/fight.tsx')
 
@@ -148,9 +149,11 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
         {state === 'getting_fight' && (
           <ListItem key={1} className="skeleton-text skeleton-effect-wave">
             <div>{t('titleFight', { postProcess: 'capitalize' })}</div>
-            <div>
-              {EmptyFight.category.name} ({EmptyFight.category.weight} lbs)
-            </div>
+            {EmptyFight.category && (
+              <div>
+                {EmptyFight.category.name} ({EmptyFight.category.weight} lbs)
+              </div>
+            )}
             {EmptyFight.type === 'done' && (
               <>
                 <div>
@@ -175,15 +178,23 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
                 {t('titleFight', { postProcess: 'capitalize' })}
               </div>
             )}
-            <div>
-              <FontAwesomeIcon className="w-4" icon={faWeight} />{' '}
-              {fight.category.name} ({fight.category.weight} lbs)
-            </div>
+            {fight.category && (
+              <div>
+                <FontAwesomeIcon className="w-4" icon={faWeight} />{' '}
+                {TranslationUtils.getCategoryName(t, fight.category.name)} (
+                {fight.category.weight} lbs)
+              </div>
+            )}
             {fight.type === 'done' && (
               <>
                 <div>
                   <FontAwesomeIcon className="w-4" icon={faPersonChalkboard} />{' '}
-                  {fight.decision} ({fight.method})
+                  {fight.decision &&
+                    TranslationUtils.getDecisionName(t, fight.decision)}{' '}
+                  (
+                  {fight.method &&
+                    TranslationUtils.getDecisionMethodName(t, fight.method)}
+                  )
                 </div>
                 {fight.decision !== 'Decision' && (
                   <div>
