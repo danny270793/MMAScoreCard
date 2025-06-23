@@ -70,7 +70,7 @@ export class Backend {
     }
 
     const { data, error } = await supabase
-      .from('fights')
+      .from('fighters')
       .select(
         `id,name,nickname,cities(id,name,countries(id,name)),birthday,died,height,weight,link`,
       )
