@@ -256,4 +256,5 @@ export const es: Lang = {
   biting: 'mordida',
   armlock: 'llave de brazo',
   ankleLock: 'llave de tobillo',
+  fighter: 'peleador',
 }
