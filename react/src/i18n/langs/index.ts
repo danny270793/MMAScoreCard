@@ -37,4 +37,9 @@ export interface Lang {
   submission: string
   technicalDecision: string
   noContest: string
+  technicalSubmission: string
+  unanimous: string
+  split: string
+  punches: string
+  punch: string
 }

@@ -39,4 +39,9 @@ export const es: Lang = {
   submission: 'sumisión',
   technicalDecision: 'decisión técnica',
   noContest: 'sin resultado',
+  technicalSubmission: 'sumisión técnica',
+  unanimous: 'unánime',
+  split: 'dividida',
+  punches: 'golpes',
+  punch: 'golpe',
 }
