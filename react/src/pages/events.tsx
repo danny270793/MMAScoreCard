@@ -181,7 +181,7 @@ export const EventsPage: FC = () => {
           </div>
         )}
         {state !== 'getting_events' && (
-          <div>{t('eventsCounter', { events: events.length })}</div>
+          <div>{t('eventsCounter', { count: events.length })}</div>
         )}
         <div />
       </Toolbar>

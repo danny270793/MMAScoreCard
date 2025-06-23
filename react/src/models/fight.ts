@@ -6,10 +6,10 @@ import type { Referee } from './referee'
 export interface Fight {
   id: number
   position: number
-  category: Category
+  category?: Category
   fighterOne: Fighter
   fighterTwo: Fighter
-  referee: Referee | undefined
+  referee?: Referee
   mainEvent: boolean
   titleFight: boolean
   type: 'pending' | 'done'

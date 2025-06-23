@@ -29,6 +29,7 @@ import {
 import { DateUtils } from '../utils/date-utils'
 import { Faker } from '../utils/faker'
 import { Logger } from '../utils/logger'
+import { TranslationUtils } from '../utils/translations'
 
 const logger: Logger = new Logger('/src/pages/event.tsx')
 
@@ -156,9 +157,11 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
               subtitle="EmptyFight.titleFight"
             >
               <br />
-              <div>
-                {EmptyFight.category.name} ({EmptyFight.category.weight} lbs)
-              </div>
+              {EmptyFight.category && (
+                <div>
+                  {EmptyFight.category.name} ({EmptyFight.category.weight} lbs)
+                </div>
+              )}
               {EmptyFight.type === 'done' && (
                 <>
                   <div>
@@ -195,10 +198,13 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
               }
             >
               <br />
-              <div>
-                <FontAwesomeIcon className="w-4" icon={faWeight} />{' '}
-                {fight.category.name} ({fight.category.weight} lbs)
-              </div>
+              {fight.category && (
+                <div>
+                  <FontAwesomeIcon className="w-4" icon={faWeight} />{' '}
+                  {TranslationUtils.getCategoryName(t, fight.category.name)} (
+                  {fight.category.weight} lbs)
+                </div>
+              )}
               {fight.type === 'done' && (
                 <>
                   <div>
@@ -206,7 +212,12 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
                       className="w-4"
                       icon={faPersonChalkboard}
                     />{' '}
-                    {fight.decision} ({fight.method})
+                    {fight.decision &&
+                      TranslationUtils.getDecisionName(t, fight.decision)}{' '}
+                    (
+                    {fight.method &&
+                      TranslationUtils.getDecisionMethodName(t, fight.method)}
+                    )
                   </div>
                   {fight.decision !== 'Decision' && (
                     <div>
@@ -224,11 +235,11 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
         <div />
         {state === 'getting_event' && (
           <div className="skeleton-text skeleton-effect-wave">
-            {t('fightsCounter', { fights: 0 })}
+            {t('fightsCounter', { count: 0 })}
           </div>
         )}
         {state !== 'getting_event' && (
-          <div>{t('fightsCounter', { fights: fights.length })}</div>
+          <div>{t('fightsCounter', { count: fights.length })}</div>
         )}
         <div />
       </Toolbar>
