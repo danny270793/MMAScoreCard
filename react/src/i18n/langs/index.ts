@@ -254,4 +254,5 @@ export interface Lang {
   biting: string
   armlock: string
   ankleLock: string
+  fighter: string
 }
