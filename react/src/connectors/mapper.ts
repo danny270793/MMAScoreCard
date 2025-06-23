@@ -78,7 +78,9 @@ export const mapper = {
       id: fight.id,
       winner: fight.winner,
       position: fight.position,
-      category: mapper.toCategory(fight.categories),
+      category: fight.categories
+        ? mapper.toCategory(fight.categories)
+        : undefined,
       fighterOne: mapper.toFighter(fight.fighterOne),
       fighterTwo: mapper.toFighter(fight.fighterTwo),
       referee: !fight.referees ? undefined : mapper.toReferee(fight.referees),
