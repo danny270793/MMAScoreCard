@@ -85,6 +85,7 @@ export interface GetFighterAction extends Action {
 export interface GetFighterSuccessAction extends Action {
   type: 'backend/GET_FIGHTER_SUCCESS'
   fighter: Fighter
+  fights: Fight[]
 }
 
 export interface GetFighterErrorAction extends Action {
@@ -209,6 +210,7 @@ export const reducer: Reducer = (
         ...state,
         state: 'getting_fighter_success',
         fighter: (action as GetFighterSuccessAction).fighter,
+        fights: (action as GetFighterSuccessAction).fights,
       }
     case 'backend/GET_FIGHTER_ERROR':
       return {
@@ -274,9 +276,13 @@ export const actions = {
     type: 'backend/GET_FIGHTER',
     id,
   }),
-  getFighterSuccess: (fighter: Fighter): GetFighterSuccessAction => ({
+  getFighterSuccess: (
+    fighter: Fighter,
+    fights: Fight[],
+  ): GetFighterSuccessAction => ({
     type: 'backend/GET_FIGHTER_SUCCESS',
     fighter,
+    fights,
   }),
   getFighterError: (error: Error): GetFighterErrorAction => ({
     type: 'backend/GET_FIGHTER_ERROR',
