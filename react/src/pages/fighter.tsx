@@ -14,6 +14,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { TranslationUtils } from '../utils/translations'
 import {
   faClock,
+  faHandshake,
+  faNotdef,
   faPersonChalkboard,
   faThumbsDown,
   faThumbsUp,
@@ -227,7 +229,8 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
       )}
       <BlockTitle>{t('fights', { postProcess: 'capitalize' })}</BlockTitle>
       <div className="timeline">
-        {fighter &&
+        {state !== 'getting_fighter' &&
+          fighter &&
           fights.map((fight: Fight) => (
             <div key={fight.id} className="timeline-item">
               <div className="timeline-item-date">
@@ -251,11 +254,29 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
                     }
                   >
                     <span slot="after">
-                      {fight.fighterOne.id === fighter.id && (
-                        <FontAwesomeIcon className="w-4" icon={faThumbsUp} />
+                      {!fight.winner && fight.decision === 'Draw' && (
+                        <FontAwesomeIcon
+                          className="w-4"
+                          icon={faHandshake}
+                          style={{ color: 'orange' }}
+                        />
                       )}
-                      {fight.fighterTwo.id === fighter.id && (
-                        <FontAwesomeIcon className="w-4" icon={faThumbsDown} />
+                      {!fight.winner && fight.decision === 'No Contest' && (
+                        <FontAwesomeIcon className="w-4" icon={faNotdef} />
+                      )}
+                      {fight.winner && fight.fighterOne.id === fighter.id && (
+                        <FontAwesomeIcon
+                          className="w-4"
+                          icon={faThumbsUp}
+                          style={{ color: 'green' }}
+                        />
+                      )}
+                      {fight.winner && fight.fighterTwo.id === fighter.id && (
+                        <FontAwesomeIcon
+                          className="w-4"
+                          icon={faThumbsDown}
+                          style={{ color: 'red' }}
+                        />
                       )}
                     </span>
                     <br />
