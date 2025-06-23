@@ -79,6 +79,7 @@ function* onGetFighterRequested(action: Action): Generator {
       backendActions.getFighterSuccess(
         mapper.toFighter(fighter),
         fights
+          .filter((fight: Fight) => fight.type !== 'pending')
           .map(mapper.toFight)
           .sort((b, a) => a.event.date.getTime() - b.event.date.getTime()),
       ),
