@@ -96,641 +96,429 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
   const getDecisionMethodName = (method: string): string => {
     if (method === 'Unanimous') {
       return t('unanimous', { postProcess: 'capitalize' })
-    }
-    if (method === 'Punches') {
+    } else if (method === 'Punches') {
       return t('punches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Split') {
+    } else if (method === 'Split') {
       return t('split', { postProcess: 'capitalize' })
-    }
-    if (method === 'Rear-Naked Choke') {
+    } else if (method === 'Rear-Naked Choke') {
       return t('rearNakedChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Punch') {
+    } else if (method === 'Punch') {
       return t('punch', { postProcess: 'capitalize' })
-    }
-    if (method === 'Guillotine Choke') {
+    } else if (method === 'Guillotine Choke') {
       return t('guillotineChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Armbar') {
+    } else if (method === 'Armbar') {
       return t('armbar', { postProcess: 'capitalize' })
-    }
-    if (method === 'Arm-Triangle Choke') {
+    } else if (method === 'Arm-Triangle Choke') {
       return t('armTriangleChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Majority') {
+    } else if (method === 'Majority') {
       return t('majority', { postProcess: 'capitalize' })
-    }
-    if (method === 'Triangle Choke') {
+    } else if (method === 'Triangle Choke') {
       return t('triangleChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Doctor Stoppage') {
+    } else if (method === 'Doctor Stoppage') {
       return t('doctorStoppage', { postProcess: 'capitalize' })
-    }
-    if (method === 'Elbows') {
+    } else if (method === 'Elbows') {
       return t('elbows', { postProcess: 'capitalize' })
-    }
-    if (method === 'Elbows and Punches') {
+    } else if (method === 'Elbows and Punches') {
       return t('elbowsAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Punches and Elbows') {
+    } else if (method === 'Punches and Elbows') {
       return t('punchesAndElbows', { postProcess: 'capitalize' })
-    }
-    if (method === 'Head Kick and Punches') {
+    } else if (method === 'Head Kick and Punches') {
       return t('headKickAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Head Kick') {
+    } else if (method === 'Head Kick') {
       return t('headKick', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knee and Punches') {
+    } else if (method === 'Knee and Punches') {
       return t('kneeAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Brabo Choke') {
+    } else if (method === 'Brabo Choke') {
       return t('braboChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Kimura') {
+    } else if (method === 'Kimura') {
       return t('kimura', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knee') {
+    } else if (method === 'Knee') {
       return t('knee', { postProcess: 'capitalize' })
-    }
-    if (method === 'Submission to Punches') {
+    } else if (method === 'Submission to Punches') {
       return t('submissionToPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Anaconda Choke') {
+    } else if (method === 'Anaconda Choke') {
       return t('anacondaChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knees and Punches') {
+    } else if (method === 'Knees and Punches') {
       return t('kneesAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Corner Stoppage') {
+    } else if (method === 'Corner Stoppage') {
       return t('cornerStoppage', { postProcess: 'capitalize' })
-    }
-    if (method === 'Kneebar') {
+    } else if (method === 'Kneebar') {
       return t('kneebar', { postProcess: 'capitalize' })
-    }
-    if (method === 'Heel Hook') {
+    } else if (method === 'Heel Hook') {
       return t('heelHook', { postProcess: 'capitalize' })
-    }
-    if (method === 'Overturned') {
+    } else if (method === 'Overturned') {
       return t('overturned', { postProcess: 'capitalize' })
-    }
-    if (method === 'Triangle Armbar') {
+    } else if (method === 'Triangle Armbar') {
       return t('triangleArmbar', { postProcess: 'capitalize' })
-    }
-    if (method === 'Flying Knee') {
+    } else if (method === 'Flying Knee') {
       return t('flyingKnee', { postProcess: 'capitalize' })
-    }
-    if (method === 'Face Crank') {
+    } else if (method === 'Face Crank') {
       return t('faceCrank', { postProcess: 'capitalize' })
-    }
-    if (method === 'Elbow') {
+    } else if (method === 'Elbow') {
       return t('elbow', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knee Injury') {
+    } else if (method === 'Knee Injury') {
       return t('kneeInjury', { postProcess: 'capitalize' })
-    }
-    if (method === 'Body Kick and Punches') {
+    } else if (method === 'Body Kick and Punches') {
       return t('bodyKickAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Neck Crank') {
+    } else if (method === 'Neck Crank') {
       return t('neckCrank', { postProcess: 'capitalize' })
-    }
-    if (method === 'Flying Knee and Punches') {
+    } else if (method === 'Flying Knee and Punches') {
       return t('flyingKneeAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Punch to the Body') {
+    } else if (method === 'Punch to the Body') {
       return t('punchToTheBody', { postProcess: 'capitalize' })
-    }
-    if (method === 'Slam') {
+    } else if (method === 'Slam') {
       return t('slam', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knees') {
+    } else if (method === 'Knees') {
       return t('knees', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knee to the Body and Punches') {
+    } else if (method === 'Knee to the Body and Punches') {
       return t('kneeToTheBodyAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Illegal Knee') {
+    } else if (method === 'Illegal Knee') {
       return t('illegalKnee', { postProcess: 'capitalize' })
-    }
-    if (method === 'Elbow and Punches') {
+    } else if (method === 'Elbow and Punches') {
       return t('elbowAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Accidental Eye Poke') {
+    } else if (method === 'Accidental Eye Poke') {
       return t('accidentalEyePoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Retirement') {
+    } else if (method === 'Retirement') {
       return t('retirement', { postProcess: 'capitalize' })
-    }
-    if (method === 'Shoulder Choke') {
+    } else if (method === 'Shoulder Choke') {
       return t('shoulderChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Kick to the Body and Punches') {
+    } else if (method === 'Kick to the Body and Punches') {
       return t('kickToTheBodyAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Straight Armbar') {
+    } else if (method === 'Straight Armbar') {
       return t('straightArmbar', { postProcess: 'capitalize' })
-    }
-    if (method === 'Spinning Wheel Kick and Punches') {
+    } else if (method === 'Spinning Wheel Kick and Punches') {
       return t('spinningWheelKickAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Punches and Knees') {
+    } else if (method === 'Punches and Knees') {
       return t('punchesAndKnees', { postProcess: 'capitalize' })
-    }
-    if (method === 'Leg Injury') {
+    } else if (method === 'Leg Injury') {
       return t('legInjury', { postProcess: 'capitalize' })
-    }
-    if (method === 'Keylock') {
+    } else if (method === 'Keylock') {
       return t('keylock', { postProcess: 'capitalize' })
-    }
-    if (method === 'Body Kick') {
+    } else if (method === 'Body Kick') {
       return t('bodyKick', { postProcess: 'capitalize' })
-    }
-    if (method === 'Punches and Knee') {
+    } else if (method === 'Punches and Knee') {
       return t('punchesAndKnee', { postProcess: 'capitalize' })
-    }
-    if (method === 'Overturned by NSAC') {
+    } else if (method === 'Overturned by NSAC') {
       return t('overturnedByNsac', { postProcess: 'capitalize' })
-    }
-    if (method === 'Leg Kicks') {
+    } else if (method === 'Leg Kicks') {
       return t('legKicks', { postProcess: 'capitalize' })
-    }
-    if (method === 'Achilles Lock') {
+    } else if (method === 'Achilles Lock') {
       return t('achillesLock', { postProcess: 'capitalize' })
-    }
-    if (method === 'Submission to Elbows') {
+    } else if (method === 'Submission to Elbows') {
       return t('submissionToElbows', { postProcess: 'capitalize' })
-    }
-    if (method === 'Spinning Wheel Kick') {
+    } else if (method === 'Spinning Wheel Kick') {
       return t('spinningWheelKick', { postProcess: 'capitalize' })
-    }
-    if (method === 'Spinning Backfist') {
+    } else if (method === 'Spinning Backfist') {
       return t('spinningBackfist', { postProcess: 'capitalize' })
-    }
-    if (method === 'Spinning Back Kick and Punches') {
+    } else if (method === 'Spinning Back Kick and Punches') {
       return t('spinningBackKickAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Scarf Hold') {
+    } else if (method === 'Scarf Hold') {
       return t('scarfHold', { postProcess: 'capitalize' })
-    }
-    if (method === 'Leg Kick') {
+    } else if (method === 'Leg Kick') {
       return t('legKick', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knee to the Body') {
+    } else if (method === 'Knee to the Body') {
       return t('kneeToTheBody', { postProcess: 'capitalize' })
-    }
-    if (method === 'Cut') {
+    } else if (method === 'Cut') {
       return t('cut', { postProcess: 'capitalize' })
-    }
-    if (method === 'Arm Injury') {
+    } else if (method === 'Arm Injury') {
       return t('armInjury', { postProcess: 'capitalize' })
-    }
-    if (method === 'Spinning Back Elbow') {
+    } else if (method === 'Spinning Back Elbow') {
       return t('spinningBackElbow', { postProcess: 'capitalize' })
-    }
-    if (method === 'Accidental Clash of Heads') {
+    } else if (method === 'Accidental Clash of Heads') {
       return t('accidentalClashOfHeads', { postProcess: 'capitalize' })
-    }
-    if (method === 'Shoulder Injury') {
+    } else if (method === 'Shoulder Injury') {
       return t('shoulderInjury', { postProcess: 'capitalize' })
-    }
-    if (method === 'North-South Choke') {
+    } else if (method === 'North-South Choke') {
       return t('northSouthChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knee and Elbows') {
+    } else if (method === 'Knee and Elbows') {
       return t('kneeAndElbows', { postProcess: 'capitalize' })
-    }
-    if (method === 'Front Kick and Punches') {
+    } else if (method === 'Front Kick and Punches') {
       return t('frontKickAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Forearm Choke') {
+    } else if (method === 'Forearm Choke') {
       return t('forearmChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Bulldog Choke') {
+    } else if (method === 'Bulldog Choke') {
       return t('bulldogChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Premature Stoppage') {
+    } else if (method === 'Premature Stoppage') {
       return t('prematureStoppage', { postProcess: 'capitalize' })
-    }
-    if (method === 'Overturned by Commission') {
+    } else if (method === 'Overturned by Commission') {
       return t('overturnedByCommission', { postProcess: 'capitalize' })
-    }
-    if (method === 'Ninja Choke') {
+    } else if (method === 'Ninja Choke') {
       return t('ninjaChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knees to the Body') {
+    } else if (method === 'Knees to the Body') {
       return t('kneesToTheBody', { postProcess: 'capitalize' })
-    }
-    if (method === 'Head Kick and Punch') {
+    } else if (method === 'Head Kick and Punch') {
       return t('headKickAndPunch', { postProcess: 'capitalize' })
-    }
-    if (method === 'Front Kick') {
+    } else if (method === 'Front Kick') {
       return t('frontKick', { postProcess: 'capitalize' })
-    }
-    if (method === 'Ezekiel Choke') {
+    } else if (method === 'Ezekiel Choke') {
       return t('ezekielChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Twister') {
+    } else if (method === 'Twister') {
       return t('twister', { postProcess: 'capitalize' })
-    }
-    if (method === 'Superman Punch') {
+    } else if (method === 'Superman Punch') {
       return t('supermanPunch', { postProcess: 'capitalize' })
-    }
-    if (method === 'Submission to Punch') {
+    } else if (method === 'Submission to Punch') {
       return t('submissionToPunch', { postProcess: 'capitalize' })
-    }
-    if (method === 'Rib Injury') {
+    } else if (method === 'Rib Injury') {
       return t('ribInjury', { postProcess: 'capitalize' })
-    }
-    if (method === 'Reverse Triangle Armbar') {
+    } else if (method === 'Reverse Triangle Armbar') {
       return t('reverseTriangleArmbar', { postProcess: 'capitalize' })
-    }
-    if (method === 'Punches to the Body') {
+    } else if (method === 'Punches to the Body') {
       return t('punchesToTheBody', { postProcess: 'capitalize' })
-    }
-    if (method === 'Punches to Back of Head') {
+    } else if (method === 'Punches to Back of Head') {
       return t('punchesToBackOfHead', { postProcess: 'capitalize' })
-    }
-    if (method === 'Overturned by Promoter') {
+    } else if (method === 'Overturned by Promoter') {
       return t('overturnedByPromoter', { postProcess: 'capitalize' })
-    }
-    if (method === 'Overturned by CSAC') {
+    } else if (method === 'Overturned by CSAC') {
       return t('overturnedByCsac', { postProcess: 'capitalize' })
-    }
-    if (method === 'Kick to the Body') {
+    } else if (method === 'Kick to the Body') {
       return t('kickToTheBody', { postProcess: 'capitalize' })
-    }
-    if (method === 'Inverted Triangle Kimura') {
+    } else if (method === 'Inverted Triangle Kimura') {
       return t('invertedTriangleKimura', { postProcess: 'capitalize' })
-    }
-    if (method === 'Illegal Upkick') {
+    } else if (method === 'Illegal Upkick') {
       return t('illegalUpkick', { postProcess: 'capitalize' })
-    }
-    if (method === 'Eye Injury') {
+    } else if (method === 'Eye Injury') {
       return t('eyeInjury', { postProcess: 'capitalize' })
-    }
-    if (method === 'Time Limit') {
+    } else if (method === 'Time Limit') {
       return t('timeLimit', { postProcess: 'capitalize' })
-    }
-    if (method === 'Suplex and Punches') {
+    } else if (method === 'Suplex and Punches') {
       return t('suplexAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Submission to Elbow') {
+    } else if (method === 'Submission to Elbow') {
       return t('submissionToElbow', { postProcess: 'capitalize' })
-    }
-    if (method === 'Spinning Back Kick') {
+    } else if (method === 'Spinning Back Kick') {
       return t('spinningBackKick', { postProcess: 'capitalize' })
-    }
-    if (method === 'Spinning Back Fist') {
+    } else if (method === 'Spinning Back Fist') {
       return t('spinningBackFist', { postProcess: 'capitalize' })
-    }
-    if (method === 'Slam and Punches') {
+    } else if (method === 'Slam and Punches') {
       return t('slamAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Scarf Hold Armlock') {
+    } else if (method === 'Scarf Hold Armlock') {
       return t('scarfHoldArmlock', { postProcess: 'capitalize' })
-    }
-    if (method === 'Punch and Knee') {
+    } else if (method === 'Punch and Knee') {
       return t('punchAndKnee', { postProcess: 'capitalize' })
-    }
-    if (method === 'Punch and Head Kick') {
+    } else if (method === 'Punch and Head Kick') {
       return t('punchAndHeadKick', { postProcess: 'capitalize' })
-    }
-    if (method === 'Position') {
+    } else if (method === 'Position') {
       return t('position', { postProcess: 'capitalize' })
-    }
-    if (method === 'Peruvian Necktie') {
+    } else if (method === 'Peruvian Necktie') {
       return t('peruvianNecktie', { postProcess: 'capitalize' })
-    }
-    if (method === 'Overturned by TDLR') {
+    } else if (method === 'Overturned by TDLR') {
       return t('overturnedByTdrl', { postProcess: 'capitalize' })
-    }
-    if (method === 'Overturned by CABMMA') {
+    } else if (method === 'Overturned by CABMMA') {
       return t('overturnedByCabmma', { postProcess: 'capitalize' })
-    }
-    if (method === 'Omoplata') {
+    } else if (method === 'Omoplata') {
       return t('omoplata', { postProcess: 'capitalize' })
-    }
-    if (method === 'Neck Injury') {
+    } else if (method === 'Neck Injury') {
       return t('neckInjury', { postProcess: 'capitalize' })
-    }
-    if (method === 'Leg Kicks and Punches') {
+    } else if (method === 'Leg Kicks and Punches') {
       return t('legKicksAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Leg Kick and Punches') {
+    } else if (method === 'Leg Kick and Punches') {
       return t('legKickAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Lapel Choke') {
+    } else if (method === 'Lapel Choke') {
       return t('lapelChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knee and Punch') {
+    } else if (method === 'Knee and Punch') {
       return t('kneeAndPunch', { postProcess: 'capitalize' })
-    }
-    if (method === 'Jaw Injury') {
+    } else if (method === 'Jaw Injury') {
       return t('jawInjury', { postProcess: 'capitalize' })
-    }
-    if (method === 'Inverted Triangle Choke') {
+    } else if (method === 'Inverted Triangle Choke') {
       return t('invertedTriangleChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Illegal Elbows') {
+    } else if (method === 'Illegal Elbows') {
       return t('illegalElbows', { postProcess: 'capitalize' })
-    }
-    if (method === 'Front Kick to the Body and Punches') {
+    } else if (method === 'Front Kick to the Body and Punches') {
       return t('frontKickToTheBodyAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Flying Triangle Choke') {
+    } else if (method === 'Flying Triangle Choke') {
       return t('flyingTriangleChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Elbows and Knees') {
+    } else if (method === 'Elbows and Knees') {
       return t('elbowsAndKnees', { postProcess: 'capitalize' })
-    }
-    if (method === 'Elbow and Punch') {
+    } else if (method === 'Elbow and Punch') {
       return t('elbowAndPunch', { postProcess: 'capitalize' })
-    }
-    if (method === 'Choke') {
+    } else if (method === 'Choke') {
       return t('choke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Calf Slicer') {
+    } else if (method === 'Calf Slicer') {
       return t('calfSlicer', { postProcess: 'capitalize' })
-    }
-    if (method === 'Body Triangle') {
+    } else if (method === 'Body Triangle') {
       return t('bodyTriangle', { postProcess: 'capitalize' })
-    }
-    if (method === 'Ankle Injury') {
+    } else if (method === 'Ankle Injury') {
       return t('ankleInjury', { postProcess: 'capitalize' })
-    }
-    if (method === 'Accidental Groin Kick') {
+    } else if (method === 'Accidental Groin Kick') {
       return t('accidentalGroinKick', { postProcess: 'capitalize' })
-    }
-    if (method === 'Upkick to the Body') {
+    } else if (method === 'Upkick to the Body') {
       return t('upkickToTheBody', { postProcess: 'capitalize' })
-    }
-    if (method === 'Upkick and Punches') {
+    } else if (method === 'Upkick and Punches') {
       return t('upkickAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Upkick') {
+    } else if (method === 'Upkick') {
       return t('upkick', { postProcess: 'capitalize' })
-    }
-    if (method === 'Triangle Kimura') {
+    } else if (method === 'Triangle Kimura') {
       return t('triangleKimura', { postProcess: 'capitalize' })
-    }
-    if (method === 'Toe Hold') {
+    } else if (method === 'Toe Hold') {
       return t('toeHold', { postProcess: 'capitalize' })
-    }
-    if (method === 'Thumb Injury') {
+    } else if (method === 'Thumb Injury') {
       return t('thumbInjury', { postProcess: 'capitalize' })
-    }
-    if (method === 'Submission to Slam') {
+    } else if (method === 'Submission to Slam') {
       return t('submissionToSlam', { postProcess: 'capitalize' })
-    }
-    if (method === 'Submission to Knee to the Body') {
+    } else if (method === 'Submission to Knee to the Body') {
       return t('submissionToKneeToTheBody', { postProcess: 'capitalize' })
-    }
-    if (method === 'Submission to Heel Strikes') {
+    } else if (method === 'Submission to Heel Strikes') {
       return t('submissionToHeelStrikes', { postProcess: 'capitalize' })
-    }
-    if (method === 'Submission to Headbutts') {
+    } else if (method === 'Submission to Headbutts') {
       return t('submissionToHeadbutts', { postProcess: 'capitalize' })
-    }
-    if (method === 'Submission to Elbows to the Body') {
+    } else if (method === 'Submission to Elbows to the Body') {
       return t('submissionToElbowsToTheBody', { postProcess: 'capitalize' })
-    }
-    if (method === 'Straight Armlock') {
+    } else if (method === 'Straight Armlock') {
       return t('straightArmlock', { postProcess: 'capitalize' })
-    }
-    if (method === 'Spinning Hook Kick and Punches') {
+    } else if (method === 'Spinning Hook Kick and Punches') {
       return t('spinningHookKickAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Spinning Hook Kick') {
+    } else if (method === 'Spinning Hook Kick') {
       return t('spinningHookKick', { postProcess: 'capitalize' })
-    }
-    if (method === 'Spinning Heel Kick and Punches') {
+    } else if (method === 'Spinning Heel Kick and Punches') {
       return t('spinningHeelKickAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Spinning Backfists') {
+    } else if (method === 'Spinning Backfists') {
       return t('spinningBackfists', { postProcess: 'capitalize' })
-    }
-    if (method === 'Spinning Backfist and Punches') {
+    } else if (method === 'Spinning Backfist and Punches') {
       return t('spinningBackfistAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Spinning Backfist and Elbows') {
+    } else if (method === 'Spinning Backfist and Elbows') {
       return t('spinningBackfistAndElbows', { postProcess: 'capitalize' })
-    }
-    if (method === 'Spinning Back Fist and Punches') {
+    } else if (method === 'Spinning Back Fist and Punches') {
       return t('spinningBackFistAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Spinning Back Elbow and Punches') {
+    } else if (method === 'Spinning Back Elbow and Punches') {
       return t('spinningBackElbowAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Soccer Kick to the Body') {
+    } else if (method === 'Soccer Kick to the Body') {
       return t('soccerKickToTheBody', { postProcess: 'capitalize' })
-    }
-    if (method === 'Soccer Kick') {
+    } else if (method === 'Soccer Kick') {
       return t('soccerKick', { postProcess: 'capitalize' })
-    }
-    if (method === 'Smother Choke') {
+    } else if (method === 'Smother Choke') {
       return t('smotherChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Slam and Punch') {
+    } else if (method === 'Slam and Punch') {
       return t('slamAndPunch', { postProcess: 'capitalize' })
-    }
-    if (method === 'Slam and Elbows') {
+    } else if (method === 'Slam and Elbows') {
       return t('slamAndElbows', { postProcess: 'capitalize' })
-    }
-    if (method === 'Side Kick and Punches') {
+    } else if (method === 'Side Kick and Punches') {
       return t('sideKickAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Sakara Kicked in Groin') {
+    } else if (method === 'Sakara Kicked in Groin') {
       return t('sakaraKickedInGroin', { postProcess: 'capitalize' })
-    }
-    if (method === 'Reverse Bulldog Choke') {
+    } else if (method === 'Reverse Bulldog Choke') {
       return t('reverseBulldogChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Reverse Armbar') {
+    } else if (method === 'Reverse Armbar') {
       return t('reverseArmbar', { postProcess: 'capitalize' })
-    }
-    if (method === 'Repeated Fouls') {
+    } else if (method === 'Repeated Fouls') {
       return t('repeatedFouls', { postProcess: 'capitalize' })
-    }
-    if (method === 'Punches and Head Kick') {
+    } else if (method === 'Punches and Head Kick') {
       return t('punchesAndHeadKick', { postProcess: 'capitalize' })
-    }
-    if (method === 'Punches and Elbows to the Body') {
+    } else if (method === 'Punches and Elbows to the Body') {
       return t('punchesAndElbowsToTheBody', { postProcess: 'capitalize' })
-    }
-    if (method === 'Punches and Elbow') {
+    } else if (method === 'Punches and Elbow') {
       return t('punchesAndElbow', { postProcess: 'capitalize' })
-    }
-    if (method === 'Punches After the Bell') {
+    } else if (method === 'Punches After the Bell') {
       return t('punchesAfterTheBell', { postProcess: 'capitalize' })
-    }
-    if (method === 'Punch and Elbows') {
+    } else if (method === 'Punch and Elbows') {
       return t('punchAndElbows', { postProcess: 'capitalize' })
-    }
-    if (method === 'Pillory Choke') {
+    } else if (method === 'Pillory Choke') {
       return t('pilloryChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Overturned by VPBCSB') {
+    } else if (method === 'Overturned by VPBCSB') {
       return t('overturnedByVpbcsb', { postProcess: 'capitalize' })
-    }
-    if (method === 'Overturned by State Commission') {
+    } else if (method === 'Overturned by State Commission') {
       return t('overturnedByStateCommission', { postProcess: 'capitalize' })
-    }
-    if (method === 'Overturned by STJDMMA') {
+    } else if (method === 'Overturned by STJDMMA') {
       return t('overturnedByStjdMma', { postProcess: 'capitalize' })
-    }
-    if (method === 'Overturned by MSAC') {
+    } else if (method === 'Overturned by MSAC') {
       return t('overturnedByMsac', { postProcess: 'capitalize' })
-    }
-    if (method === 'Overturned by CCSC') {
+    } else if (method === 'Overturned by CCSC') {
       return t('overturnedByCcsc', { postProcess: 'capitalize' })
-    }
-    if (method === 'Leg Kick and Elbows') {
+    } else if (method === 'Leg Kick and Elbows') {
       return t('legKickAndElbows', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knees to the Body and Punches') {
+    } else if (method === 'Knees to the Body and Punches') {
       return t('kneesToTheBodyAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knees and Elbow') {
+    } else if (method === 'Knees and Elbow') {
       return t('kneesAndElbow', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knee to the Body and Head Kicks') {
+    } else if (method === 'Knee to the Body and Head Kicks') {
       return t('kneeToTheBodyAndHeadKicks', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knee to the Body and Elbows') {
+    } else if (method === 'Knee to the Body and Elbows') {
       return t('kneeToTheBodyAndElbows', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knee to the Body and Elbow') {
+    } else if (method === 'Knee to the Body and Elbow') {
       return t('kneeToTheBodyAndElbow', { postProcess: 'capitalize' })
-    }
-    if (method === 'Knee and Body Kick') {
+    } else if (method === 'Knee and Body Kick') {
       return t('kneeAndBodyKick', { postProcess: 'capitalize' })
-    }
-    if (method === 'Kicking a Downed Opponent') {
+    } else if (method === 'Kicking a Downed Opponent') {
       return t('kickingADownedOpponent', { postProcess: 'capitalize' })
-    }
-    if (method === 'Kick to the Body and Elbows') {
+    } else if (method === 'Kick to the Body and Elbows') {
       return t('kickToTheBodyAndElbows', { postProcess: 'capitalize' })
-    }
-    if (method === 'Japanese Necktie') {
+    } else if (method === 'Japanese Necktie') {
       return t('japaneseNecktie', { postProcess: 'capitalize' })
-    }
-    if (method === 'Inverted Heel Hook') {
+    } else if (method === 'Inverted Heel Hook') {
       return t('invertedHeelHook', { postProcess: 'capitalize' })
-    }
-    if (method === 'Inside Shoulder Lock') {
+    } else if (method === 'Inside Shoulder Lock') {
       return t('insideShoulderLock', { postProcess: 'capitalize' })
-    }
-    if (method === 'Injury') {
+    } else if (method === 'Injury') {
       return t('injury', { postProcess: 'capitalize' })
-    }
-    if (method === 'Illegal Kicks') {
+    } else if (method === 'Illegal Kicks') {
       return t('illegalKicks', { postProcess: 'capitalize' })
-    }
-    if (method === 'Illegal Kick') {
+    } else if (method === 'Illegal Kick') {
       return t('illegalKick', { postProcess: 'capitalize' })
-    }
-    if (method === 'Illegal Elbow') {
+    } else if (method === 'Illegal Elbow') {
       return t('illegalElbow', { postProcess: 'capitalize' })
-    }
-    if (method === 'Hook Kick and Punches') {
+    } else if (method === 'Hook Kick and Punches') {
       return t('hookKickAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Hoffman Failed Drug Test') {
+    } else if (method === 'Hoffman Failed Drug Test') {
       return t('hoffmanFailedDrugTest', { postProcess: 'capitalize' })
-    }
-    if (method === 'Headbutts') {
+    } else if (method === 'Headbutts') {
       return t('headbutts', { postProcess: 'capitalize' })
-    }
-    if (method === 'Head Kicks and Punches') {
+    } else if (method === 'Head Kicks and Punches') {
       return t('headKicksAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Head Kick and Knee') {
+    } else if (method === 'Head Kick and Knee') {
       return t('headKickAndKnee', { postProcess: 'capitalize' })
-    }
-    if (method === 'Hand Injury') {
+    } else if (method === 'Hand Injury') {
       return t('handInjury', { postProcess: 'capitalize' })
-    }
-    if (method === 'Front Kick to the Body and Punch') {
+    } else if (method === 'Front Kick to the Body and Punch') {
       return t('frontKickToTheBodyAndPunch', { postProcess: 'capitalize' })
-    }
-    if (method === 'Front Kick to the Body') {
+    } else if (method === 'Front Kick to the Body') {
       return t('frontKickToTheBody', { postProcess: 'capitalize' })
-    }
-    if (method === 'Front Kick and Punch') {
+    } else if (method === 'Front Kick and Punch') {
       return t('frontKickAndPunch', { postProcess: 'capitalize' })
-    }
-    if (method === 'Front Kick and Knees') {
+    } else if (method === 'Front Kick and Knees') {
       return t('frontKickAndKnees', { postProcess: 'capitalize' })
-    }
-    if (method === 'Front Choke') {
+    } else if (method === 'Front Choke') {
       return t('frontChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Flying Knee to the Body') {
+    } else if (method === 'Flying Knee to the Body') {
       return t('flyingKneeToTheBody', { postProcess: 'capitalize' })
-    }
-    if (method === 'Flying Knee and Punch') {
+    } else if (method === 'Flying Knee and Punch') {
       return t('flyingKneeAndPunch', { postProcess: 'capitalize' })
-    }
-    if (method === 'Flying Head Kick and Punches') {
+    } else if (method === 'Flying Head Kick and Punches') {
       return t('flyingHeadKickAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Finger Injury') {
+    } else if (method === 'Finger Injury') {
       return t('fingerInjury', { postProcess: 'capitalize' })
-    }
-    if (method === 'Fatigue') {
+    } else if (method === 'Fatigue') {
       return t('fatigue', { postProcess: 'capitalize' })
-    }
-    if (method === 'Failed Drug Test') {
+    } else if (method === 'Failed Drug Test') {
       return t('failedDrugTest', { postProcess: 'capitalize' })
-    }
-    if (method === 'Eye Poke') {
+    } else if (method === 'Eye Poke') {
       return t('eyePoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Eye Gouging') {
+    } else if (method === 'Eye Gouging') {
       return t('eyeGouging', { postProcess: 'capitalize' })
-    }
-    if (method === 'Exhaustion') {
+    } else if (method === 'Exhaustion') {
       return t('exhaustion', { postProcess: 'capitalize' })
-    }
-    if (method === 'Esophagus Injury') {
+    } else if (method === 'Esophagus Injury') {
       return t('esophagusInjury', { postProcess: 'capitalize' })
-    }
-    if (method === 'Elbows to Back of Head') {
+    } else if (method === 'Elbows to Back of Head') {
       return t('elbowsToBackOfHead', { postProcess: 'capitalize' })
-    }
-    if (method === 'Double TKO') {
+    } else if (method === 'Double TKO') {
       return t('doubleTko', { postProcess: 'capitalize' })
-    }
-    if (method === 'Crucifix Choke') {
+    } else if (method === 'Crucifix Choke') {
       return t('crucifixChoke', { postProcess: 'capitalize' })
-    }
-    if (method === 'Chin to the Eye') {
+    } else if (method === 'Chin to the Eye') {
       return t('chinToTheEye', { postProcess: 'capitalize' })
-    }
-    if (method === 'Caceres Failed Drug Test') {
+    } else if (method === 'Caceres Failed Drug Test') {
       return t('caceresFailedDrugTest', { postProcess: 'capitalize' })
-    }
-    if (method === 'Body Lock') {
+    } else if (method === 'Body Lock') {
       return t('bodyLock', { postProcess: 'capitalize' })
-    }
-    if (method === 'Body Kicks and Punches') {
+    } else if (method === 'Body Kicks and Punches') {
       return t('bodyKicksAndPunches', { postProcess: 'capitalize' })
-    }
-    if (method === 'Body Kick and Punch') {
+    } else if (method === 'Body Kick and Punch') {
       return t('bodyKickAndPunch', { postProcess: 'capitalize' })
-    }
-    if (method === 'Biting') {
+    } else if (method === 'Biting') {
       return t('biting', { postProcess: 'capitalize' })
-    }
-    if (method === 'Armlock') {
+    } else if (method === 'Armlock') {
       return t('armlock', { postProcess: 'capitalize' })
-    }
-    if (method === 'Ankle Lock') {
+    } else if (method === 'Ankle Lock') {
       return t('ankleLock', { postProcess: 'capitalize' })
     }
-
     return method
   }
 
