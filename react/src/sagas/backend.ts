@@ -70,8 +70,19 @@ function* onGetFighterRequested(action: Action): Generator {
     const castedAction: GetFighterAction = action as GetFighterAction
 
     const fighter: Fighter = yield call(Backend.getFighter, castedAction.id)
+    const fights: Fight[] = yield call(
+      Backend.getFightsFromFighter,
+      castedAction.id,
+    )
 
-    yield put(backendActions.getFighterSuccess(mapper.toFighter(fighter)))
+    yield put(
+      backendActions.getFighterSuccess(
+        mapper.toFighter(fighter),
+        fights
+          .map(mapper.toFight)
+          .sort((b, a) => a.event.date.getTime() - b.event.date.getTime()),
+      ),
+    )
   } catch (error) {
     yield put(backendActions.getFighterError(error as Error))
   }
