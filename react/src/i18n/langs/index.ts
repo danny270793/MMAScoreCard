@@ -254,4 +254,18 @@ export interface Lang {
   biting: string
   armlock: string
   ankleLock: string
+  fighter: string
+  name: string
+  nickname: string
+  age: string
+  height: string
+  weight: string
+  city: string
+  country: string
+  record: string
+  wins: string
+  losses: string
+  draws: string
+  win: string
+  loss: string
 }
