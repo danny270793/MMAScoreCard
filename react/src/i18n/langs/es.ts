@@ -26,4 +26,13 @@ export const es: Lang = {
   titleFight: 'pelea por el título',
   fight: 'pelea',
   fighters: 'peleadores',
+  Strawweight: 'peso paja',
+  Flyweight: 'peso mosca',
+  Bantamweight: 'peso gallo',
+  Featherweight: 'peso pluma',
+  Lightweight: 'peso ligero',
+  Welterweight: 'peso welter',
+  Middleweight: 'peso medio',
+  'Light Heavyweight': 'peso semipesado',
+  Heavyweight: 'peso pesado',
 }

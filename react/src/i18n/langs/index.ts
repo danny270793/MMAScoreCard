@@ -24,4 +24,13 @@ export interface Lang {
   titleFight: string
   fight: string
   fighters: string
+  Strawweight: string
+  Flyweight: string
+  Bantamweight: string
+  Featherweight: string
+  Lightweight: string
+  Welterweight: string
+  Middleweight: string
+  'Light Heavyweight': string
+  Heavyweight: string
 }
