@@ -4,7 +4,7 @@ export interface Fighter {
   id: number
   name: string
   nickname?: string
-  city: City
+  city?: City
   birthday?: Date
   died?: Date
   height: number
