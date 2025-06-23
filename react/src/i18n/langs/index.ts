@@ -4,16 +4,16 @@ export interface Lang {
   upcoming: string
   search: string
   events: string
-  eventsCounter: string
-  eventsCounter_plural: string
+  eventsCounter_one: string
+  eventsCounter_other: string
   cancel: string
   eventsNotFound: string
   fightsNotFound: string
   eventNotFound: string
   unknownError: string
   fights: string
-  fightsCounter: string
-  fightsCounter_plural: string
+  fightsCounter_one: string
+  fightsCounter_other: string
   event: string
   mainEvent: string
   date: string
