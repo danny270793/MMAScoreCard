@@ -33,4 +33,8 @@ export interface Lang {
   Middleweight: string
   'Light Heavyweight': string
   Heavyweight: string
+  decision: string
+  submission: string
+  technicalDecision: string
+  noContest: string
 }

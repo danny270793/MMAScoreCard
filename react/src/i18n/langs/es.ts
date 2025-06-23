@@ -35,4 +35,8 @@ export const es: Lang = {
   Middleweight: 'peso medio',
   'Light Heavyweight': 'peso semipesado',
   Heavyweight: 'peso pesado',
+  decision: 'decisión',
+  submission: 'sumisión',
+  technicalDecision: 'decisión técnica',
+  noContest: 'sin resultado',
 }
