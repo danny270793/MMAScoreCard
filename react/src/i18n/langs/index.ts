@@ -255,4 +255,11 @@ export interface Lang {
   armlock: string
   ankleLock: string
   fighter: string
+  name: string
+  nickname: string
+  age: string
+  height: string
+  weight: string
+  city: string
+  country: string
 }
