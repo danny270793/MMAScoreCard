@@ -29,6 +29,11 @@ type FighterPageProps = {
   id: string
 }
 
+interface Streak {
+  type: 'win' | 'loss'
+  count: number
+}
+
 export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
   const { t } = useTranslation()
   const dispatch: Dispatch = useDispatch()
@@ -93,6 +98,55 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
   const getNoContest = (fights: Fight[]): number => {
     return fights.filter((fight) => fight.decision === 'No Contest').length
   }
+
+  const computeStreaks = (fighter: Fighter, fights: Fight[]): Streak[] => {
+    const results: string[] = fights.map((fight: Fight) =>
+      fight.winner && fight.fighterOne.id === fighter.id
+        ? 'win'
+        : fight.winner && fight.fighterTwo.id === fighter.id
+          ? 'loss'
+          : 'no important',
+    )
+
+    const streaks: Streak[] = []
+    results.forEach((result: string) => {
+      if (streaks.length === 0) {
+        streaks.push({ type: result as 'win' | 'loss', count: 1 })
+      } else {
+        if (result === streaks[streaks.length - 1].type) {
+          streaks[streaks.length - 1].count += 1
+        } else {
+          streaks.push({ type: result as 'win' | 'loss', count: 1 })
+        }
+      }
+    })
+
+    return streaks
+  }
+
+  const streaks: Streak[] = fighter ? computeStreaks(fighter, fights) : []
+  const currentStreak: Streak =
+    streaks.length > 0 ? streaks[0] : { type: 'win', count: 0 }
+  const bestWinStreak: Streak = streaks
+    .filter((streak: Streak) => streak.type === 'win')
+    .sort((a: Streak, b: Streak) => b.count - a.count)[0] || {
+    type: 'win',
+    count: 0,
+  }
+  const worstLossStreak: Streak = streaks
+    .filter((streak: Streak) => streak.type === 'loss')
+    .sort((a: Streak, b: Streak) => a.count - b.count)[0] || {
+    type: 'loss',
+    count: 0,
+  }
+  const titleFights: number = fights.filter(
+    (fight: Fight) => fight.titleFight,
+  ).length
+  const octagonTime: string = DateUtils.secondsToHHMMSS(
+    fights
+      .map((fight: Fight) => fight.time)
+      .reduce((acc: number, time: number | undefined) => acc + (time || 0), 0),
+  )
 
   return (
     <Page ptr ptrMousewheel={true} onPtrRefresh={onPullRefreshed}>
@@ -227,6 +281,93 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
           />
         </List>
       )}
+
+      <BlockTitle>{t('stats', { postProcess: 'capitalize' })}</BlockTitle>
+      {state !== 'getting_fighter' && fighter && (
+        <List dividersIos mediaList strongIos inset>
+          <ListItem
+            after={`${
+              fights.filter(
+                (fight: Fight) =>
+                  ['KO', 'TKO'].includes(fight.decision || '') &&
+                  fight.fighterOne.id === fighter.id,
+              ).length
+            }`}
+            title={t('winsByKos', { postProcess: 'capitalize' })}
+          />
+          <ListItem
+            after={`${
+              fights.filter(
+                (fight: Fight) =>
+                  ['Submission'].includes(fight.decision || '') &&
+                  fight.fighterOne.id === fighter.id,
+              ).length
+            }`}
+            title={t('winsBySubmissions', { postProcess: 'capitalize' })}
+          />
+          <ListItem
+            after={`${
+              fights.filter(
+                (fight: Fight) =>
+                  ['Decision'].includes(fight.decision || '') &&
+                  fight.fighterOne.id === fighter.id,
+              ).length
+            }`}
+            title={t('winsByDecisions', { postProcess: 'capitalize' })}
+          />
+          <ListItem
+            after={`${
+              fights.filter(
+                (fight: Fight) =>
+                  ['KO', 'TKO'].includes(fight.decision || '') &&
+                  fight.fighterTwo.id === fighter.id,
+              ).length
+            }`}
+            title={t('lossesByKos', { postProcess: 'capitalize' })}
+          />
+          <ListItem
+            after={`${
+              fights.filter(
+                (fight: Fight) =>
+                  ['Submission'].includes(fight.decision || '') &&
+                  fight.fighterTwo.id === fighter.id,
+              ).length
+            }`}
+            title={t('lossesBySubmissions', { postProcess: 'capitalize' })}
+          />
+          <ListItem
+            after={`${
+              fights.filter(
+                (fight: Fight) =>
+                  ['Decision'].includes(fight.decision || '') &&
+                  fight.fighterTwo.id === fighter.id,
+              ).length
+            }`}
+            title={t('lossesByDecisions', { postProcess: 'capitalize' })}
+          />
+          <ListItem
+            after={`${currentStreak.count} ${currentStreak.type === 'win' ? t(currentStreak.count > 1 ? 'wins' : 'win') : t(currentStreak.count > 1 ? 'losses' : 'loss')}`}
+            title={t('currentStreak', { postProcess: 'capitalize' })}
+          />
+          <ListItem
+            after={`${bestWinStreak.count} ${t(bestWinStreak.count > 1 ? 'wins' : 'win')}`}
+            title={t('bestWinStreak', { postProcess: 'capitalize' })}
+          />
+          <ListItem
+            after={`${worstLossStreak.count} ${t(worstLossStreak.count > 1 ? 'losses' : 'loss')}`}
+            title={t('worstLossStreak', { postProcess: 'capitalize' })}
+          />
+          <ListItem
+            after={`${titleFights} ${t(titleFights > 1 ? 'fights' : 'fight')}`}
+            title={t('titleFights', { postProcess: 'capitalize' })}
+          />
+          <ListItem
+            after={octagonTime}
+            title={t('octagonTime', { postProcess: 'capitalize' })}
+          />
+        </List>
+      )}
+
       <BlockTitle>{t('fights', { postProcess: 'capitalize' })}</BlockTitle>
       <div className="timeline">
         {state !== 'getting_fighter' &&
@@ -238,7 +379,6 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
               </div>
               <div className="timeline-item-divider" />
               <div className="timeline-item-content">
-                {/* <div className="timeline-item-inner">Some text goes here</div> */}
                 <List dividersIos mediaList strongIos inset>
                   <ListItem
                     key={fight.id}

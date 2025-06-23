@@ -268,4 +268,16 @@ export interface Lang {
   draws: string
   win: string
   loss: string
+  stats: string
+  winsByKos: string
+  winsBySubmissions: string
+  winsByDecisions: string
+  lossesByKos: string
+  lossesBySubmissions: string
+  lossesByDecisions: string
+  currentStreak: string
+  bestWinStreak: string
+  worstLossStreak: string
+  titleFights: string
+  octagonTime: string
 }
