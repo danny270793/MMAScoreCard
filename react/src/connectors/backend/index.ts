@@ -114,11 +114,13 @@ export class Backend {
       id: fight.id,
       position: fight.position,
       winner: fight.winner,
-      categories: {
-        id: fight.categories.id,
-        name: fight.categories.name,
-        weight: fight.categories.weight,
-      } as Category,
+      categories:
+        fight.categories &&
+        ({
+          id: fight.categories.id,
+          name: fight.categories.name,
+          weight: fight.categories.weight,
+        } as Category),
       fighterOne: {
         id: fight.fighteroneid,
         name: fight.fighteronename,
