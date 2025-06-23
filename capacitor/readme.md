@@ -47,3 +47,9 @@ android {
     }
 }
 ```
+
+Generate the signed apk
+
+```bash
+./gradlew bundleRelease
+```
