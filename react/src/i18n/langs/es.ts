@@ -268,4 +268,6 @@ export const es: Lang = {
   wins: 'victorias',
   losses: 'derrotas',
   draws: 'empates',
+  win: 'victoria',
+  loss: 'derrota',
 }

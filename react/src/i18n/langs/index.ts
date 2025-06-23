@@ -266,4 +266,6 @@ export interface Lang {
   wins: string
   losses: string
   draws: string
+  win: string
+  loss: string
 }
