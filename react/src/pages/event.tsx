@@ -80,7 +80,7 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
         backLink
       />
       <BlockTitle>{t('event', { postProcess: 'capitalize' })}</BlockTitle>
-      <List dividersIos mediaList strongIos inset>
+      <List dividers mediaList strong inset>
         {state === 'getting_event' && (
           <ListItem
             className="skeleton-text skeleton-effect-wave"
@@ -146,7 +146,7 @@ export const EventPage: FC<EventPageProps> = (props: EventPageProps) => {
       </List>
 
       <BlockTitle>{t('fights', { postProcess: 'capitalize' })}</BlockTitle>
-      <List dividersIos mediaList strongIos inset>
+      <List dividers mediaList strong inset>
         {state === 'getting_event' &&
           Faker.arrayOfNumbers(5).map((i: number) => (
             <ListItem
