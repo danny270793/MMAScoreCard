@@ -80,7 +80,7 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
       />
       <BlockTitle>{t('event', { postProcess: 'capitalize' })}</BlockTitle>
 
-      <List dividersIos mediaList strongIos inset>
+      <List dividers mediaList strong inset>
         {state === 'getting_fight' && (
           <ListItem
             className="skeleton-text skeleton-effect-wave"
@@ -145,7 +145,7 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
         )}
       </List>
       <BlockTitle>{t('fight', { postProcess: 'capitalize' })}</BlockTitle>
-      <List dividersIos mediaList strongIos inset>
+      <List dividers mediaList strong inset>
         {state === 'getting_fight' && (
           <ListItem key={1} className="skeleton-text skeleton-effect-wave">
             <div>{t('titleFight', { postProcess: 'capitalize' })}</div>
@@ -215,7 +215,7 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
         )}
       </List>
       <BlockTitle>{t('fighters', { postProcess: 'capitalize' })}</BlockTitle>
-      <List dividersIos mediaList strongIos inset>
+      <List dividers mediaList strong inset>
         {state === 'getting_fight' && (
           <ListItem
             className="skeleton-text skeleton-effect-wave"

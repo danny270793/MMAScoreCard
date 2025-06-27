@@ -22,6 +22,7 @@ import { Faker } from '../utils/faker'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCalendar,
+  faInfo,
   faLocation,
   faMap,
   faSearch,
@@ -68,8 +69,11 @@ export const EventsPage: FC = () => {
     <Page ptr ptrMousewheel={true} onPtrRefresh={onPullRefreshed}>
       <Navbar title={t('events', { postProcess: 'capitalize' })} large>
         <NavRight>
+          <Link href="/about">
+            <FontAwesomeIcon className="w-5" icon={faInfo} />
+          </Link>
           <Link searchbarEnable=".searchbar">
-            <FontAwesomeIcon icon={faSearch} />
+            <FontAwesomeIcon className="w-5" icon={faSearch} />
           </Link>
         </NavRight>
         <Searchbar
@@ -81,22 +85,16 @@ export const EventsPage: FC = () => {
           searchIn=".item-title, .item-subtitle"
         />
       </Navbar>
-      <List
-        className="searchbar-not-found"
-        dividersIos
-        mediaList
-        strongIos
-        inset
-      >
+      <List className="searchbar-not-found" dividers mediaList strong inset>
         <ListItem
           subtitle={t('eventsNotFound', { postProcess: 'capitalize' })}
         />
       </List>
       <List
         className="search-list searchbar-found"
-        dividersIos
+        dividers
         mediaList
-        strongIos
+        strong
         inset
       >
         {state === 'getting_events' &&
