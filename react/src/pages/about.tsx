@@ -32,7 +32,7 @@ export const AboutPage = () => {
       />
       <BlockTitle>{t('application', { postProcess: 'capitalize' })}</BlockTitle>
       {appInfo && (
-        <List dividersIos mediaList strongIos inset>
+        <List dividers mediaList strong inset>
           <ListItem
             title={t('name', { postProcess: 'capitalize' })}
             after={appInfo.name}
@@ -48,7 +48,7 @@ export const AboutPage = () => {
         </List>
       )}
       {!appInfo && (
-        <List dividersIos mediaList strongIos inset>
+        <List dividers mediaList strong inset>
           <ListItem
             className="skeleton-text skeleton-effect-wave"
             title={t('name', { postProcess: 'capitalize' })}
@@ -68,7 +68,7 @@ export const AboutPage = () => {
       )}
 
       <BlockTitle>{t('application', { postProcess: 'capitalize' })}</BlockTitle>
-      <List dividersIos mediaList strongIos inset>
+      <List dividers mediaList strong inset>
         <ListItem
           title={t('name', { postProcess: 'capitalize' })}
           after={'Danny Vaca'}
@@ -80,7 +80,7 @@ export const AboutPage = () => {
       </List>
 
       <BlockTitle>{t('social', { postProcess: 'capitalize' })}</BlockTitle>
-      <List dividersIos mediaList strongIos inset>
+      <List dividers mediaList strong inset>
         <ListItem>
           <Link href="https://danny270793.github.io" external>
             Website
