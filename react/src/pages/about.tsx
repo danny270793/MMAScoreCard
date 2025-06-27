@@ -7,9 +7,21 @@ import {
   Page,
 } from 'framework7-react'
 import { useTranslation } from 'react-i18next'
+import { App, type AppInfo } from '@capacitor/app'
+import { useEffect, useState } from 'react'
 
 export const AboutPage = () => {
   const { t } = useTranslation()
+  const [appInfo, setAppInfo] = useState<AppInfo | undefined>(undefined)
+
+  const getAppInfo = async () => {
+    const info: AppInfo = await App.getInfo()
+    setAppInfo(info)
+  }
+
+  useEffect(() => {
+    getAppInfo()
+  }, [])
 
   return (
     <Page>
@@ -19,20 +31,41 @@ export const AboutPage = () => {
         backLink
       />
       <BlockTitle>{t('application', { postProcess: 'capitalize' })}</BlockTitle>
-      <List dividersIos mediaList strongIos inset>
-        <ListItem
-          title={t('name', { postProcess: 'capitalize' })}
-          after={'MMA ScoreCard'}
-        />
-        <ListItem
-          title={t('version', { postProcess: 'capitalize' })}
-          after={'1.0.0'}
-        />
-        <ListItem
-          title={t('buildNumber', { postProcess: 'capitalize' })}
-          after={'1'}
-        />
-      </List>
+      {appInfo && (
+        <List dividersIos mediaList strongIos inset>
+          <ListItem
+            title={t('name', { postProcess: 'capitalize' })}
+            after={appInfo.name}
+          />
+          <ListItem
+            title={t('version', { postProcess: 'capitalize' })}
+            after={appInfo.version}
+          />
+          <ListItem
+            title={t('buildNumber', { postProcess: 'capitalize' })}
+            after={appInfo.build}
+          />
+        </List>
+      )}
+      {!appInfo && (
+        <List dividersIos mediaList strongIos inset>
+          <ListItem
+            className="skeleton-text skeleton-effect-wave"
+            title={t('name', { postProcess: 'capitalize' })}
+            after={'appInfo.name'}
+          />
+          <ListItem
+            className="skeleton-text skeleton-effect-wave"
+            title={t('version', { postProcess: 'capitalize' })}
+            after={'appInfo.version'}
+          />
+          <ListItem
+            className="skeleton-text skeleton-effect-wave"
+            title={t('buildNumber', { postProcess: 'capitalize' })}
+            after={'appInfo.build'}
+          />
+        </List>
+      )}
 
       <BlockTitle>{t('application', { postProcess: 'capitalize' })}</BlockTitle>
       <List dividersIos mediaList strongIos inset>
