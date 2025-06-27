@@ -280,4 +280,10 @@ export interface Lang {
   worstLossStreak: string
   titleFights: string
   octagonTime: string
+  about: string
+  application: string
+  version: string
+  buildNumber: string
+  email: string
+  social: string
 }

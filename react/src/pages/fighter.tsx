@@ -166,9 +166,9 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
       {state === 'getting_fighter' && (
         <List
           className="skeleton-text skeleton-effect-wave"
-          dividersIos
+          dividers
           mediaList
-          strongIos
+          strong
           inset
         >
           <ListItem
@@ -202,7 +202,7 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
         </List>
       )}
       {state !== 'getting_fighter' && fighter && (
-        <List dividersIos mediaList strongIos inset>
+        <List dividers mediaList strong inset>
           <ListItem
             after={fighter.name}
             title={t('name', { postProcess: 'capitalize' })}
@@ -238,7 +238,7 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
 
       <BlockTitle>{t('record', { postProcess: 'capitalize' })}</BlockTitle>
       {state !== 'getting_fighter' && fighter && (
-        <List dividersIos mediaList strongIos inset>
+        <List dividers mediaList strong inset>
           <ListItem
             after={`${getWins(fighter, fights)}`}
             title={t('wins', { postProcess: 'capitalize' })}
@@ -260,9 +260,9 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
       {state === 'getting_fighter' && (
         <List
           className="skeleton-text skeleton-effect-wave"
-          dividersIos
+          dividers
           mediaList
-          strongIos
+          strong
           inset
         >
           <ListItem
@@ -286,7 +286,7 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
 
       <BlockTitle>{t('stats', { postProcess: 'capitalize' })}</BlockTitle>
       {state !== 'getting_fighter' && fighter && (
-        <List dividersIos mediaList strongIos inset>
+        <List dividers mediaList strong inset>
           <ListItem
             after={`${
               fights.filter(
@@ -381,7 +381,7 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
               </div>
               <div className="timeline-item-divider" />
               <div className="timeline-item-content">
-                <List dividersIos mediaList strongIos inset>
+                <List dividers mediaList strong inset>
                   <ListItem
                     key={fight.id}
                     title={
