@@ -5,6 +5,7 @@ import { EventPage } from '../pages/event'
 import { FightPage } from '../pages/fight'
 import { FighterPage } from '../pages/fighter'
 import { NotFound } from '../pages/not-found'
+import { AboutPage } from '../pages/about'
 
 export const DarkMode: FC = () => {
   const [darkMode, setDarkMode] = useState(
@@ -45,6 +46,10 @@ export const DarkMode: FC = () => {
         {
           path: '/fighters/:id',
           component: FighterPage,
+        },
+        {
+          path: '/about',
+          component: AboutPage,
         },
         {
           path: '(.*)',
