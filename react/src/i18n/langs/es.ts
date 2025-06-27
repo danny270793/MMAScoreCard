@@ -282,4 +282,10 @@ export const es: Lang = {
   worstLossStreak: 'peor racha de derrotas',
   titleFights: 'peleas por el título',
   octagonTime: 'tiempo en el octágono',
+  about: 'acerca de',
+  application: 'aplicación',
+  version: 'versión',
+  buildNumber: 'número de compilación',
+  email: 'correo',
+  social: 'redes sociales',
 }
