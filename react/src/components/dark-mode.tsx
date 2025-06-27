@@ -24,7 +24,7 @@ export const DarkMode: FC = () => {
   return (
     <App
       name="MMAScoreCard"
-      theme="ios"
+      // theme="ios"
       darkMode={darkMode}
       routes={[
         {
