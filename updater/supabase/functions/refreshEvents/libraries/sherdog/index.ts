@@ -203,7 +203,7 @@ export class Sherdog {
           const round = parseInt(cells[5].textContent!.trim());
           const time = Utils.timeToSeconds(cells[6].textContent!.trim());
 
-          const method = rawMethod.split(")")[0].trim();
+          const method = rawMethod ? rawMethod.split(")")[0].trim() : "";
           const resultOne = nameOneParts[nameOneParts.length - 1].trim();
           const resultTwo = nameTwoParts[nameTwoParts.length - 1].trim();
 
