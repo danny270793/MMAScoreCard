@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "build:appbundle": "cd android && ./gradlew bundleRelease",
     "web:build": "cd ../react && npm run build",
     "web:sync": "rm -rf ./www && mkdir ./www && cp -r ../react/dist/* ./www",
     "ios:start": "cap sync ios && cap run ios",
