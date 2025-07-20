@@ -310,7 +310,16 @@ async function main(supabase) {
           (fighter) => fighter.name === fight.fighterOne.name
         ).length === 0
       ) {
-        fighterOneStatPromises.push(sherdog.getStatsFighter(fight.fighterOne));
+        const mustGet: boolean =
+          !fight.fighterOne.link.includes("javascript:void()");
+        if (mustGet) {
+          logger.debug(
+            `requesting fight.fighterOne=${JSON.stringify(fight.fighterOne)}`
+          );
+          fighterOneStatPromises.push(
+            sherdog.getStatsFighter(fight.fighterOne)
+          );
+        }
       }
     }
   }
@@ -328,7 +337,16 @@ async function main(supabase) {
           (fighter) => fighter.name === fight.fighterTwo.name
         ).length === 0
       ) {
-        fighterTwoStatPromises.push(sherdog.getStatsFighter(fight.fighterTwo));
+        const mustGet: boolean =
+          !fight.fighterTwo.link.includes("javascript:void()");
+        if (mustGet) {
+          logger.debug(
+            `requesting fight.fighterTwo=${JSON.stringify(fight.fighterTwo)}`
+          );
+          fighterTwoStatPromises.push(
+            sherdog.getStatsFighter(fight.fighterTwo)
+          );
+        }
       }
     }
   }
