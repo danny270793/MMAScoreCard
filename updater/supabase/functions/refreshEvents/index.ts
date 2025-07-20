@@ -310,16 +310,13 @@ async function main(supabase) {
           (fighter) => fighter.name === fight.fighterOne.name
         ).length === 0
       ) {
-        const mustGet: boolean =
-          !fight.fighterOne.link.includes("javascript:void()");
-        if (mustGet) {
-          logger.debug(
-            `requesting fight.fighterOne=${JSON.stringify(fight.fighterOne)}`
-          );
-          fighterOneStatPromises.push(
-            sherdog.getStatsFighter(fight.fighterOne)
-          );
+        if (fight.fighterOne.link.includes("javascript:void()")) {
+          continue;
         }
+        logger.debug(
+          `requesting fight.fighterOne=${JSON.stringify(fight.fighterOne)}`
+        );
+        fighterOneStatPromises.push(sherdog.getStatsFighter(fight.fighterOne));
       }
     }
   }
@@ -337,16 +334,13 @@ async function main(supabase) {
           (fighter) => fighter.name === fight.fighterTwo.name
         ).length === 0
       ) {
-        const mustGet: boolean =
-          !fight.fighterTwo.link.includes("javascript:void()");
-        if (mustGet) {
-          logger.debug(
-            `requesting fight.fighterTwo=${JSON.stringify(fight.fighterTwo)}`
-          );
-          fighterTwoStatPromises.push(
-            sherdog.getStatsFighter(fight.fighterTwo)
-          );
+        if (fight.fighterTwo.link.includes("javascript:void()")) {
+          continue;
         }
+        logger.debug(
+          `requesting fight.fighterTwo=${JSON.stringify(fight.fighterTwo)}`
+        );
+        fighterTwoStatPromises.push(sherdog.getStatsFighter(fight.fighterTwo));
       }
     }
   }
@@ -371,6 +365,10 @@ async function main(supabase) {
           (fighter: any) => fighter.name === fight.fighterOne.name
         ).length > 0;
       if (!fighterOneExists && !fighterOneAlreadyAdded) {
+        if (fight.fighterOne.link.includes("javascript:void()")) {
+          continue;
+        }
+
         logger.debug(
           `fighter one ${fight.fighterOne.name} is not on database, so get stats`
         );
@@ -442,6 +440,10 @@ async function main(supabase) {
           (fighter: any) => fighter.name === fight.fighterTwo.name
         ).length > 0;
       if (!fighterTwoExists && !fighterTwoAlreadyAdded) {
+        if (fight.fighterTwo.link.includes("javascript:void()")) {
+          continue;
+        }
+
         logger.debug(
           `fighter two ${fight.fighterTwo.name} is not on database, so get stats`
         );
