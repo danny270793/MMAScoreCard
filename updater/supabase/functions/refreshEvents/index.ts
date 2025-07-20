@@ -313,10 +313,13 @@ async function main(supabase) {
         if (fight.fighterOne.link.includes("javascript:void()")) {
           continue;
         }
+
         logger.debug(
           `requesting fight.fighterOne=${JSON.stringify(fight.fighterOne)}`
         );
-        fighterOneStatPromises.push(sherdog.getStatsFighter(fight.fighterOne));
+        void fighterOneStatPromises.push(
+          sherdog.getStatsFighter(fight.fighterOne)
+        );
       }
     }
   }
@@ -337,6 +340,7 @@ async function main(supabase) {
         if (fight.fighterTwo.link.includes("javascript:void()")) {
           continue;
         }
+
         logger.debug(
           `requesting fight.fighterTwo=${JSON.stringify(fight.fighterTwo)}`
         );
@@ -365,16 +369,19 @@ async function main(supabase) {
           (fighter: any) => fighter.name === fight.fighterOne.name
         ).length > 0;
       if (!fighterOneExists && !fighterOneAlreadyAdded) {
-        if (fight.fighterOne.link.includes("javascript:void()")) {
-          continue;
-        }
-
         logger.debug(
           `fighter one ${fight.fighterOne.name} is not on database, so get stats`
         );
-        const fighterOneStats: Stats = await sherdog.getStatsFighter(
-          fight.fighterOne
-        );
+        const fighterOneStats: Stats = fight.fighterOne.link.includes(
+          "javascript:void()"
+        )
+          ? {
+              country: "",
+              city: "",
+              height: 0,
+              weight: 0,
+            }
+          : await sherdog.getStatsFighter(fight.fighterOne);
 
         if (
           supabaseCountries.filter(
@@ -440,16 +447,19 @@ async function main(supabase) {
           (fighter: any) => fighter.name === fight.fighterTwo.name
         ).length > 0;
       if (!fighterTwoExists && !fighterTwoAlreadyAdded) {
-        if (fight.fighterTwo.link.includes("javascript:void()")) {
-          continue;
-        }
-
         logger.debug(
           `fighter two ${fight.fighterTwo.name} is not on database, so get stats`
         );
-        const fighterTwoStats: Stats = await sherdog.getStatsFighter(
-          fight.fighterTwo
-        );
+        const fighterTwoStats: Stats = fight.fighterTwo.link.includes(
+          "javascript:void()"
+        )
+          ? {
+              country: "",
+              city: "",
+              height: 0,
+              weight: 0,
+            }
+          : await sherdog.getStatsFighter(fight.fighterTwo);
         if (
           supabaseCountries.filter(
             (country) => country.name === fighterTwoStats.country
