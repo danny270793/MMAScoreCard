@@ -82,7 +82,8 @@ export class Sherdog {
 
         const threeParts = three.split(",");
         const country = threeParts[threeParts.length - 1].trim();
-        const city = threeParts[threeParts.length - 2].trim();
+        const cityNotTrimmed = threeParts[threeParts.length - 2];
+        const city = cityNotTrimmed ? cityNotTrimmed.trim() : "";
         const location = threeParts.slice(0, -2).join(", ").trim();
 
         const linkAnchor = cells[1].querySelector("a");
