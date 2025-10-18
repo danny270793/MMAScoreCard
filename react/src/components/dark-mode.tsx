@@ -122,40 +122,6 @@ export const DarkMode: FC = () => {
     <BrowserRouter>
       <ScrollToTop />
       <div className="min-h-screen">
-        {/* Debug Component - Remove this when dark mode is working */}
-        <div className="fixed top-0 right-0 z-50 p-4 m-4 bg-red-500 dark:bg-green-500 text-white text-sm rounded shadow-lg max-w-xs">
-          <div className="font-bold mb-2">Debug Info</div>
-          <div>Theme: <span className="font-mono">{theme}</span></div>
-          <div>Dark class: <span className="font-mono">{document.documentElement.classList.contains('dark') ? 'YES' : 'NO'}</span></div>
-          <div className="mt-2 p-2 border border-white/30 rounded">
-            <div className="dark:hidden text-yellow-300">🌞 Tailwind: Light Active</div>
-            <div className="hidden dark:block text-blue-300">🌙 Tailwind: Dark Active</div>
-          </div>
-          <div className="mt-2 p-2 border border-white/30 rounded test-dark-mode">
-            Custom CSS Test
-          </div>
-          <div className="mt-2 space-y-1">
-            <button
-              onClick={() => {
-                document.documentElement.classList.add('dark')
-                console.log('🟢 Force added dark class')
-              }}
-              className="w-full px-2 py-1 bg-gray-800 text-white rounded text-xs"
-            >
-              Force Dark
-            </button>
-            <button
-              onClick={() => {
-                document.documentElement.classList.remove('dark')
-                console.log('🔴 Force removed dark class')
-              }}
-              className="w-full px-2 py-1 bg-gray-200 text-black rounded text-xs"
-            >
-              Force Light
-            </button>
-          </div>
-        </div>
-        
         <Routes>
           <Route path="/" element={<EventsPage />} />
           <Route path="/events" element={<EventsPage />} />
