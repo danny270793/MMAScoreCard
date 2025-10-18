@@ -112,22 +112,20 @@ export const DarkMode: FC = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="min-h-screen">
-        <Routes>
-          <Route path="/" element={<EventsPage />} />
-          <Route path="/events" element={<EventsPage />} />
-          <Route path="/events/:id" element={<EventPage />} />
-          <Route path="/fights/:id" element={<FightPage />} />
-          <Route path="/fighters/:id" element={<FighterPage />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/language" element={<LanguagePage />} />
-          <Route path="/appearance" element={<AppearancePage />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-          <Route path="/terms-conditions" element={<TermsConditionsPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<EventsPage />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/events/:id" element={<EventPage />} />
+        <Route path="/fights/:id" element={<FightPage />} />
+        <Route path="/fighters/:id" element={<FighterPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/language" element={<LanguagePage />} />
+        <Route path="/appearance" element={<AppearancePage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms-conditions" element={<TermsConditionsPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </BrowserRouter>
   )
 }
