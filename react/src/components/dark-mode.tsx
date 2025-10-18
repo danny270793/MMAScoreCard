@@ -15,7 +15,7 @@ const ScrollToTop: FC = () => {
   const location = useLocation()
   
   useEffect(() => {
-    window.scrollTo(0, 0)
+    globalThis.scrollTo(0, 0)
   }, [location])
 
   return null
@@ -23,25 +23,62 @@ const ScrollToTop: FC = () => {
 
 type Theme = 'light' | 'dark' | 'system'
 
+// Apply theme immediately on module load
+const applyThemeImmediate = (currentTheme: Theme) => {
+  console.log('Applying theme immediately:', currentTheme)
+  console.log('Current document classes before:', document.documentElement.className)
+  
+  if (currentTheme === 'system') {
+    const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)').matches
+    console.log('System prefers dark:', prefersDark)
+    if (prefersDark) {
+      document.documentElement.classList.add('dark')
+      console.log('Added dark class (immediate)')
+    } else {
+      document.documentElement.classList.remove('dark')
+      console.log('Removed dark class (immediate)')
+    }
+  } else if (currentTheme === 'dark') {
+    document.documentElement.classList.add('dark')
+    console.log('Added dark class (explicit dark theme - immediate)')
+  } else {
+    document.documentElement.classList.remove('dark')
+    console.log('Removed dark class (light theme - immediate)')
+  }
+  
+  console.log('Current document classes after:', document.documentElement.className)
+  console.log('Document has dark class:', document.documentElement.classList.contains('dark'))
+}
+
+// Apply theme on module load (with safety checks)
+const getInitialTheme = (): Theme => {
+  try {
+    if (typeof globalThis !== 'undefined' && globalThis.localStorage) {
+      const savedTheme = globalThis.localStorage.getItem('theme') as Theme
+      console.log('Module load - theme from localStorage:', savedTheme)
+      return savedTheme || 'system'
+    }
+  } catch (error) {
+    console.error('Error accessing localStorage:', error)
+  }
+  return 'system'
+}
+
+const initialTheme = getInitialTheme()
+console.log('Module load - initial theme:', initialTheme)
+if (typeof document !== 'undefined') {
+  applyThemeImmediate(initialTheme)
+}
+
 export const DarkMode: FC = () => {
   const [theme, setTheme] = useState<Theme>(() => {
-    const savedTheme = localStorage.getItem('theme')
-    return (savedTheme as Theme) || 'system'
+    const savedTheme = getInitialTheme()
+    console.log('Component init - theme:', savedTheme)
+    return savedTheme
   })
 
   const applyTheme = (currentTheme: Theme) => {
-    if (currentTheme === 'system') {
-      const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)').matches
-      if (prefersDark) {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
-    } else if (currentTheme === 'dark') {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
+    applyThemeImmediate(currentTheme)
   }
 
   // Apply theme on mount and theme changes
@@ -63,15 +100,19 @@ export const DarkMode: FC = () => {
   // Listen for localStorage changes and custom theme change events
   useEffect(() => {
     const handleStorageChange = () => {
-      const newTheme = localStorage.getItem('theme') as Theme
-      if (newTheme && newTheme !== theme) {
+      const newTheme = getInitialTheme()
+      console.log('Storage change detected:', newTheme, 'current theme:', theme)
+      if (newTheme !== theme) {
+        console.log('Updating theme from storage change:', newTheme)
         setTheme(newTheme)
       }
     }
 
     const handleThemeChange = (event: CustomEvent<string>) => {
       const newTheme = event.detail as Theme
+      console.log('Received theme change event:', newTheme, 'current theme:', theme)
       if (newTheme !== theme) {
+        console.log('Setting new theme:', newTheme)
         setTheme(newTheme)
       }
     }
