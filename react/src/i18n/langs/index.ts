@@ -286,4 +286,32 @@ export interface Lang {
   buildNumber: string
   email: string
   social: string
+  language: string
+  chooseLanguage: string
+  currentLanguage: string
+  selectLanguageDescription: string
+  availableLanguages: string
+  multilingualSupport: string
+  multilingualDescription: string
+  languageSettings: string
+  appName: string
+  appConfiguration: string
+  appPreferencesConfiguration: string
+  settings: string
+  information: string
+  informationDescription: string
+  account: string
+  accountDescription: string
+  notifications: string
+  notificationsDescription: string
+  appearance: string
+  appearanceDescription: string
+  changeAppLanguageDescription: string
+  privacySecurity: string
+  privacySecurityDescription: string
+  helpSupport: string
+  helpSupportDescription: string
+  mmaScoreCardSettings: string
+  customizeExperienceDescription: string
+  comingSoon: string
 }
