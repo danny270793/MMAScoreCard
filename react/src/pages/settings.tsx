@@ -1,5 +1,6 @@
 import { type FC } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faArrowLeft,
@@ -16,6 +17,7 @@ import {
 
 export const SettingsPage: FC = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const settingsOptions = [
     {
@@ -53,7 +55,7 @@ export const SettingsPage: FC = () => {
     {
       name: 'Language',
       description: 'Change app language',
-      url: '#',
+      url: '/language',
       icon: faLanguage,
       color: 'text-indigo-600 dark:text-indigo-400',
       bgColor: 'bg-indigo-100 dark:bg-indigo-900/30'
@@ -94,10 +96,10 @@ export const SettingsPage: FC = () => {
               </div>
               <div className="min-w-0 flex-1">
                 <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white truncate">
-                  Settings
+                  {t('settings', { postProcess: 'capitalize' })}
                 </h1>
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                  App Preferences & Configuration
+                  {t('appPreferencesConfiguration', { postProcess: 'capitalize' })}
                 </p>
               </div>
             </div>
@@ -190,16 +192,16 @@ export const SettingsPage: FC = () => {
               </div>
               <div>
                 <div className="text-lg font-semibold text-gray-900 dark:text-white">
-                  Settings
+                  {t('settings', { postProcess: 'capitalize' })}
                 </div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">
-                  App Configuration
+                  {t('appConfiguration', { postProcess: 'capitalize' })}
                 </div>
               </div>
             </div>
             
             <div className="text-sm text-gray-500 dark:text-gray-400">
-              MMA Scorecard
+              {t('appName')}
             </div>
           </div>
         </div>
