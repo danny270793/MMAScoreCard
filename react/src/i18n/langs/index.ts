@@ -326,4 +326,39 @@ export interface Lang {
   darkThemeDescription: string
   themeCustomization: string
   themeCustomizationDescription: string
+  fightDetailsTbd: string
+  days: string
+  mmaFightEvents: string
+  searchEventsPlaceholder: string
+  loading: string
+  refreshEvents: string
+  loadingPremiumEvents: string
+  preparingExcitingFights: string
+  noEpicFightsFound: string
+  noEventsAvailableYet: string
+  tryDifferentSearchTerms: string
+  nextLegendaryBattles: string
+  viewAllEvents: string
+  foundPremiumEvents_one: string
+  foundPremiumEvents_other: string
+  details: string
+  winner: string
+  profile: string
+  winMethods: string
+  lossMethods: string
+  performance: string
+  pageNotFound: string
+  oopsPageNotFound: string
+  pageNotFoundDescription: string
+  requestedUrl: string
+  whereWouldYouLikeToGo: string
+  home: string
+  browseUpcomingEvents: string
+  goBackToMainPage: string
+  learnMoreAboutApp: string
+  stillLost: string
+  stillLostDescription: string
+  goBack: string
+  refreshPage: string
+  error404: string
 }
