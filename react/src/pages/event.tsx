@@ -82,7 +82,7 @@ export const EventPage: FC = () => {
                   {event?.name ?? t('event', { postProcess: 'capitalize' })}
                 </h1>
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                  {t('event', { postProcess: 'capitalize' })} Details
+                  {t('event', { postProcess: 'capitalize' })} {t('details', { postProcess: 'capitalize' })}
                 </p>
               </div>
             </div>
@@ -153,7 +153,7 @@ export const EventPage: FC = () => {
                     <FontAwesomeIcon icon={faFistRaised} className="w-3 h-3 text-red-600 dark:text-red-400" />
                   </div>
                   <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                    {event.fight || 'Fight details TBD'}
+                    {event.fight || t('fightDetailsTbd', { postProcess: 'capitalize' })}
                   </p>
                 </div>
               </div>
@@ -339,7 +339,7 @@ export const EventPage: FC = () => {
               </div>
               
               <div className="text-sm text-gray-500 dark:text-gray-400">
-                MMA Scorecard
+                {t('appName')}
               </div>
             </div>
           )}
