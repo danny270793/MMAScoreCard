@@ -9,6 +9,7 @@ import { AboutPage } from '../pages/about'
 import { SettingsPage } from '../pages/settings'
 import { LanguagePage } from '../pages/language'
 import { AppearancePage } from '../pages/appearance'
+import { PrivacyPolicyPage } from '../pages/privacy-policy'
 
 // Component to scroll to top on route changes
 const ScrollToTop: FC = () => {
@@ -120,6 +121,7 @@ export const DarkMode: FC = () => {
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/language" element={<LanguagePage />} />
           <Route path="/appearance" element={<AppearancePage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
