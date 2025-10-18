@@ -29,22 +29,6 @@ export const SettingsPage: FC = () => {
       bgColor: 'bg-blue-100 dark:bg-blue-900/30'
     },
     {
-      name: t('account', { postProcess: 'capitalize' }),
-      description: t('accountDescription', { postProcess: 'capitalize' }),
-      url: '#',
-      icon: faUser,
-      color: 'text-green-600 dark:text-green-400',
-      bgColor: 'bg-green-100 dark:bg-green-900/30'
-    },
-    {
-      name: t('notifications', { postProcess: 'capitalize' }),
-      description: t('notificationsDescription', { postProcess: 'capitalize' }),
-      url: '#',
-      icon: faBell,
-      color: 'text-yellow-600 dark:text-yellow-400',
-      bgColor: 'bg-yellow-100 dark:bg-yellow-900/30'
-    },
-    {
       name: t('appearance', { postProcess: 'capitalize' }),
       description: t('appearanceDescription', { postProcess: 'capitalize' }),
       url: '#',
