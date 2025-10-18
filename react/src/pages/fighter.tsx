@@ -1,5 +1,6 @@
 import { BlockTitle, f7, List, ListItem, Navbar, Page } from 'framework7-react'
 import { useEffect, type FC } from 'react'
+import { useParams } from 'react-router-dom'
 import {
   actions as backendActions,
   selectors as backendSelectors,
@@ -25,16 +26,13 @@ import { DateUtils } from '../utils/date-utils'
 
 const logger: Logger = new Logger('/src/pages/fighter.tsx')
 
-type FighterPageProps = {
-  id: string
-}
-
 interface Streak {
   type: 'win' | 'loss'
   count: number
 }
 
-export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
+export const FighterPage: FC = () => {
+  const { id } = useParams<{ id: string }>()
   const { t } = useTranslation()
   const dispatch: Dispatch = useDispatch()
 
@@ -44,15 +42,19 @@ export const FighterPage: FC<FighterPageProps> = (props: FighterPageProps) => {
   const state: string = useSelector(backendSelectors.getState)
 
   const onPullRefreshed = async (done: () => void) => {
-    dispatch(backendActions.getFighter(props.id))
+    if (id) {
+      dispatch(backendActions.getFighter(id))
+    }
     done()
   }
 
   useEffect(() => {
-    logger.debug(`props.id=${props.id}`)
-    dispatch(backendActions.getFighter(props.id))
+    if (id) {
+      logger.debug(`id=${id}`)
+      dispatch(backendActions.getFighter(id))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [id])
 
   useEffect(() => {
     if (!error) {
