@@ -1,5 +1,5 @@
-import { App, View } from 'framework7-react'
 import { useEffect, useState, type FC } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { EventsPage } from '../pages/events'
 import { EventPage } from '../pages/event'
 import { FightPage } from '../pages/fight'
@@ -21,43 +21,28 @@ export const DarkMode: FC = () => {
     return () => mediaQuery.removeEventListener('change', handler)
   }, [])
 
+  // Apply dark mode class to document
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [darkMode])
+
   return (
-    <App
-      name="MMAScoreCard"
-      // theme="ios"
-      darkMode={darkMode}
-      routes={[
-        {
-          path: '/',
-          component: EventsPage,
-        },
-        {
-          path: '/events',
-          component: EventsPage,
-        },
-        {
-          path: '/events/:id',
-          component: EventPage,
-        },
-        {
-          path: '/fights/:id',
-          component: FightPage,
-        },
-        {
-          path: '/fighters/:id',
-          component: FighterPage,
-        },
-        {
-          path: '/about',
-          component: AboutPage,
-        },
-        {
-          path: '(.*)',
-          component: NotFound,
-        },
-      ]}
-    >
-      <View browserHistory />
-    </App>
+    <BrowserRouter>
+      <div className="min-h-screen">
+        <Routes>
+          <Route path="/" element={<EventsPage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/events/:id" element={<EventPage />} />
+          <Route path="/fights/:id" element={<FightPage />} />
+          <Route path="/fighters/:id" element={<FighterPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   )
 }
