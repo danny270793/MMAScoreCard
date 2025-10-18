@@ -27,12 +27,12 @@ const logger: Logger = new Logger('/src/pages/events.tsx')
 
 interface EventCardProps {
   event: Event
-  t: (key: string, options?: Record<string, unknown>) => string
 }
 
-const EventCard: FC<EventCardProps> = ({ event, t }) => {
+const EventCard: FC<EventCardProps> = ({ event }) => {
   const daysUntil = DateUtils.daysBetween(event.date, new Date())
   const isUpcoming = event.status === 'uppcoming'
+  const { t } = useTranslation()
 
   return (
     <Link
@@ -375,7 +375,7 @@ export const EventsPage: FC = () => {
             )}
             <div className="space-y-4 sm:space-y-6">
               {filteredEvents.map((event) => (
-                <EventCard key={event.id} event={event} t={t} />
+                <EventCard key={event.id} event={event}/>
               ))}
               </div>
                   </>
