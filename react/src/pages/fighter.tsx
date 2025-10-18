@@ -160,7 +160,7 @@ export const FighterPage: FC = () => {
   )
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900" style={{ marginTop: 'env(safe-area-inset-top)' }}>
+    <div className="bg-gray-50 dark:bg-gray-900" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
       <PullToRefresh onRefresh={handleRefresh} isRefreshing={state === 'getting_fighter'}>
       {/* Clean header */}
       <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
