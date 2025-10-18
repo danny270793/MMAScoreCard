@@ -1,5 +1,6 @@
 import { BlockTitle, f7, List, ListItem, Navbar, Page } from 'framework7-react'
 import { useEffect, type FC } from 'react'
+import { useParams } from 'react-router-dom'
 import {
   actions as backendActions,
   selectors as backendSelectors,
@@ -28,11 +29,8 @@ import { TranslationUtils } from '../utils/translations'
 
 const logger: Logger = new Logger('/src/pages/fight.tsx')
 
-type FightPageProps = {
-  id: string
-}
-
-export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
+export const FightPage: FC = () => {
+  const { id } = useParams<{ id: string }>()
   const { t } = useTranslation()
   const dispatch: Dispatch = useDispatch()
 
@@ -42,15 +40,19 @@ export const FightPage: FC<FightPageProps> = (props: FightPageProps) => {
   const state: string = useSelector(backendSelectors.getState)
 
   const onPullRefreshed = async (done: () => void) => {
-    dispatch(backendActions.getFight(props.id))
+    if (id) {
+      dispatch(backendActions.getFight(id))
+    }
     done()
   }
 
   useEffect(() => {
-    logger.debug(`props.id=${props.id}`)
-    dispatch(backendActions.getFight(props.id))
+    if (id) {
+      logger.debug(`id=${id}`)
+      dispatch(backendActions.getFight(id))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [id])
 
   useEffect(() => {
     if (!error) {
