@@ -3,14 +3,8 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { store } from './reducers/index.ts'
 import './styles/index.css'
-import './styles/framework7.css'
 import './i18n'
-import Framework7 from 'framework7/lite-bundle'
-import Framework7React from 'framework7-react'
 import { DarkMode } from './components/dark-mode.tsx'
-
-// eslint-disable-next-line react-hooks/rules-of-hooks
-Framework7.use(Framework7React)
 
 if (window.location.href.startsWith('capacitor://')) {
   if (!window.location.href.startsWith('capacitor://localhost/')) {
