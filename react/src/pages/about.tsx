@@ -1,12 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import { App, type AppInfo } from '@capacitor/app'
 import { useEffect, useState, type FC } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faArrowLeft,
   faFire,
-  faInfoCircle,
   faUser,
   faEnvelope,
   faGlobe,
@@ -22,6 +21,7 @@ import {
 export const AboutPage: FC = () => {
   const { t } = useTranslation()
   const [appInfo, setAppInfo] = useState<AppInfo | undefined>(undefined)
+  const navigate = useNavigate()
 
   const getAppInfo = async () => {
     try {
@@ -84,12 +84,12 @@ export const AboutPage: FC = () => {
       <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
         <div className="px-4 sm:px-6 py-4 sm:py-5">
           <div className="flex items-center gap-3 sm:gap-4">
-            <Link
-              to="/events"
+            <button
+              onClick={() => navigate(-1)}
               className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 min-w-[40px] min-h-[40px] flex items-center justify-center"
             >
               <FontAwesomeIcon icon={faArrowLeft} className="w-4 h-4" />
-            </Link>
+            </button>
             <div className="flex items-center gap-3 flex-1">
               <div className="min-w-0 flex-1">
                 <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white truncate">
