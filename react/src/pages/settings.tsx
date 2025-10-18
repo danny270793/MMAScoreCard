@@ -21,56 +21,56 @@ export const SettingsPage: FC = () => {
 
   const settingsOptions = [
     {
-      name: 'Information',
-      description: 'About the app and developer',
+      name: t('information', { postProcess: 'capitalize' }),
+      description: t('informationDescription', { postProcess: 'capitalize' }),
       url: '/about',
       icon: faInfoCircle,
       color: 'text-blue-600 dark:text-blue-400',
       bgColor: 'bg-blue-100 dark:bg-blue-900/30'
     },
     {
-      name: 'Account',
-      description: 'Manage your profile and preferences',
+      name: t('account', { postProcess: 'capitalize' }),
+      description: t('accountDescription', { postProcess: 'capitalize' }),
       url: '#',
       icon: faUser,
       color: 'text-green-600 dark:text-green-400',
       bgColor: 'bg-green-100 dark:bg-green-900/30'
     },
     {
-      name: 'Notifications',
-      description: 'Configure alerts and updates',
+      name: t('notifications', { postProcess: 'capitalize' }),
+      description: t('notificationsDescription', { postProcess: 'capitalize' }),
       url: '#',
       icon: faBell,
       color: 'text-yellow-600 dark:text-yellow-400',
       bgColor: 'bg-yellow-100 dark:bg-yellow-900/30'
     },
     {
-      name: 'Appearance',
-      description: 'Theme and display options',
+      name: t('appearance', { postProcess: 'capitalize' }),
+      description: t('appearanceDescription', { postProcess: 'capitalize' }),
       url: '#',
       icon: faPalette,
       color: 'text-purple-600 dark:text-purple-400',
       bgColor: 'bg-purple-100 dark:bg-purple-900/30'
     },
     {
-      name: 'Language',
-      description: 'Change app language',
+      name: t('language', { postProcess: 'capitalize' }),
+      description: t('changeAppLanguageDescription', { postProcess: 'capitalize' }),
       url: '/language',
       icon: faLanguage,
       color: 'text-indigo-600 dark:text-indigo-400',
       bgColor: 'bg-indigo-100 dark:bg-indigo-900/30'
     },
     {
-      name: 'Privacy & Security',
-      description: 'Data and security settings',
+      name: t('privacySecurity', { postProcess: 'capitalize' }),
+      description: t('privacySecurityDescription', { postProcess: 'capitalize' }),
       url: '#',
       icon: faShieldAlt,
       color: 'text-red-600 dark:text-red-400',
       bgColor: 'bg-red-100 dark:bg-red-900/30'
     },
     {
-      name: 'Help & Support',
-      description: 'Get help and contact support',
+      name: t('helpSupport', { postProcess: 'capitalize' }),
+      description: t('helpSupportDescription', { postProcess: 'capitalize' }),
       url: '#',
       icon: faQuestionCircle,
       color: 'text-orange-600 dark:text-orange-400',
@@ -132,7 +132,7 @@ export const SettingsPage: FC = () => {
                       </p>
                     </div>
                     <div className="text-gray-400 dark:text-gray-500">
-                      <span className="text-xs text-gray-500 dark:text-gray-400">Coming Soon</span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400">{t('comingSoon', { postProcess: 'capitalize' })}</span>
                     </div>
                   </div>
                 </div>
@@ -173,10 +173,10 @@ export const SettingsPage: FC = () => {
               </div>
             </div>
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-              MMA Scorecard Settings
+              {t('mmaScoreCardSettings')}
             </h3>
             <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto">
-              Customize your MMA experience with personalized settings and preferences. More options coming soon!
+              {t('customizeExperienceDescription', { postProcess: 'capitalize' })}
             </p>
           </div>
         </section>
