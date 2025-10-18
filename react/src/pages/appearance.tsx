@@ -54,11 +54,14 @@ export const AppearancePage: FC = () => {
   ]
 
   const handleThemeChange = (theme: Theme) => {
+    console.log('Appearance page: changing theme to:', theme)
     setCurrentTheme(theme)
     localStorage.setItem('theme', theme)
+    console.log('Saved to localStorage:', localStorage.getItem('theme'))
     
     // Dispatch custom event to notify main app component
     const themeChangeEvent = new CustomEvent('themechange', { detail: theme })
+    console.log('Dispatching theme change event:', theme)
     globalThis.dispatchEvent(themeChangeEvent)
   }
 
