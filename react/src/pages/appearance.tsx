@@ -1,4 +1,4 @@
-import { type FC, useState, useEffect } from 'react'
+import { type FC, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -53,43 +53,14 @@ export const AppearancePage: FC = () => {
     }
   ]
 
-  const applyTheme = (theme: Theme) => {
-    localStorage.setItem('theme', theme)
-    
-    if (theme === 'system') {
-      const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)').matches
-      if (prefersDark) {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
-    } else if (theme === 'dark') {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }
-
   const handleThemeChange = (theme: Theme) => {
     setCurrentTheme(theme)
-    applyTheme(theme)
+    localStorage.setItem('theme', theme)
+    
+    // Dispatch custom event to notify main app component
+    const themeChangeEvent = new CustomEvent('themechange', { detail: theme })
+    globalThis.dispatchEvent(themeChangeEvent)
   }
-
-  useEffect(() => {
-    // Apply the current theme on component mount
-    applyTheme(currentTheme)
-  }, [])
-
-  useEffect(() => {
-    // Listen for system theme changes when system theme is selected
-    if (currentTheme === 'system') {
-      const mediaQuery = globalThis.matchMedia('(prefers-color-scheme: dark)')
-      const handleChange = () => applyTheme('system')
-      
-      mediaQuery.addEventListener('change', handleChange)
-      return () => mediaQuery.removeEventListener('change', handleChange)
-    }
-  }, [currentTheme])
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
