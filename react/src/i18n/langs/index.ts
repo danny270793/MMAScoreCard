@@ -307,10 +307,10 @@ export interface Lang {
   appearance: string
   appearanceDescription: string
   changeAppLanguageDescription: string
-  privacySecurity: string
-  privacySecurityDescription: string
-  helpSupport: string
-  helpSupportDescription: string
+  privacyPolicy: string
+  privacyPolicyDescription: string
+  termsConditions: string
+  termsConditionsDescription: string
   mmaScoreCardSettings: string
   customizeExperienceDescription: string
   comingSoon: string

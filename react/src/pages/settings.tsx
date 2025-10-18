@@ -9,7 +9,7 @@ import {
   faPalette,
   faLanguage,
   faShieldAlt,
-  faQuestionCircle,
+  faFileAlt,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -43,18 +43,18 @@ export const SettingsPage: FC = () => {
       bgColor: 'bg-indigo-100 dark:bg-indigo-900/30'
     },
     {
-      name: t('privacySecurity', { postProcess: 'capitalize' }),
-      description: t('privacySecurityDescription', { postProcess: 'capitalize' }),
-      url: '#',
+      name: t('privacyPolicy', { postProcess: 'capitalize' }),
+      description: t('privacyPolicyDescription', { postProcess: 'capitalize' }),
+      url: '/privacy-policy',
       icon: faShieldAlt,
       color: 'text-red-600 dark:text-red-400',
       bgColor: 'bg-red-100 dark:bg-red-900/30'
     },
     {
-      name: t('helpSupport', { postProcess: 'capitalize' }),
-      description: t('helpSupportDescription', { postProcess: 'capitalize' }),
-      url: '#',
-      icon: faQuestionCircle,
+      name: t('termsConditions', { postProcess: 'capitalize' }),
+      description: t('termsConditionsDescription', { postProcess: 'capitalize' }),
+      url: '/terms-conditions',
+      icon: faFileAlt,
       color: 'text-orange-600 dark:text-orange-400',
       bgColor: 'bg-orange-100 dark:bg-orange-900/30'
     }
