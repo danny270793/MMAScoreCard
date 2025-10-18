@@ -8,6 +8,7 @@ import { NotFound } from '../pages/not-found'
 import { AboutPage } from '../pages/about'
 import { SettingsPage } from '../pages/settings'
 import { LanguagePage } from '../pages/language'
+import { AppearancePage } from '../pages/appearance'
 
 // Component to scroll to top on route changes
 const ScrollToTop: FC = () => {
@@ -55,6 +56,7 @@ export const DarkMode: FC = () => {
           <Route path="/fighters/:id" element={<FighterPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/language" element={<LanguagePage />} />
+          <Route path="/appearance" element={<AppearancePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
