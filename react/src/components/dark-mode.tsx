@@ -21,28 +21,71 @@ const ScrollToTop: FC = () => {
   return null
 }
 
+type Theme = 'light' | 'dark' | 'system'
+
 export const DarkMode: FC = () => {
-  const [darkMode, setDarkMode] = useState(
-    () => window.matchMedia('(prefers-color-scheme: dark)').matches,
-  )
+  const [theme, setTheme] = useState<Theme>(() => {
+    const savedTheme = localStorage.getItem('theme')
+    return (savedTheme as Theme) || 'system'
+  })
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    const handler = (event: MediaQueryListEvent) => setDarkMode(event.matches)
-
-    mediaQuery.addEventListener('change', handler)
-
-    return () => mediaQuery.removeEventListener('change', handler)
-  }, [])
-
-  // Apply dark mode class to document
-  useEffect(() => {
-    if (darkMode) {
+  const applyTheme = (currentTheme: Theme) => {
+    if (currentTheme === 'system') {
+      const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)').matches
+      if (prefersDark) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    } else if (currentTheme === 'dark') {
       document.documentElement.classList.add('dark')
     } else {
       document.documentElement.classList.remove('dark')
     }
-  }, [darkMode])
+  }
+
+  // Apply theme on mount and theme changes
+  useEffect(() => {
+    applyTheme(theme)
+  }, [theme])
+
+  // Listen for system preference changes when system theme is selected
+  useEffect(() => {
+    if (theme === 'system') {
+      const mediaQuery = globalThis.matchMedia('(prefers-color-scheme: dark)')
+      const handler = () => applyTheme('system')
+
+      mediaQuery.addEventListener('change', handler)
+      return () => mediaQuery.removeEventListener('change', handler)
+    }
+  }, [theme])
+
+  // Listen for localStorage changes and custom theme change events
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const newTheme = localStorage.getItem('theme') as Theme
+      if (newTheme && newTheme !== theme) {
+        setTheme(newTheme)
+      }
+    }
+
+    const handleThemeChange = (event: CustomEvent<string>) => {
+      const newTheme = event.detail as Theme
+      if (newTheme !== theme) {
+        setTheme(newTheme)
+      }
+    }
+
+    // Listen for storage changes (cross-tab sync)
+    globalThis.addEventListener('storage', handleStorageChange)
+    // Listen for custom theme change events (same-page sync)
+    globalThis.addEventListener('themechange', handleThemeChange as EventListener)
+    
+    return () => {
+      globalThis.removeEventListener('storage', handleStorageChange)
+      globalThis.removeEventListener('themechange', handleThemeChange as EventListener)
+    }
+  }, [theme])
 
   return (
     <BrowserRouter>
