@@ -312,9 +312,30 @@
   border-color: rgb(107 33 168 / var(--tw-border-opacity));
 }
 
+/* Background colors with opacity */
+.dark .dark\:bg-gray-800\/50 {
+  background-color: rgb(31 41 55 / 0.5);
+}
+
 /* Hover states */
 .dark .dark\:hover\:bg-gray-800\/50:hover {
   background-color: rgb(31 41 55 / 0.5);
+}
+
+.dark .dark\:hover\:bg-blue-900\/30:hover {
+  background-color: rgb(30 58 138 / 0.3);
+}
+
+.dark .dark\:hover\:bg-purple-900\/30:hover {
+  background-color: rgb(88 28 135 / 0.3);
+}
+
+.dark .dark\:hover\:bg-yellow-900\/30:hover {
+  background-color: rgb(113 63 18 / 0.3);
+}
+
+.dark .dark\:hover\:bg-blue-900\/20:hover {
+  background-color: rgb(30 58 138 / 0.2);
 }
 
 .dark .dark\:hover\:border-gray-300:hover {
