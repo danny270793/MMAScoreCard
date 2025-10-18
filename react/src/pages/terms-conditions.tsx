@@ -30,7 +30,7 @@ export const TermsConditionsPage: FC = () => {
                   {t('termsConditions', { postProcess: 'capitalize' })}
                 </h1>
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                  MMA Scorecard
+                  {t('appName')}
                 </p>
               </div>
             </div>
@@ -271,7 +271,7 @@ export const TermsConditionsPage: FC = () => {
               </div>
               <div>
                 <div className="text-lg font-semibold text-gray-900 dark:text-white">
-                  MMA Scorecard
+                  {t('appName')}
                 </div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">
                   Términos transparentes
