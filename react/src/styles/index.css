@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/* Test dark mode styles */
+.test-dark-mode {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+html.dark .test-dark-mode {
+  background-color: #1f2937;
+  color: #ffffff;
+}
+
 /* Custom animations for beautiful MMA Events page */
 @keyframes gradient {
   0%, 100% {
