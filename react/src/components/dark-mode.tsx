@@ -25,13 +25,8 @@ type Theme = 'light' | 'dark' | 'system'
 
 // Theme application function
 const applyTheme = (currentTheme: Theme) => {
-  console.log('🎨 Applying theme:', currentTheme)
-  console.log('📄 Before - document classes:', document.documentElement.className)
-  console.log('🌙 Before - has dark class:', document.documentElement.classList.contains('dark'))
-  
   if (currentTheme === 'system') {
     const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)').matches
-    console.log('💻 System prefers dark:', prefersDark)
     if (prefersDark) {
       document.documentElement.classList.add('dark')
     } else {
@@ -39,15 +34,9 @@ const applyTheme = (currentTheme: Theme) => {
     }
   } else if (currentTheme === 'dark') {
     document.documentElement.classList.add('dark')
-    console.log('🌙 Added dark class explicitly')
   } else {
     document.documentElement.classList.remove('dark')
-    console.log('☀️ Removed dark class (light mode)')
   }
-  
-  console.log('📄 After - document classes:', document.documentElement.className)
-  console.log('🌙 After - has dark class:', document.documentElement.classList.contains('dark'))
-  console.log('🎯 Theme application complete for:', currentTheme)
 }
 
 // Get theme from localStorage safely
