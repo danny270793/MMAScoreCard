@@ -1,11 +1,22 @@
 import { useEffect, useState, type FC } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { EventsPage } from '../pages/events'
 import { EventPage } from '../pages/event'
 import { FightPage } from '../pages/fight'
 import { FighterPage } from '../pages/fighter'
 import { NotFound } from '../pages/not-found'
 import { AboutPage } from '../pages/about'
+
+// Component to scroll to top on route changes
+const ScrollToTop: FC = () => {
+  const location = useLocation()
+  
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location])
+
+  return null
+}
 
 export const DarkMode: FC = () => {
   const [darkMode, setDarkMode] = useState(
@@ -32,6 +43,7 @@ export const DarkMode: FC = () => {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="min-h-screen">
         <Routes>
           <Route path="/" element={<EventsPage />} />
