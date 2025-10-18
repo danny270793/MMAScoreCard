@@ -307,8 +307,8 @@ export interface Lang {
   appearance: string
   appearanceDescription: string
   changeAppLanguageDescription: string
-  privacySecurity: string
-  privacySecurityDescription: string
+  privacyPolicy: string
+  privacyPolicyDescription: string
   helpSupport: string
   helpSupportDescription: string
   mmaScoreCardSettings: string
