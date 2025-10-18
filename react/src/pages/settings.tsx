@@ -43,9 +43,9 @@ export const SettingsPage: FC = () => {
       bgColor: 'bg-indigo-100 dark:bg-indigo-900/30'
     },
     {
-      name: t('privacySecurity', { postProcess: 'capitalize' }),
-      description: t('privacySecurityDescription', { postProcess: 'capitalize' }),
-      url: '#',
+      name: t('privacyPolicy', { postProcess: 'capitalize' }),
+      description: t('privacyPolicyDescription', { postProcess: 'capitalize' }),
+      url: '/privacy-policy',
       icon: faShieldAlt,
       color: 'text-red-600 dark:text-red-400',
       bgColor: 'bg-red-100 dark:bg-red-900/30'
