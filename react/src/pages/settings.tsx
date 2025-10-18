@@ -9,7 +9,7 @@ import {
   faPalette,
   faLanguage,
   faShieldAlt,
-  faQuestionCircle,
+  faFileAlt,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -51,10 +51,10 @@ export const SettingsPage: FC = () => {
       bgColor: 'bg-red-100 dark:bg-red-900/30'
     },
     {
-      name: t('helpSupport', { postProcess: 'capitalize' }),
-      description: t('helpSupportDescription', { postProcess: 'capitalize' }),
-      url: '#',
-      icon: faQuestionCircle,
+      name: t('termsConditions', { postProcess: 'capitalize' }),
+      description: t('termsConditionsDescription', { postProcess: 'capitalize' }),
+      url: '/terms-conditions',
+      icon: faFileAlt,
       color: 'text-orange-600 dark:text-orange-400',
       bgColor: 'bg-orange-100 dark:bg-orange-900/30'
     }
