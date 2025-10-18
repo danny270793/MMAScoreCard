@@ -177,7 +177,7 @@ export const FighterPage: FC = () => {
                   {fighter ? fighter.name : t('fighter', { postProcess: 'capitalize' })}
                 </h1>
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                  {fighter?.nickname ? `"${fighter.nickname}"` : t('fighter', { postProcess: 'capitalize' }) + ' Profile'}
+                  {fighter?.nickname ? `"${fighter.nickname}"` : t('fighter', { postProcess: 'capitalize' }) + ' ' + t('profile', { postProcess: 'capitalize' })}
                 </p>
               </div>
             </div>
@@ -244,7 +244,7 @@ export const FighterPage: FC = () => {
                     <span className="text-sm text-gray-600 dark:text-gray-400">{t('nickname', { postProcess: 'capitalize' })}</span>
                   </div>
                   <div className="text-sm font-medium text-gray-900 dark:text-white">
-                    {fighter.nickname || 'N/A'}
+                    {fighter.nickname || t('notFound', { postProcess: 'capitalize' })}
                   </div>
                 </div>
 
@@ -409,7 +409,7 @@ export const FighterPage: FC = () => {
                 <div className="space-y-3">
                   <h3 className="text-sm font-semibold text-green-600 dark:text-green-400 flex items-center gap-2">
                     <FontAwesomeIcon icon={faThumbsUp} className="w-3 h-3" />
-                    Win Methods
+                    {t('winMethods', { postProcess: 'capitalize' })}
                   </h3>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
@@ -437,7 +437,7 @@ export const FighterPage: FC = () => {
                 <div className="space-y-3">
                   <h3 className="text-sm font-semibold text-red-600 dark:text-red-400 flex items-center gap-2">
                     <FontAwesomeIcon icon={faThumbsDown} className="w-3 h-3" />
-                    Loss Methods
+                    {t('lossMethods', { postProcess: 'capitalize' })}
                   </h3>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
@@ -465,7 +465,7 @@ export const FighterPage: FC = () => {
                 <div className="space-y-3 sm:col-span-2 lg:col-span-1">
                   <h3 className="text-sm font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-2">
                     <FontAwesomeIcon icon={faChartLine} className="w-3 h-3" />
-                    Performance
+                    {t('performance', { postProcess: 'capitalize' })}
                   </h3>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
@@ -634,7 +634,7 @@ export const FighterPage: FC = () => {
               </div>
               
               <div className="text-sm text-gray-500 dark:text-gray-400">
-                MMA Scorecard
+                {t('appName')}
               </div>
             </div>
           )}

@@ -88,7 +88,7 @@ export const FightPage: FC = () => {
                   }
                 </h1>
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                  {t('fight', { postProcess: 'capitalize' })} Details
+                  {t('fight', { postProcess: 'capitalize' })} {t('details', { postProcess: 'capitalize' })}
                 </p>
               </div>
             </div>
@@ -159,7 +159,7 @@ export const FightPage: FC = () => {
                     <FontAwesomeIcon icon={faFistRaised} className="w-3 h-3 text-red-600 dark:text-red-400" />
                   </div>
                   <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                    {event.fight || 'Fight details TBD'}
+                    {event.fight || t('fightDetailsTbd', { postProcess: 'capitalize' })}
                   </p>
                 </div>
               </div>
@@ -388,7 +388,7 @@ export const FightPage: FC = () => {
                             {fight.fighterOne.name}
                             {isWinner && (
                               <span className="ml-2 px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs font-medium rounded">
-                                Winner
+                                {t('winner', { postProcess: 'capitalize' })}
                               </span>
                             )}
                           </h3>
@@ -447,7 +447,7 @@ export const FightPage: FC = () => {
                             {fight.fighterTwo.name}
                             {isWinner && (
                               <span className="ml-2 px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs font-medium rounded">
-                                Winner
+                                {t('winner', { postProcess: 'capitalize' })}
                               </span>
                             )}
                           </h3>
@@ -484,7 +484,7 @@ export const FightPage: FC = () => {
               </div>
               
               <div className="text-sm text-gray-500 dark:text-gray-400">
-                MMA Scorecard
+                {t('appName')}
               </div>
             </div>
           )}

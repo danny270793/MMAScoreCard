@@ -22,28 +22,28 @@ export const NotFound: FC = () => {
 
   const quickLinks = [
     {
-      name: 'Events',
+      name: t('events', { postProcess: 'capitalize' }),
       url: '/events',
       icon: faFistRaised,
       color: 'text-red-600 dark:text-red-400',
       bgColor: 'bg-red-100 dark:bg-red-900/30',
-      description: 'Browse upcoming and past MMA events'
+      description: t('browseUpcomingEvents', { postProcess: 'capitalize' })
     },
     {
-      name: 'Home',
+      name: t('home', { postProcess: 'capitalize' }),
       url: '/',
       icon: faHome,
       color: 'text-blue-600 dark:text-blue-400',
       bgColor: 'bg-blue-100 dark:bg-blue-900/30',
-      description: 'Go back to the main page'
+      description: t('goBackToMainPage', { postProcess: 'capitalize' })
     },
     {
-      name: 'About',
+      name: t('about', { postProcess: 'capitalize' }),
       url: '/about',
       icon: faInfoCircle,
       color: 'text-purple-600 dark:text-purple-400',
       bgColor: 'bg-purple-100 dark:bg-purple-900/30',
-      description: 'Learn more about the app'
+      description: t('learnMoreAboutApp', { postProcess: 'capitalize' })
     }
   ]
 
@@ -65,7 +65,7 @@ export const NotFound: FC = () => {
                   {t('notFound', { postProcess: 'capitalize' })}
                 </h1>
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                  Page Not Found
+                  {t('pageNotFound', { postProcess: 'capitalize' })}
                 </p>
               </div>
             </div>
@@ -92,10 +92,10 @@ export const NotFound: FC = () => {
               404
             </h2>
             <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-3">
-              Oops! Page Not Found
+              {t('oopsPageNotFound', { postProcess: 'capitalize' })}
             </h3>
             <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto text-base sm:text-lg">
-              The page you're looking for doesn't exist or has been moved to a different location.
+              {t('pageNotFoundDescription', { postProcess: 'capitalize' })}
             </p>
           </div>
 
@@ -103,7 +103,7 @@ export const NotFound: FC = () => {
           <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-4 sm:p-6 shadow-sm mb-8">
             <div className="flex items-center justify-center gap-3 mb-2">
               <FontAwesomeIcon icon={faSearch} className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-              <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Requested URL:</span>
+              <span className="text-sm font-medium text-gray-600 dark:text-gray-400">{t('requestedUrl', { postProcess: 'capitalize' })}</span>
             </div>
             <code className="text-sm sm:text-base font-mono bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-3 py-2 rounded-md break-all">
               {globalThis.location.pathname}
@@ -114,7 +114,7 @@ export const NotFound: FC = () => {
         {/* Quick Navigation Section */}
         <section className="mb-8">
           <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-            Where would you like to go?
+            {t('whereWouldYouLikeToGo', { postProcess: 'capitalize' })}
           </h3>
           
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -147,23 +147,23 @@ export const NotFound: FC = () => {
               </div>
             </div>
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-              Still Lost?
+              {t('stillLost', { postProcess: 'capitalize' })}
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              If you believe this is an error, try refreshing the page or go back to the previous page.
+              {t('stillLostDescription', { postProcess: 'capitalize' })}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button
                 onClick={() => navigate(-1)}
                 className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200"
               >
-                Go Back
+                {t('goBack', { postProcess: 'capitalize' })}
               </button>
               <button
                 onClick={handleRefresh}
                 className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-lg transition-colors duration-200"
               >
-                Refresh Page
+                {t('refreshPage', { postProcess: 'capitalize' })}
               </button>
             </div>
           </div>
@@ -180,16 +180,16 @@ export const NotFound: FC = () => {
               </div>
               <div>
                 <div className="text-lg font-semibold text-gray-900 dark:text-white">
-                  Page Not Found
+                  {t('pageNotFound', { postProcess: 'capitalize' })}
                 </div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">
-                  Error 404
+                  {t('error404', { postProcess: 'capitalize' })}
                 </div>
               </div>
             </div>
             
             <div className="text-sm text-gray-500 dark:text-gray-400">
-              MMA Scorecard
+              {t('appName')}
             </div>
           </div>
         </div>
