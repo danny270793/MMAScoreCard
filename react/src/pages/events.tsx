@@ -19,6 +19,7 @@ import {
   faTimes,
   faFistRaised,
   faFire,
+  faBars,
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
 import { Logger } from '../utils/logger'
@@ -248,6 +249,12 @@ export const EventsPage: FC = () => {
               >
                 <FontAwesomeIcon icon={isSearchOpen ? faTimes : faSearch} className="w-4 h-4" />
               </button>
+              <Link
+                to="/settings"
+                className="p-3 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
+              >
+                <FontAwesomeIcon icon={faBars} className="w-4 h-4" />
+              </Link>
               <Link
                 to="/about"
                 className="p-3 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
