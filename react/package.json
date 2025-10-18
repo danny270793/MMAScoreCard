@@ -20,8 +20,6 @@
     "@reduxjs/toolkit": "^2.8.2",
     "@supabase/supabase-js": "^2.50.0",
     "@tailwindcss/vite": "^4.1.8",
-    "framework7": "^8.3.4",
-    "framework7-react": "^8.3.4",
     "i18next": "^25.2.1",
     "i18next-browser-languagedetector": "^8.1.0",
     "react": "^19.1.0",
