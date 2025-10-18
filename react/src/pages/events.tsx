@@ -1,6 +1,7 @@
 import type { Dispatch } from '@reduxjs/toolkit'
 import { useEffect, useState, type FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import {
   actions as backendActions,
   selectors as backendSelectors,
@@ -34,8 +35,8 @@ const EventCard: FC<EventCardProps> = ({ event, t }) => {
   const isUpcoming = event.status === 'uppcoming'
 
   return (
-    <a
-      href={`/events/${event.id}`}
+    <Link
+      to={`/events/${event.id}`}
       className="block hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-200"
     >
       <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-4 sm:p-6 shadow-sm">
@@ -120,7 +121,7 @@ const EventCard: FC<EventCardProps> = ({ event, t }) => {
           )}
         </div>
       </div>
-    </a>
+    </Link>
   )
 }
 
@@ -247,12 +248,12 @@ export const EventsPage: FC = () => {
               >
                 <FontAwesomeIcon icon={isSearchOpen ? faTimes : faSearch} className="w-4 h-4" />
               </button>
-              <a
-                href="/about"
+              <Link
+                to="/about"
                 className="p-3 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
               >
                 <FontAwesomeIcon icon={faInfo} className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </div>
 
