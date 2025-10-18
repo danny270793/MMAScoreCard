@@ -1,5 +1,5 @@
 import { useEffect, type FC } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import {
   actions as backendActions,
   selectors as backendSelectors,
@@ -46,6 +46,7 @@ export const FighterPage: FC = () => {
   const { id } = useParams<{ id: string }>()
   const { t } = useTranslation()
   const dispatch: Dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const fighter: Fighter | undefined = useSelector(backendSelectors.getFighter)
   const fights: Fight[] = useSelector(backendSelectors.getFights)
@@ -164,12 +165,12 @@ export const FighterPage: FC = () => {
       <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
         <div className="px-4 sm:px-6 py-4 sm:py-5">
           <div className="flex items-center gap-3 sm:gap-4">
-            <Link
-              to="/events"
+            <button
+              onClick={() => navigate(-1)}
               className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 min-w-[40px] min-h-[40px] flex items-center justify-center"
             >
               <FontAwesomeIcon icon={faArrowLeft} className="w-4 h-4" />
-            </Link>
+            </button>
             <div className="flex items-center gap-3 flex-1">
               <div className="min-w-0 flex-1">
                 <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white truncate">
