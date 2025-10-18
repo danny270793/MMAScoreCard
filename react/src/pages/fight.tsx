@@ -79,9 +79,6 @@ export const FightPage: FC = () => {
               <FontAwesomeIcon icon={faArrowLeft} className="w-4 h-4" />
             </Link>
             <div className="flex items-center gap-3 flex-1">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-red-600 dark:bg-red-500 flex items-center justify-center">
-                <FontAwesomeIcon icon={faFistRaised} className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-              </div>
               <div className="min-w-0 flex-1">
                 <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white truncate">
                   {fight
