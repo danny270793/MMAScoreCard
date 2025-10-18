@@ -8,7 +8,6 @@ import Framework7 from 'framework7/lite-bundle'
 import Framework7React from 'framework7-react'
 import { DarkMode } from './components/dark-mode.tsx'
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
 Framework7.use(Framework7React)
 
 if (window.location.href.startsWith('capacitor://')) {
