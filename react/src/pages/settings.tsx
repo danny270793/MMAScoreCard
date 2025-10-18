@@ -6,8 +6,6 @@ import {
   faArrowLeft,
   faCog,
   faInfoCircle,
-  faUser,
-  faBell,
   faPalette,
   faLanguage,
   faShieldAlt,
@@ -31,7 +29,7 @@ export const SettingsPage: FC = () => {
     {
       name: t('appearance', { postProcess: 'capitalize' }),
       description: t('appearanceDescription', { postProcess: 'capitalize' }),
-      url: '#',
+      url: '/appearance',
       icon: faPalette,
       color: 'text-purple-600 dark:text-purple-400',
       bgColor: 'bg-purple-100 dark:bg-purple-900/30'
