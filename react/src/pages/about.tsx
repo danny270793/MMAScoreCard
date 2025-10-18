@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faArrowLeft,
-  faFire,
   faUser,
   faEnvelope,
   faGlobe,
@@ -17,10 +16,12 @@ import {
   faHashtag,
   faWrench,
 } from '@fortawesome/free-solid-svg-icons'
+import { PullToRefresh } from '../components/pull-to-refresh'
 
 export const AboutPage: FC = () => {
   const { t } = useTranslation()
   const [appInfo, setAppInfo] = useState<AppInfo | undefined>(undefined)
+  const [isRefreshing, setIsRefreshing] = useState(false)
   const navigate = useNavigate()
 
   const getAppInfo = async () => {
@@ -39,8 +40,10 @@ export const AboutPage: FC = () => {
     }
   }
 
-  const handleRefresh = () => {
-    getAppInfo()
+  const handleRefresh = async () => {
+    setIsRefreshing(true)
+    await getAppInfo()
+    setIsRefreshing(false)
   }
 
   useEffect(() => {
@@ -80,6 +83,7 @@ export const AboutPage: FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <PullToRefresh onRefresh={handleRefresh} isRefreshing={isRefreshing}>
       {/* Clean header */}
       <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
         <div className="px-4 sm:px-6 py-4 sm:py-5">
@@ -100,12 +104,6 @@ export const AboutPage: FC = () => {
                 </p>
               </div>
             </div>
-            <button
-              onClick={handleRefresh}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-purple-50 dark:hover:bg-purple-900/30 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-200 min-w-[40px] min-h-[40px] flex items-center justify-center"
-            >
-              <FontAwesomeIcon icon={faFire} className="w-4 h-4" />
-            </button>
           </div>
         </div>
       </header>
@@ -310,6 +308,7 @@ export const AboutPage: FC = () => {
           )}
         </div>
       </footer>
+      </PullToRefresh>
     </div>
   )
 }
