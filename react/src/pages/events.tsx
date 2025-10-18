@@ -12,7 +12,6 @@ import { Faker } from '../utils/faker'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCalendar,
-  faInfo,
   faLocation,
   faMap,
   faSearch,
@@ -61,7 +60,7 @@ const EventCard: FC<EventCardProps> = ({ event, t }) => {
               <FontAwesomeIcon icon={faFistRaised} className="w-3 h-3 text-red-600 dark:text-red-400" />
             </div>
             <p className="text-sm font-medium text-gray-600 dark:text-gray-400 line-clamp-1 flex-1">
-              {event.fight || 'Fight details TBD'}
+              {event.fight || t('fightDetailsTbd', { postProcess: 'capitalize' })}
             </p>
           </div>
         </div>
@@ -85,7 +84,7 @@ const EventCard: FC<EventCardProps> = ({ event, t }) => {
                 </span>
                 {isUpcoming && daysUntil > 0 && (
                   <span className="px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs font-medium rounded">
-                    {daysUntil} days
+                    {daysUntil} {t('days')}
                   </span>
                 )}
               </div>
@@ -232,7 +231,7 @@ export const EventsPage: FC = () => {
                   {t('events', { postProcess: 'capitalize' })}
                 </h1>
                 <p className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-400 hidden sm:block">
-                  MMA Fight Events
+                  {t('mmaFightEvents', { postProcess: 'capitalize' })}
                 </p>
               </div>
             </div>
@@ -269,7 +268,7 @@ export const EventsPage: FC = () => {
                   />
                   <input
                     type="text"
-                    placeholder="Search events..."
+                    placeholder={t('searchEventsPlaceholder', { postProcess: 'capitalize' })}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full pl-12 pr-12 py-3 bg-transparent border-0 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none text-base"
@@ -318,7 +317,7 @@ export const EventsPage: FC = () => {
               className={`w-4 h-4 transition-transform duration-300 ${state === 'getting_events' ? 'animate-spin' : ''}`}
             />
             <span className="text-sm sm:text-base">
-              {state === 'getting_events' ? 'Loading...' : 'Refresh Events'}
+              {state === 'getting_events' ? t('loading', { postProcess: 'capitalize' }) : t('refreshEvents', { postProcess: 'capitalize' })}
             </span>
           </button>
         </div>
@@ -334,10 +333,10 @@ export const EventsPage: FC = () => {
                 </div>
               </div>
               <h3 className="text-3xl font-black bg-gradient-to-r from-violet-600 via-purple-600 to-blue-600 bg-clip-text text-transparent mt-6 mb-4">
-                Loading Premium Events
+                {t('loadingPremiumEvents', { postProcess: 'capitalize' })}
               </h3>
               <p className="text-xl text-gray-600 dark:text-gray-300">
-                Preparing the most exciting MMA fights for you...
+                {t('preparingExcitingFights', { postProcess: 'capitalize' })}
               </p>
             </div>
             {Faker.arrayOfNumbers(3).map((i) => (
@@ -359,12 +358,12 @@ export const EventsPage: FC = () => {
               </div>
             </div>
             <h3 className="text-4xl font-black bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 dark:from-gray-300 dark:via-gray-200 dark:to-gray-100 bg-clip-text text-transparent mb-6">
-              {searchQuery ? 'No Epic Fights Found' : 'No Events Available Yet'}
+              {searchQuery ? t('noEpicFightsFound', { postProcess: 'capitalize' }) : t('noEventsAvailableYet', { postProcess: 'capitalize' })}
             </h3>
             <p className="text-xl text-gray-500 dark:text-gray-400 mb-8 max-w-md mx-auto">
               {searchQuery 
-                ? 'Try different search terms to discover amazing fights' 
-                : 'The next legendary battles are coming soon'
+                ? t('tryDifferentSearchTerms', { postProcess: 'capitalize' }) 
+                : t('nextLegendaryBattles', { postProcess: 'capitalize' })
               }
             </p>
             {searchQuery && (
@@ -372,7 +371,7 @@ export const EventsPage: FC = () => {
                 onClick={() => setSearchQuery('')}
                 className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200"
               >
-                View All Events
+                {t('viewAllEvents', { postProcess: 'capitalize' })}
               </button>
             )}
           </div>
@@ -386,7 +385,7 @@ export const EventsPage: FC = () => {
                 <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-50 via-indigo-50 to-violet-50 dark:from-blue-900/20 dark:via-indigo-900/20 dark:to-violet-900/20 rounded-2xl border border-blue-200/50 dark:border-blue-700/30 shadow-lg">
                   <FontAwesomeIcon icon={faSearch} className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   <span className="text-lg font-semibold text-blue-900 dark:text-blue-100">
-                    Found {filteredEvents.length} premium event{filteredEvents.length === 1 ? '' : 's'} for "{searchQuery}"
+                    {t('foundPremiumEvents', { count: filteredEvents.length, query: searchQuery, postProcess: 'capitalize' })}
                   </span>
                 </div>
               </div>
@@ -411,18 +410,18 @@ export const EventsPage: FC = () => {
                 </div>
                 <div>
                   <div className="text-lg font-semibold text-gray-900 dark:text-white">
-                    {filteredEvents.length} event{filteredEvents.length === 1 ? '' : 's'}
+                    {t('eventsCounter', { count: filteredEvents.length })}
                   </div>
                   {filteredEvents.length > 0 && (
                     <div className="text-sm text-gray-600 dark:text-gray-400">
-                      {filteredEvents.filter(e => e.status === 'uppcoming').length} upcoming
+                      {filteredEvents.filter(e => e.status === 'uppcoming').length} {t('upcoming')}
                     </div>
                   )}
                 </div>
               </div>
               
               <div className="text-sm text-gray-500 dark:text-gray-400">
-                MMA Scorecard
+                {t('appName')}
               </div>
           </div>
         )}
