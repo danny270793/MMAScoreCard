@@ -8,40 +8,104 @@ import { NotFound } from '../pages/not-found'
 import { AboutPage } from '../pages/about'
 import { SettingsPage } from '../pages/settings'
 import { LanguagePage } from '../pages/language'
+import { AppearancePage } from '../pages/appearance'
 
 // Component to scroll to top on route changes
 const ScrollToTop: FC = () => {
   const location = useLocation()
   
   useEffect(() => {
-    window.scrollTo(0, 0)
+    globalThis.scrollTo(0, 0)
   }, [location])
 
   return null
 }
 
-export const DarkMode: FC = () => {
-  const [darkMode, setDarkMode] = useState(
-    () => window.matchMedia('(prefers-color-scheme: dark)').matches,
-  )
+type Theme = 'light' | 'dark' | 'system'
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    const handler = (event: MediaQueryListEvent) => setDarkMode(event.matches)
-
-    mediaQuery.addEventListener('change', handler)
-
-    return () => mediaQuery.removeEventListener('change', handler)
-  }, [])
-
-  // Apply dark mode class to document
-  useEffect(() => {
-    if (darkMode) {
+// Theme application function
+const applyTheme = (currentTheme: Theme) => {
+  if (currentTheme === 'system') {
+    const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)').matches
+    if (prefersDark) {
       document.documentElement.classList.add('dark')
     } else {
       document.documentElement.classList.remove('dark')
     }
-  }, [darkMode])
+  } else if (currentTheme === 'dark') {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
+}
+
+// Get theme from localStorage safely
+const getThemeFromStorage = (): Theme => {
+  try {
+    if (typeof globalThis !== 'undefined' && globalThis.localStorage) {
+      const savedTheme = globalThis.localStorage.getItem('theme') as Theme
+      return savedTheme || 'system'
+    }
+  } catch (error) {
+    console.error('Error accessing localStorage:', error)
+  }
+  return 'system'
+}
+
+// Apply theme immediately on module load
+if (typeof document !== 'undefined') {
+  const initialTheme = getThemeFromStorage()
+  console.log('🚀 Module load - applying initial theme:', initialTheme)
+  applyTheme(initialTheme)
+}
+
+export const DarkMode: FC = () => {
+  const [theme, setTheme] = useState<Theme>(() => {
+    return getThemeFromStorage()
+  })
+
+  // Apply theme on mount and theme changes
+  useEffect(() => {
+    applyTheme(theme)
+  }, [theme])
+
+  // Listen for system preference changes when system theme is selected
+  useEffect(() => {
+    if (theme === 'system') {
+      const mediaQuery = globalThis.matchMedia('(prefers-color-scheme: dark)')
+      const handler = () => applyTheme('system')
+
+      mediaQuery.addEventListener('change', handler)
+      return () => mediaQuery.removeEventListener('change', handler)
+    }
+  }, [theme])
+
+  // Listen for localStorage changes and custom theme change events
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const newTheme = getThemeFromStorage()
+      if (newTheme !== theme) {
+        setTheme(newTheme)
+      }
+    }
+
+    const handleThemeChange = (event: CustomEvent<string>) => {
+      const newTheme = event.detail as Theme
+      if (newTheme !== theme) {
+        setTheme(newTheme)
+      }
+    }
+
+    // Listen for storage changes (cross-tab sync)
+    globalThis.addEventListener('storage', handleStorageChange)
+    // Listen for custom theme change events (same-page sync)
+    globalThis.addEventListener('themechange', handleThemeChange as EventListener)
+    
+    return () => {
+      globalThis.removeEventListener('storage', handleStorageChange)
+      globalThis.removeEventListener('themechange', handleThemeChange as EventListener)
+    }
+  }, [theme])
 
   return (
     <BrowserRouter>
@@ -55,6 +119,7 @@ export const DarkMode: FC = () => {
           <Route path="/fighters/:id" element={<FighterPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/language" element={<LanguagePage />} />
+          <Route path="/appearance" element={<AppearancePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
