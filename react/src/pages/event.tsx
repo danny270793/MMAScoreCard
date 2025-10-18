@@ -19,12 +19,12 @@ import {
   faWeight,
   faArrowLeft,
   faFistRaised,
-  faFire,
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
 import { Faker } from '../utils/faker'
 import { Logger } from '../utils/logger'
 import { TranslationUtils } from '../utils/translations'
+import { PullToRefresh } from '../components/pull-to-refresh'
 
 const logger: Logger = new Logger('/src/pages/event.tsx')
 
@@ -65,7 +65,8 @@ export const EventPage: FC = () => {
   }, [error])
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="bg-gray-50 dark:bg-gray-900" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
+      <PullToRefresh onRefresh={handleRefresh} isRefreshing={state === 'getting_event'}>
       {/* Clean header */}
       <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
         <div className="px-4 sm:px-6 py-4 sm:py-5">
@@ -86,13 +87,6 @@ export const EventPage: FC = () => {
                 </p>
               </div>
             </div>
-            <button
-              onClick={handleRefresh}
-              disabled={state === 'getting_event'}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 disabled:opacity-50 transition-colors duration-200 min-w-[40px] min-h-[40px] flex items-center justify-center"
-            >
-              <FontAwesomeIcon icon={faFire} className={`w-4 h-4 ${state === 'getting_event' ? 'animate-spin' : ''}`} />
-            </button>
           </div>
         </div>
       </header>
@@ -345,6 +339,7 @@ export const EventPage: FC = () => {
           )}
         </div>
       </footer>
+      </PullToRefresh>
     </div>
   )
 }
