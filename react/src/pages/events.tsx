@@ -17,17 +17,17 @@ import {
   faSearch,
   faTimes,
   faFistRaised,
-  faFire,
   faBars,
 } from '@fortawesome/free-solid-svg-icons'
 import { DateUtils } from '../utils/date-utils'
 import { Logger } from '../utils/logger'
+import { PullToRefresh } from '../components/pull-to-refresh'
 
 const logger: Logger = new Logger('/src/pages/events.tsx')
 
 interface EventCardProps {
   event: Event
-  t: any
+  t: (key: string, options?: Record<string, unknown>) => string
 }
 
 const EventCard: FC<EventCardProps> = ({ event, t }) => {
@@ -217,7 +217,7 @@ export const EventsPage: FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-
+      <PullToRefresh onRefresh={handleRefresh} isRefreshing={state === 'getting_events'}>
       {/* Clean header */}
       <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
         <div className="px-4 sm:px-6 py-4 sm:py-5">
@@ -305,23 +305,6 @@ export const EventsPage: FC = () => {
 
       {/* Content */}
       <main className="relative px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 max-w-6xl mx-auto">
-        {/* Clean refresh button */}
-        <div className="flex justify-center mb-6 sm:mb-8">
-          <button
-            onClick={handleRefresh}
-            disabled={state === 'getting_events'}
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white rounded-lg font-medium transition-colors duration-200 flex items-center gap-3 disabled:cursor-not-allowed min-h-[44px]"
-          >
-            <FontAwesomeIcon 
-              icon={faFire} 
-              className={`w-4 h-4 transition-transform duration-300 ${state === 'getting_events' ? 'animate-spin' : ''}`}
-            />
-            <span className="text-sm sm:text-base">
-              {state === 'getting_events' ? t('loading', { postProcess: 'capitalize' }) : t('refreshEvents', { postProcess: 'capitalize' })}
-            </span>
-          </button>
-        </div>
-
         {/* Loading State */}
         {state === 'getting_events' && (
           <div className="space-y-4 sm:space-y-6 lg:space-y-8">
@@ -427,6 +410,7 @@ export const EventsPage: FC = () => {
         )}
         </div>
       </footer>
+      </PullToRefresh>
     </div>
   )
 }
