@@ -314,4 +314,16 @@ export interface Lang {
   mmaScoreCardSettings: string
   customizeExperienceDescription: string
   comingSoon: string
+  chooseTheme: string
+  currentTheme: string
+  selectThemeDescription: string
+  availableThemes: string
+  systemTheme: string
+  systemThemeDescription: string
+  lightTheme: string
+  lightThemeDescription: string
+  darkTheme: string
+  darkThemeDescription: string
+  themeCustomization: string
+  themeCustomizationDescription: string
 }
