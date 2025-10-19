@@ -216,10 +216,10 @@ export const EventsPage: FC = () => {
   }, [error])
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <PullToRefresh onRefresh={handleRefresh} isRefreshing={state === 'getting_events'}>
       {/* Clean header */}
-      <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
+      <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
         <div className="px-4 sm:px-6 py-4 sm:py-5">
           <div className="flex items-center justify-between mb-4 sm:mb-5">
             <div className="flex items-center gap-3 sm:gap-4 flex-1">
