@@ -115,18 +115,6 @@ struct FigthsList: View {
     private var eventHeaderSection: some View {
         Section {
             VStack(spacing: 12) {
-                HStack {
-                    Label(event.location, systemImage: "location.fill")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                    
-                    Spacer()
-                    
-                    Label(event.date.formatted(date: .abbreviated, time: .omitted), systemImage: "calendar")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                }
-                
                 if let mainFight = event.fight {
                     VStack(spacing: 4) {
                         Text("Main Event")
@@ -141,6 +129,14 @@ struct FigthsList: View {
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 8)
                 }
+                
+                Label(event.location, systemImage: "location.fill")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                
+                Label(event.date.formatted(date: .abbreviated, time: .omitted), systemImage: "calendar")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
             }
         }
     }
