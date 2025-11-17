@@ -103,7 +103,6 @@ struct FighterDetails: View {
         List {
             if let data = response?.data {
                 fighterInfoSection(data: data)
-                recordSection
                 fightHistorySection
             }
             
@@ -122,50 +121,6 @@ struct FighterDetails: View {
                 InfoRow(icon: "scalemass.fill", label: "Weight", value: data.weight)
             }
         }
-    }
-    
-    @ViewBuilder
-    private var recordSection: some View {
-        f
-            VStack {
-                // Record Display
-                HStack(spacing: 16) {
-                    RecordBadge(label: "W", value: wins, color: .green)
-                    RecordBadge(label: "L", value: losses, color: .red)
-                    RecordBadge(label: "D", value: draws, color: .orange)
-                    if ncs > 0 {
-                        RecordBadge(label: "NC", value: ncs, color: .gray)
-                    }
-                }
-                .padding(.bottom, 8)
-                
-                HStack(spacing: 20) {
-                    StatCard(
-                        title: "Total Fights",
-                        value: "\(filteredFights.count)",
-                        icon: "figure.boxing",
-                        color: .blue
-                    )
-                    
-                    Divider()
-                    
-                    StatCard(
-                        title: "Win Rate",
-                        value: winRateString,
-                        icon: "trophy.fill",
-                        color: .green
-                    )
-                }
-                .padding(.vertical, 8)
-            }.padding(.top, 8)
-        }
-    }
-    
-    private var winRateString: String {
-        let total = wins + losses + draws
-        guard total > 0 else { return "0%" }
-        let rate = Double(wins) / Double(total) * 100
-        return String(format: "%.0f%%", rate)
     }
     
     @ViewBuilder
@@ -204,6 +159,14 @@ struct FighterDetails: View {
     
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            if !filteredFights.isEmpty {
+                NavigationLink(destination: FighterCareer(fighter: figther, fights: response?.data.fights ?? [])) {
+                    Label("Statistics", systemImage: "chart.xyaxis.line")
+                }
+            }
+        }
+        
         ToolbarItem(placement: .bottomBar) {
             HStack {
                 Label("\(filteredFights.count)", systemImage: "figure.boxing")
@@ -235,25 +198,6 @@ struct FighterDetails: View {
 
 // MARK: - Supporting Views
 
-fileprivate struct RecordBadge: View {
-    let label: String
-    let value: Int
-    let color: Color
-    
-    var body: some View {
-        VStack(spacing: 4) {
-            Text("\(value)")
-                .font(.system(.title, design: .rounded, weight: .bold))
-                .foregroundStyle(color)
-            
-            Text(label)
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
-        .frame(minWidth: 50)
-    }
-}
-
 fileprivate struct InfoRow: View {
     let icon: String
     let label: String
@@ -277,30 +221,6 @@ fileprivate struct InfoRow: View {
                 .fontWeight(.medium)
                 .foregroundStyle(.primary)
         }
-    }
-}
-
-fileprivate struct StatCard: View {
-    let title: String
-    let value: String
-    let icon: String
-    let color: Color
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            Image(systemName: icon)
-                .font(.title2)
-                .foregroundStyle(color)
-            
-            Text(value)
-                .font(.system(.title, design: .rounded, weight: .bold))
-                .foregroundStyle(.primary)
-            
-            Text(title)
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity)
     }
 }
 
