@@ -151,18 +151,12 @@ struct FigthDetails: View {
     private var fightersSection: some View {
         Section("Fighters") {
             NavigationLink(destination: FighterDetails(figther: fight.figther1)) {
-                HStack(spacing: 12) {
-                    Image(systemName: "person.circle.fill")
-                        .font(.title2)
-                        .foregroundStyle(fight.figther1Status == .win ? .green : .secondary)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(fight.figther1.name)
+                        .font(.headline)
                     
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(fight.figther1.name)
-                            .font(.headline)
-                        
-                        if fight.figther1Status != .pending {
-                            StatusBadge(status: fight.figther1Status)
-                        }
+                    if fight.figther1Status != .pending {
+                        StatusBadge(status: fight.figther1Status)
                     }
                 }
             }
@@ -176,18 +170,12 @@ struct FigthDetails: View {
             }
             
             NavigationLink(destination: FighterDetails(figther: fight.figther2)) {
-                HStack(spacing: 12) {
-                    Image(systemName: "person.circle.fill")
-                        .font(.title2)
-                        .foregroundStyle(fight.figther2Status == .win ? .green : .secondary)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(fight.figther2.name)
+                        .font(.headline)
                     
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(fight.figther2.name)
-                            .font(.headline)
-                        
-                        if fight.figther2Status != .pending {
-                            StatusBadge(status: fight.figther2Status)
-                        }
+                    if fight.figther2Status != .pending {
+                        StatusBadge(status: fight.figther2Status)
                     }
                 }
             }
@@ -230,7 +218,7 @@ struct FigthDetails: View {
                 Text(fight.division)
                     .foregroundStyle(.secondary)
             } label: {
-                Label("Division", systemImage: "gauge")
+                Label("Division", systemImage: "scalemass.fill")
             }
         }
     }
