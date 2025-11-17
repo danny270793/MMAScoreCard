@@ -64,20 +64,8 @@ struct FigthsList: View {
     
     private var sortedFights: [(Int, Fight)] {
         // Create tuples with position and fight, maintaining the original order
+        // Position 1 = main event, higher positions = prelims
         return filteredFights.enumerated().map { ($0.offset + 1, $0.element) }
-    }
-    
-    private var groupedFights: [(String, [(Int, Fight)])] {
-        let grouped = Dictionary(grouping: sortedFights) { fight -> String in
-            fight.1.division
-        }
-        
-        // Sort groups by the minimum position in each division (lower positions first)
-        return grouped.sorted { first, second in
-            let firstMin = first.value.map { $0.0 }.min() ?? Int.max
-            let secondMin = second.value.map { $0.0 }.min() ?? Int.max
-            return firstMin < secondMin
-        }
     }
     
     private var hasCompletedFights: Bool {
@@ -168,13 +156,9 @@ struct FigthsList: View {
     
     @ViewBuilder
     private var fightsSection: some View {
-        ForEach(Array(groupedFights.enumerated()), id: \.offset) { _, division in
-            Section {
-                ForEach(division.1, id: \.1.id) { positionedFight in
-                    fightRow(for: positionedFight.1, position: positionedFight.0)
-                }
-            } header: {
-                Text(division.0)
+        Section("Fight Card") {
+            ForEach(sortedFights, id: \.1.id) { positionedFight in
+                fightRow(for: positionedFight.1, position: positionedFight.0)
             }
         }
     }
@@ -312,6 +296,11 @@ fileprivate struct FightRow: View {
                         .font(.headline)
                         .lineLimit(1)
                 }
+                
+                // Division
+                Text(fight.division)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
                 
                 // Result (if completed)
                 if fight.fightStatus == .done {
