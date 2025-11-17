@@ -268,11 +268,11 @@ fileprivate struct FightRow: View {
     private var resultIcon: String {
         let result = fight.result.uppercased()
         if result.hasPrefix("KO") || result.hasPrefix("TKO") {
-            return "bolt.fill"
-        } else if result.contains("DECISION") || result.contains("DEC") {
-            return "scale.3d"
-        } else if result.contains("SUBMISSION") || result.contains("SUB") {
             return "figure.martial.arts"
+        } else if result.contains("DECISION") || result.contains("DEC") {
+            return "list.bullet.clipboard"
+        } else if result.contains("SUBMISSION") || result.contains("SUB") {
+            return "figure.fall"
         } else {
             return "checkmark.circle.fill"
         }
