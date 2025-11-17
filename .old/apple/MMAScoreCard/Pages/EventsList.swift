@@ -298,6 +298,36 @@ fileprivate struct EventRow: View {
                     .font(.headline)
                     .lineLimit(2)
                 
+                // Location and Status
+                HStack(spacing: 8) {
+                    Label(event.location, systemImage: "location.fill")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                    
+                    if let days = daysUntil, days <= 7 {
+                        Text("•")
+                            .foregroundStyle(.secondary)
+                        
+                        if days == 0 {
+                            Text("Today")
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.red)
+                        } else if days == 1 {
+                            Text("Tomorrow")
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.orange)
+                        } else {
+                            Text("In \(days)d")
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.orange)
+                        }
+                    }
+                }
+
                 // Main Fight
                 if let fight = event.fight {
                     HStack(alignment: .top, spacing: 6) {
@@ -329,36 +359,6 @@ fileprivate struct EventRow: View {
                                     .foregroundStyle(.secondary)
                                     .lineLimit(2)
                             }
-                        }
-                    }
-                }
-                
-                // Location and Status
-                HStack(spacing: 8) {
-                    Label(event.location, systemImage: "location.fill")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                        .lineLimit(1)
-                    
-                    if let days = daysUntil, days <= 7 {
-                        Text("•")
-                            .foregroundStyle(.secondary)
-                        
-                        if days == 0 {
-                            Text("Today")
-                                .font(.caption)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.red)
-                        } else if days == 1 {
-                            Text("Tomorrow")
-                                .font(.caption)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.orange)
-                        } else {
-                            Text("In \(days)d")
-                                .font(.caption)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.orange)
                         }
                     }
                 }
