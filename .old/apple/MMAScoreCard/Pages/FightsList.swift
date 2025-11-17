@@ -271,16 +271,6 @@ fileprivate struct FightRow: View {
     
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
-            // Position Badge
-            Text("\(position)")
-                .font(.system(.caption, design: .rounded, weight: .bold))
-                .foregroundStyle(.secondary)
-                .frame(width: 30, height: 30)
-                .background(
-                    Circle()
-                        .fill(Color(.systemGray6))
-                )
-            
             VStack(alignment: .leading, spacing: 6) {
                 // Fighters
                 HStack(spacing: 6) {
@@ -297,10 +287,16 @@ fileprivate struct FightRow: View {
                         .lineLimit(1)
                 }
                 
-                // Division
-                Text(fight.division)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                HStack(spacing: 8) {
+                    // Division
+                    Text(fight.division)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    
+                    Text("R\(fight.round) • \(fight.time)")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
                 
                 // Result (if completed)
                 if fight.fightStatus == .done {
@@ -308,13 +304,6 @@ fileprivate struct FightRow: View {
                         Label(fight.result, systemImage: "checkmark.circle.fill")
                             .font(.subheadline)
                             .foregroundStyle(.green)
-                        
-                        Text("•")
-                            .foregroundStyle(.tertiary)
-                        
-                        Text("R\(fight.round) • \(fight.time)")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
                     }
                 } else {
                     Label("Scheduled", systemImage: "clock.badge")
@@ -326,15 +315,11 @@ fileprivate struct FightRow: View {
             Spacer(minLength: 0)
             
             // Status Badge
-            if fight.fightStatus == .done {
-                Image(systemName: "chevron.right")
-                    .font(.caption)
-                    .foregroundStyle(.tertiary)
-            } else {
-                Image(systemName: "calendar.badge.clock")
-                    .font(.caption)
-                    .foregroundStyle(.orange)
-            }
+//            if fight.fightStatus != .done {
+//                Image(systemName: "calendar.badge.clock")
+//                    .font(.caption)
+//                    .foregroundStyle(.orange)
+//            }
         }
         .padding(.vertical, 4)
     }
