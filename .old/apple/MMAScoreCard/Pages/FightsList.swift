@@ -45,23 +45,39 @@ struct FigthsList: View {
             return []
         }
         
+        let fights: [Fight]
         if searchText.isEmpty {
-            return response!.data
+            fights = response!.data
         } else {
-            return response!.data.filter { fight in
+            fights = response!.data.filter { fight in
                 fight.figther1.name.lowercased().contains(searchText.lowercased()) ||
                 fight.figther2.name.lowercased().contains(searchText.lowercased()) ||
                 fight.division.lowercased().contains(searchText.lowercased()) ||
                 fight.result.lowercased().contains(searchText.lowercased())
             }
         }
+        
+        // Sort by position (original order from API represents fight card order)
+        // Fights appear in order from main event (1) to prelims (higher numbers)
+        return fights
     }
     
-    private var groupedFights: [(String, [Fight])] {
-        let grouped = Dictionary(grouping: filteredFights) { fight -> String in
-            fight.division
+    private var sortedFights: [(Int, Fight)] {
+        // Create tuples with position and fight, maintaining the original order
+        return filteredFights.enumerated().map { ($0.offset + 1, $0.element) }
+    }
+    
+    private var groupedFights: [(String, [(Int, Fight)])] {
+        let grouped = Dictionary(grouping: sortedFights) { fight -> String in
+            fight.1.division
         }
-        return grouped.sorted { $0.key < $1.key }
+        
+        // Sort groups by the minimum position in each division (lower positions first)
+        return grouped.sorted { first, second in
+            let firstMin = first.value.map { $0.0 }.min() ?? Int.max
+            let secondMin = second.value.map { $0.0 }.min() ?? Int.max
+            return firstMin < secondMin
+        }
     }
     
     private var hasCompletedFights: Bool {
@@ -152,10 +168,10 @@ struct FigthsList: View {
     
     @ViewBuilder
     private var fightsSection: some View {
-        ForEach(Array(groupedFights.enumerated()), id: \.offset) { index, division in
+        ForEach(Array(groupedFights.enumerated()), id: \.offset) { _, division in
             Section {
-                ForEach(division.1) { fight in
-                    fightRow(for: fight, position: index + 1)
+                ForEach(division.1, id: \.1.id) { positionedFight in
+                    fightRow(for: positionedFight.1, position: positionedFight.0)
                 }
             } header: {
                 Text(division.0)
