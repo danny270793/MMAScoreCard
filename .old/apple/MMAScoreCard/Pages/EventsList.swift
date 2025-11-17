@@ -69,14 +69,21 @@ struct EventsList: View {
             let monthDate = calendar.date(from: components) ?? event.date
             return monthDate.formatted(.dateTime.year().month(.wide))
         }
-        return grouped.sorted { first, second in
-            // Sort by most recent first for past events, upcoming first for future events
-            if filter == .upcoming {
-                return first.key < second.key
-            } else {
-                return first.key > second.key
-            }
+        
+        // Create tuples with both the string key and actual date for proper sorting
+        let groupedWithDates = grouped.map { (key, events) -> (String, Date, [Event]) in
+            let components = calendar.dateComponents([.year, .month], from: events.first!.date)
+            let monthDate = calendar.date(from: components) ?? events.first!.date
+            // Sort events within each group by newest first
+            let sortedEvents = events.sorted { $0.date > $1.date }
+            return (key, monthDate, sortedEvents)
         }
+        
+        // Always sort by newest first (descending order)
+        let sorted = groupedWithDates.sorted { $0.1 > $1.1 }
+        
+        // Return without the date, just the string key and events
+        return sorted.map { ($0.0, $0.2) }
     }
     
     var body: some View {
