@@ -341,7 +341,7 @@ fileprivate struct EventRow: View {
                             .foregroundStyle(.red)
                             .padding(.top, 2)
                         
-                        VStack(alignment: .leading, spacing: 2) {
+//                        VStack(alignment: .leading, spacing: 2) {
                             if let fighters = parseFighters(from: fight) {
                                 Text(fighters.fighter1)
                                     .font(.subheadline)
@@ -364,7 +364,7 @@ fileprivate struct EventRow: View {
                                     .foregroundStyle(.secondary)
                                     .lineLimit(2)
                             }
-                        }
+//                        }
                     }
                 }
             }
