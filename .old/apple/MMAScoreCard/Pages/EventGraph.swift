@@ -81,28 +81,21 @@ struct EventGraph : View {
     private var eventHeaderSection: some View {
         Section {
             VStack(spacing: 12) {
-                if let mainFight = event.fight {
-                    VStack(spacing: 4) {
-                        Text("Main Event")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                            .textCase(.uppercase)
+                Section {
+                    VStack(spacing: 12) {
+                        LabeledContent {
+                            Text(event.location)
+                        } label: {
+                            Label("Name", systemImage: "location.fill")
+                        }
                         
-                        Label(mainFight, systemImage: "star.fill")
-                            .font(.headline)
-                            .foregroundStyle(.orange)
+                        LabeledContent {
+                            Text(event.date.formatted(date: .abbreviated, time: .omitted))
+                        } label: {
+                            Label("Date", systemImage: "calendar")
+                        }
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 8)
                 }
-                
-                Label(event.location, systemImage: "location.fill")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                
-                Label(event.date.formatted(date: .abbreviated, time: .omitted), systemImage: "calendar")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
             }
         }
     }
@@ -320,10 +313,6 @@ fileprivate struct PercentageRow: View {
                 .foregroundStyle(.primary)
             
             Spacer()
-            
-            Text("\(value)/\(total)")
-                .font(.caption)
-                .foregroundStyle(.secondary)
             
             Text(percentageString)
                 .font(.subheadline)
