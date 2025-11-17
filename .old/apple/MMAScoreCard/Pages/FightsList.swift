@@ -292,10 +292,11 @@ fileprivate struct FightRow: View {
     }
     
     var body: some View {
-        HStack(alignment: .top, spacing: 12) {
+        HStack(alignment: .center, spacing: 12) {
             Image(systemName: resultIcon)
                 .font(.subheadline)
                 .foregroundStyle(resultColor)
+            
             VStack(alignment: .leading, spacing: 6) {
                 // Fighters
                 HStack(spacing: 6) {
