@@ -293,6 +293,9 @@ fileprivate struct FightRow: View {
     
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
+            Image(systemName: resultIcon)
+                .font(.subheadline)
+                .foregroundStyle(resultColor)
             VStack(alignment: .leading, spacing: 6) {
                 // Fighters
                 HStack(spacing: 6) {
@@ -323,9 +326,9 @@ fileprivate struct FightRow: View {
                 // Result (if completed)
                 if fight.fightStatus == .done {
                     HStack(spacing: 8) {
-                        Label(fight.result, systemImage: resultIcon)
-                            .font(.subheadline)
-                            .foregroundStyle(resultColor)
+                        Text(fight.result)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
                     }
                 } else {
                     Label("Scheduled", systemImage: "clock.badge")
