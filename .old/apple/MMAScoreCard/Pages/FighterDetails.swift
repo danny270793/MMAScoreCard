@@ -126,7 +126,7 @@ struct FighterDetails: View {
     
     @ViewBuilder
     private var recordSection: some View {
-        Section("Career Statistics") {
+        f
             VStack {
                 // Record Display
                 HStack(spacing: 16) {
