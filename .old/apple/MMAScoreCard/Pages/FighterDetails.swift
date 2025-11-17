@@ -103,6 +103,18 @@ struct FighterDetails: View {
         List {
             if let data = response?.data {
                 fighterInfoSection(data: data)
+                Section("Record") {
+                    HStack {
+                        Spacer()
+                        RecordBadge(label: "W", value: wins, color: .green)
+                        RecordBadge(label: "L", value: losses, color: .red)
+                        RecordBadge(label: "D", value: draws, color: .orange)
+                        if ncs > 0 {
+                            RecordBadge(label: "NC", value: ncs, color: .gray)
+                        }
+                        Spacer()
+                    }
+                }
                 fightHistorySection
             }
             
