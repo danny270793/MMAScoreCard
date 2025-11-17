@@ -50,7 +50,7 @@ struct FigthDetails: View {
             
             fightersSection
         }
-        .navigationTitle("Fight Details")
+        .navigationTitle("\(fight.figther1.name) vs. \(fight.figther2.name)")
         .navigationBarTitleDisplayMode(.inline)
     }
     
