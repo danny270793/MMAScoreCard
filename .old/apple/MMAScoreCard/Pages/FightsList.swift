@@ -265,6 +265,32 @@ fileprivate struct FightRow: View {
     let fight: Fight
     let position: Int
     
+    private var resultIcon: String {
+        let result = fight.result.uppercased()
+        if result.hasPrefix("KO") || result.hasPrefix("TKO") {
+            return "bolt.fill"
+        } else if result.contains("DECISION") || result.contains("DEC") {
+            return "scale.3d"
+        } else if result.contains("SUBMISSION") || result.contains("SUB") {
+            return "figure.martial.arts"
+        } else {
+            return "checkmark.circle.fill"
+        }
+    }
+    
+    private var resultColor: Color {
+        let result = fight.result.uppercased()
+        if result.hasPrefix("KO") || result.hasPrefix("TKO") {
+            return .red
+        } else if result.contains("DECISION") || result.contains("DEC") {
+            return .blue
+        } else if result.contains("SUBMISSION") || result.contains("SUB") {
+            return .green
+        } else {
+            return .primary
+        }
+    }
+    
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
             VStack(alignment: .leading, spacing: 6) {
@@ -297,9 +323,9 @@ fileprivate struct FightRow: View {
                 // Result (if completed)
                 if fight.fightStatus == .done {
                     HStack(spacing: 8) {
-                        Label(fight.result, systemImage: "checkmark.circle.fill")
+                        Label(fight.result, systemImage: resultIcon)
                             .font(.subheadline)
-                            .foregroundStyle(.green)
+                            .foregroundStyle(resultColor)
                     }
                 } else {
                     Label("Scheduled", systemImage: "clock.badge")
