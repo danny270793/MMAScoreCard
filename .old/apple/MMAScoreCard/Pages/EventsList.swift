@@ -143,20 +143,20 @@ struct EventsList: View {
     
     @ViewBuilder
     private func eventRow(for event: Event) -> some View {
-        NavigationLink(destination: FigthsList(event: event)) {
+                NavigationLink(destination: FigthsList(event: event)) {
             EventRow(event: event)
         }
         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
             shareButton(for: event)
-        }
-        .contextMenu {
+                    }
+                    .contextMenu {
             contextMenuItems(for: event)
-        } preview: {
-            NavigationStack {
-                FigthsList(event: event)
-            }
-        }
-    }
+                    } preview: {
+                        NavigationStack {
+                            FigthsList(event: event)
+                        }
+                    }
+                }
     
     @ViewBuilder
     private func shareButton(for event: Event) -> some View {
@@ -265,6 +265,18 @@ fileprivate struct EventRow: View {
         return Calendar.current.dateComponents([.day], from: Date.now, to: event.date).day
     }
     
+    private func parseFighters(from fight: String) -> (fighter1: String, fighter2: String)? {
+        let separators = [" vs. ", " vs ", " VS ", " VS. "]
+        for separator in separators {
+            let components = fight.components(separatedBy: separator)
+            if components.count == 2 {
+                return (components[0].trimmingCharacters(in: .whitespaces),
+                        components[1].trimmingCharacters(in: .whitespaces))
+            }
+        }
+        return nil
+    }
+    
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
             // Date Badge
@@ -288,15 +300,36 @@ fileprivate struct EventRow: View {
                 
                 // Main Fight
                 if let fight = event.fight {
-                    Label {
-                        Text(fight)
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                            .lineLimit(1)
-                    } icon: {
+                    HStack(alignment: .top, spacing: 6) {
                         Image(systemName: "figure.boxing")
                             .font(.caption)
                             .foregroundStyle(.red)
+                            .padding(.top, 2)
+                        
+                        VStack(alignment: .leading, spacing: 2) {
+                            if let fighters = parseFighters(from: fight) {
+                                Text(fighters.fighter1)
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                                    .lineLimit(1)
+                                
+                                HStack(spacing: 4) {
+                                    Text("vs")
+                                        .font(.caption2)
+                                        .foregroundStyle(.tertiary)
+                                    
+                                    Text(fighters.fighter2)
+                                        .font(.subheadline)
+                                        .foregroundStyle(.secondary)
+                                        .lineLimit(1)
+                                }
+                            } else {
+                                Text(fight)
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                                    .lineLimit(2)
+                            }
+                        }
                     }
                 }
                 
