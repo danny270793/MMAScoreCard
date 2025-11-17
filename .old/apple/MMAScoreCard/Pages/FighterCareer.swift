@@ -58,7 +58,6 @@ struct FighterCareer: View {
     var body: some View {
         List {
             recordSection
-            summarySection
             finishTypesSection
             breakdownSection
         }
@@ -101,30 +100,6 @@ struct FighterCareer: View {
                 .padding(.vertical, 8)
             }
             .padding(.top, 8)
-        }
-    }
-    
-    @ViewBuilder
-    private var summarySection: some View {
-        Section("Summary") {
-            HStack(spacing: 20) {
-                StatCard(
-                    title: "Wins",
-                    value: "\(wins)",
-                    icon: "checkmark.circle.fill",
-                    color: .green
-                )
-                
-                Divider()
-                
-                StatCard(
-                    title: "Finishes",
-                    value: "\(koWins + submissionWins)",
-                    icon: "bolt.fill",
-                    color: .red
-                )
-            }
-            .padding(.vertical, 8)
         }
     }
     
@@ -191,7 +166,7 @@ struct FighterCareer: View {
 
 // MARK: - Supporting Views
 
-fileprivate struct RecordBadge: View {
+struct RecordBadge: View {
     let label: String
     let value: Int
     let color: Color
@@ -321,12 +296,10 @@ fileprivate struct PercentageRow: View {
 #Preview {
     NavigationStack {
         FighterCareer(
-            fighter: Fighter(
-                name: "Test Fighter",
-                image: URL(string: "https://example.com")!,
-                link: URL(string: "https://example.com")!
-            ),
-            fights: []
+            fighter: Fighter(name: "Merab Dvalishvili", image: URL(string: "https://www.sherdog.com/image_crop/44/44/_images/fighter/1648844898903_20220401042811_Merab_Dvalishvili_ff.JPG")!, link: URL(string: "https://www.sherdog.com/fighter/Islam-Makhachev-76836")!),
+            fights: [
+                
+            ]
         )
     }
 }
