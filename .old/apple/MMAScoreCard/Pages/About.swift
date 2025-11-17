@@ -8,35 +8,202 @@
 import SwiftUI
 
 struct AboutView: View {
-    let appName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "Unknown"
-    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
-    let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
+    let appName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "MMA ScoreCard"
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+    let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
     
     var body: some View {
         List {
-            Section(header: Text("Application")) {
-                LabeledContent("Name", value: appName)
-                LabeledContent("Version", value: appVersion)
-                LabeledContent("Build number", value: buildNumber)
-            }
-            Section(header: Text("Developer")) {
-                LabeledContent("Name", value: "Danny Vaca")
-                LabeledContent("Email", value: "danny270793@icloud.com")
-            }
-            Section(header: Text("Social")) {
-                Button("GitHub") {
-                    if let url = URL(string: "https://github.com/danny270793") {
-                        UIApplication.shared.open(url)
-                    }
-                }
-                Button("YouTube") {
-                    if let url = URL(string: "https://www.youtube.com/@DannyVacaO") {
-                        UIApplication.shared.open(url)
-                    }
-                }
-            }
+            appHeaderSection
+            appInfoSection
+            developerSection
+            socialSection
+            footerSection
         }
         .navigationTitle("About")
+        .navigationBarTitleDisplayMode(.large)
+    }
+    
+    @ViewBuilder
+    private var appHeaderSection: some View {
+        Section {
+            VStack(spacing: 16) {
+                // App Icon
+                Image(systemName: "figure.boxing")
+                    .font(.system(size: 80))
+                    .foregroundStyle(.red)
+                    .padding(.vertical, 8)
+                
+                // App Name
+                Text(appName)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                
+                // Tagline
+                Text("Track MMA fights and statistics")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 8)
+        }
+    }
+    
+    @ViewBuilder
+    private var appInfoSection: some View {
+        Section("Application") {
+            LabeledContent {
+                Text(appVersion)
+                    .foregroundStyle(.secondary)
+            } label: {
+                Label("Version", systemImage: "number.circle.fill")
+            }
+            
+            LabeledContent {
+                Text(buildNumber)
+                    .foregroundStyle(.secondary)
+            } label: {
+                Label("Build", systemImage: "hammer.fill")
+            }
+            
+            LabeledContent {
+                Text("iOS 16.0+")
+                    .foregroundStyle(.secondary)
+            } label: {
+                Label("Requires", systemImage: "iphone")
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var developerSection: some View {
+        Section("Developer") {
+            VStack(spacing: 12) {
+                HStack(spacing: 12) {
+                    Image(systemName: "person.circle.fill")
+                        .font(.system(size: 40))
+                        .foregroundStyle(.blue)
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Danny Vaca")
+                            .font(.headline)
+                        
+                        Text("iOS Developer")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    Spacer()
+                }
+                
+                Divider()
+                
+                // Email Button
+                Button(action: {
+                    if let url = URL(string: "mailto:danny270793@icloud.com") {
+                        UIApplication.shared.open(url)
+                    }
+                }) {
+                    HStack {
+                        Label("danny270793@icloud.com", systemImage: "envelope.fill")
+                            .font(.subheadline)
+                        
+                        Spacer()
+                        
+                        Image(systemName: "arrow.up.right.square.fill")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
+            .padding(.vertical, 4)
+        }
+    }
+    
+    @ViewBuilder
+    private var socialSection: some View {
+        Section("Connect") {
+            SocialButton(
+                title: "GitHub",
+                subtitle: "@danny270793",
+                icon: "chevron.left.forwardslash.chevron.right",
+                color: .primary,
+                url: "https://github.com/danny270793"
+            )
+            
+            SocialButton(
+                title: "YouTube",
+                subtitle: "@DannyVacaO",
+                icon: "play.rectangle.fill",
+                color: .red,
+                url: "https://www.youtube.com/@DannyVacaO"
+            )
+        }
+    }
+    
+    @ViewBuilder
+    private var footerSection: some View {
+        Section {
+            VStack(spacing: 8) {
+                Text("Made with ❤️ for MMA fans")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                
+                Text("© 2025 Danny Vaca")
+                    .font(.caption2)
+                    .foregroundStyle(.tertiary)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 8)
+        }
+    }
+}
+
+// MARK: - Supporting Views
+
+fileprivate struct SocialButton: View {
+    let title: String
+    let subtitle: String
+    let icon: String
+    let color: Color
+    let url: String
+    
+    var body: some View {
+        Button(action: {
+            if let url = URL(string: url) {
+                UIApplication.shared.open(url)
+            }
+        }) {
+            HStack(spacing: 12) {
+                Image(systemName: icon)
+                    .font(.title3)
+                    .foregroundStyle(color)
+                    .frame(width: 40, height: 40)
+                    .background(
+                        Circle()
+                            .fill(color.opacity(0.15))
+                    )
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(title)
+                        .font(.headline)
+                        .foregroundStyle(.primary)
+                    
+                    Text(subtitle)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                
+                Spacer()
+                
+                Image(systemName: "arrow.up.right.circle.fill")
+                    .font(.title3)
+                    .foregroundStyle(.tertiary)
+            }
+        }
+        .buttonStyle(.plain)
     }
 }
 
