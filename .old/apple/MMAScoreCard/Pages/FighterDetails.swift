@@ -378,21 +378,11 @@ fileprivate struct FightHistoryRow: View {
                     .font(.caption)
                     .foregroundStyle(.tertiary)
             }
-            
-            // Fight Details
-            HStack(spacing: 16) {
-                Label("R\(fight.round)", systemImage: "number.circle.fill")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                
-                Label(fight.time, systemImage: "clock.fill")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
+        
             
             // Referee if available
             if let referee = fight.referee {
-                Label("Ref: \(referee)", systemImage: "person.fill.checkmark")
+                Label("Ref: \(referee) R\(fight.round) • \(fight.time)", systemImage: "person.fill.checkmark")
                     .font(.caption2)
                     .foregroundStyle(.tertiary)
             }
