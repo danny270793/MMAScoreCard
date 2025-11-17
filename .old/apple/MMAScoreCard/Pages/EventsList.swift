@@ -300,8 +300,13 @@ fileprivate struct EventRow: View {
                 
                 // Location and Status
                 HStack(spacing: 8) {
-                    Label(event.location, systemImage: "location.fill")
+                    Image(systemName: "location.fill")
                         .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                    
+                    Text(event.location)
+                        .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
                     
