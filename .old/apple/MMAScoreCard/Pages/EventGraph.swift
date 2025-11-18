@@ -37,76 +37,289 @@ struct EventGraph : View {
         }
     }
     
-    func getDetail(title: String, color: Color, value: Int, percentage: Double) -> any View {
-        GeometryReader { geometry in
-            let textSpace = 0.3
-            let labelWidth = geometry.size.width * textSpace
-            let minimunBarSpace = 0.2
-            let barMinWidht = geometry.size.width * minimunBarSpace
-            
-            HStack{
-                Text(title)
-                    .frame(width: labelWidth)
-                ZStack {
-                    Rectangle()
-                        .fill(color)
-                        .cornerRadius(10)
-                        .frame(width: barMinWidht + ((geometry.size.width - labelWidth - barMinWidht) * percentage))
-                    Text(String(value))
-                        .foregroundColor(.white)
-                }
-                Spacer()
-            }
-        }
-    }
-    
-    func map(x: Double, inMin: Double, inMax: Double, outMin: Double, outMax: Double) -> Double {
-      return (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+    private var totalFights: Int {
+        guard let stats = response?.data else { return 0 }
+        return stats.kos + stats.decisions + stats.submissions
     }
     
     var body: some View {
-        List {
-            Section(header: Text("Event")) {
-                LabeledContent("Name", value: event.name)
-                LabeledContent("Location", value: event.location)
-                LabeledContent("Date", value: event.date.ISO8601Format().split(separator: "T")[0])
+        listContent
+            .overlay {
+                loadingOverlay
             }
-            if response != nil {
-                let fights = Double(response!.data.kos + response!.data.decisions + response!.data.submissions)
-                let kos = Double(response!.data.kos)/fights
-                let submissions = Double(response!.data.submissions)/fights
-                let decissions = Double(response!.data.decisions)/fights
-                
-                let maxNumber = [kos, submissions, decissions].max()!
-                let kosMapped = map(x: kos, inMin: 0, inMax: maxNumber, outMin: 0, outMax: 1)
-                let submissionsMapped = map(x: submissions, inMin: 0, inMax: maxNumber, outMin: 0, outMax: 1)
-                let decissionsMapped = map(x: decissions, inMin: 0, inMax: maxNumber, outMin: 0, outMax: 1)
-                
-                Section(header: Text("Graphs")) {
-                    AnyView(getDetail(title: "KO", color: Color.red, value: response!.data.kos, percentage: kosMapped))
-                    AnyView(getDetail(title: "Submission", color: Color.green, value: response!.data.submissions, percentage: submissionsMapped))
-                    AnyView(getDetail(title: "Decision", color: Color.blue, value: response!.data.decisions, percentage: decissionsMapped))
-                }
-                
-            }
-        }
-        .overlay {
-            if isFetching {
-                ProgressView()
-            }
-        }
-        .alert(isPresented: .constant(error != nil)) {
-            Alert(
-                title: Text("Error"),
-                message: Text(error!.localizedDescription),
-                dismissButton: .default(Text("OK")) {
+            .alert("Error", isPresented: .constant(error != nil)) {
+                Button("OK") {
                     error = nil
                 }
+            } message: {
+                if let error = error {
+                    Text(error.localizedDescription)
+                }
+            }
+            .onAppear(perform: onAppear)
+            .refreshable(action: onRefresh)
+            .navigationTitle("Statistics")
+            .navigationBarTitleDisplayMode(.large)
+    }
+    
+    @ViewBuilder
+    private var listContent: some View {
+        List {
+            eventHeaderSection
+            
+            if let stats = response?.data {
+                summarySection(stats: stats)
+                finishTypesSection(stats: stats)
+                percentageCardsSection(stats: stats)
+            }
+            
+            metadataSection
+        }
+    }
+    
+    @ViewBuilder
+    private var eventHeaderSection: some View {
+        Section {
+            VStack(spacing: 12) {
+                Section {
+                    VStack(spacing: 12) {
+                        LabeledContent {
+                            Text(event.location)
+                        } label: {
+                            Label("Name", systemImage: "location.fill")
+                        }
+                        
+                        LabeledContent {
+                            Text(event.date.formatted(date: .abbreviated, time: .omitted))
+                        } label: {
+                            Label("Date", systemImage: "calendar")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func summarySection(stats: EventStats) -> some View {
+        Section("Summary") {
+            HStack(spacing: 20) {
+                StatCard(
+                    title: "Total Fights",
+                    value: "\(totalFights)",
+                    icon: "figure.boxing",
+                    color: .orange
+                )
+                
+                Divider()
+                
+                StatCard(
+                    title: "Finishes",
+                    value: "\(stats.kos + stats.submissions)",
+                    icon: "bolt.fill",
+                    color: .red
+                )
+            }
+            .padding(.vertical, 8)
+        }
+    }
+    
+    @ViewBuilder
+    private func finishTypesSection(stats: EventStats) -> some View {
+        Section("Finish Types") {
+            StatBar(
+                title: "KO/TKO",
+                value: stats.kos,
+                total: totalFights,
+                icon: "figure.martial.arts",
+                color: .red
+            )
+            
+            StatBar(
+                title: "Submission",
+                value: stats.submissions,
+                total: totalFights,
+                icon: "figure.fall",
+                color: .green
+            )
+            
+            StatBar(
+                title: "Decision",
+                value: stats.decisions,
+                total: totalFights,
+                icon: "list.bullet.clipboard",
+                color: .blue
             )
         }
-        .onAppear(perform: onAppear)
-        .refreshable(action: onRefresh)
-        .navigationTitle("Graph")
+    }
+    
+    @ViewBuilder
+    private func percentageCardsSection(stats: EventStats) -> some View {
+        Section("Breakdown") {
+            VStack(spacing: 12) {
+                PercentageRow(
+                    title: "KO/TKO",
+                    value: stats.kos,
+                    total: totalFights,
+                    color: .red
+                )
+                
+                PercentageRow(
+                    title: "Submission",
+                    value: stats.submissions,
+                    total: totalFights,
+                    color: .green
+                )
+                
+                PercentageRow(
+                    title: "Decision",
+                    value: stats.decisions,
+                    total: totalFights,
+                    color: .blue
+                )
+            }
+            .padding(.vertical, 4)
+        }
+    }
+    
+    @ViewBuilder
+    private var metadataSection: some View {
+        if let cachedAt = response?.cachedAt, let timeCached = response?.timeCached {
+            Section {
+                LabeledContent {
+                    Text(cachedAt.formatted(date: .abbreviated, time: .shortened))
+                        .foregroundStyle(.secondary)
+                } label: {
+                    Label("Cached", systemImage: "clock.arrow.circlepath")
+                }
+                
+                LabeledContent {
+                    Text(timeCached)
+                        .foregroundStyle(.secondary)
+                } label: {
+                    Label("Cache Time", systemImage: "timer")
+                }
+            } header: {
+                Text("Cache Info")
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var loadingOverlay: some View {
+        if isFetching && response == nil {
+            ContentUnavailableView {
+                ProgressView()
+            } description: {
+                Text("Loading statistics...")
+            }
+        }
+    }
+}
+
+// MARK: - Supporting Views
+
+fileprivate struct StatCard: View {
+    let title: String
+    let value: String
+    let icon: String
+    let color: Color
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            Image(systemName: icon)
+                .font(.title2)
+                .foregroundStyle(color)
+            
+            Text(value)
+                .font(.system(.title, design: .rounded, weight: .bold))
+                .foregroundStyle(.primary)
+            
+            Text(title)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+    }
+}
+
+fileprivate struct StatBar: View {
+    let title: String
+    let value: Int
+    let total: Int
+    let icon: String
+    let color: Color
+    
+    private var percentage: Double {
+        guard total > 0 else { return 0 }
+        return Double(value) / Double(total)
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Label(title, systemImage: icon)
+                    .font(.subheadline)
+                    .foregroundStyle(.primary)
+                
+                Spacer()
+                
+                Text("\(value)")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(color)
+            }
+            
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(Color(.systemGray5))
+                        .frame(height: 8)
+                    
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(color)
+                        .frame(width: geometry.size.width * percentage, height: 8)
+                }
+            }
+            .frame(height: 8)
+        }
+        .padding(.vertical, 4)
+    }
+}
+
+fileprivate struct PercentageRow: View {
+    let title: String
+    let value: Int
+    let total: Int
+    let color: Color
+    
+    private var percentage: Double {
+        guard total > 0 else { return 0 }
+        return Double(value) / Double(total)
+    }
+    
+    private var percentageString: String {
+        String(format: "%.1f%%", percentage * 100)
+    }
+    
+    var body: some View {
+        HStack {
+            Circle()
+                .fill(color)
+                .frame(width: 12, height: 12)
+            
+            Text(title)
+                .font(.subheadline)
+                .foregroundStyle(.primary)
+            
+            Spacer()
+            
+            Text(percentageString)
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .foregroundStyle(color)
+                .frame(minWidth: 50, alignment: .trailing)
+        }
     }
 }
 

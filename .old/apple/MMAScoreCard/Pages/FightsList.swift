@@ -45,97 +45,298 @@ struct FigthsList: View {
             return []
         }
         
+        let fights: [Fight]
         if searchText.isEmpty {
-            return response!.data
+            fights = response!.data
         } else {
-            return response!.data.filter { fight in
+            fights = response!.data.filter { fight in
                 fight.figther1.name.lowercased().contains(searchText.lowercased()) ||
                 fight.figther2.name.lowercased().contains(searchText.lowercased()) ||
                 fight.division.lowercased().contains(searchText.lowercased()) ||
                 fight.result.lowercased().contains(searchText.lowercased())
             }
         }
+        
+        // Sort by position (original order from API represents fight card order)
+        // Fights appear in order from main event (1) to prelims (higher numbers)
+        return fights
+    }
+    
+    private var sortedFights: [(Int, Fight)] {
+        // Create tuples with position and fight, maintaining the original order
+        // Position 1 = main event, higher positions = prelims
+        return filteredFights.enumerated().map { ($0.offset + 1, $0.element) }
+    }
+    
+    private var hasCompletedFights: Bool {
+        response?.data.filter { $0.fightStatus == .done }.isEmpty == false
     }
     
     var body: some View {
-        List {
-            Section(header: Text("Event")) {
-                LabeledContent("Name", value: event.name)
-                LabeledContent("Location", value: event.location)
-                LabeledContent("Date", value: event.date.ISO8601Format().split(separator: "T")[0])
+        listContent
+            .toolbar {
+                toolbarContent
             }
-            Section(header: Text("Fights")) {
-                ForEach(filteredFights) { fight in
-                    NavigationLink(destination: FigthDetails(event: event, fight: fight)) {
-                        VStack {
-                            Text("\(fight.figther1.name) vs \(fight.figther2.name)")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            if FightStatus.done == fight.fightStatus {
-                                Text("\(fight.result)")
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                Text("Round \(fight.round) at \(fight.time)")
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                            Text("\(fight.division)")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        .contextMenu {
-                            Button(action: {
-                                Sharing.shareText(text: "I'm viewing \"\(fight.figther1.name) vs \(fight.figther2.name)")
-                            }) {
-                                Text("Share")
-                                Image(systemName: "square.and.arrow.up")
-                            }
-                        } preview: {
-                            NavigationStack {
-                                FigthDetails(event: event, fight: fight)
-                            }
-                        }
-                    }
-                }
+            .overlay {
+                loadingOverlay
             }
-            if response?.cachedAt != nil || response?.timeCached != nil {
-                Section("Metadata") {
-                    LabeledContent("Cached at", value: response!.cachedAt!.ISO8601Format())
-                    LabeledContent("Time cached", value: response!.timeCached!)
-                }
-            }
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: .bottomBar) {
-                Text("\(filteredFights.count) Fights")
-            }
-            if response != nil {
-                let fightsDone = response!.data.filter { fight in
-                    return fight.fightStatus == FightStatus.pending
-                }
-                if fightsDone.count == 0 {
-                    ToolbarItem(placement: .secondaryAction) {
-                        NavigationLink(destination: EventGraph(event: event)) {
-                            Label("Graph", systemImage: "chart.xyaxis.line")
-                        }
-                    }
-                }
-            }
-        }
-        .overlay {
-            if isFetching {
-                ProgressView()
-            }
-        }
-        .alert(isPresented: .constant(error != nil)) {
-            Alert(
-                title: Text("Error"),
-                message: Text(error!.localizedDescription),
-                dismissButton: .default(Text("OK")) {
+            .alert("Error", isPresented: .constant(error != nil)) {
+                Button("OK") {
                     error = nil
                 }
-            )
+            } message: {
+                if let error = error {
+                    Text(error.localizedDescription)
+                }
+            }
+            .onAppear(perform: onAppear)
+            .refreshable(action: onRefresh)
+            .searchable(text: $searchText, prompt: "Search fighters or divisions")
+            .navigationTitle(event.name)
+            .navigationBarTitleDisplayMode(.large)
+    }
+    
+    @ViewBuilder
+    private var listContent: some View {
+        List {
+            eventHeaderSection
+            
+            if filteredFights.isEmpty && !isFetching {
+                emptyStateView
+            } else {
+                fightsSection
+            }
+            
+            metadataSection
         }
-        .onAppear(perform: onAppear)
-        .refreshable(action: onRefresh)
-        .searchable(text: $searchText)
-        .navigationTitle(event.name)
+    }
+    
+    @ViewBuilder
+    private var eventHeaderSection: some View {
+        Section {
+            VStack(spacing: 12) {
+                LabeledContent {
+                    Text(event.location)
+                } label: {
+                    Label("Name", systemImage: "location.fill")
+                }
+                
+                LabeledContent {
+                    Text(event.date.formatted(date: .abbreviated, time: .omitted))
+                } label: {
+                    Label("Date", systemImage: "calendar")
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var emptyStateView: some View {
+        ContentUnavailableView(
+            "No Fights",
+            systemImage: "figure.boxing",
+            description: Text("No fights found for the selected search")
+        )
+    }
+    
+    @ViewBuilder
+    private var fightsSection: some View {
+        Section("Fight Card") {
+            ForEach(sortedFights, id: \.1.id) { positionedFight in
+                fightRow(for: positionedFight.1, position: positionedFight.0)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func fightRow(for fight: Fight, position: Int) -> some View {
+        NavigationLink(destination: FigthDetails(event: event, fight: fight)) {
+            FightRow(fight: fight, position: position)
+        }
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            shareButton(for: fight)
+        }
+        .contextMenu {
+            contextMenuItems(for: fight)
+        } preview: {
+            NavigationStack {
+                FigthDetails(event: event, fight: fight)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func shareButton(for fight: Fight) -> some View {
+        Button(action: {
+            Sharing.shareText(text: "I'm viewing \"\(fight.figther1.name) vs \(fight.figther2.name)\"")
+        }) {
+            Label("Share", systemImage: "square.and.arrow.up")
+        }
+        .tint(.blue)
+    }
+    
+    @ViewBuilder
+    private func contextMenuItems(for fight: Fight) -> some View {
+        Button(action: {
+            Sharing.shareText(text: "I'm viewing \"\(fight.figther1.name) vs \(fight.figther2.name)\"")
+        }) {
+            Label("Share", systemImage: "square.and.arrow.up")
+        }
+    }
+    
+    @ViewBuilder
+    private var metadataSection: some View {
+        if let cachedAt = response?.cachedAt, let timeCached = response?.timeCached {
+            Section {
+                LabeledContent {
+                    Text(cachedAt.formatted(date: .abbreviated, time: .shortened))
+                        .foregroundStyle(.secondary)
+                } label: {
+                    Label("Cached", systemImage: "clock.arrow.circlepath")
+                }
+                
+                LabeledContent {
+                    Text(timeCached)
+                        .foregroundStyle(.secondary)
+                } label: {
+                    Label("Cache Time", systemImage: "timer")
+                }
+            } header: {
+                Text("Cache Info")
+            }
+        }
+    }
+    
+    @ToolbarContentBuilder
+    private var toolbarContent: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            if hasCompletedFights {
+                NavigationLink(destination: EventGraph(event: event)) {
+                    Label("Statistics", systemImage: "chart.xyaxis.line")
+                }
+            }
+        }
+        
+        ToolbarItem(placement: .bottomBar) {
+            HStack {
+                Label("\(filteredFights.count)", systemImage: "figure.boxing")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                
+                Spacer()
+                
+                if hasCompletedFights {
+                    let completed = response?.data.filter { $0.fightStatus == .done }.count ?? 0
+                    let total = response?.data.count ?? 0
+                    
+                    Text("\(completed)/\(total) completed")
+                        .font(.caption)
+                        .foregroundStyle(.tertiary)
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var loadingOverlay: some View {
+        if isFetching && filteredFights.isEmpty {
+            ContentUnavailableView {
+                ProgressView()
+            } description: {
+                Text("Loading fights...")
+            }
+        }
+    }
+}
+
+// MARK: - Fight Row Component
+fileprivate struct FightRow: View {
+    let fight: Fight
+    let position: Int
+    
+    private var resultIcon: String {
+        let result = fight.result.uppercased()
+        if result.hasPrefix("KO") || result.hasPrefix("TKO") {
+            return "figure.martial.arts"
+        } else if result.contains("DECISION") || result.contains("DEC") {
+            return "list.bullet.clipboard"
+        } else if result.contains("SUBMISSION") || result.contains("SUB") {
+            return "figure.fall"
+        } else {
+            return "checkmark.circle.fill"
+        }
+    }
+    
+    private var resultColor: Color {
+        let result = fight.result.uppercased()
+        if result.hasPrefix("KO") || result.hasPrefix("TKO") {
+            return .red
+        } else if result.contains("DECISION") || result.contains("DEC") {
+            return .blue
+        } else if result.contains("SUBMISSION") || result.contains("SUB") {
+            return .green
+        } else {
+            return .primary
+        }
+    }
+    
+    var body: some View {
+        HStack(alignment: .center, spacing: 12) {
+            Image(systemName: resultIcon)
+                .font(.subheadline)
+                .foregroundStyle(resultColor)
+            
+            VStack(alignment: .leading, spacing: 6) {
+                // Fighters
+                HStack(spacing: 6) {
+                    Text(fight.figther1.name)
+                        .font(.headline)
+                        .lineLimit(1)
+                    
+                    Text("vs")
+                        .font(.caption)
+                        .foregroundStyle(.tertiary)
+                    
+                    Text(fight.figther2.name)
+                        .font(.headline)
+                        .lineLimit(1)
+                }
+                
+                HStack(spacing: 8) {
+                    // Division
+                    Text(fight.division)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    
+                    Text("R\(fight.round) • \(fight.time)")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                
+                // Result (if completed)
+                if fight.fightStatus == .done {
+                    HStack(spacing: 8) {
+                        Text(fight.result)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                } else {
+                    Label("Scheduled", systemImage: "clock.badge")
+                        .font(.caption)
+                        .foregroundStyle(.orange)
+                }
+            }
+            
+            Spacer(minLength: 0)
+            
+            // Status Badge
+//            if fight.fightStatus != .done {
+//                Image(systemName: "calendar.badge.clock")
+//                    .font(.caption)
+//                    .foregroundStyle(.orange)
+//            }
+        }
+        .padding(.vertical, 4)
     }
 }
 
