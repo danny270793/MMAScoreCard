@@ -179,21 +179,21 @@ struct FighterDetails: View {
             }
         }
         
-        ToolbarItem(placement: .bottomBar) {
-            HStack {
-                Label("\(filteredFights.count)", systemImage: "figure.boxing")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                
-                Spacer()
-                
-                if wins + losses + draws > 0 {
-                    Text("Record: \(wins)-\(losses)-\(draws)")
-                        .font(.caption)
-                        .foregroundStyle(.tertiary)
-                }
-            }
-        }
+//        ToolbarItem(placement: .bottomBar) {
+//            HStack {
+//                Label("\(filteredFights.count)", systemImage: "figure.boxing")
+//                    .font(.subheadline)
+//                    .foregroundStyle(.secondary)
+//                
+//                Spacer()
+//                
+//                if wins + losses + draws > 0 {
+//                    Text("Record: \(wins)-\(losses)-\(draws)")
+//                        .font(.caption)
+//                        .foregroundStyle(.tertiary)
+//                }
+//            }
+//        }
     }
     
     @ViewBuilder
