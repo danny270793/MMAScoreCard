@@ -197,7 +197,7 @@ struct FigthDetails: View {
                 Text(event.name)
                     .foregroundStyle(.secondary)
             } label: {
-                Label("Event", systemImage: "calendar")
+                Label("Event", systemImage: "rectangle.and.pencil.and.ellipsis")
             }
             
             LabeledContent {
