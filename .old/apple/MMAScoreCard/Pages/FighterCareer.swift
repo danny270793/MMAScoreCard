@@ -55,6 +55,24 @@ struct FighterCareer: View {
         }.count
     }
     
+    private var koLosses: Int {
+        fights.filter { fight in
+            fight.status == .loss && (fight.method.uppercased().contains("KO") || fight.method.uppercased().contains("TKO"))
+        }.count
+    }
+    
+    private var submissionLosses: Int {
+        fights.filter { fight in
+            fight.status == .loss && (fight.method.uppercased().contains("SUBMISSION") || fight.method.uppercased().contains("SUB"))
+        }.count
+    }
+    
+    private var decisionLosses: Int {
+        fights.filter { fight in
+            fight.status == .loss && (fight.method.uppercased().contains("DECISION") || fight.method.uppercased().contains("DEC"))
+        }.count
+    }
+    
     // MARK: - Streak Calculations
     
     private struct Streak {
@@ -137,6 +155,7 @@ struct FighterCareer: View {
             recordSection
             performanceSection
             finishTypesSection
+            lossMethodsSection
             breakdownSection
         }
         .navigationTitle("Carrer statistics")
@@ -160,9 +179,7 @@ struct FighterCareer: View {
                     RecordBadge(label: "W", value: wins, color: .green)
                     RecordBadge(label: "L", value: losses, color: .red)
                     RecordBadge(label: "D", value: draws, color: .orange)
-                    if ncs > 0 {
-                        RecordBadge(label: "NC", value: ncs, color: .gray)
-                    }
+                    RecordBadge(label: "NC", value: ncs, color: .gray)
                 }
                 .padding(.bottom, 8)
                 
@@ -325,10 +342,45 @@ struct FighterCareer: View {
     }
     
     @ViewBuilder
+    private var lossMethodsSection: some View {
+        Section("Loss Methods") {
+            StatBar(
+                title: "KO/TKO",
+                value: koLosses,
+                total: losses,
+                icon: "figure.martial.arts",
+                color: .red
+            )
+            
+            StatBar(
+                title: "Submission",
+                value: submissionLosses,
+                total: losses,
+                icon: "figure.fall",
+                color: .orange
+            )
+            
+            StatBar(
+                title: "Decision",
+                value: decisionLosses,
+                total: losses,
+                icon: "list.bullet.clipboard",
+                color: .purple
+            )
+        }
+    }
+    
+    @ViewBuilder
     private var breakdownSection: some View {
         Section("Breakdown") {
             VStack(spacing: 12) {
                 if wins > 0 {
+                    Text("Wins Breakdown")
+                        .font(.caption)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
                     PercentageRow(
                         title: "KO/TKO Wins",
                         value: koWins,
@@ -348,6 +400,40 @@ struct FighterCareer: View {
                         value: decisionWins,
                         total: wins,
                         color: .blue
+                    )
+                }
+                
+                if losses > 0 {
+                    if wins > 0 {
+                        Divider()
+                            .padding(.vertical, 8)
+                    }
+                    
+                    Text("Losses Breakdown")
+                        .font(.caption)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    PercentageRow(
+                        title: "KO/TKO Losses",
+                        value: koLosses,
+                        total: losses,
+                        color: .red
+                    )
+                    
+                    PercentageRow(
+                        title: "Submission Losses",
+                        value: submissionLosses,
+                        total: losses,
+                        color: .orange
+                    )
+                    
+                    PercentageRow(
+                        title: "Decision Losses",
+                        value: decisionLosses,
+                        total: losses,
+                        color: .purple
                     )
                 }
             }
