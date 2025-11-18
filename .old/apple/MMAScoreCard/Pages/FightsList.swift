@@ -340,8 +340,14 @@ fileprivate struct FightRow: View {
     }
 }
 
-#Preview {
+#Preview("Done") {
     NavigationView {
         FigthsList(event: Event(name: "UFC 313", fight: "Alex Pereira vs. Ankalaev", location: "Los Angeles", date: Date(), url: "https://www.sherdog.com/events/UFC-on-ESPN-64-Moreno-vs-Erceg-105790"))
+    }
+}
+
+#Preview("Pending") {
+    NavigationView {
+        FigthsList(event: Event(name: "UFC 323", fight: "Dvalishvili vs. Yan", location: "T-MOBILE ARENA, LAS VEGAS, NEVADA, UNITED STATES", date: Date(), url: "https://www.sherdog.com/events/UFC-323-Dvalishvili-vs-Yan-2-109392"))
     }
 }
