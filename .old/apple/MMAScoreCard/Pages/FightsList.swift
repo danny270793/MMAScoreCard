@@ -217,24 +217,24 @@ struct FigthsList: View {
             }
         }
         
-        ToolbarItem(placement: .bottomBar) {
-            HStack {
-                Label("\(filteredFights.count)", systemImage: "figure.boxing")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                
-                Spacer()
-                
-                if hasCompletedFights {
-                    let completed = response?.data.filter { $0.fightStatus == .done }.count ?? 0
-                    let total = response?.data.count ?? 0
-                    
-                    Text("\(completed)/\(total) completed")
-                        .font(.caption)
-                        .foregroundStyle(.tertiary)
-                }
-            }
-        }
+//        ToolbarItem(placement: .bottomBar) {
+//            HStack {
+//                Label("\(filteredFights.count)", systemImage: "figure.boxing")
+//                    .font(.subheadline)
+//                    .foregroundStyle(.secondary)
+//                
+//                Spacer()
+//                
+//                if hasCompletedFights {
+//                    let completed = response?.data.filter { $0.fightStatus == .done }.count ?? 0
+//                    let total = response?.data.count ?? 0
+//                    
+//                    Text("\(completed)/\(total) completed")
+//                        .font(.caption)
+//                        .foregroundStyle(.tertiary)
+//                }
+//            }
+//        }
     }
     
     @ViewBuilder
