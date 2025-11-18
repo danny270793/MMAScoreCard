@@ -14,7 +14,7 @@ struct EventsList: View {
     @State private var error: Error? = nil
     @State private var searchText = ""
     @State var response: SherdogResponse<[Event]>? = nil
-    @State private var filter = FilterOptions.past
+    @State private var filter = FilterOptions.all
     
     func onAppear() {
         Task {
@@ -310,7 +310,7 @@ fileprivate struct EventRow: View {
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
                     
-                    if let days = daysUntil, days <= 7 {
+                    if let days = daysUntil {
                         Text("•")
                             .foregroundStyle(.secondary)
                         
@@ -365,15 +365,6 @@ fileprivate struct EventRow: View {
                             }
                     }
                 }
-            }
-            
-            Spacer(minLength: 0)
-            
-            // Upcoming Badge
-            if isUpcoming {
-                Image(systemName: "chevron.right")
-                    .font(.caption)
-                    .foregroundStyle(.tertiary)
             }
         }
         .padding(.vertical, 4)
