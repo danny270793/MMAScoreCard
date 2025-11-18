@@ -61,12 +61,20 @@ struct FighterCareer: View {
             finishTypesSection
             breakdownSection
         }
-        .navigationTitle("Career Statistics")
+        .navigationTitle("Carrer statistics")
         .navigationBarTitleDisplayMode(.large)
     }
     
     @ViewBuilder
     private var recordSection: some View {
+        if ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 16 {
+            HStack {
+                Label("Fighter", systemImage: "person")
+                Spacer()
+                Text(fighter.name)
+                    .foregroundStyle(.secondary)
+            }
+        }
         Section {
             VStack(spacing: 16) {
                 // Record Display
