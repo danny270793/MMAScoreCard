@@ -58,7 +58,7 @@ struct EventGraph : View {
             }
             .onAppear(perform: onAppear)
             .refreshable(action: onRefresh)
-            .navigationTitle("Statistics")
+            .navigationTitle(ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 26 ? "Statistics" : event.name)
             .navigationBarTitleDisplayMode(.large)
     }
     
@@ -83,16 +83,23 @@ struct EventGraph : View {
             VStack(spacing: 12) {
                 Section {
                     VStack(spacing: 12) {
-                        LabeledContent {
-                            Text(event.location)
-                        } label: {
-                            Label("Name", systemImage: "location.fill")
+                        let version = ProcessInfo.processInfo.operatingSystemVersion
+                        if version.majorVersion > 26 {
+                            HStack {
+                                Label("Event", systemImage: "rectangle.and.pencil.and.ellipsis")
+                                Spacer()
+                                Text(event.name)
+                            }
                         }
-                        
-                        LabeledContent {
-                            Text(event.date.formatted(date: .abbreviated, time: .omitted))
-                        } label: {
+                        HStack {
+                            Label("Location", systemImage: "location.fill")
+                            Spacer()
+                            Text(event.location)
+                        }
+                        HStack {
                             Label("Date", systemImage: "calendar")
+                            Spacer()
+                            Text(event.date.formatted(date: .abbreviated, time: .omitted))
                         }
                     }
                 }
