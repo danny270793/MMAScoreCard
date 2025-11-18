@@ -115,16 +115,15 @@ struct FigthsList: View {
     private var eventHeaderSection: some View {
         Section {
             VStack(spacing: 12) {
-                LabeledContent {
+                HStack {
+                    Label("Location", systemImage: "location.fill")
+                    Spacer()
                     Text(event.location)
-                } label: {
-                    Label("Name", systemImage: "location.fill")
                 }
-                
-                LabeledContent {
-                    Text(event.date.formatted(date: .abbreviated, time: .omitted))
-                } label: {
+                HStack {
                     Label("Date", systemImage: "calendar")
+                    Spacer()
+                    Text(event.date.formatted(date: .abbreviated, time: .omitted))
                 }
             }
         }
@@ -216,25 +215,28 @@ struct FigthsList: View {
                 }
             }
         }
+
+        let version = ProcessInfo.processInfo.operatingSystemVersion
+        if version.majorVersion < 26 {
+            ToolbarItem(placement: .bottomBar) {
+                HStack {
+                    Label("\(filteredFights.count)", systemImage: "figure.boxing")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                    
+                    Spacer()
+
+                    
+                    let completed = response?.data.filter { $0.fightStatus == .done }.count ?? 0
+                    let total = response?.data.count ?? 0
+                    
+                    Text("\(completed)/\(total) completed")
+                        .font(.caption)
+                        .foregroundStyle(.tertiary)
+                }
+            }
+        }
         
-//        ToolbarItem(placement: .bottomBar) {
-//            HStack {
-//                Label("\(filteredFights.count)", systemImage: "figure.boxing")
-//                    .font(.subheadline)
-//                    .foregroundStyle(.secondary)
-//                
-//                Spacer()
-//                
-//                if hasCompletedFights {
-//                    let completed = response?.data.filter { $0.fightStatus == .done }.count ?? 0
-//                    let total = response?.data.count ?? 0
-//                    
-//                    Text("\(completed)/\(total) completed")
-//                        .font(.caption)
-//                        .foregroundStyle(.tertiary)
-//                }
-//            }
-//        }
     }
     
     @ViewBuilder
@@ -263,7 +265,20 @@ fileprivate struct FightRow: View {
         } else if result.contains("SUBMISSION") || result.contains("SUB") {
             return "figure.fall"
         } else {
-            return "checkmark.circle.fill"
+            return "clock.badge"
+        }
+    }
+    
+    private var hasResult: Bool {
+        let result = fight.result.uppercased()
+        if result.hasPrefix("KO") || result.hasPrefix("TKO") {
+            return true
+        } else if result.contains("DECISION") || result.contains("DEC") {
+            return true
+        } else if result.contains("SUBMISSION") || result.contains("SUB") {
+            return true
+        } else {
+            return false
         }
     }
     
@@ -276,7 +291,7 @@ fileprivate struct FightRow: View {
         } else if result.contains("SUBMISSION") || result.contains("SUB") {
             return .green
         } else {
-            return .primary
+            return .orange
         }
     }
     
@@ -292,11 +307,11 @@ fileprivate struct FightRow: View {
                     Text(fight.figther1.name)
                         .font(.headline)
                         .lineLimit(1)
-                    
+                    Spacer(minLength: 0)
                     Text("vs")
                         .font(.caption)
                         .foregroundStyle(.tertiary)
-                    
+                    Spacer(minLength: 0)
                     Text(fight.figther2.name)
                         .font(.headline)
                         .lineLimit(1)
@@ -307,10 +322,12 @@ fileprivate struct FightRow: View {
                     Text(fight.division)
                         .font(.caption)
                         .foregroundStyle(.secondary)
+                    if hasResult {
+                        Text("R\(fight.round) • \(fight.time)")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                     
-                    Text("R\(fight.round) • \(fight.time)")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
                 }
                 
                 // Result (if completed)
@@ -320,21 +337,10 @@ fileprivate struct FightRow: View {
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
-                } else {
-                    Label("Scheduled", systemImage: "clock.badge")
-                        .font(.caption)
-                        .foregroundStyle(.orange)
                 }
             }
             
             Spacer(minLength: 0)
-            
-            // Status Badge
-//            if fight.fightStatus != .done {
-//                Image(systemName: "calendar.badge.clock")
-//                    .font(.caption)
-//                    .foregroundStyle(.orange)
-//            }
         }
         .padding(.vertical, 4)
     }
