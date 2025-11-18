@@ -74,7 +74,7 @@ struct FighterCareer: View {
                 Text(fighter.name)
                     .foregroundStyle(.secondary)
             }
-        }w
+        }
         Section {
             VStack(spacing: 16) {
                 // Record Display
