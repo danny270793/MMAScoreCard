@@ -55,9 +55,87 @@ struct FighterCareer: View {
         }.count
     }
     
+    // MARK: - Streak Calculations
+    
+    private struct Streak {
+        let type: FighterStatus
+        let count: Int
+    }
+    
+    private var streaks: [Streak] {
+        var result: [Streak] = []
+        
+        for fight in fights {
+            if let last = result.last, last.type == fight.status {
+                result[result.count - 1] = Streak(type: fight.status, count: last.count + 1)
+            } else {
+                result.append(Streak(type: fight.status, count: 1))
+            }
+        }
+        
+        return result
+    }
+    
+    private var currentStreak: Streak {
+        streaks.first ?? Streak(type: .pending, count: 0)
+    }
+    
+    private var bestWinStreak: Int {
+        streaks
+            .filter { $0.type == .win }
+            .map { $0.count }
+            .max() ?? 0
+    }
+    
+    private var worstLossStreak: Int {
+        streaks
+            .filter { $0.type == .loss }
+            .map { $0.count }
+            .max() ?? 0
+    }
+    
+    // MARK: - Title Fights & Time
+    
+    private var titleFights: Int {
+        fights.filter { fight in
+            fight.event.uppercased().contains("TITLE") || 
+            fight.method.uppercased().contains("TITLE")
+        }.count
+    }
+    
+    private var octagonTime: String {
+        let totalSeconds = fights.reduce(0) { total, fight in
+            // Parse round number (e.g., "Round 3" -> 3)
+            let roundNumber = Int(fight.round.filter { $0.isNumber }) ?? 1
+            
+            // Parse time (e.g., "2:34" -> 154 seconds)
+            let timeComponents = fight.time.split(separator: ":").compactMap { Int($0) }
+            let fightSeconds: Int
+            if timeComponents.count == 2 {
+                fightSeconds = (timeComponents[0] * 60) + timeComponents[1]
+            } else {
+                fightSeconds = 0
+            }
+            
+            // Calculate total time: (completed rounds * 5 minutes) + time in current round
+            let completedRounds = max(0, roundNumber - 1)
+            let totalFightSeconds = (completedRounds * 5 * 60) + fightSeconds
+            
+            return total + totalFightSeconds
+        }
+        
+        let days = totalSeconds / (24 * 3600)
+        let hours = (totalSeconds % (24 * 3600)) / 3600
+        let minutes = (totalSeconds % 3600) / 60
+        let seconds = totalSeconds % 60
+        
+        return String(format: "%02d %02d:%02d:%02d", days, hours, minutes, seconds)
+    }
+    
     var body: some View {
         List {
             recordSection
+            performanceSection
             finishTypesSection
             breakdownSection
         }
@@ -108,6 +186,112 @@ struct FighterCareer: View {
                 .padding(.vertical, 8)
             }
             .padding(.top, 8)
+        }
+    }
+    
+    @ViewBuilder
+    private var performanceSection: some View {
+        Section("Performance Metrics") {
+            VStack(spacing: 12) {
+                // Current Streak
+                HStack {
+                    Label("Current Streak", systemImage: "flame.fill")
+                        .font(.subheadline)
+                        .foregroundStyle(.primary)
+                    
+                    Spacer()
+                    
+                    HStack(spacing: 4) {
+                        Text("\(currentStreak.count)")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                        Text(currentStreak.type == .win ? "W" : currentStreak.type == .loss ? "L" : "-")
+                            .font(.caption)
+                            .fontWeight(.bold)
+                    }
+                    .foregroundStyle(currentStreak.type == .win ? .green : currentStreak.type == .loss ? .red : .gray)
+                }
+                .padding(.vertical, 4)
+                
+                Divider()
+                
+                // Best Win Streak
+                HStack {
+                    Label("Best Win Streak", systemImage: "chart.line.uptrend.xyaxis")
+                        .font(.subheadline)
+                        .foregroundStyle(.primary)
+                    
+                    Spacer()
+                    
+                    HStack(spacing: 4) {
+                        Text("\(bestWinStreak)")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                        Text("W")
+                            .font(.caption)
+                            .fontWeight(.bold)
+                    }
+                    .foregroundStyle(.green)
+                }
+                .padding(.vertical, 4)
+                
+                Divider()
+                
+                // Worst Loss Streak
+                HStack {
+                    Label("Worst Loss Streak", systemImage: "chart.line.downtrend.xyaxis")
+                        .font(.subheadline)
+                        .foregroundStyle(.primary)
+                    
+                    Spacer()
+                    
+                    HStack(spacing: 4) {
+                        Text("\(worstLossStreak)")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                        Text("L")
+                            .font(.caption)
+                            .fontWeight(.bold)
+                    }
+                    .foregroundStyle(.red)
+                }
+                .padding(.vertical, 4)
+                
+                Divider()
+                
+                // Title Fights
+                HStack {
+                    Label("Title Fights", systemImage: "crown.fill")
+                        .font(.subheadline)
+                        .foregroundStyle(.primary)
+                    
+                    Spacer()
+                    
+                    Text("\(titleFights)")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.yellow)
+                }
+                .padding(.vertical, 4)
+                
+                Divider()
+                
+                // Octagon Time
+                HStack {
+                    Label("Time in Octagon", systemImage: "timer")
+                        .font(.subheadline)
+                        .foregroundStyle(.primary)
+                    
+                    Spacer()
+                    
+                    Text(octagonTime)
+                        .font(.system(.subheadline, design: .monospaced))
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.blue)
+                }
+                .padding(.vertical, 4)
+            }
+            .padding(.vertical, 4)
         }
     }
     
