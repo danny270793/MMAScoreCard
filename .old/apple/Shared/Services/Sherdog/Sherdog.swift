@@ -418,9 +418,16 @@ class Sheredog {
     
     static func getLastEventStats(forceRefresh: Bool = false) async throws -> SherdogResponse<EventStats> {
         let events = try await Sheredog.loadEvents(forceRefresh: forceRefresh)
+        
+        // Filter for past events (events that have already happened)
         let pastEvents = events.data.filter { event in event.date <= Date.now}
-        let lastEvent = pastEvents[0]
-        let fights = try await loadFights(event: lastEvent)
+        
+        // Ensure we have at least one past event
+        guard let lastEvent = pastEvents.first else {
+            throw SheredogErrors.noEventsFound
+        }
+        
+        let fights = try await loadFights(event: lastEvent, forceRefresh: forceRefresh)
         
         var kos = 0
         var submission = 0
