@@ -174,83 +174,76 @@ struct LastEventStatsWidgetEntryView : View {
     }
     
     private var largeWidgetView: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            // Header
-                        HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Label("Fight Statistics", systemImage: "chart.xyaxis.line")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                    
-                    Text(stats.name)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .lineLimit(1)
-                    
-                    Text(stats.mainFight)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .lineLimit(1)
-                }
+        VStack(spacing: 0) {
+            // Header Card
+            VStack(alignment: .leading, spacing: 8) {
+                Label("Fight Statistics", systemImage: "chart.xyaxis.line")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
                 
-                Spacer()
-                
-                // Total Fights Badge
-                VStack(spacing: 2) {
-                    Text("\(totalFights)")
-                        .font(.system(.title, design: .rounded, weight: .bold))
-                        .foregroundStyle(.orange)
+                HStack(alignment: .top) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(stats.name)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .lineLimit(2)
+                        
+                        Text(stats.mainFight)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(2)
+                    }
                     
-                    Text("Fights")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                    Spacer()
+                    
+                    // Compact Total Badge
+                    HStack(spacing: 6) {
+                        Image(systemName: "figure.boxing")
+                            .font(.title3)
+                            .foregroundStyle(.orange.gradient)
+                        
+                        Text("\(totalFights)")
+                            .font(.system(.title, design: .rounded, weight: .bold))
+                    }
                 }
             }
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color(.systemGray6))
+            )
             
             Spacer()
             
-            // Single Segmented Ring
-            HStack(spacing: 16) {
-                // Ring (35% of space)
-                SegmentedRing(
-                    kos: stats.kos,
-                    submissions: stats.submissions,
-                    decisions: stats.decisions,
-                    total: totalFights
+            // Stats Grid
+            HStack(spacing: 12) {
+                LargeStatCard(
+                    title: "KO/TKO",
+                    value: stats.kos,
+                    total: totalFights,
+                    icon: "figure.martial.arts",
+                    color: .red
                 )
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .layoutPriority(0.25)
                 
-                // Legend (65% of space)
-                VStack(alignment: .leading, spacing: 12) {
-                    StatLegendItem(
-                        icon: "figure.martial.arts",
-                        title: "KO/TKO",
-                        value: stats.kos,
-                        color: .red
-                    )
-                    
-                    StatLegendItem(
-                        icon: "figure.fall",
-                        title: "Submission",
-                        value: stats.submissions,
-                        color: .green
-                    )
-                    
-                    StatLegendItem(
-                        icon: "list.bullet.clipboard",
-                        title: "Decision",
-                        value: stats.decisions,
-                        color: .blue
-                    )
-                }
-                .frame(maxWidth: .infinity)
-                .layoutPriority(0.65)
+                LargeStatCard(
+                    title: "Submission",
+                    value: stats.submissions,
+                    total: totalFights,
+                    icon: "figure.fall",
+                    color: .green
+                )
+                
+                LargeStatCard(
+                    title: "Decision",
+                    value: stats.decisions,
+                    total: totalFights,
+                    icon: "list.bullet.clipboard",
+                    color: .blue
+                )
             }
             
-                            Spacer()
-                        }
-        .padding()
+            Spacer()
+        }
     }
 }
 
@@ -635,6 +628,67 @@ fileprivate struct StatLegendItem: View {
             
             Spacer()
         }
+    }
+}
+
+fileprivate struct LargeStatCard: View {
+    let title: String
+    let value: Int
+    let total: Int
+    let icon: String
+    let color: Color
+    
+    private var percentage: Double {
+        guard total > 0 else { return 0 }
+        return Double(value) / Double(total)
+    }
+    
+    private var percentageString: String {
+        String(format: "%.0f%%", percentage * 100)
+    }
+    
+    var body: some View {
+        VStack(spacing: 12) {
+            // Icon
+            Image(systemName: icon)
+                .font(.system(size: 36))
+                .foregroundStyle(color.gradient)
+            
+            // Value
+            Text("\(value)")
+                .font(.system(size: 40, weight: .bold, design: .rounded))
+                .foregroundStyle(.primary)
+            
+            // Progress Ring
+            ZStack {
+                Circle()
+                    .stroke(Color(.systemGray5), lineWidth: 6)
+                    .frame(width: 60, height: 60)
+                
+                Circle()
+                    .trim(from: 0, to: percentage)
+                    .stroke(
+                        color.gradient,
+                        style: StrokeStyle(
+                            lineWidth: 6,
+                            lineCap: .round
+                        )
+                    )
+                    .frame(width: 60, height: 60)
+                    .rotationEffect(.degrees(-90))
+                
+                Text(percentageString)
+                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+                    .foregroundStyle(color)
+            }
+            
+            // Title
+            Text(title)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+        }
+        .frame(maxWidth: .infinity)
     }
 }
 
