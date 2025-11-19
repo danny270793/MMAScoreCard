@@ -173,7 +173,12 @@ class Sheredog {
         
         let document = try SwiftSoup.parse(html)
         let fightCard = try document.select("div.fight_card")
-        let division = try fightCard.select("span.weight_class").text()
+        var division = try fightCard.select("span.weight_class").text()
+        var titleFight = false
+        if division.starts(with: "TITLE FIGHT") {
+            titleFight = true
+            division.replace("TITLE FIGHT ", with: "")
+        }
         
         let leftSide = try fightCard.select("div.left_side")
         let figther1StatusText = (try leftSide.select("span.final_result").text()).lowercased().trim()
@@ -253,7 +258,7 @@ class Sheredog {
         }
         
         var fights: [Fight] = []
-        let fight = Fight(position: position, figther1: Fighter(name: figther1Name, image: fighter1Image!, link: fighter1Url!), figther1Status: figther1Status, figther2: Fighter(name: figther2Name, image: fighter2Image!, link: fighter2Url!), figther2Status: figther2Status, result: result, round: round, time: time, referee: referee, division: division, fightStatus: fightStatus)
+        let fight = Fight(position: position, figther1: Fighter(name: figther1Name, image: fighter1Image!, link: fighter1Url!), figther1Status: figther1Status, figther2: Fighter(name: figther2Name, image: fighter2Image!, link: fighter2Url!), figther2Status: figther2Status, result: result, round: round, time: time, referee: referee, division: division, fightStatus: fightStatus, titleFight: titleFight)
         fights.append(fight)
         
         let tables = try document.select("table.new_table")
@@ -388,9 +393,17 @@ class Sheredog {
                     throw SheredogErrors.invalidFigther
                 }
                 
+                var titleFight = false
+                if division != nil {
+                    if division!.starts(with: "TITLE FIGHT") {
+                        division!.replace("TITLE FIGHT ", with: "")
+                        titleFight = true
+                    }
+                }
+                
                 let figther1: Fighter = Fighter(name: fighter1Name!, image: fighter1Image!, link: fighter1Url!)
                 let figther2: Fighter = Fighter(name: fighter2Name!, image: fighter2Image!, link: fighter2Url!)
-                let fight = Fight(position: position!, figther1: figther1, figther1Status: fighter1Status, figther2: figther2, figther2Status: fighter2Status, result: result!, round: round!, time: time!, referee: referee!, division: division!, fightStatus: fightStatus!)
+                let fight = Fight(position: position!, figther1: figther1, figther1Status: fighter1Status, figther2: figther2, figther2Status: fighter2Status, result: result!, round: round!, time: time!, referee: referee!, division: division!, fightStatus: fightStatus!, titleFight: titleFight)
                 fights.append(fight)
             }
         }
