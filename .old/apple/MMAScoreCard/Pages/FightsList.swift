@@ -114,16 +114,18 @@ struct FigthsList: View {
     
     @ViewBuilder
     private var eventHeaderSection: some View {
-        Section("Event") {
+        Section("Event Information") {
             HStack {
                 Label("Location", systemImage: "location.fill")
                 Spacer()
                 Text(event.location)
+                    .foregroundStyle(.secondary)
             }
             HStack {
                 Label("Date", systemImage: "calendar")
                 Spacer()
                 Text(event.date.formatted(date: .abbreviated, time: .omitted))
+                    .foregroundStyle(.secondary)
             }
         }
     }
