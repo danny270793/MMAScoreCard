@@ -22,8 +22,8 @@ struct LastEventStatsWidget: Widget {
                     .background()
             }
         }
-        .configurationDisplayName("Last event stats")
-        .description("Show the percentage ok KO/TKO, Submissions and Decissions on last event")
+        .configurationDisplayName(String(localized: "widget.config.displayName"))
+        .description(String(localized: "widget.config.description"))
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
