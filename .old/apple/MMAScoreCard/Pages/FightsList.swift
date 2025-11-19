@@ -53,6 +53,7 @@ struct FigthsList: View {
                 fight.figther1.name.lowercased().contains(searchText.lowercased()) ||
                 fight.figther2.name.lowercased().contains(searchText.lowercased()) ||
                 fight.division.lowercased().contains(searchText.lowercased()) ||
+                
                 fight.result.lowercased().contains(searchText.lowercased())
             }
         }
@@ -113,18 +114,16 @@ struct FigthsList: View {
     
     @ViewBuilder
     private var eventHeaderSection: some View {
-        Section {
-            VStack(spacing: 12) {
-                HStack {
-                    Label("Location", systemImage: "location.fill")
-                    Spacer()
-                    Text(event.location)
-                }
-                HStack {
-                    Label("Date", systemImage: "calendar")
-                    Spacer()
-                    Text(event.date.formatted(date: .abbreviated, time: .omitted))
-                }
+        Section("Event") {
+            HStack {
+                Label("Location", systemImage: "location.fill")
+                Spacer()
+                Text(event.location)
+            }
+            HStack {
+                Label("Date", systemImage: "calendar")
+                Spacer()
+                Text(event.date.formatted(date: .abbreviated, time: .omitted))
             }
         }
     }
