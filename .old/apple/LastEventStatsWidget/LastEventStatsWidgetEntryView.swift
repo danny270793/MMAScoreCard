@@ -115,7 +115,7 @@ struct LastEventStatsWidgetEntryView : View {
                 
                 Text(stats.name)
                     .font(.headline)
-                    .lineLimit(1)
+                    .lineLimit(2)
                 
                 Text(stats.mainFight)
                     .font(.caption)
@@ -350,7 +350,7 @@ fileprivate struct MediumStatCard: View {
     }
     
     var body: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 0) {
             Image(systemName: icon)
                 .font(.title3)
                 .foregroundStyle(color.gradient)
@@ -388,12 +388,6 @@ fileprivate struct MediumStatCard: View {
             }
             .frame(width: 40, height: 6)
         }
-        .padding(.horizontal, 8)
-        .padding(.vertical, 6)
-        .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color(.systemGray6))
-        )
     }
 }
 
