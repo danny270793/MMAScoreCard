@@ -12,30 +12,8 @@ struct FigthDetails: View {
     let event: Event
     let fight: Fight
     
-    private var resultIcon: String {
-        let result = fight.result.uppercased()
-        if result.hasPrefix("KO") || result.hasPrefix("TKO") {
-            return "figure.martial.arts"
-        } else if result.contains("DECISION") || result.contains("DEC") {
-            return "list.bullet.clipboard"
-        } else if result.contains("SUBMISSION") || result.contains("SUB") {
-            return "figure.fall"
-        } else {
-            return "checkmark.circle.fill"
-        }
-    }
-    
-    private var resultColor: Color {
-        let result = fight.result.uppercased()
-        if result.hasPrefix("KO") || result.hasPrefix("TKO") {
-            return .red
-        } else if result.contains("DECISION") || result.contains("DEC") {
-            return .blue
-        } else if result.contains("SUBMISSION") || result.contains("SUB") {
-            return .green
-        } else {
-            return .primary
-        }
+    private var resultStyle: FightResultStyle {
+        FightResultStyle(result: fight.result)
     }
     
     var body: some View {
@@ -61,13 +39,13 @@ struct FigthDetails: View {
             VStack(spacing: 12) {
                 // Result with Icon
                 HStack(spacing: 12) {
-                    Image(systemName: resultIcon)
+                    Image(systemName: resultStyle.icon)
                         .font(.title2)
-                        .foregroundStyle(resultColor)
+                        .foregroundStyle(resultStyle.color)
                         .frame(width: 40, height: 40)
                         .background(
                             Circle()
-                                .fill(resultColor.opacity(0.15))
+                                .fill(resultStyle.color.opacity(0.15))
                         )
                     
                     VStack(alignment: .leading, spacing: 4) {
@@ -193,116 +171,27 @@ struct FigthDetails: View {
     @ViewBuilder
     private var eventInfoSection: some View {
         Section("Event Information") {
-            HStack {
-                Label("Event", systemImage: "rectangle.and.pencil.and.ellipsis")
-                Spacer()
-                Text(event.name)
-                    .foregroundStyle(.secondary)
-            }
-            HStack {
-                Label("Location", systemImage: "location.fill")
-                Spacer()
-                Text(event.location)
-                    .foregroundStyle(.secondary)
-            }
-            HStack {
-                Label("Date", systemImage: "calendar")
-                Spacer()
-                Text(event.date.formatted(date: .abbreviated, time: .omitted))
-                    .foregroundStyle(.secondary)
-            }
-            HStack {
-                Label("Date", systemImage: "scalemass.fill")
-                Spacer()
-                Text(fight.division)
-                    .foregroundStyle(.secondary)
-            }
-        }
-    }
-}
-
-// MARK: - Supporting Views
-
-fileprivate struct FighterCard: View {
-    let fighter: Fighter
-    let status: FighterStatus
-    let isWinner: Bool
-    
-    var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: isWinner ? "crown.fill" : "person.circle.fill")
-                .font(.title)
-                .foregroundStyle(isWinner ? .yellow : .secondary)
-            
-            VStack(alignment: .leading, spacing: 4) {
-                Text(fighter.name)
-                    .font(.headline)
-                    .foregroundStyle(.primary)
-                
-                if status != .pending {
-                    StatusBadge(status: status)
-                }
-            }
-            
-            Spacer()
-        }
-        .padding(.vertical, 4)
-    }
-}
-
-fileprivate struct StatusBadge: View {
-    let status: FighterStatus
-    
-    var badgeColor: Color {
-        switch status {
-        case .win: return .green
-        case .loss: return .red
-        case .draw: return .orange
-        case .nc: return .gray
-        case .pending: return .gray
-        }
-    }
-    
-    var body: some View {
-        Text(status.rawValue)
-            .font(.caption)
-            .fontWeight(.semibold)
-            .foregroundStyle(.white)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .background(
-                Capsule()
-                    .fill(badgeColor)
+            InfoRow(
+                icon: "rectangle.and.pencil.and.ellipsis",
+                label: "Event",
+                value: event.name
             )
-    }
-}
-
-fileprivate struct InfoPill: View {
-    let icon: String
-    let label: String
-    let value: String
-    let color: Color
-    
-    var body: some View {
-        VStack(spacing: 6) {
-            Image(systemName: icon)
-                .font(.title3)
-                .foregroundStyle(color)
-            
-            Text(value)
-                .font(.system(.title3, design: .rounded, weight: .bold))
-                .foregroundStyle(.primary)
-            
-            Text(label)
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            InfoRow(
+                icon: "location.fill",
+                label: "Location",
+                value: event.location
+            )
+            InfoRow(
+                icon: "calendar",
+                label: "Date",
+                value: event.date.formatted(date: .abbreviated, time: .omitted)
+            )
+            InfoRow(
+                icon: "scalemass.fill",
+                label: "Division",
+                value: fight.division
+            )
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 8)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.systemGray6))
-        )
     }
 }
 
