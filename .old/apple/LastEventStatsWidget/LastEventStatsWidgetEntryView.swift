@@ -125,7 +125,7 @@ struct LastEventStatsWidgetEntryView : View {
                 Spacer()
                 
                 // Total Fights Badge
-                        HStack {
+                HStack {
                     Image(systemName: "figure.boxing")
                         .font(.title2)
                         .foregroundStyle(.orange.gradient)
@@ -366,21 +366,21 @@ fileprivate struct MediumStatCard: View {
                 }
             }
             
-                            Spacer()
-            
-            // Progress bar
-            GeometryReader { geometry in
-                ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 3)
-                        .fill(Color(.systemGray5))
-                        .frame(width: 40, height: 6)
-                    
-                    RoundedRectangle(cornerRadius: 3)
-                        .fill(color.gradient)
-                        .frame(width: 40 * percentage, height: 6)
-                }
-            }
-            .frame(width: 40, height: 6)
+            Spacer()
+//            
+//            // Progress bar
+//            GeometryReader { geometry in
+//                ZStack(alignment: .leading) {
+//                    RoundedRectangle(cornerRadius: 3)
+//                        .fill(Color(.systemGray5))
+//                        .frame(width: 40, height: 6)
+//                    
+//                    RoundedRectangle(cornerRadius: 3)
+//                        .fill(color.gradient)
+//                        .frame(width: 40 * percentage, height: 6)
+//                }
+//            }
+//            .frame(width: 40, height: 6)
         }
     }
 }
