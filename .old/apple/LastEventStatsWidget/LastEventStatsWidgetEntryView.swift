@@ -57,20 +57,20 @@ struct LastEventStatsWidgetEntryView : View {
     private var smallWidgetView: some View {
         VStack(alignment: .leading, spacing: 8) {
             // Header
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 2) {
                 Label("Fight Statistics", systemImage: "chart.xyaxis.line")
                     .foregroundStyle(.secondary)
-                    .font(.system(size: 10))
+                    .font(.system(size: 9))
                 
-                
-                Text(stats.name.split(separator: ":")[0])
+                Text(stats.name)
                     .font(.system(size: 10, weight: .bold))
-                    .lineLimit(2)
+                    .lineLimit(1)
                     .minimumScaleFactor(0.8)
                 
-                Text(stats.name.split(separator: ":")[1])
-                    .font(.caption)
-                    .lineLimit(2)
+                Text(stats.mainFight)
+                    .font(.system(size: 9))
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
                     .minimumScaleFactor(0.8)
             }
             
@@ -117,6 +117,11 @@ struct LastEventStatsWidgetEntryView : View {
                     
                     Text(stats.name)
                         .font(.headline)
+                        .lineLimit(1)
+                    
+                    Text(stats.mainFight)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                         .lineLimit(1)
                 }
                 
@@ -174,7 +179,7 @@ struct LastEventStatsWidgetEntryView : View {
         VStack(alignment: .leading, spacing: 16) {
             // Header
             HStack {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 4) {
                     Label("Fight Statistics", systemImage: "chart.xyaxis.line")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
@@ -182,11 +187,16 @@ struct LastEventStatsWidgetEntryView : View {
                     Text(stats.name)
                         .font(.title2)
                         .fontWeight(.bold)
-                        .lineLimit(2)
+                        .lineLimit(1)
+                    
+                    Text(stats.mainFight)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
                 }
                 
-                            Spacer()
-                        }
+                Spacer()
+            }
             
             // Summary Cards
             HStack(spacing: 12) {
