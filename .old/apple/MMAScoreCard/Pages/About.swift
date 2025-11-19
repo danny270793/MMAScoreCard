@@ -27,9 +27,9 @@ struct AppIcon: View {
 }
 
 struct AboutView: View {
-    let appName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "MMA ScoreCard"
-    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
-    let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
+    private let appName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "MMA ScoreCard"
+    private let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+    private let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
     
     var body: some View {
         List {
@@ -44,24 +44,19 @@ struct AboutView: View {
         .navigationBarTitleDisplayMode(.large)
     }
     
-    
-    
     @ViewBuilder
     private var appHeaderSection: some View {
         Section {
             VStack(spacing: 16) {
-                // App Icon
                 AppIcon()
                     .scaledToFit()
                     .clipShape(RoundedRectangle(cornerRadius: 22.5, style: .continuous))
                     .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 4)
                 
-                // App Name
                 Text(appName)
                     .font(.title2)
                     .fontWeight(.bold)
                 
-                // Tagline
                 Text("Track MMA fights and statistics")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
@@ -75,26 +70,9 @@ struct AboutView: View {
     @ViewBuilder
     private var appInfoSection: some View {
         Section("Application") {
-            LabeledContent {
-                Text(appVersion)
-                    .foregroundStyle(.secondary)
-            } label: {
-                Label("Version", systemImage: "number.circle.fill")
-            }
-            
-            LabeledContent {
-                Text(buildNumber)
-                    .foregroundStyle(.secondary)
-            } label: {
-                Label("Build", systemImage: "hammer.fill")
-            }
-            
-            LabeledContent {
-                Text("iOS 16.0+")
-                    .foregroundStyle(.secondary)
-            } label: {
-                Label("Requires", systemImage: "iphone")
-            }
+            InfoRow(label: "Version", icon: "number.circle.fill", value: appVersion)
+            InfoRow(label: "Build", icon: "hammer.fill", value: buildNumber)
+            InfoRow(label: "Requires", icon: "iphone", value: "iOS 16.0+")
         }
     }
     
@@ -102,42 +80,20 @@ struct AboutView: View {
     private var developerSection: some View {
         Section("Developer") {
             VStack(spacing: 12) {
-                HStack(spacing: 12) {
-                    Image(systemName: "person.circle.fill")
-                        .font(.system(size: 40))
-                        .foregroundStyle(.blue)
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Danny Vaca")
-                            .font(.headline)
-                        
-                        Text("iOS Developer")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                    
-                    Spacer()
-                }
+                ProfileCard(
+                    name: "Danny Vaca",
+                    subtitle: "iOS Developer",
+                    icon: "person.circle.fill",
+                    color: .blue
+                )
                 
                 Divider()
                 
-                // Email Button
-                Button(action: {
-                    if let url = URL(string: "mailto:danny270793@icloud.com") {
-                        UIApplication.shared.open(url)
-                    }
-                }) {
-                    HStack {
-                        Label("danny270793@icloud.com", systemImage: "envelope.fill")
-                            .font(.subheadline)
-                        
-                        Spacer()
-                        
-                        Image(systemName: "arrow.up.right.square.fill")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                }
+                LinkButton(
+                    label: "danny270793@icloud.com",
+                    icon: "envelope.fill",
+                    url: "mailto:danny270793@icloud.com"
+                )
             }
             .padding(.vertical, 4)
         }
@@ -146,7 +102,7 @@ struct AboutView: View {
     @ViewBuilder
     private var socialSection: some View {
         Section("Connect") {
-            SocialButton(
+            IconCard(
                 title: "GitHub",
                 subtitle: "@danny270793",
                 icon: "chevron.left.forwardslash.chevron.right",
@@ -154,7 +110,7 @@ struct AboutView: View {
                 url: "https://github.com/danny270793"
             )
             
-            SocialButton(
+            IconCard(
                 title: "YouTube",
                 subtitle: "@DannyVacaO",
                 icon: "play.rectangle.fill",
@@ -168,51 +124,21 @@ struct AboutView: View {
     private var legalSection: some View {
         Section("Legal") {
             NavigationLink(destination: TermsAndConditionsView()) {
-                HStack(spacing: 12) {
-                    Image(systemName: "doc.text.fill")
-                        .font(.title3)
-                        .foregroundStyle(.blue)
-                        .frame(width: 40, height: 40)
-                        .background(
-                            Circle()
-                                .fill(Color.blue.opacity(0.15))
-                        )
-                    
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Terms & Conditions")
-                            .font(.headline)
-                        
-                        Text("View our terms of service")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                    
-                    Spacer()
-                }
+                IconCardContent(
+                    title: "Terms & Conditions",
+                    subtitle: "View our terms of service",
+                    icon: "doc.text.fill",
+                    color: .blue
+                )
             }
             
             NavigationLink(destination: PrivacyPolicyView()) {
-                HStack(spacing: 12) {
-                    Image(systemName: "lock.shield.fill")
-                        .font(.title3)
-                        .foregroundStyle(.green)
-                        .frame(width: 40, height: 40)
-                        .background(
-                            Circle()
-                                .fill(Color.green.opacity(0.15))
-                        )
-                    
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Privacy Policy")
-                            .font(.headline)
-                        
-                        Text("How we protect your data")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                    
-                    Spacer()
-                }
+                IconCardContent(
+                    title: "Privacy Policy",
+                    subtitle: "How we protect your data",
+                    icon: "lock.shield.fill",
+                    color: .green
+                )
             }
         }
     }
@@ -236,9 +162,119 @@ struct AboutView: View {
     }
 }
 
-// MARK: - Supporting Views
+// MARK: - Reusable Components
 
-fileprivate struct SocialButton: View {
+/// Reusable info row with icon and value
+fileprivate struct InfoRow: View {
+    let label: String
+    let icon: String
+    let value: String
+    
+    var body: some View {
+        LabeledContent {
+            Text(value)
+                .foregroundStyle(.secondary)
+        } label: {
+            Label(label, systemImage: icon)
+        }
+    }
+}
+
+/// Circular icon background
+fileprivate struct CircularIconBackground: View {
+    let icon: String
+    let color: Color
+    let size: CGFloat
+    
+    var body: some View {
+        Image(systemName: icon)
+            .font(.title3)
+            .foregroundStyle(color)
+            .frame(width: size, height: size)
+            .background(
+                Circle()
+                    .fill(color.opacity(0.15))
+            )
+    }
+}
+
+/// Profile card with icon and text
+fileprivate struct ProfileCard: View {
+    let name: String
+    let subtitle: String
+    let icon: String
+    let color: Color
+    
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: icon)
+                .font(.system(size: 40))
+                .foregroundStyle(color)
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text(name)
+                    .font(.headline)
+                
+                Text(subtitle)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            
+            Spacer()
+        }
+    }
+}
+
+/// External link button with icon
+fileprivate struct LinkButton: View {
+    let label: String
+    let icon: String
+    let url: String
+    
+    var body: some View {
+        Button(action: { openURL(url) }) {
+            HStack {
+                Label(label, systemImage: icon)
+                    .font(.subheadline)
+                
+                Spacer()
+                
+                Image(systemName: "arrow.up.right.square.fill")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+        }
+    }
+}
+
+/// Icon card content (for use with buttons or navigation links)
+fileprivate struct IconCardContent: View {
+    let title: String
+    let subtitle: String
+    let icon: String
+    let color: Color
+    
+    var body: some View {
+        HStack(spacing: 12) {
+            CircularIconBackground(icon: icon, color: color, size: 40)
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.headline)
+                    .foregroundStyle(.primary)
+                
+                Text(subtitle)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            
+            Spacer()
+        }
+    }
+}
+
+/// Icon card as a button with external link
+fileprivate struct IconCard: View {
     let title: String
     let subtitle: String
     let icon: String
@@ -246,20 +282,9 @@ fileprivate struct SocialButton: View {
     let url: String
     
     var body: some View {
-        Button(action: {
-            if let url = URL(string: url) {
-                UIApplication.shared.open(url)
-            }
-        }) {
+        Button(action: { openURL(url) }) {
             HStack(spacing: 12) {
-                Image(systemName: icon)
-                    .font(.title3)
-                    .foregroundStyle(color)
-                    .frame(width: 40, height: 40)
-                    .background(
-                        Circle()
-                            .fill(color.opacity(0.15))
-                    )
+                CircularIconBackground(icon: icon, color: color, size: 40)
                 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title)
@@ -279,6 +304,14 @@ fileprivate struct SocialButton: View {
             }
         }
         .buttonStyle(.plain)
+    }
+}
+
+// MARK: - Helper Functions
+
+fileprivate func openURL(_ urlString: String) {
+    if let url = URL(string: urlString) {
+        UIApplication.shared.open(url)
     }
 }
 
