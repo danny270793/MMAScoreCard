@@ -57,13 +57,19 @@ struct LastEventStatsWidgetEntryView : View {
     private var smallWidgetView: some View {
         VStack(alignment: .leading, spacing: 8) {
             // Header
-            VStack(alignment: .leading, spacing: 2) {
-                Image(systemName: "chart.bar.fill")
-                    .font(.caption)
-                    .foregroundStyle(.red)
+            VStack(alignment: .leading) {
+                Label("Fight Statistics", systemImage: "chart.xyaxis.line")
+                    .foregroundStyle(.secondary)
+                    .font(.system(size: 10))
                 
-                Text(stats.name)
-                    .font(.system(size: 11, weight: .bold))
+                
+                Text(stats.name.split(separator: ":")[0])
+                    .font(.system(size: 10, weight: .bold))
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
+                
+                Text(stats.name.split(separator: ":")[1])
+                    .font(.caption)
                     .lineLimit(2)
                     .minimumScaleFactor(0.8)
             }
@@ -134,26 +140,26 @@ struct LastEventStatsWidgetEntryView : View {
                 )
             }
             
-            // Stats Grid
-            HStack(spacing: 8) {
-                StatCard(
-                    title: "KO/TKO",
+            // Detailed Stats
+            VStack(spacing: 10) {
+                DetailedStatRow(
+                    label: "KO/TKO",
                     value: stats.kos,
                     total: totalFights,
                     icon: "figure.martial.arts",
                     color: .red
                 )
                 
-                StatCard(
-                    title: "Submission",
+                DetailedStatRow(
+                    label: "Submission",
                     value: stats.submissions,
                     total: totalFights,
                     icon: "figure.fall",
                     color: .green
                 )
                 
-                StatCard(
-                    title: "Decision",
+                DetailedStatRow(
+                    label: "Decision",
                     value: stats.decisions,
                     total: totalFights,
                     icon: "list.bullet.clipboard",
@@ -167,8 +173,8 @@ struct LastEventStatsWidgetEntryView : View {
     private var largeWidgetView: some View {
         VStack(alignment: .leading, spacing: 16) {
             // Header
-                        HStack {
-                VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                VStack(alignment: .leading) {
                     Label("Fight Statistics", systemImage: "chart.xyaxis.line")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
@@ -409,27 +415,27 @@ fileprivate struct DetailedStatRow: View {
 #Preview(as: .systemSmall) {
     LastEventStatsWidget()
 } timeline: {
-    LastEventStatsEntry(date: .now, stats: EventStats(name: "UFC 313: Pereira vs. Hill", kos: 5, submissions: 3, decisions: 4))
+    LastEventStatsEntry(date: .now, stats: EventStats(name: "UFC 313", mainFight: "Pereira vs. Hill", kos: 5, submissions: 3, decisions: 4))
     LastEventStatsEntry(date: .now, stats: nil)
 }
 
 #Preview(as: .systemMedium) {
     LastEventStatsWidget()
 } timeline: {
-    LastEventStatsEntry(date: .now, stats: EventStats(name: "UFC 313: Pereira vs. Hill", kos: 5, submissions: 3, decisions: 4))
+    LastEventStatsEntry(date: .now, stats: EventStats(name: "UFC 313", mainFight: "Pereira vs. Hill", kos: 5, submissions: 3, decisions: 4))
     LastEventStatsEntry(date: .now, stats: nil)
 }
 
 #Preview(as: .systemLarge) {
     LastEventStatsWidget()
 } timeline: {
-    LastEventStatsEntry(date: .now, stats: EventStats(name: "UFC 313: Pereira vs. Hill", kos: 5, submissions: 3, decisions: 4))
+    LastEventStatsEntry(date: .now, stats: EventStats(name: "UFC 313", mainFight: "Pereira vs. Hill", kos: 5, submissions: 3, decisions: 4))
     LastEventStatsEntry(date: .now, stats: nil)
 }
 
 #Preview(as: .systemExtraLarge) {
     LastEventStatsWidget()
 } timeline: {
-    LastEventStatsEntry(date: .now, stats: EventStats(name: "UFC 313: Pereira vs. Hill", kos: 5, submissions: 3, decisions: 4))
+    LastEventStatsEntry(date: .now, stats: EventStats(name: "UFC 313", mainFight: "Pereira vs. Hill", kos: 5, submissions: 3, decisions: 4))
     LastEventStatsEntry(date: .now, stats: nil)
 }
