@@ -278,7 +278,7 @@ fileprivate struct EventRow: View {
     }
     
     var body: some View {
-        HStack(alignment: .top, spacing: 12) {
+        HStack(alignment: .center, spacing: 12) {
             // Date Badge
             VStack(spacing: 2) {
                 Text(event.date.formatted(.dateTime.day()))
