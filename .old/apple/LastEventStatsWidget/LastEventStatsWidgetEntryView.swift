@@ -45,7 +45,7 @@ struct LastEventStatsWidgetEntryView : View {
                 .font(.system(size: 40))
                 .foregroundStyle(.red.gradient)
             
-            Text("Loading Stats...")
+            Text(String(localized: "widget.loading"))
                 .font(.caption)
                 .foregroundStyle(.secondary)
             
@@ -58,7 +58,7 @@ struct LastEventStatsWidgetEntryView : View {
         VStack(alignment: .leading, spacing: 8) {
             // Header
             VStack(alignment: .leading, spacing: 2) {
-                Label("Fight Statistics", systemImage: "chart.xyaxis.line")
+                Label(String(localized: "widget.title"), systemImage: "chart.xyaxis.line")
                     .foregroundStyle(.secondary)
                     .font(.system(size: 9))
                 
@@ -79,7 +79,7 @@ struct LastEventStatsWidgetEntryView : View {
             // Stats
             VStack(spacing: 6) {
                 StatRow(
-                    label: "KO/TKO",
+                    label: String(localized: "widget.ko_tko_short"),
                     value: stats.kos,
                     total: totalFights,
                     color: .red,
@@ -87,7 +87,7 @@ struct LastEventStatsWidgetEntryView : View {
                 )
                 
                 StatRow(
-                    label: "Sub",
+                    label: String(localized: "widget.submission_short"),
                     value: stats.submissions,
                     total: totalFights,
                     color: .green,
@@ -95,7 +95,7 @@ struct LastEventStatsWidgetEntryView : View {
                 )
                 
                 StatRow(
-                    label: "Dec",
+                    label: String(localized: "widget.decision_short"),
                     value: stats.decisions,
                     total: totalFights,
                     color: .blue,
@@ -109,7 +109,7 @@ struct LastEventStatsWidgetEntryView : View {
         HStack(spacing: 12) {
             // Left side - Event Info
             VStack(alignment: .leading, spacing: 8) {
-                Label("Fight Statistics", systemImage: "chart.xyaxis.line")
+                Label(String(localized: "widget.title"), systemImage: "chart.xyaxis.line")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 
@@ -134,7 +134,7 @@ struct LastEventStatsWidgetEntryView : View {
                         Text("\(totalFights)")
                             .font(.system(.title2, design: .rounded, weight: .bold))
                         
-                        Text("Total Fights")
+                        Text(String(localized: "widget.total_fights"))
                             .font(.caption2)
                             .foregroundStyle(.secondary)
                     }
@@ -146,7 +146,7 @@ struct LastEventStatsWidgetEntryView : View {
             // Right side - Stats Grid
             VStack(spacing: 8) {
                 MediumStatCard(
-                    title: "KO/TKO",
+                    title: String(localized: "widget.ko_tko_full"),
                     value: stats.kos,
                     total: totalFights,
                     icon: "figure.martial.arts",
@@ -154,7 +154,7 @@ struct LastEventStatsWidgetEntryView : View {
                 )
                 
                 MediumStatCard(
-                    title: "Submission",
+                    title: String(localized: "widget.submission_full"),
                     value: stats.submissions,
                     total: totalFights,
                     icon: "figure.fall",
@@ -162,7 +162,7 @@ struct LastEventStatsWidgetEntryView : View {
                 )
                 
                 MediumStatCard(
-                    title: "Decision",
+                    title: String(localized: "widget.decision_full"),
                     value: stats.decisions,
                     total: totalFights,
                     icon: "list.bullet.clipboard",
@@ -177,7 +177,7 @@ struct LastEventStatsWidgetEntryView : View {
         VStack(spacing: 0) {
             // Header Card
             VStack(alignment: .leading, spacing: 8) {
-                Label("Fight Statistics", systemImage: "chart.xyaxis.line")
+                Label(String(localized: "widget.title"), systemImage: "chart.xyaxis.line")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 
@@ -218,7 +218,7 @@ struct LastEventStatsWidgetEntryView : View {
             // Stats Grid
             HStack(spacing: 12) {
                 LargeStatCard(
-                    title: "KO/TKO",
+                    title: String(localized: "widget.ko_tko_full"),
                     value: stats.kos,
                     total: totalFights,
                     icon: "figure.martial.arts",
@@ -226,7 +226,7 @@ struct LastEventStatsWidgetEntryView : View {
                 )
                 
                 LargeStatCard(
-                    title: "Submission",
+                    title: String(localized: "widget.submission_full"),
                     value: stats.submissions,
                     total: totalFights,
                     icon: "figure.fall",
@@ -234,7 +234,7 @@ struct LastEventStatsWidgetEntryView : View {
                 )
                 
                 LargeStatCard(
-                    title: "Decision",
+                    title: String(localized: "widget.decision_full"),
                     value: stats.decisions,
                     total: totalFights,
                     icon: "list.bullet.clipboard",
@@ -621,7 +621,7 @@ fileprivate struct StatLegendItem: View {
                     .font(.subheadline)
                     .fontWeight(.medium)
                 
-                Text("\(value) fights")
+                Text(String(format: String(localized: "widget.fights_count"), value))
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
