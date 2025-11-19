@@ -9,11 +9,11 @@ import WidgetKit
 
 struct LastEventStatsProvider: TimelineProvider {
     func placeholder(in context: Context) -> LastEventStatsEntry {
-        LastEventStatsEntry(date: .now, stats: EventStats(name: "UFC 300", kos: 5, submissions: 8, decisions: 2))
+        LastEventStatsEntry(date: .now, stats: EventStats(name: "UFC 300", mainFight: "Pereira vs. Hill", kos: 5, submissions: 8, decisions: 2))
     }
 
     func getSnapshot(in context: Context, completion: @escaping (LastEventStatsEntry) -> ()) {
-        let entry = LastEventStatsEntry(date: .now, stats: EventStats(name: "UFC 308", kos: 5, submissions: 8, decisions: 2))
+        let entry = LastEventStatsEntry(date: .now, stats: EventStats(name: "UFC 308", mainFight: "Ankalaev vs. Pereira", kos: 5, submissions: 8, decisions: 2))
         completion(entry)
     }
 
