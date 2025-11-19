@@ -35,7 +35,7 @@ struct FigthDetails: View {
     
     @ViewBuilder
     private var resultSection: some View {
-        Section("Result") {
+        Section(String(localized: "fight.result")) {
             VStack(spacing: 12) {
                 // Result with Icon
                 HStack(spacing: 12) {
@@ -53,7 +53,7 @@ struct FigthDetails: View {
                             .font(.headline)
                             .foregroundStyle(.primary)
                         
-                        Text("Method of Victory")
+                        Text(String(localized: "fight.method"))
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
@@ -67,14 +67,14 @@ struct FigthDetails: View {
                 HStack(spacing: 20) {
                     InfoPill(
                         icon: "clock.fill",
-                        label: "Time",
+                        label: String(localized: "fight.time", defaultValue: "Time %@"),
                         value: fight.time,
                         color: .orange
                     )
                     
                     InfoPill(
                         icon: "number.circle.fill",
-                        label: "Round",
+                        label: String(localized: "fight.round", defaultValue: "Round %d"),
                         value: fight.round,
                         color: .blue
                     )
@@ -85,7 +85,7 @@ struct FigthDetails: View {
                     Divider()
                     
                     HStack {
-                        Label("Referee", systemImage: "person.fill.checkmark")
+                        Label(String(format: String(localized: "fight.referee"), fight.referee), systemImage: "person.fill.checkmark")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                         
@@ -110,11 +110,11 @@ struct FigthDetails: View {
                     .foregroundStyle(.orange)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Scheduled")
+                    Text(String(localized: "fight.scheduled"))
                         .font(.headline)
                         .foregroundStyle(.primary)
                     
-                    Text("This fight has not yet taken place")
+                    Text(String(localized: "fight.scheduled"))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -127,7 +127,7 @@ struct FigthDetails: View {
     
     @ViewBuilder
     private var fightersSection: some View {
-        Section("Fighters") {
+        Section(String(localized: "fight.fighters")) {
             NavigationLink(destination: FighterDetails(figther: fight.figther1)) {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(fight.figther1.name)
@@ -142,7 +142,7 @@ struct FigthDetails: View {
                 Button(action: {
                     Sharing.shareText(text: "Check out \(fight.figther1.name)\n\(fight.figther1.link)")
                 }) {
-                    Label("Share", systemImage: "square.and.arrow.up")
+                    Label(String(localized: "common.share"), systemImage: "square.and.arrow.up")
                 }
                 .tint(.blue)
             }
@@ -161,7 +161,7 @@ struct FigthDetails: View {
                 Button(action: {
                     Sharing.shareText(text: "Check out \(fight.figther2.name)\n\(fight.figther2.link)")
                 }) {
-                    Label("Share", systemImage: "square.and.arrow.up")
+                    Label(String(localized: "common.share"), systemImage: "square.and.arrow.up")
                 }
                 .tint(.blue)
             }
@@ -170,7 +170,7 @@ struct FigthDetails: View {
     
     @ViewBuilder
     private var eventInfoSection: some View {
-        Section("Event Information") {
+        Section(String(localized: "fight.event_info")) {
             InfoRow(
                 icon: "rectangle.and.pencil.and.ellipsis",
                 label: "Event",
