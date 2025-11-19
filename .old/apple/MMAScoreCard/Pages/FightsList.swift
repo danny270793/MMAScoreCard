@@ -263,6 +263,8 @@ fileprivate struct FightRow: View {
             return "list.bullet.clipboard"
         } else if result.contains("SUBMISSION") || result.contains("SUB") {
             return "figure.fall"
+        } else if result.contains("NO CONTEST") || result.contains("NC") {
+            return "nosign"
         } else {
             return "clock.badge"
         }
@@ -276,6 +278,8 @@ fileprivate struct FightRow: View {
             return true
         } else if result.contains("SUBMISSION") || result.contains("SUB") {
             return true
+        } else if result.contains("NO CONTEST") || result.contains("NC") {
+            return false
         } else {
             return false
         }
@@ -289,6 +293,8 @@ fileprivate struct FightRow: View {
             return .blue
         } else if result.contains("SUBMISSION") || result.contains("SUB") {
             return .green
+        } else if result.contains("NO CONTEST") || result.contains("NC") {
+            return .primary
         } else {
             return .orange
         }
