@@ -272,6 +272,10 @@ struct FightResultStyle {
             self.icon = "nosign"
             self.color = .primary
             self.hasResult = false
+        } else if upperResult.contains("DRAW") {
+            self.icon = "figure.2.right.holdinghands"
+            self.color = .green
+            self.hasResult = true
         } else {
             self.icon = "clock.badge"
             self.color = .orange
