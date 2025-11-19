@@ -94,8 +94,8 @@ struct EventsList: View {
             .overlay {
                 loadingOverlay
             }
-            .alert("Error", isPresented: .constant(error != nil)) {
-                Button("OK") {
+            .alert(String(localized: "common.error"), isPresented: .constant(error != nil)) {
+                Button(String(localized: "common.ok")) {
                     error = nil
                 }
             } message: {
@@ -105,8 +105,8 @@ struct EventsList: View {
             }
             .onAppear(perform: onAppear)
             .refreshable(action: onRefresh)
-            .searchable(text: $searchText, prompt: "Search events")
-            .navigationTitle("Events")
+            .searchable(text: $searchText, prompt: String(localized: "events.search_prompt"))
+            .navigationTitle(String(localized: "events.title"))
     }
     
     @ViewBuilder
@@ -124,9 +124,9 @@ struct EventsList: View {
     @ViewBuilder
     private var emptyStateView: some View {
         ContentUnavailableView(
-            "No Events",
+            String(localized: "events.no_events_title"),
             systemImage: "calendar.badge.exclamationmark",
-            description: Text("No events found for the selected filter")
+            description: Text(String(localized: "events.no_events_description"))
         )
     }
     
@@ -168,7 +168,7 @@ struct EventsList: View {
         ShareContextMenuItem(text: "I'm viewing \"\(event.name)\"\nSee more information at: \(event.url)")
         
         Button(action: { openURL(event.url) }) {
-            Label("Open in Safari", systemImage: "safari")
+            Label(String(localized: "common.open_safari"), systemImage: "safari")
         }
     }
     
@@ -186,28 +186,28 @@ struct EventsList: View {
             Menu {
                 Menu {
                     Button(action: { filter = .all }) {
-                        Label("All Events", systemImage: filter == .all ? "checkmark" : "list.bullet")
+                        Label(String(localized: "filter.all"), systemImage: filter == .all ? "checkmark" : "list.bullet")
                     }
                     
                     Button(action: { filter = .upcoming }) {
-                        Label("Upcoming Events", systemImage: filter == .upcoming ? "checkmark" : "calendar.badge.clock")
+                        Label(String(localized: "filter.upcoming"), systemImage: filter == .upcoming ? "checkmark" : "calendar.badge.clock")
                     }
                     
                     Button(action: { filter = .past }) {
-                        Label("Past Events", systemImage: filter == .past ? "checkmark" : "clock.arrow.circlepath")
+                        Label(String(localized: "filter.past"), systemImage: filter == .past ? "checkmark" : "clock.arrow.circlepath")
                     }
                 } label: {
-                    Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
+                    Label(String(localized: "filter.title"), systemImage: "line.3.horizontal.decrease.circle")
                 }
                 
                 Divider()
                 
                 NavigationLink(destination: AboutView()) {
-                    Label("About", systemImage: "info.circle")
+                    Label(String(localized: "nav.about"), systemImage: "info.circle")
                 }
                 
                 Button(action: openAppSettings) {
-                    Label("Settings", systemImage: "gear")
+                    Label(String(localized: "nav.settings"), systemImage: "gear")
                 }
             } label: {
                 Label("More", systemImage: "ellipsis.circle")
@@ -220,7 +220,7 @@ struct EventsList: View {
         LoadingOverlay(
             isLoading: isFetching,
             isEmpty: filteredEvents.isEmpty,
-            message: "Loading events..."
+            message: String(localized: "common.loading")
         )
     }
 }
@@ -288,17 +288,17 @@ fileprivate struct EventRow: View {
                             .foregroundStyle(.secondary)
                         
                         if days == 0 {
-                            Text("Today")
+                            Text(String(localized: "events.status.today"))
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(.red)
                         } else if days == 1 {
-                            Text("Tomorrow")
+                            Text(String(localized: "events.status.tomorrow"))
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(.orange)
                         } else {
-                            Text("In \(days)d")
+                            Text(String(format: String(localized: "events.status.in_days"), days))
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(.orange)
@@ -321,7 +321,7 @@ fileprivate struct EventRow: View {
                                     .lineLimit(1)
                                 
                                 HStack(spacing: 4) {
-                                    Text("vs")
+                                    Text(String(localized: "fights.vs"))
                                         .font(.caption2)
                                         .foregroundStyle(.tertiary)
                                     
