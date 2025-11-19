@@ -79,30 +79,24 @@ struct EventGraph : View {
     
     @ViewBuilder
     private var eventHeaderSection: some View {
-        Section {
-            VStack(spacing: 12) {
-                Section {
-                    VStack(spacing: 12) {
-                        let version = ProcessInfo.processInfo.operatingSystemVersion
-                        if version.majorVersion > 26 {
-                            HStack {
-                                Label("Event", systemImage: "rectangle.and.pencil.and.ellipsis")
-                                Spacer()
-                                Text(event.name)
-                            }
-                        }
-                        HStack {
-                            Label("Location", systemImage: "location.fill")
-                            Spacer()
-                            Text(event.location)
-                        }
-                        HStack {
-                            Label("Date", systemImage: "calendar")
-                            Spacer()
-                            Text(event.date.formatted(date: .abbreviated, time: .omitted))
-                        }
-                    }
+        Section("Event") {
+            let version = ProcessInfo.processInfo.operatingSystemVersion
+            if version.majorVersion > 26 {
+                HStack {
+                    Label("Event", systemImage: "rectangle.and.pencil.and.ellipsis")
+                    Spacer()
+                    Text(event.name)
                 }
+            }
+            HStack {
+                Label("Location", systemImage: "location.fill")
+                Spacer()
+                Text(event.location)
+            }
+            HStack {
+                Label("Date", systemImage: "calendar")
+                Spacer()
+                Text(event.date.formatted(date: .abbreviated, time: .omitted))
             }
         }
     }
