@@ -19,9 +19,14 @@ struct LastEventStatsWidgetEntryView : View {
     
     var body: some View {
         if entry.stats == nil {
-            ZStack {
+            VStack(spacing: 8) {
+                Image(systemName: "figure.boxing")
+                    .font(.system(size: 40))
+                    .foregroundStyle(.secondary)
+                Text("Loading Event Stats...")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
                 ProgressView()
-                Text("Loading...")
             }
         } else {
             let fights = Double(entry.stats!.kos + entry.stats!.decisions + entry.stats!.submissions)
@@ -47,7 +52,7 @@ struct LastEventStatsWidgetEntryView : View {
                                     .fill(Color.blue)
                                     .cornerRadius(10)
                                     .frame(width: geometry.size.width/3.1, height: 20)
-                                Text("Sumission")
+                                Text("Submission")
                                     .foregroundColor(.white)
                             }
                             ZStack {
