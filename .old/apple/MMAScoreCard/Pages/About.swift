@@ -70,9 +70,9 @@ struct AboutView: View {
     @ViewBuilder
     private var appInfoSection: some View {
         Section("Application") {
-            InfoRow(label: "Version", icon: "number.circle.fill", value: appVersion)
-            InfoRow(label: "Build", icon: "hammer.fill", value: buildNumber)
-            InfoRow(label: "Requires", icon: "iphone", value: "iOS 16.0+")
+            InfoRow(icon: "number.circle.fill", label: "Version", value: appVersion)
+            InfoRow(icon: "hammer.fill", label: "Build", value: buildNumber)
+            InfoRow(icon: "iphone", label: "Requires", value: "iOS 16.0+")
         }
     }
     
@@ -163,22 +163,6 @@ struct AboutView: View {
 }
 
 // MARK: - Reusable Components
-
-/// Reusable info row with icon and value
-fileprivate struct InfoRow: View {
-    let label: String
-    let icon: String
-    let value: String
-    
-    var body: some View {
-        LabeledContent {
-            Text(value)
-                .foregroundStyle(.secondary)
-        } label: {
-            Label(label, systemImage: icon)
-        }
-    }
-}
 
 /// Circular icon background
 fileprivate struct CircularIconBackground: View {
@@ -304,14 +288,6 @@ fileprivate struct IconCard: View {
             }
         }
         .buttonStyle(.plain)
-    }
-}
-
-// MARK: - Helper Functions
-
-fileprivate func openURL(_ urlString: String) {
-    if let url = URL(string: urlString) {
-        UIApplication.shared.open(url)
     }
 }
 
