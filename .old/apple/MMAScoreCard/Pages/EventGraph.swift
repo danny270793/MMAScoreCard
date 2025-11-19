@@ -82,22 +82,22 @@ struct EventGraph : View {
         Section("Event") {
             let version = ProcessInfo.processInfo.operatingSystemVersion
             if version.majorVersion > 26 {
-                HStack {
-                    Label("Event", systemImage: "rectangle.and.pencil.and.ellipsis")
-                    Spacer()
-                    Text(event.name)
-                }
+                InfoRow(
+                    icon: "rectangle.and.pencil.and.ellipsis",
+                    label: "Event",
+                    value: event.name
+                )
             }
-            HStack {
-                Label("Location", systemImage: "location.fill")
-                Spacer()
-                Text(event.location)
-            }
-            HStack {
-                Label("Date", systemImage: "calendar")
-                Spacer()
-                Text(event.date.formatted(date: .abbreviated, time: .omitted))
-            }
+            InfoRow(
+                icon: "location.fill",
+                label: "Location",
+                value: event.location
+            )
+            InfoRow(
+                icon: "calendar",
+                label: "Date",
+                value: event.date.formatted(date: .abbreviated, time: .omitted)
+            )
         }
     }
     
@@ -185,142 +185,19 @@ struct EventGraph : View {
     
     @ViewBuilder
     private var metadataSection: some View {
-        if let cachedAt = response?.cachedAt, let timeCached = response?.timeCached {
-            Section {
-                LabeledContent {
-                    Text(cachedAt.formatted(date: .abbreviated, time: .shortened))
-                        .foregroundStyle(.secondary)
-                } label: {
-                    Label("Cached", systemImage: "clock.arrow.circlepath")
-                }
-                
-                LabeledContent {
-                    Text(timeCached)
-                        .foregroundStyle(.secondary)
-                } label: {
-                    Label("Cache Time", systemImage: "timer")
-                }
-            } header: {
-                Text("Cache Info")
-            }
-        }
+        CacheMetadataSection(
+            cachedAt: response?.cachedAt,
+            timeCached: response?.timeCached
+        )
     }
     
     @ViewBuilder
     private var loadingOverlay: some View {
-        if isFetching && response == nil {
-            ContentUnavailableView {
-                ProgressView()
-            } description: {
-                Text("Loading statistics...")
-            }
-        }
-    }
-}
-
-// MARK: - Supporting Views
-
-fileprivate struct StatCard: View {
-    let title: String
-    let value: String
-    let icon: String
-    let color: Color
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            Image(systemName: icon)
-                .font(.title2)
-                .foregroundStyle(color)
-            
-            Text(value)
-                .font(.system(.title, design: .rounded, weight: .bold))
-                .foregroundStyle(.primary)
-            
-            Text(title)
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity)
-    }
-}
-
-fileprivate struct StatBar: View {
-    let title: String
-    let value: Int
-    let total: Int
-    let icon: String
-    let color: Color
-    
-    private var percentage: Double {
-        guard total > 0 else { return 0 }
-        return Double(value) / Double(total)
-    }
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Label(title, systemImage: icon)
-                    .font(.subheadline)
-                    .foregroundStyle(.primary)
-                
-                Spacer()
-                
-                Text("\(value)")
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(color)
-            }
-            
-            GeometryReader { geometry in
-                ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(Color(.systemGray5))
-                        .frame(height: 8)
-                    
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(color)
-                        .frame(width: geometry.size.width * percentage, height: 8)
-                }
-            }
-            .frame(height: 8)
-        }
-        .padding(.vertical, 4)
-    }
-}
-
-fileprivate struct PercentageRow: View {
-    let title: String
-    let value: Int
-    let total: Int
-    let color: Color
-    
-    private var percentage: Double {
-        guard total > 0 else { return 0 }
-        return Double(value) / Double(total)
-    }
-    
-    private var percentageString: String {
-        String(format: "%.1f%%", percentage * 100)
-    }
-    
-    var body: some View {
-        HStack {
-            Circle()
-                .fill(color)
-                .frame(width: 12, height: 12)
-            
-            Text(title)
-                .font(.subheadline)
-                .foregroundStyle(.primary)
-            
-            Spacer()
-            
-            Text(percentageString)
-                .font(.subheadline)
-                .fontWeight(.semibold)
-                .foregroundStyle(color)
-                .frame(minWidth: 50, alignment: .trailing)
-        }
+        LoadingOverlay(
+            isLoading: isFetching,
+            isEmpty: response == nil,
+            message: "Loading statistics..."
+        )
     }
 }
 
