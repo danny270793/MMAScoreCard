@@ -169,6 +169,30 @@ struct AboutView: View {
                     Spacer()
                 }
             }
+            
+            NavigationLink(destination: PrivacyPolicyView()) {
+                HStack(spacing: 12) {
+                    Image(systemName: "lock.shield.fill")
+                        .font(.title3)
+                        .foregroundStyle(.green)
+                        .frame(width: 40, height: 40)
+                        .background(
+                            Circle()
+                                .fill(Color.green.opacity(0.15))
+                        )
+                    
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Privacy Policy")
+                            .font(.headline)
+                        
+                        Text("How we protect your data")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    Spacer()
+                }
+            }
         }
     }
     
