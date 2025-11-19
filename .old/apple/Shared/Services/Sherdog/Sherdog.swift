@@ -16,6 +16,7 @@ struct SherdogResponse<T> {
 
 struct EventStats {
     let name: String
+    let mainFight: String
     let kos: Int
     let submissions: Int
     let decisions: Int
@@ -445,7 +446,15 @@ class Sheredog {
         }
         let cachedAt: Date? = try LocalStorage.getCachedAt(fileName:lastEvent.url)
         let timeCached: String? = try LocalStorage.getTimeCached(fileName: lastEvent.url)
-        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: lastEvent.name, kos: kos, submissions: submission, decisions: decission))
+        
+        let name = lastEvent.name.split(separator: ":", maxSplits: 1)
+            .first?
+            .trimmingCharacters(in: .whitespaces) ?? ""
+        let mainFight = lastEvent.name.split(separator: ":", maxSplits: 1)
+            .last?
+            .trimmingCharacters(in: .whitespaces) ?? ""
+        
+        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submission, decisions: decission))
     }
     
     static func getEventStats(event: Event, forceRefresh: Bool = false) async throws -> SherdogResponse<EventStats> {
@@ -468,7 +477,15 @@ class Sheredog {
         
         let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: event.url)
         let timeCached: String? = try LocalStorage.getTimeCached(fileName: event.url)
-        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: event.name, kos: kos, submissions: submission, decisions: decission))
+        
+        let name = event.name.split(separator: ":", maxSplits: 1)
+            .first?
+            .trimmingCharacters(in: .whitespaces) ?? ""
+        let mainFight = event.name.split(separator: ":", maxSplits: 1)
+            .last?
+            .trimmingCharacters(in: .whitespaces) ?? ""
+        
+        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submission, decisions: decission))
     }
     
     static func loadEvents(forceRefresh: Bool = false) async throws -> SherdogResponse<[Event]> {
