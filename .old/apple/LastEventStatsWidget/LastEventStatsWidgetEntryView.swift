@@ -210,16 +210,18 @@ struct LastEventStatsWidgetEntryView : View {
             Spacer()
             
             // Single Segmented Ring
-            HStack(spacing: 24) {
-                // Ring
+            HStack(spacing: 16) {
+                // Ring (35% of space)
                 SegmentedRing(
                     kos: stats.kos,
                     submissions: stats.submissions,
                     decisions: stats.decisions,
                     total: totalFights
                 )
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .layoutPriority(0.25)
                 
-                // Legend
+                // Legend (65% of space)
                 VStack(alignment: .leading, spacing: 12) {
                     StatLegendItem(
                         icon: "figure.martial.arts",
@@ -242,6 +244,8 @@ struct LastEventStatsWidgetEntryView : View {
                         color: .blue
                     )
                 }
+                .frame(maxWidth: .infinity)
+                .layoutPriority(0.65)
             }
             
                             Spacer()
@@ -561,8 +565,8 @@ fileprivate struct SegmentedRing: View {
         ZStack {
             // Background circle
             Circle()
-                .stroke(Color(.systemGray5), lineWidth: 20)
-                .frame(width: 140, height: 140)
+                .stroke(Color(.systemGray5), lineWidth: 16)
+                .frame(width: 110, height: 110)
             
             // KO/TKO segment (Red)
             Circle()
@@ -570,11 +574,11 @@ fileprivate struct SegmentedRing: View {
                 .stroke(
                     Color.red.gradient,
                     style: StrokeStyle(
-                        lineWidth: 20,
+                        lineWidth: 16,
                         lineCap: .round
                     )
                 )
-                .frame(width: 140, height: 140)
+                .frame(width: 110, height: 110)
                 .rotationEffect(.degrees(-90))
             
             // Submission segment (Green)
@@ -583,11 +587,11 @@ fileprivate struct SegmentedRing: View {
                 .stroke(
                     Color.green.gradient,
                     style: StrokeStyle(
-                        lineWidth: 20,
+                        lineWidth: 16,
                         lineCap: .round
                     )
                 )
-                .frame(width: 140, height: 140)
+                .frame(width: 110, height: 110)
                 .rotationEffect(.degrees(-90 + (kosPercentage * 360)))
             
             // Decision segment (Blue)
@@ -596,27 +600,12 @@ fileprivate struct SegmentedRing: View {
                 .stroke(
                     Color.blue.gradient,
                     style: StrokeStyle(
-                        lineWidth: 20,
+                        lineWidth: 16,
                         lineCap: .round
                     )
                 )
-                .frame(width: 140, height: 140)
+                .frame(width: 110, height: 110)
                 .rotationEffect(.degrees(-90 + ((kosPercentage + submissionsPercentage) * 360)))
-            
-            // Center content
-            VStack(spacing: 4) {
-                Image(systemName: "figure.boxing")
-                    .font(.system(size: 32))
-                    .foregroundStyle(.orange.gradient)
-                
-                Text("\(total)")
-                    .font(.system(.title, design: .rounded, weight: .bold))
-                    .foregroundStyle(.primary)
-                
-                Text("Fights")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
         }
     }
 }
