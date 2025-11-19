@@ -112,15 +112,7 @@ struct FighterCareer: View {
             .max() ?? 0
     }
     
-    // MARK: - Title Fights & Time
-    
-    private var titleFights: Int {
-        fights.filter { fight in
-            fight.event.uppercased().contains("TITLE") || 
-            fight.method.uppercased().contains("TITLE")
-        }.count
-    }
-    
+    // MARK: - Time
     private var octagonTime: String {
         let totalSeconds = fights.reduce(0) { total, fight in
             // Parse round number (e.g., "Round 3" -> 3)
@@ -271,23 +263,6 @@ struct FighterCareer: View {
                             .fontWeight(.bold)
                     }
                     .foregroundStyle(.red)
-                }
-                .padding(.vertical, 4)
-                
-                Divider()
-                
-                // Title Fights
-                HStack {
-                    Label("Title Fights", systemImage: "crown.fill")
-                        .font(.subheadline)
-                        .foregroundStyle(.primary)
-                    
-                    Spacer()
-                    
-                    Text("\(titleFights)")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.yellow)
                 }
                 .padding(.vertical, 4)
                 
