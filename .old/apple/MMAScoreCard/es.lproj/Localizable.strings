@@ -1,0 +1,189 @@
+/* MMAScoreCard Localization Strings - Spanish */
+
+/* Common */
+"common.ok" = "Aceptar";
+"common.error" = "Error";
+"common.loading" = "Cargando...";
+"common.search" = "Buscar";
+"common.cancel" = "Cancelar";
+"common.done" = "Listo";
+"common.save" = "Guardar";
+"common.delete" = "Eliminar";
+"common.share" = "Compartir";
+"common.open_safari" = "Abrir en Safari";
+"common.refresh" = "Actualizar";
+
+/* Navigation */
+"nav.events" = "Eventos";
+"nav.fights" = "Peleas";
+"nav.statistics" = "Estadísticas";
+"nav.career" = "Carrera";
+"nav.about" = "Acerca de";
+"nav.settings" = "Configuración";
+
+/* Events List */
+"events.title" = "Eventos";
+"events.search_prompt" = "Buscar eventos";
+"events.no_events_title" = "Sin Eventos";
+"events.no_events_description" = "No se encontraron eventos para el filtro seleccionado";
+"events.cache_section" = "Información de Caché";
+"events.last_updated" = "Última Actualización";
+"events.expires_at" = "Expira El";
+"events.open_in_safari" = "Abrir en Safari";
+"events.share_event" = "Compartir Evento";
+
+/* Event Status */
+"events.status.today" = "Hoy";
+"events.status.tomorrow" = "Mañana";
+"events.status.in_days" = "En %dd";
+"events.status.days_ago" = "Hace %dd";
+
+/* Filter Options */
+"filter.all" = "Todos";
+"filter.upcoming" = "Próximos";
+"filter.past" = "Pasados";
+"filter.title" = "Filtro";
+
+/* Fights List */
+"fights.title" = "Cartelera";
+"fights.search_prompt" = "Buscar peleadores o divisiones";
+"fights.no_fights_title" = "Sin Peleas";
+"fights.no_fights_description" = "No se encontraron peleas para la búsqueda";
+"fights.event_info" = "Información del Evento";
+"fights.location" = "Ubicación";
+"fights.date" = "Fecha";
+"fights.fight_card" = "Cartelera";
+"fights.vs" = "vs";
+"fights.round" = "R%d";
+"fights.time" = "%@";
+"fights.referee" = "Árbitro: %@";
+"fights.count" = "%d Peleas";
+
+/* Fight Details */
+"fight.details" = "Detalles de la Pelea";
+"fight.event_info" = "Información del Evento";
+"fight.event" = "Evento";
+"fight.location" = "Ubicación";
+"fight.date" = "Fecha";
+"fight.division" = "División";
+"fight.fighters" = "Peleadores";
+"fight.result" = "Resultado";
+"fight.method" = "Método";
+"fight.round" = "Asalto %d";
+"fight.time" = "Tiempo %@";
+"fight.referee" = "Árbitro %@";
+"fight.scheduled" = "Esta pelea está programada";
+"fight.winner" = "Ganador";
+"fight.share_fighter" = "Compartir Peleador";
+
+/* Fighter Details */
+"fighter.details" = "Detalles del Peleador";
+"fighter.search_prompt" = "Buscar peleas";
+"fighter.no_fights_title" = "Sin Peleas";
+"fighter.no_fights_description" = "No se encontraron peleas en el historial";
+"fighter.info" = "Información del Peleador";
+"fighter.nationality" = "Nacionalidad";
+"fighter.age" = "Edad";
+"fighter.height" = "Altura";
+"fighter.weight" = "Peso";
+"fighter.record" = "Récord";
+"fighter.fight_history" = "Historial de Peleas";
+"fighter.career_stats" = "Estadísticas de Carrera";
+"fighter.wins" = "V";
+"fighter.losses" = "D";
+"fighter.draws" = "E";
+"fighter.no_contests" = "NC";
+"fighter.years_old" = "%d años";
+"fighter.record_display" = "%d-%d-%d-%d";
+"fighter.fight_count" = "%d Peleas";
+
+/* Fighter Career */
+"career.title" = "Estadísticas de Carrera";
+"career.record" = "Récord de Carrera";
+"career.total_fights" = "Total de Peleas";
+"career.win_rate" = "Tasa de Victoria";
+"career.wins" = "Victorias";
+"career.losses" = "Derrotas";
+"career.win_methods" = "Métodos de Victoria";
+"career.loss_methods" = "Métodos de Derrota";
+"career.breakdown" = "Desglose";
+"career.ko_tko" = "KO/TKO";
+"career.submission" = "Sumisión";
+"career.decision" = "Decisión";
+"career.current_streak" = "Racha Actual";
+"career.best_win_streak" = "Mejor Racha de Victorias";
+"career.worst_loss_streak" = "Peor Racha de Derrotas";
+"career.time_in_octagon" = "Tiempo en el Octágono";
+
+/* Event Graph */
+"graph.title" = "Estadísticas del Evento";
+"graph.event_info" = "Información del Evento";
+"graph.main_event" = "Evento Principal";
+"graph.summary" = "Resumen";
+"graph.total_fights" = "Total de Peleas";
+"graph.finishes" = "Finalizaciones";
+"graph.finish_types" = "Tipos de Finalización";
+"graph.breakdown" = "Desglose";
+"graph.ko_tko" = "KO/TKO";
+"graph.submission" = "Sumisión";
+"graph.decision" = "Decisión";
+
+/* About */
+"about.title" = "Acerca de";
+"about.tagline" = "Tu Compañero Definitivo de MMA";
+"about.app_info" = "Información de la App";
+"about.version" = "Versión";
+"about.build" = "Compilación";
+"about.requirements" = "Requisitos";
+"about.ios_version" = "iOS 17.0+";
+"about.developer" = "Desarrollador";
+"about.developer_name" = "David Vacaro";
+"about.developer_title" = "Desarrollador iOS";
+"about.email" = "Correo";
+"about.social" = "Redes Sociales";
+"about.github" = "GitHub";
+"about.youtube" = "YouTube";
+"about.legal" = "Legal";
+"about.terms" = "Términos y Condiciones";
+"about.privacy" = "Política de Privacidad";
+"about.footer" = "© 2025 MMA Score Card. Todos los derechos reservados.";
+
+/* Privacy Policy */
+"privacy.title" = "Política de Privacidad";
+"privacy.content" = "Contenido de la política de privacidad aquí...";
+
+/* Terms and Conditions */
+"terms.title" = "Términos y Condiciones";
+"terms.content" = "Contenido de los términos y condiciones aquí...";
+
+/* Last Event View */
+"last_event.title" = "Último Evento";
+"last_event.loading" = "Cargando último evento...";
+
+/* Face ID/Touch ID */
+"auth.required" = "Se requiere autenticación con %@";
+"auth.authenticate" = "Autenticar";
+"auth.reason" = "Por favor autentícate para comenzar a usar la app";
+"auth.face_id" = "Face ID";
+"auth.touch_id" = "Touch ID";
+"auth.error" = "Error de Autenticación";
+
+/* Cache */
+"cache.last_updated" = "Última Actualización";
+"cache.expires_at" = "Expira El";
+"cache.never" = "Nunca";
+"cache.info" = "Información de Caché";
+
+/* Shared Components */
+"components.share" = "Compartir";
+"components.open_safari" = "Abrir en Safari";
+"components.loading" = "Cargando...";
+
+/* Percentages */
+"percentage.format" = "%.1f%%";
+
+/* Date Formats */
+"date.today" = "Hoy";
+"date.tomorrow" = "Mañana";
+"date.yesterday" = "Ayer";
+
