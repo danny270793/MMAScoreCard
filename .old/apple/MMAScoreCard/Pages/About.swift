@@ -18,6 +18,7 @@ struct AboutView: View {
             appInfoSection
             developerSection
             socialSection
+            legalSection
             footerSection
         }
         .navigationTitle("About")
@@ -139,6 +140,35 @@ struct AboutView: View {
                 color: .red,
                 url: "https://www.youtube.com/@DannyVacaO"
             )
+        }
+    }
+    
+    @ViewBuilder
+    private var legalSection: some View {
+        Section("Legal") {
+            NavigationLink(destination: TermsAndConditionsView()) {
+                HStack(spacing: 12) {
+                    Image(systemName: "doc.text.fill")
+                        .font(.title3)
+                        .foregroundStyle(.blue)
+                        .frame(width: 40, height: 40)
+                        .background(
+                            Circle()
+                                .fill(Color.blue.opacity(0.15))
+                        )
+                    
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Terms & Conditions")
+                            .font(.headline)
+                        
+                        Text("View our terms of service")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    Spacer()
+                }
+            }
         }
     }
     
