@@ -146,25 +146,10 @@ struct FighterDetails: View {
     
     @ViewBuilder
     private var metadataSection: some View {
-        if let cachedAt = response?.cachedAt, let timeCached = response?.timeCached {
-            Section {
-                LabeledContent {
-                    Text(cachedAt.formatted(date: .abbreviated, time: .shortened))
-                        .foregroundStyle(.secondary)
-                } label: {
-                    Label("Cached", systemImage: "clock.arrow.circlepath")
-                }
-                
-                LabeledContent {
-                    Text(timeCached)
-                        .foregroundStyle(.secondary)
-                } label: {
-                    Label("Cache Time", systemImage: "timer")
-                }
-            } header: {
-                Text("Cache Info")
-            }
-        }
+        CacheMetadataSection(
+            cachedAt: response?.cachedAt,
+            timeCached: response?.timeCached
+        )
     }
     
     @ToolbarContentBuilder
@@ -196,37 +181,24 @@ struct FighterDetails: View {
     
     @ViewBuilder
     private var loadingOverlay: some View {
-        if isFetching && response == nil {
-            ContentUnavailableView {
-                ProgressView()
-            } description: {
-                Text("Loading fighter record...")
-            }
-        }
+        LoadingOverlay(
+            isLoading: isFetching,
+            isEmpty: response == nil,
+            message: "Loading fighter record..."
+        )
     }
 }
 
 // MARK: - Supporting Views
 
-fileprivate struct InfoRow: View {
-    let icon: String
-    let label: String
-    let value: String
-    
-    var body: some View {
-        HStack {
-            Label(label, systemImage: icon)
-            Spacer()
-            Text(value)
-                .foregroundStyle(.secondary)
-        }
-    }
-}
-
 fileprivate struct FightHistoryRow: View {
     let fight: Record
     
-    private var resultColor: Color {
+    private var resultStyle: FightResultStyle {
+        FightResultStyle(result: fight.method)
+    }
+    
+    private var statusColor: Color {
         switch fight.status {
         case .win: return .green
         case .loss: return .red
@@ -236,26 +208,13 @@ fileprivate struct FightHistoryRow: View {
         }
     }
     
-    private var methodIcon: String {
-        let method = fight.method.uppercased()
-        if method.contains("KO") || method.contains("TKO") {
-            return "figure.martial.arts"
-        } else if method.contains("DECISION") || method.contains("DEC") {
-            return "list.bullet.clipboard"
-        } else if method.contains("SUBMISSION") || method.contains("SUB") {
-            return "figure.fall"
-        } else {
-            return "checkmark.circle.fill"
-        }
-    }
-    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 // Status Badge
-                Image(systemName: methodIcon)
+                Image(systemName: resultStyle.icon)
                     .font(.title3)
-                    .foregroundStyle(resultColor)
+                    .foregroundStyle(statusColor)
                     .frame(width: 30)
                 
                 VStack(alignment: .leading, spacing: 4) {
@@ -273,7 +232,7 @@ fileprivate struct FightHistoryRow: View {
                             .padding(.vertical, 4)
                             .background(
                                 Capsule()
-                                    .fill(resultColor)
+                                    .fill(statusColor)
                             )
                         
                         Text("by \(fight.method)")
