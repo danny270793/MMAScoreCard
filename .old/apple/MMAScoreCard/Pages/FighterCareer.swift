@@ -364,21 +364,24 @@ struct FighterCareer: View {
                         title: "KO/TKO Wins",
                         value: koWins,
                         total: wins,
-                        color: .red
+                        color: .red,
+                        showFraction: true
                     )
                     
                     PercentageRow(
                         title: "Submission Wins",
                         value: submissionWins,
                         total: wins,
-                        color: .green
+                        color: .green,
+                        showFraction: true
                     )
                     
                     PercentageRow(
                         title: "Decision Wins",
                         value: decisionWins,
                         total: wins,
-                        color: .blue
+                        color: .blue,
+                        showFraction: true
                     )
                 }
                 
@@ -398,21 +401,24 @@ struct FighterCareer: View {
                         title: "KO/TKO Losses",
                         value: koLosses,
                         total: losses,
-                        color: .red
+                        color: .red,
+                        showFraction: true
                     )
                     
                     PercentageRow(
                         title: "Submission Losses",
                         value: submissionLosses,
                         total: losses,
-                        color: .orange
+                        color: .orange,
+                        showFraction: true
                     )
                     
                     PercentageRow(
                         title: "Decision Losses",
                         value: decisionLosses,
                         total: losses,
-                        color: .purple
+                        color: .purple,
+                        showFraction: true
                     )
                 }
             }
@@ -421,134 +427,7 @@ struct FighterCareer: View {
     }
 }
 
-// MARK: - Supporting Views
-
-struct RecordBadge: View {
-    let label: String
-    let value: Int
-    let color: Color
-    
-    var body: some View {
-        VStack(spacing: 4) {
-            Text("\(value)")
-                .font(.system(.title, design: .rounded, weight: .bold))
-                .foregroundStyle(color)
-            
-            Text(label)
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
-        .frame(minWidth: 50)
-    }
-}
-
-fileprivate struct StatCard: View {
-    let title: String
-    let value: String
-    let icon: String
-    let color: Color
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            Image(systemName: icon)
-                .font(.title2)
-                .foregroundStyle(color)
-            
-            Text(value)
-                .font(.system(.title, design: .rounded, weight: .bold))
-                .foregroundStyle(.primary)
-            
-            Text(title)
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity)
-    }
-}
-
-fileprivate struct StatBar: View {
-    let title: String
-    let value: Int
-    let total: Int
-    let icon: String
-    let color: Color
-    
-    private var percentage: Double {
-        guard total > 0 else { return 0 }
-        return Double(value) / Double(total)
-    }
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Label(title, systemImage: icon)
-                    .font(.subheadline)
-                    .foregroundStyle(.primary)
-                
-                Spacer()
-                
-                Text("\(value)")
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(color)
-            }
-            
-            GeometryReader { geometry in
-                ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(Color(.systemGray5))
-                        .frame(height: 8)
-                    
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(color)
-                        .frame(width: geometry.size.width * percentage, height: 8)
-                }
-            }
-            .frame(height: 8)
-        }
-        .padding(.vertical, 4)
-    }
-}
-
-fileprivate struct PercentageRow: View {
-    let title: String
-    let value: Int
-    let total: Int
-    let color: Color
-    
-    private var percentage: Double {
-        guard total > 0 else { return 0 }
-        return Double(value) / Double(total)
-    }
-    
-    private var percentageString: String {
-        String(format: "%.1f%%", percentage * 100)
-    }
-    
-    var body: some View {
-        HStack {
-            Circle()
-                .fill(color)
-                .frame(width: 12, height: 12)
-            
-            Text(title)
-                .font(.subheadline)
-                .foregroundStyle(.primary)
-            
-            Spacer()
-            
-            Text("\(value)/\(total)")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-            
-            Text(percentageString)
-                .font(.subheadline)
-                .fontWeight(.semibold)
-                .foregroundStyle(color)
-                .frame(minWidth: 50, alignment: .trailing)
-        }
-    }
-}
+// MARK: - No local components needed - using SharedComponents
 
 #Preview {
     NavigationStack {
