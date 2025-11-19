@@ -167,44 +167,20 @@ struct FigthsList: View {
     
     @ViewBuilder
     private func shareButton(for fight: Fight) -> some View {
-        Button(action: {
-            Sharing.shareText(text: "I'm viewing \"\(fight.figther1.name) vs \(fight.figther2.name)\"")
-        }) {
-            Label("Share", systemImage: "square.and.arrow.up")
-        }
-        .tint(.blue)
+        ShareSwipeButton(text: "I'm viewing \"\(fight.figther1.name) vs \(fight.figther2.name)\"")
     }
     
     @ViewBuilder
     private func contextMenuItems(for fight: Fight) -> some View {
-        Button(action: {
-            Sharing.shareText(text: "I'm viewing \"\(fight.figther1.name) vs \(fight.figther2.name)\"")
-        }) {
-            Label("Share", systemImage: "square.and.arrow.up")
-        }
+        ShareContextMenuItem(text: "I'm viewing \"\(fight.figther1.name) vs \(fight.figther2.name)\"")
     }
     
     @ViewBuilder
     private var metadataSection: some View {
-        if let cachedAt = response?.cachedAt, let timeCached = response?.timeCached {
-            Section {
-                LabeledContent {
-                    Text(cachedAt.formatted(date: .abbreviated, time: .shortened))
-                        .foregroundStyle(.secondary)
-                } label: {
-                    Label("Cached", systemImage: "clock.arrow.circlepath")
-                }
-                
-                LabeledContent {
-                    Text(timeCached)
-                        .foregroundStyle(.secondary)
-                } label: {
-                    Label("Cache Time", systemImage: "timer")
-                }
-            } header: {
-                Text("Cache Info")
-            }
-        }
+        CacheMetadataSection(
+            cachedAt: response?.cachedAt,
+            timeCached: response?.timeCached
+        )
     }
     
     @ToolbarContentBuilder
@@ -242,13 +218,11 @@ struct FigthsList: View {
     
     @ViewBuilder
     private var loadingOverlay: some View {
-        if isFetching && filteredFights.isEmpty {
-            ContentUnavailableView {
-                ProgressView()
-            } description: {
-                Text("Loading fights...")
-            }
-        }
+        LoadingOverlay(
+            isLoading: isFetching,
+            isEmpty: filteredFights.isEmpty,
+            message: "Loading fights..."
+        )
     }
 }
 
@@ -257,56 +231,15 @@ fileprivate struct FightRow: View {
     let fight: Fight
     let position: Int
     
-    private var resultIcon: String {
-        let result = fight.result.uppercased()
-        if result.hasPrefix("KO") || result.hasPrefix("TKO") {
-            return "figure.martial.arts"
-        } else if result.contains("DECISION") || result.contains("DEC") {
-            return "list.bullet.clipboard"
-        } else if result.contains("SUBMISSION") || result.contains("SUB") {
-            return "figure.fall"
-        } else if result.contains("NO CONTEST") || result.contains("NC") {
-            return "nosign"
-        } else {
-            return "clock.badge"
-        }
-    }
-    
-    private var hasResult: Bool {
-        let result = fight.result.uppercased()
-        if result.hasPrefix("KO") || result.hasPrefix("TKO") {
-            return true
-        } else if result.contains("DECISION") || result.contains("DEC") {
-            return true
-        } else if result.contains("SUBMISSION") || result.contains("SUB") {
-            return true
-        } else if result.contains("NO CONTEST") || result.contains("NC") {
-            return false
-        } else {
-            return false
-        }
-    }
-    
-    private var resultColor: Color {
-        let result = fight.result.uppercased()
-        if result.hasPrefix("KO") || result.hasPrefix("TKO") {
-            return .red
-        } else if result.contains("DECISION") || result.contains("DEC") {
-            return .blue
-        } else if result.contains("SUBMISSION") || result.contains("SUB") {
-            return .green
-        } else if result.contains("NO CONTEST") || result.contains("NC") {
-            return .primary
-        } else {
-            return .orange
-        }
+    private var resultStyle: FightResultStyle {
+        FightResultStyle(result: fight.result)
     }
     
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
-            Image(systemName: resultIcon)
+            Image(systemName: resultStyle.icon)
                 .font(.subheadline)
-                .foregroundStyle(resultColor)
+                .foregroundStyle(resultStyle.color)
             
             VStack(alignment: .leading, spacing: 6) {
                 // Fighters
@@ -329,7 +262,7 @@ fileprivate struct FightRow: View {
                     Text(fight.division)
                         .font(.caption)
                         .foregroundStyle(.secondary)
-                    if hasResult {
+                    if resultStyle.hasResult {
                         Text("R\(fight.round) • \(fight.time)")
                             .font(.caption)
                             .foregroundStyle(.secondary)
