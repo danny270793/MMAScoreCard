@@ -212,13 +212,20 @@ struct EventsList: View {
     private var toolbarContent: some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) {
             Menu {
-                Picker("Filter", selection: $filter) {
-                    Label("Past Events", systemImage: "clock.arrow.circlepath")
-                        .tag(FilterOptions.past)
-                    Label("Upcoming Events", systemImage: "calendar.badge.clock")
-                        .tag(FilterOptions.upcoming)
-                    Label("All Events", systemImage: "list.bullet")
-                        .tag(FilterOptions.all)
+                Menu {
+                    Button(action: { filter = .all }) {
+                        Label("All Events", systemImage: filter == .all ? "checkmark" : "list.bullet")
+                    }
+                    
+                    Button(action: { filter = .upcoming }) {
+                        Label("Upcoming Events", systemImage: filter == .upcoming ? "checkmark" : "calendar.badge.clock")
+                    }
+                    
+                    Button(action: { filter = .past }) {
+                        Label("Past Events", systemImage: filter == .past ? "checkmark" : "clock.arrow.circlepath")
+                    }
+                } label: {
+                    Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
                 }
                 
                 Divider()
