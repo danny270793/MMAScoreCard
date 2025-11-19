@@ -115,6 +115,8 @@ struct FighterCareer: View {
     // MARK: - Time
     private var octagonTime: String {
         let totalSeconds = fights.reduce(0) { total, fight in
+            print("\(fight.round) - \(fight.time)")
+            
             // Parse round number (e.g., "Round 3" -> 3)
             let roundNumber = Int(fight.round.filter { $0.isNumber }) ?? 1
             
@@ -133,6 +135,8 @@ struct FighterCareer: View {
             
             return total + totalFightSeconds
         }
+        
+        print("totalSeconds: \(totalSeconds)")
         
         let days = totalSeconds / (24 * 3600)
         let hours = (totalSeconds % (24 * 3600)) / 3600
