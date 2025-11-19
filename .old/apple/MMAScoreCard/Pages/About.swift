@@ -40,7 +40,7 @@ struct AboutView: View {
             legalSection
             footerSection
         }
-        .navigationTitle("About")
+        .navigationTitle(String(localized: "about.title"))
         .navigationBarTitleDisplayMode(.large)
     }
     
@@ -57,7 +57,7 @@ struct AboutView: View {
                     .font(.title2)
                     .fontWeight(.bold)
                 
-                Text("Track MMA fights and statistics")
+                Text(String(localized: "about.tagline"))
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
@@ -69,20 +69,20 @@ struct AboutView: View {
     
     @ViewBuilder
     private var appInfoSection: some View {
-        Section("Application") {
-            InfoRow(icon: "number.circle.fill", label: "Version", value: appVersion)
-            InfoRow(icon: "hammer.fill", label: "Build", value: buildNumber)
-            InfoRow(icon: "iphone", label: "Requires", value: "iOS 16.0+")
+        Section(String(localized: "about.app_info")) {
+            InfoRow(icon: "number.circle.fill", label: String(localized: "about.version"), value: appVersion)
+            InfoRow(icon: "hammer.fill", label: String(localized: "about.build"), value: buildNumber)
+            InfoRow(icon: "iphone", label: String(localized: "about.requirements"), value: String(localized: "about.ios_version"))
         }
     }
     
     @ViewBuilder
     private var developerSection: some View {
-        Section("Developer") {
+        Section(String(localized: "about.developer")) {
             VStack(spacing: 12) {
                 ProfileCard(
-                    name: "Danny Vaca",
-                    subtitle: "iOS Developer",
+                    name: String(localized: "about.developer_name"),
+                    subtitle: String(localized: "about.developer_title"),
                     icon: "person.circle.fill",
                     color: .blue
                 )
@@ -101,9 +101,9 @@ struct AboutView: View {
     
     @ViewBuilder
     private var socialSection: some View {
-        Section("Connect") {
+        Section(String(localized: "about.social")) {
             IconCard(
-                title: "GitHub",
+                title: String(localized: "about.github"),
                 subtitle: "@danny270793",
                 icon: "chevron.left.forwardslash.chevron.right",
                 color: .primary,
@@ -111,7 +111,7 @@ struct AboutView: View {
             )
             
             IconCard(
-                title: "YouTube",
+                title: String(localized: "about.youtube"),
                 subtitle: "@DannyVacaO",
                 icon: "play.rectangle.fill",
                 color: .red,
@@ -122,11 +122,11 @@ struct AboutView: View {
     
     @ViewBuilder
     private var legalSection: some View {
-        Section("Legal") {
+        Section(String(localized: "about.legal")) {
             NavigationLink(destination: TermsAndConditionsView()) {
                 IconCardContent(
-                    title: "Terms & Conditions",
-                    subtitle: "View our terms of service",
+                    title: String(localized: "about.terms"),
+                    subtitle: String(localized: "terms.title"),
                     icon: "doc.text.fill",
                     color: .blue
                 )
@@ -134,8 +134,8 @@ struct AboutView: View {
             
             NavigationLink(destination: PrivacyPolicyView()) {
                 IconCardContent(
-                    title: "Privacy Policy",
-                    subtitle: "How we protect your data",
+                    title: String(localized: "about.privacy"),
+                    subtitle: String(localized: "privacy.title"),
                     icon: "lock.shield.fill",
                     color: .green
                 )
@@ -152,7 +152,7 @@ struct AboutView: View {
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
                 
-                Text("© 2025 Danny Vaca")
+                Text(String(localized: "about.footer"))
                     .font(.caption2)
                     .foregroundStyle(.tertiary)
             }
