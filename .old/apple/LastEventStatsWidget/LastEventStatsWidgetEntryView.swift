@@ -125,7 +125,7 @@ struct LastEventStatsWidgetEntryView : View {
                 Spacer()
                 
                 // Total Fights Badge
-                HStack {
+                        HStack {
                     Image(systemName: "figure.boxing")
                         .font(.title2)
                         .foregroundStyle(.orange.gradient)
@@ -176,7 +176,7 @@ struct LastEventStatsWidgetEntryView : View {
     private var largeWidgetView: some View {
         VStack(alignment: .leading, spacing: 16) {
             // Header
-            HStack {
+                        HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     Label("Fight Statistics", systemImage: "chart.xyaxis.line")
                         .font(.subheadline)
@@ -209,35 +209,43 @@ struct LastEventStatsWidgetEntryView : View {
             
             Spacer()
             
-            // Circular Progress Rings
-            HStack(spacing: 20) {
-                CircularProgressRing(
-                    title: "KO/TKO",
-                    value: stats.kos,
-                    total: totalFights,
-                    icon: "figure.martial.arts",
-                    color: .red
+            // Single Segmented Ring
+            HStack(spacing: 24) {
+                // Ring
+                SegmentedRing(
+                    kos: stats.kos,
+                    submissions: stats.submissions,
+                    decisions: stats.decisions,
+                    total: totalFights
                 )
                 
-                CircularProgressRing(
-                    title: "Submission",
-                    value: stats.submissions,
-                    total: totalFights,
-                    icon: "figure.fall",
-                    color: .green
-                )
-                
-                CircularProgressRing(
-                    title: "Decision",
-                    value: stats.decisions,
-                    total: totalFights,
-                    icon: "list.bullet.clipboard",
-                    color: .blue
-                )
+                // Legend
+                VStack(alignment: .leading, spacing: 12) {
+                    StatLegendItem(
+                        icon: "figure.martial.arts",
+                        title: "KO/TKO",
+                        value: stats.kos,
+                        color: .red
+                    )
+                    
+                    StatLegendItem(
+                        icon: "figure.fall",
+                        title: "Submission",
+                        value: stats.submissions,
+                        color: .green
+                    )
+                    
+                    StatLegendItem(
+                        icon: "list.bullet.clipboard",
+                        title: "Decision",
+                        value: stats.decisions,
+                        color: .blue
+                    )
+                }
             }
             
-            Spacer()
-        }
+                            Spacer()
+                        }
         .padding()
     }
 }
@@ -361,7 +369,7 @@ fileprivate struct MediumStatCard: View {
                 }
             }
             
-            Spacer()
+                            Spacer()
             
             // Progress bar
             GeometryReader { geometry in
@@ -525,6 +533,119 @@ fileprivate struct CircularProgressRing: View {
             }
         }
         .frame(maxWidth: .infinity)
+    }
+}
+
+fileprivate struct SegmentedRing: View {
+    let kos: Int
+    let submissions: Int
+    let decisions: Int
+    let total: Int
+    
+    private var kosPercentage: Double {
+        guard total > 0 else { return 0 }
+        return Double(kos) / Double(total)
+    }
+    
+    private var submissionsPercentage: Double {
+        guard total > 0 else { return 0 }
+        return Double(submissions) / Double(total)
+    }
+    
+    private var decisionsPercentage: Double {
+        guard total > 0 else { return 0 }
+        return Double(decisions) / Double(total)
+    }
+    
+    var body: some View {
+        ZStack {
+            // Background circle
+            Circle()
+                .stroke(Color(.systemGray5), lineWidth: 20)
+                .frame(width: 140, height: 140)
+            
+            // KO/TKO segment (Red)
+            Circle()
+                .trim(from: 0, to: kosPercentage)
+                .stroke(
+                    Color.red.gradient,
+                    style: StrokeStyle(
+                        lineWidth: 20,
+                        lineCap: .round
+                    )
+                )
+                .frame(width: 140, height: 140)
+                .rotationEffect(.degrees(-90))
+            
+            // Submission segment (Green)
+            Circle()
+                .trim(from: 0, to: submissionsPercentage)
+                .stroke(
+                    Color.green.gradient,
+                    style: StrokeStyle(
+                        lineWidth: 20,
+                        lineCap: .round
+                    )
+                )
+                .frame(width: 140, height: 140)
+                .rotationEffect(.degrees(-90 + (kosPercentage * 360)))
+            
+            // Decision segment (Blue)
+            Circle()
+                .trim(from: 0, to: decisionsPercentage)
+                .stroke(
+                    Color.blue.gradient,
+                    style: StrokeStyle(
+                        lineWidth: 20,
+                        lineCap: .round
+                    )
+                )
+                .frame(width: 140, height: 140)
+                .rotationEffect(.degrees(-90 + ((kosPercentage + submissionsPercentage) * 360)))
+            
+            // Center content
+            VStack(spacing: 4) {
+                Image(systemName: "figure.boxing")
+                    .font(.system(size: 32))
+                    .foregroundStyle(.orange.gradient)
+                
+                Text("\(total)")
+                    .font(.system(.title, design: .rounded, weight: .bold))
+                    .foregroundStyle(.primary)
+                
+                Text("Fights")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+        }
+    }
+}
+
+fileprivate struct StatLegendItem: View {
+    let icon: String
+    let title: String
+    let value: Int
+    let color: Color
+    
+    var body: some View {
+        HStack(spacing: 10) {
+            Image(systemName: icon)
+                .font(.title3)
+                .foregroundStyle(color.gradient)
+                .frame(width: 28)
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                
+                Text("\(value) fights")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            
+            Spacer()
+        }
     }
 }
 
