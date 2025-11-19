@@ -7,6 +7,25 @@
 
 import SwiftUI
 
+extension Bundle {
+    var iconFileName: String? {
+        guard let icons = infoDictionary?["CFBundleIcons"] as? [String: Any],
+              let primaryIcon = icons["CFBundlePrimaryIcon"] as? [String: Any],
+              let iconFiles = primaryIcon["CFBundleIconFiles"] as? [String],
+              let iconFileName = iconFiles.last
+        else { return nil }
+        return iconFileName
+    }
+}
+
+struct AppIcon: View {
+    var body: some View {
+        Bundle.main.iconFileName
+            .flatMap { UIImage(named: $0) }
+            .map { Image(uiImage: $0) }
+    }
+}
+
 struct AboutView: View {
     let appName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "MMA ScoreCard"
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
@@ -25,15 +44,17 @@ struct AboutView: View {
         .navigationBarTitleDisplayMode(.large)
     }
     
+    
+    
     @ViewBuilder
     private var appHeaderSection: some View {
         Section {
             VStack(spacing: 16) {
                 // App Icon
-                Image(systemName: "figure.boxing")
-                    .font(.system(size: 80))
-                    .foregroundStyle(.red)
-                    .padding(.vertical, 8)
+                AppIcon()
+                    .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: 22.5, style: .continuous))
+                    .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 4)
                 
                 // App Name
                 Text(appName)
