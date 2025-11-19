@@ -160,52 +160,24 @@ struct EventsList: View {
     
     @ViewBuilder
     private func shareButton(for event: Event) -> some View {
-        Button(action: {
-            Sharing.shareText(text: "I'm viewing \"\(event.name)\"\nSee more information at: \(event.url)")
-        }) {
-            Label("Share", systemImage: "square.and.arrow.up")
-        }
-        .tint(.blue)
+        ShareSwipeButton(text: "I'm viewing \"\(event.name)\"\nSee more information at: \(event.url)")
     }
     
     @ViewBuilder
     private func contextMenuItems(for event: Event) -> some View {
-        Button(action: {
-            Sharing.shareText(text: "I'm viewing \"\(event.name)\"\nSee more information at: \(event.url)")
-        }) {
-            Label("Share", systemImage: "square.and.arrow.up")
-        }
+        ShareContextMenuItem(text: "I'm viewing \"\(event.name)\"\nSee more information at: \(event.url)")
         
-        Button(action: {
-            if let url = URL(string: event.url) {
-                UIApplication.shared.open(url)
-            }
-        }) {
+        Button(action: { openURL(event.url) }) {
             Label("Open in Safari", systemImage: "safari")
         }
     }
     
     @ViewBuilder
     private var metadataSection: some View {
-        if let cachedAt = response?.cachedAt, let timeCached = response?.timeCached {
-            Section {
-                LabeledContent {
-                    Text(cachedAt.formatted(date: .abbreviated, time: .shortened))
-                        .foregroundStyle(.secondary)
-                } label: {
-                    Label("Cached", systemImage: "clock.arrow.circlepath")
-                }
-                
-                LabeledContent {
-                    Text(timeCached)
-                        .foregroundStyle(.secondary)
-                } label: {
-                    Label("Cache Time", systemImage: "timer")
-                }
-            } header: {
-                Text("Cache Info")
-            }
-        }
+        CacheMetadataSection(
+            cachedAt: response?.cachedAt,
+            timeCached: response?.timeCached
+        )
     }
     
     @ToolbarContentBuilder
@@ -234,11 +206,7 @@ struct EventsList: View {
                     Label("About", systemImage: "info.circle")
                 }
                 
-                Button(action: {
-                    if let appSettings = URL(string: UIApplication.openSettingsURLString) {
-                        UIApplication.shared.open(appSettings)
-                    }
-                }) {
+                Button(action: openAppSettings) {
                     Label("Settings", systemImage: "gear")
                 }
             } label: {
@@ -249,13 +217,11 @@ struct EventsList: View {
     
     @ViewBuilder
     private var loadingOverlay: some View {
-        if isFetching && filteredEvents.isEmpty {
-            ContentUnavailableView {
-                ProgressView()
-            } description: {
-                Text("Loading events...")
-            }
-        }
+        LoadingOverlay(
+            isLoading: isFetching,
+            isEmpty: filteredEvents.isEmpty,
+            message: "Loading events..."
+        )
     }
 }
 
