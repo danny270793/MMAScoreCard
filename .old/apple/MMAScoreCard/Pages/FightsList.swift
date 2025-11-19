@@ -81,8 +81,8 @@ struct FigthsList: View {
             .overlay {
                 loadingOverlay
             }
-            .alert("Error", isPresented: .constant(error != nil)) {
-                Button("OK") {
+            .alert(String(localized: "common.error"), isPresented: .constant(error != nil)) {
+                Button(String(localized: "common.ok")) {
                     error = nil
                 }
             } message: {
@@ -92,7 +92,7 @@ struct FigthsList: View {
             }
             .onAppear(perform: onAppear)
             .refreshable(action: onRefresh)
-            .searchable(text: $searchText, prompt: "Search fighters or divisions")
+            .searchable(text: $searchText, prompt: String(localized: "fights.search_prompt"))
             .navigationTitle(event.name)
             .navigationBarTitleDisplayMode(.large)
     }
@@ -114,15 +114,15 @@ struct FigthsList: View {
     
     @ViewBuilder
     private var eventHeaderSection: some View {
-        Section("Event Information") {
+        Section(String(localized: "fights.event_info")) {
             HStack {
-                Label("Location", systemImage: "location.fill")
+                Label(String(localized: "fights.location"), systemImage: "location.fill")
                 Spacer()
                 Text(event.location)
                     .foregroundStyle(.secondary)
             }
             HStack {
-                Label("Date", systemImage: "calendar")
+                Label(String(localized: "fights.date"), systemImage: "calendar")
                 Spacer()
                 Text(event.date.formatted(date: .abbreviated, time: .omitted))
                     .foregroundStyle(.secondary)
@@ -133,15 +133,15 @@ struct FigthsList: View {
     @ViewBuilder
     private var emptyStateView: some View {
         ContentUnavailableView(
-            "No Fights",
+            String(localized: "fights.no_fights_title"),
             systemImage: "figure.boxing",
-            description: Text("No fights found for the selected search")
+            description: Text(String(localized: "fights.no_fights_description"))
         )
     }
     
     @ViewBuilder
     private var fightsSection: some View {
-        Section("Fight Card") {
+        Section(String(localized: "fights.fight_card")) {
             ForEach(sortedFights, id: \.1.id) { positionedFight in
                 fightRow(for: positionedFight.1, position: positionedFight.0)
             }
@@ -188,7 +188,7 @@ struct FigthsList: View {
         ToolbarItem(placement: .topBarTrailing) {
             if hasCompletedFights {
                 NavigationLink(destination: EventGraph(event: event)) {
-                    Label("Statistics", systemImage: "chart.xyaxis.line")
+                    Label(String(localized: "nav.statistics"), systemImage: "chart.xyaxis.line")
                 }
             }
         }
@@ -221,7 +221,7 @@ struct FigthsList: View {
         LoadingOverlay(
             isLoading: isFetching,
             isEmpty: filteredFights.isEmpty,
-            message: "Loading fights..."
+            message: String(localized: "common.loading")
         )
     }
 }
@@ -248,7 +248,7 @@ fileprivate struct FightRow: View {
                         .font(.headline)
                         .lineLimit(1)
                     Spacer(minLength: 0)
-                    Text("vs")
+                    Text(String(localized: "fights.vs"))
                         .font(.caption)
                         .foregroundStyle(.tertiary)
                     Spacer(minLength: 0)
