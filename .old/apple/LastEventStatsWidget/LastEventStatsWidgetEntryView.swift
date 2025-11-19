@@ -106,64 +106,63 @@ struct LastEventStatsWidgetEntryView : View {
     }
     
     private var mediumWidgetView: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            // Header
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Label("Fight Statistics", systemImage: "chart.xyaxis.line")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    
-                    Text(stats.name)
-                        .font(.headline)
-                        .lineLimit(1)
-                    
-                    Text(stats.mainFight)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                        .lineLimit(1)
-                }
+        HStack(spacing: 12) {
+            // Left side - Event Info
+            VStack(alignment: .leading, spacing: 8) {
+                Label("Fight Statistics", systemImage: "chart.xyaxis.line")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                
+                Text(stats.name)
+                    .font(.headline)
+                    .lineLimit(1)
+                
+                Text(stats.mainFight)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(2)
                 
                 Spacer()
                 
                 // Total Fights Badge
-                VStack(spacing: 2) {
-                    Text("\(totalFights)")
-                        .font(.system(.title2, design: .rounded, weight: .bold))
-                        .foregroundStyle(.red)
+                HStack {
+                    Image(systemName: "figure.boxing")
+                        .font(.title2)
+                        .foregroundStyle(.orange.gradient)
                     
-                    Text("Fights")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("\(totalFights)")
+                            .font(.system(.title2, design: .rounded, weight: .bold))
+                        
+                        Text("Total Fights")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
                 }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 6)
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color(.systemGray6))
-                )
             }
             
-            // Detailed Stats
-            VStack(spacing: 10) {
-                DetailedStatRow(
-                    label: "KO/TKO",
+            Divider()
+            
+            // Right side - Stats Grid
+            VStack(spacing: 8) {
+                MediumStatCard(
+                    title: "KO/TKO",
                     value: stats.kos,
                     total: totalFights,
                     icon: "figure.martial.arts",
                     color: .red
                 )
                 
-                DetailedStatRow(
-                    label: "Submission",
+                MediumStatCard(
+                    title: "Submission",
                     value: stats.submissions,
                     total: totalFights,
                     icon: "figure.fall",
                     color: .green
                 )
                 
-                DetailedStatRow(
-                    label: "Decision",
+                MediumStatCard(
+                    title: "Decision",
                     value: stats.decisions,
                     total: totalFights,
                     icon: "list.bullet.clipboard",
@@ -171,6 +170,7 @@ struct LastEventStatsWidgetEntryView : View {
                 )
             }
         }
+        .padding()
     }
     
     private var largeWidgetView: some View {
@@ -332,6 +332,66 @@ fileprivate struct StatCard: View {
         .padding(.vertical, 8)
         .background(
             RoundedRectangle(cornerRadius: 10)
+                .fill(Color(.systemGray6))
+        )
+    }
+}
+
+fileprivate struct MediumStatCard: View {
+    let title: String
+    let value: Int
+    let total: Int
+    let icon: String
+    let color: Color
+    
+    private var percentage: Double {
+        guard total > 0 else { return 0 }
+        return Double(value) / Double(total)
+    }
+    
+    var body: some View {
+        HStack(spacing: 8) {
+            Image(systemName: icon)
+                .font(.title3)
+                .foregroundStyle(color.gradient)
+                .frame(width: 30)
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                
+                HStack(spacing: 4) {
+                    Text("\(value)")
+                        .font(.system(.body, design: .rounded, weight: .bold))
+                        .foregroundStyle(color)
+                    
+                    Text("/ \(total)")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            
+            Spacer()
+            
+            // Progress bar
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 3)
+                        .fill(Color(.systemGray5))
+                        .frame(width: 40, height: 6)
+                    
+                    RoundedRectangle(cornerRadius: 3)
+                        .fill(color.gradient)
+                        .frame(width: 40 * percentage, height: 6)
+                }
+            }
+            .frame(width: 40, height: 6)
+        }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 6)
+        .background(
+            RoundedRectangle(cornerRadius: 8)
                 .fill(Color(.systemGray6))
         )
     }
