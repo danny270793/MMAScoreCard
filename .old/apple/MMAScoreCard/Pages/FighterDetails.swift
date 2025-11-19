@@ -126,12 +126,10 @@ struct FighterDetails: View {
     private func fighterInfoSection(data: FighterRecord) -> some View {
         Section("Resume"){
             // Fighter Details
-            VStack(spacing: 12) {
-                InfoRow(icon: "flag.fill", label: "Nationality", value: data.nationality)
-                InfoRow(icon: "calendar", label: "Age", value: data.age)
-                InfoRow(icon: "ruler.fill", label: "Height", value: data.height)
-                InfoRow(icon: "scalemass.fill", label: "Weight", value: data.weight)
-            }
+            InfoRow(icon: "flag.fill", label: "Nationality", value: data.nationality)
+            InfoRow(icon: "calendar", label: "Age", value: data.age)
+            InfoRow(icon: "ruler.fill", label: "Height", value: data.height)
+            InfoRow(icon: "scalemass.fill", label: "Weight", value: data.weight)
         }
     }
     
@@ -216,22 +214,11 @@ fileprivate struct InfoRow: View {
     let value: String
     
     var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: icon)
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundStyle(.blue)
-                .frame(width: 24)
-            
-            Text(label)
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-            
+        HStack {
+            Label(label, systemImage: icon)
             Spacer()
-            
             Text(value)
-                .font(.subheadline)
-                .fontWeight(.medium)
-                .foregroundStyle(.primary)
+                .foregroundStyle(.secondary)
         }
     }
 }
@@ -298,6 +285,13 @@ fileprivate struct FightHistoryRow: View {
                 Spacer()
             }
             
+            // Referee if available
+            if let referee = fight.referee {
+                Label("Ref: \(referee) R\(fight.round) • \(fight.time)", systemImage: "person.fill.checkmark")
+                    .font(.caption2)
+                    .foregroundStyle(.tertiary)
+            }
+            
             // Event and Date
             HStack {
                 Text(fight.event)
@@ -308,14 +302,6 @@ fileprivate struct FightHistoryRow: View {
                 
                 Text(fight.date.formatted(date: .abbreviated, time: .omitted))
                     .font(.caption)
-                    .foregroundStyle(.tertiary)
-            }
-        
-            
-            // Referee if available
-            if let referee = fight.referee {
-                Label("Ref: \(referee) R\(fight.round) • \(fight.time)", systemImage: "person.fill.checkmark")
-                    .font(.caption2)
                     .foregroundStyle(.tertiary)
             }
         }
