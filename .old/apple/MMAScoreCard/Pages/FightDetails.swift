@@ -193,32 +193,29 @@ struct FigthDetails: View {
     @ViewBuilder
     private var eventInfoSection: some View {
         Section("Event Information") {
-            LabeledContent {
+            HStack {
+                Label("Event", systemImage: "rectangle.and.pencil.and.ellipsis")
+                Spacer()
                 Text(event.name)
                     .foregroundStyle(.secondary)
-            } label: {
-                Label("Event", systemImage: "rectangle.and.pencil.and.ellipsis")
             }
-            
-            LabeledContent {
+            HStack {
+                Label("Location", systemImage: "location.fill")
+                Spacer()
                 Text(event.location)
                     .foregroundStyle(.secondary)
-            } label: {
-                Label("Location", systemImage: "location.fill")
             }
-            
-            LabeledContent {
+            HStack {
+                Label("Date", systemImage: "calendar")
+                Spacer()
                 Text(event.date.formatted(date: .abbreviated, time: .omitted))
                     .foregroundStyle(.secondary)
-            } label: {
-                Label("Date", systemImage: "calendar")
             }
-            
-            LabeledContent {
+            HStack {
+                Label("Date", systemImage: "scalemass.fill")
+                Spacer()
                 Text(fight.division)
                     .foregroundStyle(.secondary)
-            } label: {
-                Label("Division", systemImage: "scalemass.fill")
             }
         }
     }
