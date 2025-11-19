@@ -19,8 +19,8 @@ struct FaceIdUnlock: View {
     
     private var biometryTypeName: String {
         switch context.biometryType {
-        case LABiometryType.faceID: return "Face ID"
-        case LABiometryType.touchID: return "Touch ID"
+        case LABiometryType.faceID: return String(localized: "auth.face_id")
+        case LABiometryType.touchID: return String(localized: "auth.touch_id")
         default: return ""
         }
     }
@@ -35,7 +35,7 @@ struct FaceIdUnlock: View {
             return
         }
         
-        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Please authenticate to start ussig the app") { success, error in
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: String(localized: "auth.reason")) { success, error in
             DispatchQueue.main.async {
                 isAuthenticating = false
                 if success {
@@ -65,11 +65,11 @@ struct FaceIdUnlock: View {
         .sheet(isPresented: .constant(requiresFaceId && !authenticated)) {
             VStack {
                 Spacer()
-                Text("\(biometryTypeName) authentication is required")
+                Text(String(format: String(localized: "auth.required"), biometryTypeName))
                 if isAuthenticating {
                     ProgressView()
                 } else {
-                    Button("Authenticate") {
+                    Button(String(localized: "auth.authenticate")) {
                         doBiometricAuthentication()
                     }
                 }
@@ -80,9 +80,9 @@ struct FaceIdUnlock: View {
             }
             .alert(isPresented: .constant(error != nil)) {
                 Alert(
-                    title: Text("Error"),
+                    title: Text(String(localized: "common.error")),
                     message: Text(error!.localizedDescription),
-                    dismissButton: .default(Text("OK")) {
+                    dismissButton: .default(Text(String(localized: "common.ok"))) {
                         error = nil
                     }
                 )
