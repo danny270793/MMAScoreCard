@@ -49,7 +49,7 @@ struct LastEventStatsWidgetEntryView : View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
             
-            ProgressView()
+                ProgressView()
                 .tint(.red)
         }
     }
@@ -194,60 +194,49 @@ struct LastEventStatsWidgetEntryView : View {
                 }
                 
                 Spacer()
+                
+                // Total Fights Badge
+                VStack(spacing: 2) {
+                    Text("\(totalFights)")
+                        .font(.system(.title, design: .rounded, weight: .bold))
+                        .foregroundStyle(.orange)
+                    
+                    Text("Fights")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
             }
             
-            // Summary Cards
-            HStack(spacing: 12) {
-                SummaryCard(
-                    title: "Total Fights",
-                    value: "\(totalFights)",
-                    icon: "figure.boxing",
-                    color: .orange
-                )
-                
-                SummaryCard(
-                    title: "Finishes",
-                    value: "\(stats.kos + stats.submissions)",
-                    icon: "bolt.fill",
-                    color: .red
-                )
-                
-                SummaryCard(
-                    title: "Decisions",
-                    value: "\(stats.decisions)",
-                    icon: "list.bullet.clipboard",
-                    color: .blue
-                )
-            }
+            Spacer()
             
-            Divider()
-            
-            // Detailed Stats
-            VStack(spacing: 10) {
-                DetailedStatRow(
-                    label: "KO/TKO",
+            // Circular Progress Rings
+            HStack(spacing: 20) {
+                CircularProgressRing(
+                    title: "KO/TKO",
                     value: stats.kos,
                     total: totalFights,
                     icon: "figure.martial.arts",
                     color: .red
                 )
                 
-                DetailedStatRow(
-                    label: "Submission",
+                CircularProgressRing(
+                    title: "Submission",
                     value: stats.submissions,
                     total: totalFights,
                     icon: "figure.fall",
                     color: .green
                 )
                 
-                DetailedStatRow(
-                    label: "Decision",
+                CircularProgressRing(
+                    title: "Decision",
                     value: stats.decisions,
                     total: totalFights,
                     icon: "list.bullet.clipboard",
                     color: .blue
                 )
             }
+            
+            Spacer()
         }
         .padding()
     }
@@ -471,6 +460,71 @@ fileprivate struct DetailedStatRow: View {
             }
             .frame(height: 8)
         }
+    }
+}
+
+fileprivate struct CircularProgressRing: View {
+    let title: String
+    let value: Int
+    let total: Int
+    let icon: String
+    let color: Color
+    
+    private var percentage: Double {
+        guard total > 0 else { return 0 }
+        return Double(value) / Double(total)
+    }
+    
+    private var percentageString: String {
+        String(format: "%.0f%%", percentage * 100)
+    }
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            ZStack {
+                // Background circle
+                Circle()
+                    .stroke(Color(.systemGray5), lineWidth: 12)
+                    .frame(width: 80, height: 80)
+                
+                // Progress circle
+                Circle()
+                    .trim(from: 0, to: percentage)
+                    .stroke(
+                        color.gradient,
+                        style: StrokeStyle(
+                            lineWidth: 12,
+                            lineCap: .round
+                        )
+                    )
+                    .frame(width: 80, height: 80)
+                    .rotationEffect(.degrees(-90))
+                    .animation(.easeInOut(duration: 0.5), value: percentage)
+                
+                // Center content
+                VStack(spacing: 2) {
+                    Image(systemName: icon)
+                        .font(.title3)
+                        .foregroundStyle(color)
+                    
+                    Text("\(value)")
+                        .font(.system(.body, design: .rounded, weight: .bold))
+                        .foregroundStyle(.primary)
+                }
+            }
+            
+            VStack(spacing: 2) {
+                Text(title)
+                    .font(.caption)
+                    .fontWeight(.medium)
+                    .foregroundStyle(.primary)
+                
+                Text(percentageString)
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .frame(maxWidth: .infinity)
     }
 }
 
