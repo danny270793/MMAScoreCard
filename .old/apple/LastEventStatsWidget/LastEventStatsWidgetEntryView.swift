@@ -171,7 +171,6 @@ struct LastEventStatsWidgetEntryView : View {
                 )
             }
         }
-        .padding()
     }
     
     private var largeWidgetView: some View {
