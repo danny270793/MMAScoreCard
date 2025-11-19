@@ -431,17 +431,18 @@ class Sheredog {
         let fights = try await loadFights(event: lastEvent, forceRefresh: forceRefresh)
         
         var kos = 0
-        var submission = 0
-        var decission = 0
+        var submissions = 0
+        var decisions = 0
+        
         for fight in fights.data {
-            let parts = fight.result.split(separator: " ")
-            let result = parts[0]
-            switch result.lowercased().trim() {
-            case "ko": kos += 1
-            case "tko": kos += 1
-            case "decision": decission += 1
-            case "submission": submission += 1
-            default:{}()
+            let result = fight.result.uppercased()
+            
+            if result.hasPrefix("KO") || result.hasPrefix("TKO") || result.contains("KO/TKO") {
+                kos += 1
+            } else if result.contains("SUBMISSION") || result.hasPrefix("SUB") {
+                submissions += 1
+            } else if result.contains("DECISION") || result.contains("DEC") {
+                decisions += 1
             }
         }
         let cachedAt: Date? = try LocalStorage.getCachedAt(fileName:lastEvent.url)
@@ -454,24 +455,25 @@ class Sheredog {
             .last?
             .trimmingCharacters(in: .whitespaces) ?? ""
         
-        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submission, decisions: decission))
+        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submissions, decisions: decisions))
     }
     
     static func getEventStats(event: Event, forceRefresh: Bool = false) async throws -> SherdogResponse<EventStats> {
         let fights = try await loadFights(event: event, forceRefresh: forceRefresh)
         
         var kos = 0
-        var submission = 0
-        var decission = 0
+        var submissions = 0
+        var decisions = 0
+        
         for fight in fights.data {
-            let parts = fight.result.split(separator: " ")
-            let result = parts[0]
-            switch result.lowercased().trim() {
-            case "ko": kos += 1
-            case "tko": kos += 1
-            case "decision": decission += 1
-            case "submission": submission += 1
-            default:{}()
+            let result = fight.result.uppercased()
+            
+            if result.hasPrefix("KO") || result.hasPrefix("TKO") || result.contains("KO/TKO") {
+                kos += 1
+            } else if result.contains("SUBMISSION") || result.hasPrefix("SUB") {
+                submissions += 1
+            } else if result.contains("DECISION") || result.contains("DEC") {
+                decisions += 1
             }
         }
         
@@ -485,7 +487,7 @@ class Sheredog {
             .last?
             .trimmingCharacters(in: .whitespaces) ?? ""
         
-        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submission, decisions: decission))
+        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submissions, decisions: decisions))
     }
     
     static func loadEvents(forceRefresh: Bool = false) async throws -> SherdogResponse<[Event]> {
