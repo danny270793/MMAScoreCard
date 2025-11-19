@@ -64,13 +64,13 @@ struct LastEventStatsWidgetEntryView : View {
                 
                 Text(stats.name)
                     .font(.system(size: 10, weight: .bold))
-                    .lineLimit(1)
+                    .lineLimit(2)
                     .minimumScaleFactor(0.8)
                 
                 Text(stats.mainFight)
                     .font(.system(size: 9))
                     .foregroundStyle(.secondary)
-                    .lineLimit(1)
+                    .lineLimit(2)
                     .minimumScaleFactor(0.8)
             }
             
@@ -103,7 +103,6 @@ struct LastEventStatsWidgetEntryView : View {
                 )
             }
         }
-        .padding()
     }
     
     private var mediumWidgetView: some View {
