@@ -40,9 +40,9 @@ struct PrivacyPolicyView: View {
                             .foregroundStyle(.secondary)
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            bulletPoint("**Usage Data**: Information about how you interact with the app, including viewed events and fighters")
-                            bulletPoint("**Device Information**: Device type, operating system version, and unique device identifiers")
-                            bulletPoint("**Cache Data**: Locally stored data to improve app performance")
+                            bulletPointWithBold(bold: "Usage Data", regular: "Information about how you interact with the app, including viewed events and fighters")
+                            bulletPointWithBold(bold: "Device Information", regular: "Device type, operating system version, and unique device identifiers")
+                            bulletPointWithBold(bold: "Cache Data", regular: "Locally stored data to improve app performance")
                         }
                         .padding(.leading, 16)
                     }
@@ -173,6 +173,15 @@ struct PrivacyPolicyView: View {
             Text("•")
                 .foregroundStyle(.secondary)
             Text(text)
+                .foregroundStyle(.secondary)
+        }
+    }
+    
+    private func bulletPointWithBold(bold: String, regular: String) -> some View {
+        HStack(alignment: .top, spacing: 8) {
+            Text("•")
+                .foregroundStyle(.secondary)
+            (Text(bold).fontWeight(.semibold) + Text(": ") + Text(regular))
                 .foregroundStyle(.secondary)
         }
     }
