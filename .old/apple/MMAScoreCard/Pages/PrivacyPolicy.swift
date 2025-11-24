@@ -8,22 +8,11 @@
 import SwiftUI
 
 struct PrivacyPolicyView: View {
+    private let lastUpdated = Date.now.formatted(date: .long, time: .omitted)
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
-                // Header
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Privacy Policy")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                    
-                    Text("Last updated: \(Date.now.formatted(date: .long, time: .omitted))")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-                
-                Divider()
-                
                 // Introduction
                 Section {
                     Text("1. Introduction")
@@ -169,8 +158,18 @@ struct PrivacyPolicyView: View {
             }
             .padding()
         }
-        .navigationTitle("Privacy Policy")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                VStack(spacing: 2) {
+                    Text("Privacy Policy")
+                        .font(.headline)
+                    Text("Last updated: \(lastUpdated)")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+            }
+        }
     }
     
     private func bulletPoint(_ text: String) -> some View {

@@ -8,22 +8,11 @@
 import SwiftUI
 
 struct TermsAndConditionsView: View {
+    private let lastUpdated = Date.now.formatted(date: .long, time: .omitted)
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
-                // Header
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Terms and Conditions")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                    
-                    Text("Last updated: \(Date.now.formatted(date: .long, time: .omitted))")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-                
-                Divider()
-                
                 // Introduction
                 Section {
                     Text("1. Introduction")
@@ -129,8 +118,18 @@ struct TermsAndConditionsView: View {
             }
             .padding()
         }
-        .navigationTitle("Terms & Conditions")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                VStack(spacing: 2) {
+                    Text("Terms & Conditions")
+                        .font(.headline)
+                    Text("Last updated: \(lastUpdated)")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+            }
+        }
     }
     
     private func bulletPoint(_ text: String) -> some View {
