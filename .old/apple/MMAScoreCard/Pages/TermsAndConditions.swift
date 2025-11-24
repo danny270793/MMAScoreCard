@@ -13,6 +13,12 @@ struct TermsAndConditionsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
+                // Subtitle
+                Text("Last updated: \(lastUpdated)")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .padding(.top, -8)
+                
                 // Introduction
                 Section {
                     Text("1. Introduction")
@@ -118,18 +124,8 @@ struct TermsAndConditionsView: View {
             }
             .padding()
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                VStack(spacing: 2) {
-                    Text("Terms & Conditions")
-                        .font(.headline)
-                    Text("Last updated: \(lastUpdated)")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
-                }
-            }
-        }
+        .navigationTitle("Terms & Conditions")
+        .navigationBarTitleDisplayMode(.large)
     }
     
     private func bulletPoint(_ text: String) -> some View {
