@@ -259,9 +259,15 @@ fileprivate struct FightRow: View {
                 
                 HStack(spacing: 8) {
                     // Division
-                    Text(fight.division.name)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                    if fight.division.weight != 0 {
+                        Text("\(fight.division.weight)lb \(fight.division.name)")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    } else {
+                        Text("\(fight.division.name)")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                     if resultStyle.hasResult {
                         Text("R\(fight.round) • \(fight.time)")
                             .font(.caption)
