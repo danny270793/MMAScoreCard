@@ -52,7 +52,7 @@ struct FigthsList: View {
             fights = response!.data.filter { fight in
                 fight.figther1.name.lowercased().contains(searchText.lowercased()) ||
                 fight.figther2.name.lowercased().contains(searchText.lowercased()) ||
-                fight.division.lowercased().contains(searchText.lowercased()) ||
+                fight.division.name.lowercased().contains(searchText.lowercased()) ||
                 
                 fight.result.lowercased().contains(searchText.lowercased())
             }
@@ -259,7 +259,7 @@ fileprivate struct FightRow: View {
                 
                 HStack(spacing: 8) {
                     // Division
-                    Text(fight.division)
+                    Text(fight.division.name)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                     if resultStyle.hasResult {

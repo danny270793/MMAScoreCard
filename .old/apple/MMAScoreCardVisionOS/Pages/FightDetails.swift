@@ -20,7 +20,7 @@ struct FigthDetails: View {
                 LabeledContent("Date", value: event.date.ISO8601Format().split(separator: "T")[0])
             }
             Section(header: Text("Fight")) {
-                LabeledContent("Division", value: fight.division)
+                LabeledContent("Division", value: fight.division.name)
                 if fight.fightStatus != FightStatus.pending {
                     LabeledContent("Result", value: fight.result)
                     LabeledContent("Round", value: fight.round)

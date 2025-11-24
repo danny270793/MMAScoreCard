@@ -428,9 +428,6 @@ class Sheredog {
             throw SheredogErrors.noEventsFound
         }
         
-        print("lastEvent.name=\(lastEvent.name)")
-        print("lastEvent.fight=\(lastEvent.fight)")
-        
         return lastEvent;
     }
     

@@ -52,7 +52,7 @@ struct FigthsList: View {
             return response!.data.filter { fight in
                 fight.figther1.name.lowercased().contains(searchText.lowercased()) ||
                 fight.figther2.name.lowercased().contains(searchText.lowercased()) ||
-                fight.division.lowercased().contains(searchText.lowercased()) ||
+                fight.division.name.lowercased().contains(searchText.lowercased()) ||
                 fight.result.lowercased().contains(searchText.lowercased())
             }
         }
@@ -77,7 +77,7 @@ struct FigthsList: View {
                                 Text("Round \(fight.round) at \(fight.time)")
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             }
-                            Text("\(fight.division)")
+                            Text("\(fight.division.name)")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
