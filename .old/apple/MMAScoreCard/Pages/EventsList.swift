@@ -235,7 +235,10 @@ fileprivate struct EventRow: View {
     
     private var daysUntil: Int? {
         guard isUpcoming else { return nil }
-        return Calendar.current.dateComponents([.day], from: Date.now, to: event.date).day
+        if let days = Calendar.current.dateComponents([.day], from: Date.now, to: event.date).day {
+            return days + 1
+        }
+        return nil
     }
     
     private func parseFighters(from fight: String) -> (fighter1: String, fighter2: String)? {
