@@ -417,7 +417,7 @@ class Sheredog {
         return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
     
-    static func getLastEventStats(forceRefresh: Bool = false) async throws -> SherdogResponse<EventStats> {
+    static func getLastEvent(forceRefresh: Bool = false) async throws -> Event {
         let events = try await Sheredog.loadEvents(forceRefresh: forceRefresh)
         
         // Filter for past events (events that have already happened)
@@ -428,6 +428,14 @@ class Sheredog {
             throw SheredogErrors.noEventsFound
         }
         
+        print("lastEvent.name=\(lastEvent.name)")
+        print("lastEvent.fight=\(lastEvent.fight)")
+        
+        return lastEvent;
+    }
+    
+    static func getLastEventStats(forceRefresh: Bool = false) async throws -> SherdogResponse<EventStats> {
+        let lastEvent = try await Sheredog.getLastEvent(forceRefresh: forceRefresh)
         let fights = try await loadFights(event: lastEvent, forceRefresh: forceRefresh)
         
         var kos = 0
@@ -448,12 +456,8 @@ class Sheredog {
         let cachedAt: Date? = try LocalStorage.getCachedAt(fileName:lastEvent.url)
         let timeCached: String? = try LocalStorage.getTimeCached(fileName: lastEvent.url)
         
-        let name = lastEvent.name.split(separator: ":", maxSplits: 1)
-            .first?
-            .trimmingCharacters(in: .whitespaces) ?? ""
-        let mainFight = lastEvent.name.split(separator: ":", maxSplits: 1)
-            .last?
-            .trimmingCharacters(in: .whitespaces) ?? ""
+        let name = lastEvent.name;
+        let mainFight = lastEvent.fight ?? "";
         
         return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submissions, decisions: decisions))
     }
