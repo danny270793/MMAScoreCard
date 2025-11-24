@@ -20,6 +20,34 @@ enum FighterStatus: String {
     case pending = "PENDING"
 }
 
+class Division: Identifiable {
+    var id: String { name }
+    var weight: Int
+    var name: String
+    
+    static let weights: [String: Int] = [
+        "Strawweight": 115,
+        "Flyweight": 125,
+        "Bantamweight": 135,
+        "Featherweight": 145,
+        "Lightweight": 155,
+        "Welterweight": 170,
+        "Middleweight": 185,
+        "Light Heavyweight": 205,
+        "Heavyweight": 225
+    ]
+    
+    init(name: String) {
+        self.name = name
+        self.weight = Division.weights[name] ?? 0
+    }
+    
+    init(weight: Int, name: String) {
+        self.weight = weight
+        self.name = name
+    }
+}
+
 class Fight: Identifiable {
     var position: Int
     var figther1: Fighter
@@ -30,7 +58,7 @@ class Fight: Identifiable {
     var round: String
     var time: String
     var referee: String
-    var division: String
+    var division: Division
     var titleFight: Bool
     var fightStatus: FightStatus
     
@@ -44,7 +72,7 @@ class Fight: Identifiable {
         self.round = round
         self.time = time
         self.referee = referee
-        self.division = division
+        self.division = Division(name: division)
         self.fightStatus = fightStatus
         self.titleFight = titleFight
     }

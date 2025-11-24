@@ -189,7 +189,7 @@ struct FigthDetails: View {
             InfoRow(
                 icon: "scalemass.fill",
                 label: "Division",
-                value: fight.division
+                value: fight.division.name
             )
         }
     }
