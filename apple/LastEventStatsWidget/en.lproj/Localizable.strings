@@ -1,0 +1,24 @@
+/* Widget Strings */
+
+/* Loading State */
+"widget.loading" = "Loading Stats...";
+
+/* Headers */
+"widget.title" = "Fight Statistics";
+
+/* Labels */
+"widget.total_fights" = "Total Fights";
+"widget.ko_tko_full" = "KO/TKO";
+"widget.ko_tko_short" = "KO/TKO";
+"widget.submission_full" = "Submission";
+"widget.submission_short" = "Sub";
+"widget.decision_full" = "Decision";
+"widget.decision_short" = "Dec";
+
+/* Formats */
+"widget.fights_count" = "%d fights";
+
+/* Widget Configuration */
+"widget.config.displayName" = "Last Event Stats";
+"widget.config.description" = "Show the percentage of KO/TKO, Submissions and Decisions on last event";
+
