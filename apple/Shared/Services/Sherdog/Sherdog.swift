@@ -8,9 +8,6 @@
 import SwiftUI
 import SwiftSoup
 
-/// Sherdog-specific implementation of MMADataProviderResponse.
-typealias SherdogResponse<T> = MMADataProviderResponse<T>
-
 struct EventStats {
     let name: String
     let mainFight: String
@@ -31,7 +28,7 @@ final class Sherdog: MMADataProvider {
         return try await Http.getImage(url: url)
     }
     
-    func loadRecord(fighter: Fighter, forceRefresh: Bool = false) async throws -> SherdogResponse<FighterRecord> {
+    func loadRecord(fighter: Fighter, forceRefresh: Bool = false) async throws -> MMADataProviderResponse<FighterRecord> {
         let html = try await Http.getIfNotExists(url: fighter.link, forceRefresh: forceRefresh)
         
         let dateFormatter = DateFormatter()
@@ -167,10 +164,10 @@ final class Sherdog: MMADataProvider {
         let data: FighterRecord = FighterRecord(name: fighter.name, nationality: nationality!, age: age!, height: height!, weight: weight!, fights: records.sorted { fight1, fight2 in
             fight1.date > fight2.date
         })
-        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
+        return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
     
-    func loadFights(event: Event, forceRefresh: Bool = false) async throws -> SherdogResponse<[Fight]> {
+    func loadFights(event: Event, forceRefresh: Bool = false) async throws -> MMADataProviderResponse<[Fight]> {
         let html = try await Http.getIfNotExists(url: event.url, forceRefresh: forceRefresh)
         
         let document = try SwiftSoup.parse(html)
@@ -415,7 +412,7 @@ final class Sherdog: MMADataProvider {
         let data: [Fight] = fights.sorted { fight1, fight2 in
             fight1.position > fight2.position
         }
-        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
+        return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
     
     func getLastEvent(forceRefresh: Bool = false) async throws -> Event {
@@ -432,7 +429,7 @@ final class Sherdog: MMADataProvider {
         return lastEvent;
     }
     
-    func getLastEventStats(forceRefresh: Bool = false) async throws -> SherdogResponse<EventStats> {
+    func getLastEventStats(forceRefresh: Bool = false) async throws -> MMADataProviderResponse<EventStats> {
         let lastEvent = try await getLastEvent(forceRefresh: forceRefresh)
         let fights = try await loadFights(event: lastEvent, forceRefresh: forceRefresh)
         
@@ -457,10 +454,10 @@ final class Sherdog: MMADataProvider {
         let name = lastEvent.name;
         let mainFight = lastEvent.fight ?? "";
         
-        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submissions, decisions: decisions))
+        return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submissions, decisions: decisions))
     }
     
-    func getEventStats(event: Event, forceRefresh: Bool = false) async throws -> SherdogResponse<EventStats> {
+    func getEventStats(event: Event, forceRefresh: Bool = false) async throws -> MMADataProviderResponse<EventStats> {
         let fights = try await loadFights(event: event, forceRefresh: forceRefresh)
         
         var kos = 0
@@ -489,10 +486,10 @@ final class Sherdog: MMADataProvider {
             .last?
             .trimmingCharacters(in: .whitespaces) ?? ""
         
-        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submissions, decisions: decisions))
+        return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submissions, decisions: decisions))
     }
     
-    func loadEvents(forceRefresh: Bool = false) async throws -> SherdogResponse<[Event]> {
+    func loadEvents(forceRefresh: Bool = false) async throws -> MMADataProviderResponse<[Event]> {
         let html = try await Http.getIfNotExists(url: eventsUrl, forceRefresh: forceRefresh)
         
         let document = try SwiftSoup.parse(html)
@@ -556,6 +553,6 @@ final class Sherdog: MMADataProvider {
         let data: [Event] = events.sorted { event1, event2 in
             event1.date > event2.date
         }
-        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
+        return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
 }
