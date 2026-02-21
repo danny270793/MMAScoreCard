@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct FigthsList: View {
+    @Environment(\.mmaDataProvider) private var dataProvider
     let event: Event
     
     @State private var isFetching: Bool = true
@@ -32,7 +33,7 @@ struct FigthsList: View {
         Task {
             isFetching = true
             do {
-                response = try await Sheredog.loadFights(event: event, forceRefresh: forceRefresh)
+                response = try await dataProvider.loadFights(event: event, forceRefresh: forceRefresh)
             } catch {
                 self.error = error
             }
