@@ -51,10 +51,14 @@ final class UFC: MMADataProvider {
                   let fighter2 = parseFighter(from: fightDiv, corner: "blue") else {
                 continue
             }
+            print("fighter1: \(fighter1.name), fighter2: \(fighter2.name)")
 
             let (status1, status2) = parseOutcomes(from: fightDiv)
+            print("status1: \(status1), status2: \(status2)")
             let (division, titleFight) = parseDivision(from: fightDiv)
+            print("division: \(division), titleFight: \(titleFight)")
             let (result, round, time, fightStatus) = parseResult(from: fightDiv)
+            print("result: \(result), round: \(round), time: \(time), fightStatus: \(fightStatus)")
 
             let fight = Fight(
                 position: position,
@@ -109,6 +113,12 @@ final class UFC: MMADataProvider {
     }
 
     private func parseOutcomes(from fightDiv: Element) -> (FighterStatus, FighterStatus) {
+        // Upcoming events have c-listing-fight__details without --with-results; no outcome--win/loss
+        let hasResults = (try? fightDiv.select(".c-listing-fight__details--with-results").first()) != nil
+        guard hasResults else {
+            return (.pending, .pending)
+        }
+
         let redWin = (try? fightDiv.select(".c-listing-fight__corner--red .c-listing-fight__outcome--win").first()) != nil
         let redLoss = (try? fightDiv.select(".c-listing-fight__corner--red .c-listing-fight__outcome--loss").first()) != nil
         let blueWin = (try? fightDiv.select(".c-listing-fight__corner--blue .c-listing-fight__outcome--win").first()) != nil
@@ -130,8 +140,9 @@ final class UFC: MMADataProvider {
     }
 
     private func parseResult(from fightDiv: Element) -> (result: String, round: String, time: String, fightStatus: FightStatus) {
-        let hasOutcome = (try? fightDiv.select(".c-listing-fight__outcome--win, .c-listing-fight__outcome--loss").first()) != nil
-        guard hasOutcome else {
+        // Upcoming events lack --with-results; completed fights have outcome--win/loss and result details
+        let hasResults = (try? fightDiv.select(".c-listing-fight__details--with-results").first()) != nil
+        guard hasResults else {
             return ("", "", "", .pending)
         }
 
