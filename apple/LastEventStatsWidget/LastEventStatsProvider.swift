@@ -24,7 +24,7 @@ struct LastEventStatsProvider: TimelineProvider {
     func createTimelineEntry(date: Date, completion: @escaping (Entry) -> ()) {
         Task {
             do {
-                let stats = try await Sheredog.getLastEventStats()
+                let stats = try await Sherdog.shared.getLastEventStats()
                 let entry = Entry(date: date, stats: stats.data)
                 completion(entry)
             } catch {
