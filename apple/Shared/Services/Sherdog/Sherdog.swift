@@ -8,11 +8,8 @@
 import SwiftUI
 import SwiftSoup
 
-struct SherdogResponse<T> {
-    let cachedAt: Date?
-    let timeCached: String?
-    let data: T
-}
+/// Sherdog-specific implementation of MMADataProviderResponse.
+typealias SherdogResponse<T> = MMADataProviderResponse<T>
 
 struct EventStats {
     let name: String
