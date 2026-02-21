@@ -23,32 +23,19 @@ final class UFC: MMADataProvider {
     }
 
     func loadRecord(fighter: Fighter, forceRefresh: Bool) async throws -> MMADataProviderResponse<FighterRecord> {
-        let records = [
-            Record(status: .win, figther: "John Doe", event: "UFC 310", date: Date().addingTimeInterval(-86400 * 30), method: "KO/TKO", referee: "Herb Dean", round: "2", time: "4:32"),
-            Record(status: .loss, figther: "Jane Smith", event: "UFC 309", date: Date().addingTimeInterval(-86400 * 60), method: "Decision (Unanimous)", referee: "Marc Goddard", round: "3", time: "5:00"),
-            Record(status: .win, figther: "Bob Johnson", event: "UFC 308", date: Date().addingTimeInterval(-86400 * 90), method: "Submission (RNC)", referee: nil, round: "1", time: "3:15"),
-        ]
-        let record = FighterRecord(
-            name: fighter.name,
-            nationality: "United States",
-            age: "28",
-            height: "5'10\"",
-            weight: "170 lbs",
-            fights: records
-        )
-        return MMADataProviderResponse(cachedAt: Date(), timeCached: "Mock", data: record)
+        fatalError("Not implemented yet")
     }
 
     func getLastEvent(forceRefresh: Bool) async throws -> Event {
-        throw NotImplementedError()
+        fatalError("Not implemented yet")
     }
 
     func getLastEventStats(forceRefresh: Bool) async throws -> MMADataProviderResponse<EventStats> {
-        throw NotImplementedError()
+        fatalError("Not implemented yet")
     }
 
     func getEventStats(event: Event, forceRefresh: Bool) async throws -> MMADataProviderResponse<EventStats> {
-        throw NotImplementedError()
+        fatalError("Not implemented yet")
     }
 
     func loadFights(event: Event, forceRefresh: Bool) async throws -> MMADataProviderResponse<[Fight]> {
