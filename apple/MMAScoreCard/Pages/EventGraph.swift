@@ -12,7 +12,7 @@ struct EventGraph : View {
     let event: Event
     @State private var isFetching: Bool = true
     @State private var error: Error? = nil
-    @State var response: SherdogResponse<EventStats>? = nil
+    @State var response: MMADataProviderResponse<EventStats>? = nil
     
     func onAppear() {
         Task {
