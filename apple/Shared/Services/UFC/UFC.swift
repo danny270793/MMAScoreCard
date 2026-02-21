@@ -40,6 +40,7 @@ final class UFC: MMADataProvider {
 
     func loadFights(event: Event, forceRefresh: Bool) async throws -> MMADataProviderResponse<[Fight]> {
         let html = try await Http.getIfNotExists(url: event.url, forceRefresh: forceRefresh)
+        fatalError("Not implemented yet")
     }
 
     func loadEvents(forceRefresh: Bool) async throws -> MMADataProviderResponse<[Event]> {
