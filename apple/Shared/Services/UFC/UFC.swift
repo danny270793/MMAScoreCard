@@ -40,7 +40,105 @@ final class UFC: MMADataProvider {
 
     func loadFights(event: Event, forceRefresh: Bool) async throws -> MMADataProviderResponse<[Fight]> {
         let html = try await Http.getIfNotExists(url: event.url, forceRefresh: forceRefresh)
-        fatalError("Not implemented yet")
+        let document = try SwiftSoup.parse(html)
+        let fightDivs = try document.select("div.c-listing-fight")
+
+        var fights: [Fight] = []
+        for (index, fightDiv) in fightDivs.array().enumerated() {
+            let position = index + 1
+
+            guard let fighter1 = parseFighter(from: fightDiv, corner: "red"),
+                  let fighter2 = parseFighter(from: fightDiv, corner: "blue") else {
+                continue
+            }
+
+            let (status1, status2) = parseOutcomes(from: fightDiv)
+            let (division, titleFight) = parseDivision(from: fightDiv)
+            let (result, round, time, fightStatus) = parseResult(from: fightDiv)
+
+            let fight = Fight(
+                position: position,
+                figther1: fighter1,
+                figther1Status: status1,
+                figther2: fighter2,
+                figther2Status: status2,
+                result: result,
+                round: round,
+                time: time,
+                referee: "",
+                division: division,
+                fightStatus: fightStatus,
+                titleFight: titleFight
+            )
+            fights.append(fight)
+        }
+
+        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: event.url)
+        let timeCached: String? = try LocalStorage.getTimeCached(fileName: event.url)
+        return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: fights)
+    }
+
+    private func parseFighter(from fightDiv: Element, corner: String) -> Fighter? {
+        guard let nameEl = try? fightDiv.select(".c-listing-fight__corner-name--\(corner)").first(),
+              let linkEl = try? nameEl.select("a").first(),
+              let href = try? linkEl.attr("href").trimmingCharacters(in: .whitespaces),
+              !href.isEmpty else {
+            return nil
+        }
+
+        var name: String
+        if let given = try? fightDiv.select(".c-listing-fight__corner-name--\(corner) .c-listing-fight__corner-given-name").first()?.text(),
+           let family = try? fightDiv.select(".c-listing-fight__corner-name--\(corner) .c-listing-fight__corner-family-name").first()?.text(),
+           !given.isEmpty || !family.isEmpty {
+            name = "\(given) \(family)".trimmingCharacters(in: .whitespaces)
+        } else {
+            name = (try? linkEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "TBD"
+        }
+
+        var imageUrl = placeholderImageUrl
+        if let img = try? fightDiv.select(".c-listing-fight__corner-image--\(corner) img").first(),
+           let src = try? img.attr("src").trimmingCharacters(in: .whitespaces),
+           !src.isEmpty,
+           let url = URL(string: src.hasPrefix("//") ? "https:\(src)" : src) {
+            imageUrl = url
+        }
+
+        let absoluteHref = href.hasPrefix("http") ? href : "\(baseUrl)\(href.hasPrefix("/") ? href : "/athlete/unknown")"
+        guard let linkUrl = URL(string: absoluteHref) else { return nil }
+        return Fighter(name: name, image: imageUrl, link: linkUrl)
+    }
+
+    private func parseOutcomes(from fightDiv: Element) -> (FighterStatus, FighterStatus) {
+        let redWin = (try? fightDiv.select(".c-listing-fight__corner--red .c-listing-fight__outcome--win").first()) != nil
+        let redLoss = (try? fightDiv.select(".c-listing-fight__corner--red .c-listing-fight__outcome--loss").first()) != nil
+        let blueWin = (try? fightDiv.select(".c-listing-fight__corner--blue .c-listing-fight__outcome--win").first()) != nil
+        let blueLoss = (try? fightDiv.select(".c-listing-fight__corner--blue .c-listing-fight__outcome--loss").first()) != nil
+
+        let status1: FighterStatus = redWin ? .win : (redLoss ? .loss : .pending)
+        let status2: FighterStatus = blueWin ? .win : (blueLoss ? .loss : .pending)
+        return (status1, status2)
+    }
+
+    private func parseDivision(from fightDiv: Element) -> (String, Bool) {
+        let text = (try? fightDiv.select(".c-listing-fight__class-text").first()?.text()) ?? ""
+        let titleFight = text.lowercased().contains("title")
+        let division = text
+            .replacingOccurrences(of: " Title Bout", with: "")
+            .replacingOccurrences(of: " Bout", with: "")
+            .trimmingCharacters(in: .whitespaces)
+        return (division.isEmpty ? "TBD" : division, titleFight)
+    }
+
+    private func parseResult(from fightDiv: Element) -> (result: String, round: String, time: String, fightStatus: FightStatus) {
+        let hasOutcome = (try? fightDiv.select(".c-listing-fight__outcome--win, .c-listing-fight__outcome--loss").first()) != nil
+        guard hasOutcome else {
+            return ("", "", "", .pending)
+        }
+
+        let method = (try? fightDiv.select(".c-listing-fight__result-text.method").first()?.text()) ?? ""
+        let round = (try? fightDiv.select(".c-listing-fight__result-text.round").first()?.text()) ?? ""
+        let time = (try? fightDiv.select(".c-listing-fight__result-text.time").first()?.text()) ?? ""
+        return (method, round, time, .done)
     }
 
     func loadEvents(forceRefresh: Bool) async throws -> MMADataProviderResponse<[Event]> {
