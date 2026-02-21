@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct FighterDetails: View {
+    @Environment(\.mmaDataProvider) private var dataProvider
     let columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 40), count: 2)
     
     let figther: Fighter
@@ -35,7 +36,7 @@ struct FighterDetails: View {
             isFetching = true
             do {
                 //image = try await Sheredog.loadImage(url: figther.image)
-                response = try await Sheredog.loadRecord(fighter: figther, forceRefresh: forceRefresh)
+                response = try await dataProvider.loadRecord(fighter: figther, forceRefresh: forceRefresh)
             } catch {
                 self.error = error
             }
