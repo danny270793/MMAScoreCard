@@ -25,7 +25,9 @@ struct FigthDetails: View {
                     LabeledContent("Result", value: fight.result)
                     LabeledContent("Round", value: fight.round)
                     LabeledContent("Time", value: fight.time)
-                    LabeledContent("Referee", value: fight.referee)
+                    if let referee = fight.referee {
+                        LabeledContent("Referee", value: referee)
+                    }
                 }
             }
             Section(header: Text("Fighter 1")) {

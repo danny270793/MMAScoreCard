@@ -57,12 +57,12 @@ class Fight: Identifiable {
     var result: String
     var round: String
     var time: String
-    var referee: String
+    var referee: String?
     var division: Division
     var titleFight: Bool
     var fightStatus: FightStatus
     
-    init(position: Int, figther1: Fighter, figther1Status: FighterStatus, figther2: Fighter, figther2Status: FighterStatus, result: String, round: String, time: String, referee: String, division: String, fightStatus: FightStatus, titleFight: Bool) {
+    init(position: Int, figther1: Fighter, figther1Status: FighterStatus, figther2: Fighter, figther2Status: FighterStatus, result: String, round: String, time: String, referee: String?, division: String, fightStatus: FightStatus, titleFight: Bool) {
         self.position = position
         self.figther1 = figther1
         self.figther1Status = figther1Status

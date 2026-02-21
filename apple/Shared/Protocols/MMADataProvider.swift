@@ -31,7 +31,7 @@ protocol MMADataProvider {
 // MARK: - Environment Key
 
 private struct MMADataProviderKey: EnvironmentKey {
-    static let defaultValue: MMADataProvider = Sherdog.shared
+    static let defaultValue: MMADataProvider = UFC.shared
 }
 
 extension EnvironmentValues {
