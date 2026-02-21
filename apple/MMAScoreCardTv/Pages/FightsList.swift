@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct FigthsList: View {
+    @Environment(\.mmaDataProvider) private var dataProvider
     let event: Event
     
     let columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 40), count: 2)
@@ -34,7 +35,7 @@ struct FigthsList: View {
         Task {
             isFetching = true
             do {
-                response = try await Sheredog.loadFights(event: event, forceRefresh: forceRefresh)
+                response = try await dataProvider.loadFights(event: event, forceRefresh: forceRefresh)
             } catch {
                 self.error = error
             }
