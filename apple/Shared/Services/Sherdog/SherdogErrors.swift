@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SheredogErrors: Error, LocalizedError {
+enum SherdogErrors: Error, LocalizedError {
     case invalidEvent
     case invalidFigther
     case invalidColumn(position: Int, value: String)
