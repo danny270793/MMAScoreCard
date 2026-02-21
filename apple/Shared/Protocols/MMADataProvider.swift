@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 /// Generic response type for MMA data provider results.
-/// Implementations (e.g. SherdogResponse) conform to this structure.
+/// Implementations (e.g. Sherdog) use this structure for responses.
 struct MMADataProviderResponse<T> {
     let cachedAt: Date?
     let timeCached: String?
