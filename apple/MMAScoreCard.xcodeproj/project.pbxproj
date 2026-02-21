@@ -79,6 +79,7 @@
 				Services/Mock/Mock.swift,
 				Services/Sherdog/Sherdog.swift,
 				Services/Sherdog/SherdogErrors.swift,
+				Services/UFC/UFC.swift,
 			);
 			target = A04589662D9F78D200A7E865 /* MMAScoreCardVisionOS */;
 		};
@@ -112,6 +113,7 @@
 				Services/Mock/Mock.swift,
 				Services/Sherdog/Sherdog.swift,
 				Services/Sherdog/SherdogErrors.swift,
+				Services/UFC/UFC.swift,
 			);
 			target = A0B318182D9080B400658E72 /* MMAScoreCard */;
 		};
@@ -131,6 +133,7 @@
 				Services/Mock/Mock.swift,
 				Services/Sherdog/Sherdog.swift,
 				Services/Sherdog/SherdogErrors.swift,
+				Services/UFC/UFC.swift,
 			);
 			target = A0E994622D9F40FC00A50EDE /* MMAScoreCardWatch Watch App */;
 		};
@@ -150,6 +153,7 @@
 				Services/Mock/Mock.swift,
 				Services/Sherdog/Sherdog.swift,
 				Services/Sherdog/SherdogErrors.swift,
+				Services/UFC/UFC.swift,
 			);
 			target = A0E994A42D9F6B6000A50EDE /* MMAScoreCardTv */;
 		};
