@@ -10,12 +10,13 @@ import SwiftUI
 import SwiftData
 
 struct FigthsList: View {
+    @Environment(\.mmaDataProvider) private var dataProvider
     let event: Event
     
     @State private var isFetching: Bool = true
     @State private var error: Error? = nil
     @State private var searchText = ""
-    @State var response: SherdogResponse<[Fight]>? = nil
+    @State var response: MMADataProviderResponse<[Fight]>? = nil
     
     func onAppear() {
         Task {
@@ -33,7 +34,7 @@ struct FigthsList: View {
         Task {
             isFetching = true
             do {
-                response = try await Sheredog.loadFights(event: event, forceRefresh: forceRefresh)
+                response = try await dataProvider.loadFights(event: event, forceRefresh: forceRefresh)
             } catch {
                 self.error = error
             }

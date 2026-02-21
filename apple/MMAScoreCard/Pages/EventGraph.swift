@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct EventGraph : View {
+    @Environment(\.mmaDataProvider) private var dataProvider
     let event: Event
     @State private var isFetching: Bool = true
     @State private var error: Error? = nil
-    @State var response: SherdogResponse<EventStats>? = nil
+    @State var response: MMADataProviderResponse<EventStats>? = nil
     
     func onAppear() {
         Task {
@@ -29,7 +30,7 @@ struct EventGraph : View {
         Task {
             isFetching = true
             do {
-                response = try await Sheredog.getEventStats(event: event, forceRefresh: forceRefresh)
+                response = try await dataProvider.getEventStats(event: event, forceRefresh: forceRefresh)
             } catch {
                 self.error = error
             }

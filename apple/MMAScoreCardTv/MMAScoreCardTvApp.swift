@@ -13,6 +13,7 @@ struct MMAScoreCardTvApp: App {
         WindowGroup {
             NavigationStack {
                 ContentView()
+                    .environment(\.mmaDataProvider, Sherdog.shared)
             }
         }
     }

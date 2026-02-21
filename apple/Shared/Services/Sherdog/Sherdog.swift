@@ -8,12 +8,6 @@
 import SwiftUI
 import SwiftSoup
 
-struct SherdogResponse<T> {
-    let cachedAt: Date?
-    let timeCached: String?
-    let data: T
-}
-
 struct EventStats {
     let name: String
     let mainFight: String
@@ -22,15 +16,19 @@ struct EventStats {
     let decisions: Int
 }
 
-class Sheredog {
-    static let baseUrl: String = "https://www.sherdog.com"
-    static let eventsUrl: String = "\(baseUrl)/organizations/Ultimate-Fighting-Championship-UFC-2"
+final class Sherdog: MMADataProvider {
+    static let shared = Sherdog()
     
-    static func loadImage(url: URL) async throws -> Data {
+    private let baseUrl: String = "https://www.sherdog.com"
+    private var eventsUrl: String { "\(baseUrl)/organizations/Ultimate-Fighting-Championship-UFC-2" }
+    
+    private init() {}
+    
+    func loadImage(url: URL) async throws -> Data {
         return try await Http.getImage(url: url)
     }
     
-    static func loadRecord(fighter: Fighter, forceRefresh: Bool = false) async throws -> SherdogResponse<FighterRecord> {
+    func loadRecord(fighter: Fighter, forceRefresh: Bool = false) async throws -> MMADataProviderResponse<FighterRecord> {
         let html = try await Http.getIfNotExists(url: fighter.link, forceRefresh: forceRefresh)
         
         let dateFormatter = DateFormatter()
@@ -144,12 +142,12 @@ class Sheredog {
                         round = columnText
                     case 5:
                         time = columnText
-                    default: throw SheredogErrors.invalidColumn(position: columnNumber, value: columnText)
+                    default: throw SherdogErrors.invalidColumn(position: columnNumber, value: columnText)
                     }
                 }
                 
                 guard fighterStatus != nil && fighter != nil && event != nil && date != nil && method != nil && round != nil && time != nil else {
-                    throw SheredogErrors.invalidFigther
+                    throw SherdogErrors.invalidFigther
                 }
                 
                 let record: Record = Record(status: fighterStatus!, figther: fighter!, event: event!, date: date!, method: method!, referee: referee, round: round!, time: time!)
@@ -158,7 +156,7 @@ class Sheredog {
         }
         
         guard age != nil && height != nil && weight != nil && nationality != nil else {
-            throw SheredogErrors.invalidFigther
+            throw SherdogErrors.invalidFigther
         }
         
         let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: fighter.link.absoluteString)
@@ -166,10 +164,10 @@ class Sheredog {
         let data: FighterRecord = FighterRecord(name: fighter.name, nationality: nationality!, age: age!, height: height!, weight: weight!, fights: records.sorted { fight1, fight2 in
             fight1.date > fight2.date
         })
-        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
+        return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
     
-    static func loadFights(event: Event, forceRefresh: Bool = false) async throws -> SherdogResponse<[Fight]> {
+    func loadFights(event: Event, forceRefresh: Bool = false) async throws -> MMADataProviderResponse<[Fight]> {
         let html = try await Http.getIfNotExists(url: event.url, forceRefresh: forceRefresh)
         
         let document = try SwiftSoup.parse(html)
@@ -189,11 +187,11 @@ class Sheredog {
         var fighter1Url: URL? = nil
         for image in try leftSide.select("img").array() {
             let src = try image.attr("src")
-            fighter1Image = URL(string: "\(baseUrl)\(src)")
+            fighter1Image = URL(string: "\(self.baseUrl)\(src)")
         }
         for a in try leftSide.select("a").array() {
             let href = try a.attr("href")
-            fighter1Url = URL(string: "\(baseUrl)\(href)")
+            fighter1Url = URL(string: "\(self.baseUrl)\(href)")
         }
         
         let rightSide = try fightCard.select("div.right_side")
@@ -204,11 +202,11 @@ class Sheredog {
         var fighter2Url: URL? = nil
         for image in try rightSide.select("img").array() {
             let src = try image.attr("src")
-            fighter2Image = URL(string: "\(baseUrl)\(src)")
+            fighter2Image = URL(string: "\(self.baseUrl)\(src)")
         }
         for a in try rightSide.select("a").array() {
             let href = try a.attr("href")
-            fighter2Url = URL(string: "\(baseUrl)\(href)")
+            fighter2Url = URL(string: "\(self.baseUrl)\(href)")
         }
         
         var fightStatus = FightStatus.done
@@ -252,7 +250,7 @@ class Sheredog {
                     case 2: referee = columnText.replacingOccurrences(of: "Referee ", with: "")
                     case 3: round = columnText.replacingOccurrences(of: "Round ", with: "")
                     case 4: time = columnText.replacingOccurrences(of: "Time ", with: "")
-                    default: throw SheredogErrors.invalidColumn(position: columnNumber, value: columnText)
+                    default: throw SherdogErrors.invalidColumn(position: columnNumber, value: columnText)
                     }
                 }
             }
@@ -308,11 +306,11 @@ class Sheredog {
                             
                             for image in try column.select("img").array() {
                                 let src = try image.attr("src")
-                                fighter1Image = URL(string: "\(baseUrl)\(src)")
+                                fighter1Image = URL(string: "\(self.baseUrl)\(src)")
                             }
                             for a in try column.select("a").array() {
                                 let href = try a.attr("href")
-                                fighter1Url = URL(string: "\(baseUrl)\(href)")
+                                fighter1Url = URL(string: "\(self.baseUrl)\(href)")
                             }
                         }()
                         case 2: division = columnText
@@ -322,11 +320,11 @@ class Sheredog {
                             
                             for image in try column.select("img").array() {
                                 let src = try image.attr("src")
-                                fighter2Image = URL(string: "\(baseUrl)\(src)")
+                                fighter2Image = URL(string: "\(self.baseUrl)\(src)")
                             }
                             for a in try column.select("a").array() {
                                 let href = try a.attr("href")
-                                fighter2Url = URL(string: "\(baseUrl)\(href)")
+                                fighter2Url = URL(string: "\(self.baseUrl)\(href)")
                             }
                         }()
                         case 4: {
@@ -335,7 +333,7 @@ class Sheredog {
                             round = ""
                             time = ""
                         }()
-                        default: throw SheredogErrors.invalidColumn(position: columnNumber, value: columnText)
+                        default: throw SherdogErrors.invalidColumn(position: columnNumber, value: columnText)
                         }
                     } else {
                         switch columnNumber {
@@ -348,11 +346,11 @@ class Sheredog {
                             
                             for image in try column.select("img").array() {
                                 let src = try image.attr("src")
-                                fighter1Image = URL(string: "\(baseUrl)\(src)")
+                                fighter1Image = URL(string: "\(self.baseUrl)\(src)")
                             }
                             for a in try column.select("a").array() {
                                 let href = try a.attr("href")
-                                fighter1Url = URL(string: "\(baseUrl)\(href)")
+                                fighter1Url = URL(string: "\(self.baseUrl)\(href)")
                             }
                         }()
                         case 2: division = columnText
@@ -364,11 +362,11 @@ class Sheredog {
                             
                             for image in try column.select("img").array() {
                                 let src = try image.attr("src")
-                                fighter2Image = URL(string: "\(baseUrl)\(src)")
+                                fighter2Image = URL(string: "\(self.baseUrl)\(src)")
                             }
                             for a in try column.select("a").array() {
                                 let href = try a.attr("href")
-                                fighter2Url = URL(string: "\(baseUrl)\(href)")
+                                fighter2Url = URL(string: "\(self.baseUrl)\(href)")
                             }
                         }()
                         case 4: {
@@ -385,13 +383,13 @@ class Sheredog {
                         }()
                         case 5: round = columnText
                         case 6: time = columnText
-                        default: throw SheredogErrors.invalidColumn(position: columnNumber, value: columnText)
+                        default: throw SherdogErrors.invalidColumn(position: columnNumber, value: columnText)
                         }
                     }
                 }
                 
                 guard position != nil && result != nil && round != nil && time != nil && referee != nil && fightStatus != nil && fighter1Image != nil && fighter1Url != nil && fighter2Image != nil && fighter2Url != nil else {
-                    throw SheredogErrors.invalidFigther
+                    throw SherdogErrors.invalidFigther
                 }
                 
                 var titleFight = false
@@ -414,25 +412,25 @@ class Sheredog {
         let data: [Fight] = fights.sorted { fight1, fight2 in
             fight1.position > fight2.position
         }
-        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
+        return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
     
-    static func getLastEvent(forceRefresh: Bool = false) async throws -> Event {
-        let events = try await Sheredog.loadEvents(forceRefresh: forceRefresh)
+    func getLastEvent(forceRefresh: Bool = false) async throws -> Event {
+        let events = try await loadEvents(forceRefresh: forceRefresh)
         
         // Filter for past events (events that have already happened)
         let pastEvents = events.data.filter { event in event.date <= Date.now}
         
         // Ensure we have at least one past event
         guard let lastEvent = pastEvents.first else {
-            throw SheredogErrors.noEventsFound
+            throw SherdogErrors.noEventsFound
         }
         
         return lastEvent;
     }
     
-    static func getLastEventStats(forceRefresh: Bool = false) async throws -> SherdogResponse<EventStats> {
-        let lastEvent = try await Sheredog.getLastEvent(forceRefresh: forceRefresh)
+    func getLastEventStats(forceRefresh: Bool = false) async throws -> MMADataProviderResponse<EventStats> {
+        let lastEvent = try await getLastEvent(forceRefresh: forceRefresh)
         let fights = try await loadFights(event: lastEvent, forceRefresh: forceRefresh)
         
         var kos = 0
@@ -456,10 +454,10 @@ class Sheredog {
         let name = lastEvent.name;
         let mainFight = lastEvent.fight ?? "";
         
-        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submissions, decisions: decisions))
+        return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submissions, decisions: decisions))
     }
     
-    static func getEventStats(event: Event, forceRefresh: Bool = false) async throws -> SherdogResponse<EventStats> {
+    func getEventStats(event: Event, forceRefresh: Bool = false) async throws -> MMADataProviderResponse<EventStats> {
         let fights = try await loadFights(event: event, forceRefresh: forceRefresh)
         
         var kos = 0
@@ -488,10 +486,10 @@ class Sheredog {
             .last?
             .trimmingCharacters(in: .whitespaces) ?? ""
         
-        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submissions, decisions: decisions))
+        return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submissions, decisions: decisions))
     }
     
-    static func loadEvents(forceRefresh: Bool = false) async throws -> SherdogResponse<[Event]> {
+    func loadEvents(forceRefresh: Bool = false) async throws -> MMADataProviderResponse<[Event]> {
         let html = try await Http.getIfNotExists(url: eventsUrl, forceRefresh: forceRefresh)
         
         let document = try SwiftSoup.parse(html)
@@ -522,7 +520,7 @@ class Sheredog {
                     
                     let startIndex = onClickUrl.index(onClickUrl.startIndex, offsetBy: 2)
                     let endIndex = onClickUrl.index(onClickUrl.endIndex, offsetBy: -2)
-                    url = "\(baseUrl)/\(String(onClickUrl[startIndex..<endIndex]))"
+                    url = "\(self.baseUrl)/\(String(onClickUrl[startIndex..<endIndex]))"
                 }
                 
                 let columns = try row.select("td")
@@ -534,12 +532,12 @@ class Sheredog {
                     case 0: date = dateFormatter.date(from: columnText)
                     case 1: nameAndFight = columnText
                     case 2: location = columnText
-                    default: throw SheredogErrors.invalidColumn(position: columnNumber, value: columnText)
+                    default: throw SherdogErrors.invalidColumn(position: columnNumber, value: columnText)
                     }
                 }
                 
                 guard nameAndFight != nil && location != nil && date != nil && url != nil else {
-                    throw SheredogErrors.invalidEvent
+                    throw SherdogErrors.invalidEvent
                 }
                 
                 let parts = nameAndFight!.split(separator: "-")
@@ -555,6 +553,6 @@ class Sheredog {
         let data: [Event] = events.sorted { event1, event2 in
             event1.date > event2.date
         }
-        return SherdogResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
+        return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
 }
