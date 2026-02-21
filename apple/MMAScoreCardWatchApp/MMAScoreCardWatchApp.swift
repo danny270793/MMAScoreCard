@@ -13,6 +13,7 @@ struct MMAScoreCardWatch_Watch_AppApp: App {
         WindowGroup {
             NavigationStack {
                 ContentView()
+                    .environment(\.mmaDataProvider, Sherdog.shared)
             }
         }
     }
