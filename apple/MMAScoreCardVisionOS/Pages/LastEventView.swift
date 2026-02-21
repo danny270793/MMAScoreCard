@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LastEventView: View {
+    @Environment(\.mmaDataProvider) private var dataProvider
     @State private var isFetching: Bool = true
     @State private var error: Error? = nil
     @State var event: Event? = nil
@@ -28,7 +29,7 @@ struct LastEventView: View {
         Task {
             isFetching = true
             do {
-                let events = try await Sheredog.loadEvents(forceRefresh: forceRefresh)
+                let events = try await dataProvider.loadEvents(forceRefresh: forceRefresh)
                 let pastEvents = events.data.filter { event in event.date <= Date.now}
                 event = pastEvents[0]
             } catch {
