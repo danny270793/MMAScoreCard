@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct FighterDetails: View {
+    @Environment(\.mmaDataProvider) private var dataProvider
     let figther: Fighter
     @State private var isFetching: Bool = true
     @State private var error: Error? = nil
@@ -31,7 +32,7 @@ struct FighterDetails: View {
         Task {
             isFetching = true
             do {
-                response = try await Sheredog.loadRecord(fighter: figther, forceRefresh: forceRefresh)
+                response = try await dataProvider.loadRecord(fighter: figther, forceRefresh: forceRefresh)
             } catch {
                 self.error = error
             }
