@@ -17,7 +17,7 @@ struct FighterDetails: View {
     @State private var error: Error? = nil
     //@State private var image: Data? = nil
     @State private var searchText = ""
-    @State private var response: SherdogResponse<FighterRecord>? = nil
+    @State private var response: MMADataProviderResponse<FighterRecord>? = nil
     
     func onAppear() {
         Task {
