@@ -22,10 +22,6 @@ final class UFC: MMADataProvider {
         Data()
     }
 
-    func loadRecord(fighter: Fighter, forceRefresh: Bool) async throws -> MMADataProviderResponse<FighterRecord> {
-        fatalError("Not implemented yet")
-    }
-
     func getLastEvent(forceRefresh: Bool) async throws -> Event {
         fatalError("Not implemented yet")
     }
@@ -36,6 +32,95 @@ final class UFC: MMADataProvider {
 
     func getEventStats(event: Event, forceRefresh: Bool) async throws -> MMADataProviderResponse<EventStats> {
         fatalError("Not implemented yet")
+    }
+
+    func loadRecord(fighter: Fighter, forceRefresh: Bool) async throws -> MMADataProviderResponse<FighterRecord> {
+        let html = try await Http.getIfNotExists(url: fighter.link, forceRefresh: forceRefresh)
+        let document = try SwiftSoup.parse(html)
+
+        var nationality = "—"
+        var age = "—"
+        var height = "—"
+        var weight = "—"
+
+        let bioFields = try document.select(".c-bio__field")
+        for field in bioFields.array() {
+            guard let label = try? field.select(".c-bio__label").first()?.text().trimmingCharacters(in: .whitespacesAndNewlines),
+                  let text = try? field.select(".c-bio__text").first()?.text().trimmingCharacters(in: .whitespacesAndNewlines) else {
+                continue
+            }
+            switch label {
+            case "Place of Birth": nationality = text
+            case "Age": age = text.isEmpty ? ((try? field.select(".field__item").first()?.text()) ?? "—") : text
+            case "Height": height = text
+            case "Weight": weight = text
+            default: break
+            }
+        }
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM. d, yyyy"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+
+        var records: [Record] = []
+        let fighterPath = fighter.link.path
+        let resultCards = try document.select("article.c-card-event--athlete-results")
+
+        for card in resultCards.array() {
+            let status: FighterStatus
+            if (try? card.select(".c-card-event--athlete-results__plaque.win").first()) != nil {
+                status = .win
+            } else if (try? card.select(".c-card-event--athlete-results__plaque.loss").first()) != nil {
+                status = .loss
+            } else {
+                continue
+            }
+
+            var opponent = "TBD"
+            if let headline = try? card.select(".c-card-event--athlete-results__headline").first() {
+                for anchor in try headline.select("a").array() {
+                    let href = (try? anchor.attr("href")) ?? ""
+                    if !href.contains(fighterPath) && !fighterPath.contains(href) {
+                        opponent = (try? anchor.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? opponent
+                        break
+                    }
+                }
+            }
+
+            var eventName = "UFC Event"
+            if let actions = try? card.select(".c-card-event--athlete-results__actions a").first(),
+               let href = try? actions.attr("href"), href.contains("/event/") {
+                let slug = href.split(separator: "/").last?.split(separator: "#").first.map(String.init) ?? ""
+                eventName = slug.replacingOccurrences(of: "-", with: " ").capitalized
+            }
+
+            guard let dateEl = try? card.select(".c-card-event--athlete-results__date").first(),
+                  let dateStr = try? dateEl.text().trimmingCharacters(in: .whitespacesAndNewlines),
+                  let date = dateFormatter.date(from: dateStr) else {
+                continue
+            }
+
+            var round = ""
+            var time = ""
+            var method = ""
+            for resultEl in (try? card.select(".c-card-event--athlete-results__result").array()) ?? [] {
+                let label = (try? resultEl.select(".c-card-event--athlete-results__result-label").first()?.text()) ?? ""
+                let value = (try? resultEl.select(".c-card-event--athlete-results__result-text").first()?.text()) ?? ""
+                switch label {
+                case "Round": round = value
+                case "Time": time = value
+                case "Method": method = value
+                default: break
+                }
+            }
+
+            records.append(Record(status: status, figther: opponent, event: eventName, date: date, method: method, referee: nil, round: round, time: time))
+        }
+
+        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: fighter.link.absoluteString)
+        let timeCached: String? = try LocalStorage.getTimeCached(fileName: fighter.link.absoluteString)
+        let data = FighterRecord(name: fighter.name, nationality: nationality, age: age, height: height, weight: weight, fights: records.sorted { $0.date > $1.date })
+        return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
 
     func loadFights(event: Event, forceRefresh: Bool) async throws -> MMADataProviderResponse<[Fight]> {
