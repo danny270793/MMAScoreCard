@@ -80,18 +80,18 @@ struct FigthDetails: View {
                     )
                 }
                 
-                // Referee Info
-                if !fight.referee.isEmpty {
+                // Referee Info (only when available)
+                if let referee = fight.referee {
                     Divider()
                     
                     HStack {
-                        Label(String(format: String(localized: "fight.referee"), fight.referee), systemImage: "person.fill.checkmark")
+                        Label(String(format: String(localized: "fight.referee"), referee), systemImage: "person.fill.checkmark")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                         
                         Spacer()
                         
-                        Text(fight.referee)
+                        Text(referee)
                             .font(.subheadline)
                             .foregroundStyle(.primary)
                     }
