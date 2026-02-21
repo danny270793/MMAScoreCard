@@ -13,7 +13,8 @@ final class UFC: MMADataProvider {
     static let shared = UFC()
 
     private let placeholderImageUrl = URL(string: "https://example.com/placeholder.png")!
-    private let baseUrl = "https://mock.example.com"
+    private let baseUrl = "https://www.ufc.com"
+    private var eventsUrl: String { "\(baseUrl)/events" }
 
     private init() {}
 
@@ -68,6 +69,9 @@ final class UFC: MMADataProvider {
     }
 
     func loadEvents(forceRefresh: Bool) async throws -> MMADataProviderResponse<[Event]> {
+        let html = try await Http.getIfNotExists(url: eventsUrl, forceRefresh: forceRefresh)
+        print(html);
+        
         let calendar = Calendar.current
         let events = [
             Event(name: "UFC 311", fight: "Pereira vs. Hill", location: "Las Vegas, NV", date: calendar.date(byAdding: .day, value: 14, to: Date())!, url: "\(baseUrl)/event/311"),
