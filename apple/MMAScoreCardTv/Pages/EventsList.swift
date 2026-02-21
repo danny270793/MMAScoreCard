@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct EventsList: View {
+    @Environment(\.mmaDataProvider) private var dataProvider
     @State private var isFetching: Bool = true
     @State private var error: Error? = nil
     @State private var searchText = ""
@@ -54,7 +55,7 @@ struct EventsList: View {
     func loadEvents(forceRefresh: Bool) async {
         isFetching = true
         do {
-            response = try await Sheredog.loadEvents(forceRefresh: forceRefresh)
+            response = try await dataProvider.loadEvents(forceRefresh: forceRefresh)
         } catch {
             self.error = error
         }
