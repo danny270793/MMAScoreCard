@@ -13,7 +13,7 @@ struct EventsList: View {
     @State private var isFetching: Bool = true
     @State private var error: Error? = nil
     @State private var searchText = ""
-    @State var response: SherdogResponse<[Event]>? = nil
+    @State var response: MMADataProviderResponse<[Event]>? = nil
     @State private var filter = FilterOptions.past
     
     func onAppear() {
