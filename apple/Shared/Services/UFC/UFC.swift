@@ -65,7 +65,7 @@ final class UFC: MMADataProvider {
                 result: result,
                 round: round,
                 time: time,
-                referee: "",
+                referee: nil,
                 division: division,
                 fightStatus: fightStatus,
                 titleFight: titleFight
