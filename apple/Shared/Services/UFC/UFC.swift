@@ -39,91 +39,20 @@ final class UFC: MMADataProvider {
         return MMADataProviderResponse(cachedAt: Date(), timeCached: "Mock", data: record)
     }
 
-    func loadFights(event: Event, forceRefresh: Bool) async throws -> MMADataProviderResponse<[Fight]> {
-        let fighter1 = Fighter(name: "Alex Pereira", image: placeholderImageUrl, link: URL(string: "\(baseUrl)/fighter/1")!)
-        let fighter2 = Fighter(name: "Magomed Ankalaev", image: placeholderImageUrl, link: URL(string: "\(baseUrl)/fighter/2")!)
-        let fighter3 = Fighter(name: "Islam Makhachev", image: placeholderImageUrl, link: URL(string: "\(baseUrl)/fighter/3")!)
-        let fighter4 = Fighter(name: "Dustin Poirier", image: placeholderImageUrl, link: URL(string: "\(baseUrl)/fighter/4")!)
-
-        let fights = [
-            Fight(position: 1, figther1: fighter1, figther1Status: .win, figther2: fighter2, figther2Status: .loss, result: "KO/TKO", round: "2", time: "1:04", referee: "Herb Dean", division: "Light Heavyweight", fightStatus: .done, titleFight: true),
-            Fight(position: 2, figther1: fighter3, figther1Status: .win, figther2: fighter4, figther2Status: .loss, result: "Submission (D'Arce)", round: "5", time: "2:42", referee: "Marc Goddard", division: "Lightweight", fightStatus: .done, titleFight: true),
-        ]
-        return MMADataProviderResponse(cachedAt: Date(), timeCached: "Mock", data: fights)
-    }
-
     func getLastEvent(forceRefresh: Bool) async throws -> Event {
-        let events = try await loadEvents(forceRefresh: forceRefresh)
-        
-        // Filter for past events (events that have already happened)
-        let pastEvents = events.data.filter { event in event.date <= Date.now}
-        
-        // Ensure we have at least one past event
-        guard let lastEvent = pastEvents.first else {
-            throw SherdogErrors.noEventsFound
-        }
-        
-        return lastEvent;
+        throw NotImplementedError()
     }
 
     func getLastEventStats(forceRefresh: Bool) async throws -> MMADataProviderResponse<EventStats> {
-        let lastEvent = try await getLastEvent(forceRefresh: forceRefresh)
-        let fights = try await loadFights(event: lastEvent, forceRefresh: forceRefresh)
-        
-        var kos = 0
-        var submissions = 0
-        var decisions = 0
-        
-        for fight in fights.data {
-            let result = fight.result.uppercased()
-            
-            if result.hasPrefix("KO") || result.hasPrefix("TKO") || result.contains("KO/TKO") {
-                kos += 1
-            } else if result.contains("SUBMISSION") || result.hasPrefix("SUB") {
-                submissions += 1
-            } else if result.contains("DECISION") || result.contains("DEC") {
-                decisions += 1
-            }
-        }
-        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName:lastEvent.url)
-        let timeCached: String? = try LocalStorage.getTimeCached(fileName: lastEvent.url)
-        
-        let name = lastEvent.name;
-        let mainFight = lastEvent.fight ?? "";
-        
-        return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submissions, decisions: decisions))
+        throw NotImplementedError()
     }
 
     func getEventStats(event: Event, forceRefresh: Bool) async throws -> MMADataProviderResponse<EventStats> {
-        let fights = try await loadFights(event: event, forceRefresh: forceRefresh)
-        
-        var kos = 0
-        var submissions = 0
-        var decisions = 0
-        
-        for fight in fights.data {
-            let result = fight.result.uppercased()
-            
-            if result.hasPrefix("KO") || result.hasPrefix("TKO") || result.contains("KO/TKO") {
-                kos += 1
-            } else if result.contains("SUBMISSION") || result.hasPrefix("SUB") {
-                submissions += 1
-            } else if result.contains("DECISION") || result.contains("DEC") {
-                decisions += 1
-            }
-        }
-        
-        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: event.url)
-        let timeCached: String? = try LocalStorage.getTimeCached(fileName: event.url)
-        
-        let name = event.name.split(separator: ":", maxSplits: 1)
-            .first?
-            .trimmingCharacters(in: .whitespaces) ?? ""
-        let mainFight = event.name.split(separator: ":", maxSplits: 1)
-            .last?
-            .trimmingCharacters(in: .whitespaces) ?? ""
-        
-        return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: EventStats(name: name, mainFight: mainFight, kos: kos, submissions: submissions, decisions: decisions))
+        throw NotImplementedError()
+    }
+
+    func loadFights(event: Event, forceRefresh: Bool) async throws -> MMADataProviderResponse<[Fight]> {
+        let html = try await Http.getIfNotExists(url: event.url, forceRefresh: forceRefresh)
     }
 
     func loadEvents(forceRefresh: Bool) async throws -> MMADataProviderResponse<[Event]> {
