@@ -8,16 +8,24 @@
 import Foundation
 import SwiftUI
 
+/// Generic response type for MMA data provider results.
+/// Implementations (e.g. SherdogResponse) conform to this structure.
+struct MMADataProviderResponse<T> {
+    let cachedAt: Date?
+    let timeCached: String?
+    let data: T
+}
+
 /// Protocol defining the interface for MMA data providers.
 /// Implementations (e.g. Sherdog) fetch fight data from external sources.
 protocol MMADataProvider {
     func loadImage(url: URL) async throws -> Data
-    func loadRecord(fighter: Fighter, forceRefresh: Bool) async throws -> SherdogResponse<FighterRecord>
-    func loadFights(event: Event, forceRefresh: Bool) async throws -> SherdogResponse<[Fight]>
+    func loadRecord(fighter: Fighter, forceRefresh: Bool) async throws -> MMADataProviderResponse<FighterRecord>
+    func loadFights(event: Event, forceRefresh: Bool) async throws -> MMADataProviderResponse<[Fight]>
     func getLastEvent(forceRefresh: Bool) async throws -> Event
-    func getLastEventStats(forceRefresh: Bool) async throws -> SherdogResponse<EventStats>
-    func getEventStats(event: Event, forceRefresh: Bool) async throws -> SherdogResponse<EventStats>
-    func loadEvents(forceRefresh: Bool) async throws -> SherdogResponse<[Event]>
+    func getLastEventStats(forceRefresh: Bool) async throws -> MMADataProviderResponse<EventStats>
+    func getEventStats(event: Event, forceRefresh: Bool) async throws -> MMADataProviderResponse<EventStats>
+    func loadEvents(forceRefresh: Bool) async throws -> MMADataProviderResponse<[Event]>
 }
 
 // MARK: - Environment Key
