@@ -29,8 +29,6 @@ struct CacheListView: View {
                     ForEach(cachedItems, id: \.url) { item in
                         CacheRowView(item: item)
                     }
-                } header: {
-                    Text(String(localized: "cache.section_header"))
                 }
             }
         }
