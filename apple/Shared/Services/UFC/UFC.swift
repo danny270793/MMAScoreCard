@@ -98,11 +98,12 @@ final class UFC: MMADataProvider {
                 print("[parseBio] nationality: no c-bio__text sibling in field")
                 continue
             }
-            let value = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-            print("[parseBio] nationality: c-bio__text raw=\"\(value)\"")
-            if !value.isEmpty {
-                nationality = value
-                print("[parseBio] nationality: SET from div[2]/div/div[2] (Place of Birth via c-bio__label parent): \(nationality)")
+            let rawValue = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            print("[parseBio] nationality: c-bio__text raw=\"\(rawValue)\"")
+            if !rawValue.isEmpty {
+                // Place of Birth is "City, Country" (e.g. "San Diego, United States") - extract country for nationality
+                nationality = extractCountry(from: rawValue)
+                print("[parseBio] nationality: SET from Place of Birth \"\(rawValue)\" -> \(nationality)")
                 break
             }
         }
@@ -115,6 +116,12 @@ final class UFC: MMADataProvider {
             print("[parseBio] age fallback from field--name-age: \(age)")
         }
         return (nationality, age, height, weight)
+    }
+
+    /// Extracts country from "City, Country" or "City, State, Country" format. Returns full string if no comma.
+    private func extractCountry(from placeOfBirth: String) -> String {
+        let parts = placeOfBirth.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
+        return parts.last.map(String.init) ?? placeOfBirth
     }
 
     /// Record W-L-D from hero section (XPath: .../div[1]/div[2]/p[2] = p.hero-profile__division-body)
