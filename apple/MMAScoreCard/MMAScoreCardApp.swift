@@ -15,7 +15,7 @@ struct MMAScoreCardApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.mmaDataProvider, Sherdog.shared)
+                .environment(\.mmaDataProvider, UFC.shared)
         }
     }
 }
