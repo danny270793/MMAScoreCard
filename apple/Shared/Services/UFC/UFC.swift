@@ -27,7 +27,7 @@ final class UFC: MMADataProvider {
         let document = try SwiftSoup.parse(html)
 
         let (nationality, age, height, weight) = parseBio(from: document)
-        let records = try parseFightRecords(from: document, athleteName: fighter.name)
+        let records = try parseFightRecords(from: document)
 
         let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: fighter.link.absoluteString)
         let timeCached: String? = try LocalStorage.getTimeCached(fileName: fighter.link.absoluteString)
@@ -123,84 +123,40 @@ final class UFC: MMADataProvider {
         return parts.last ?? placeOfBirth
     }
 
-    private func parseFightRecords(from document: Document, athleteName: String) throws -> [Record] {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM. d, yyyy"
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        let altDateFormatter = DateFormatter()
-        altDateFormatter.dateFormat = "MMM d, yyyy"
-        altDateFormatter.locale = Locale(identifier: "en_US_POSIX")
-
-        var records: [Record] = []
-        let articles = try document.select("article.c-card-event--athlete-results")
-
-        for article in articles.array() {
-            guard let status = parseAthleteStatus(from: article),
-                  let (opponent, event, date) = parseFightDetails(from: article, athleteName: athleteName, dateFormatter: dateFormatter, altDateFormatter: altDateFormatter),
-                  let (round, time, method) = parseFightResult(from: article) else {
-                continue
-            }
-
-            records.append(Record(
-                status: status,
-                figther: opponent,
-                event: event,
-                date: date,
-                method: method,
-                referee: nil,
-                round: round,
-                time: time
-            ))
+    /// Parse fight records from W-L-D text (e.g. "5-4-0 (W-L-D)") at p.hero-profile__division-body.
+    /// Generates wins, losses, draws as placeholder records with empty strings.
+    private func parseFightRecords(from document: Document) throws -> [Record] {
+        guard let el = try? document.select("p.hero-profile__division-body").first(),
+              let text = try? el.text().trimmingCharacters(in: .whitespacesAndNewlines) else {
+            return []
         }
-
+        let (wins, losses, draws) = parseWLD(from: text)
+        let placeholderDate = Date()
+        var records: [Record] = []
+        let emptyRecord: (FighterStatus) -> Record = { status in
+            Record(status: status, figther: "", event: "", date: placeholderDate, method: "", referee: nil, round: "", time: "")
+        }
+        for _ in 0..<wins { records.append(emptyRecord(.win)) }
+        for _ in 0..<losses { records.append(emptyRecord(.loss)) }
+        for _ in 0..<draws { records.append(emptyRecord(.draw)) }
         return records
     }
 
-    private func parseAthleteStatus(from article: Element) -> FighterStatus? {
-        guard let redImage = try? article.select("div.c-card-event--athlete-results__red-image").first(),
-              let classes = try? redImage.className() else { return nil }
-        return classes.contains("win") ? .win : (classes.contains("loss") ? .loss : .pending)
-    }
-
-    private func parseFightDetails(from article: Element, athleteName: String, dateFormatter: DateFormatter, altDateFormatter: DateFormatter) -> (opponent: String, event: String, date: Date)? {
-        guard let headline = try? article.select("h3.c-card-event--athlete-results__headline").first(),
-              let dateEl = try? article.select("div.c-card-event--athlete-results__date").first(),
-              let dateStr = try? dateEl.text().trimmingCharacters(in: .whitespacesAndNewlines) else { return nil }
-        guard let date = dateFormatter.date(from: dateStr) ?? altDateFormatter.date(from: dateStr) else { return nil }
-
-        let links = (try? headline.select("a").array()) ?? []
-        let names = links.compactMap { try? $0.text().trimmingCharacters(in: .whitespacesAndNewlines) }
-        let opponent = names.first { !nameMatches($0, athleteName) } ?? (names.count > 1 ? names[1] : (names.first ?? "Unknown"))
-
-        var event = "UFC"
-        if let fightCardLink = try? article.select("a[href*='/event/']").first(),
-           let href = try? fightCardLink.attr("href"),
-           let url = URL(string: href.hasPrefix("http") ? href : "\(baseUrl)\(href)") {
-            let path = url.path
-            let slug = path.split(separator: "/").last.map(String.init) ?? ""
-            event = eventNameFromPath("/event/\(slug)")
+    /// Parse "5-4-0 (W-L-D)" -> (wins: 5, losses: 4, draws: 0)
+    private func parseWLD(from text: String) -> (wins: Int, losses: Int, draws: Int) {
+        let pattern = #"(\d+)\s*-\s*(\d+)\s*-\s*(\d+)"#
+        guard let regex = try? NSRegularExpression(pattern: pattern),
+              let match = regex.firstMatch(in: text, range: NSRange(text.startIndex..., in: text)),
+              match.numberOfRanges >= 4,
+              let wRange = Range(match.range(at: 1), in: text),
+              let lRange = Range(match.range(at: 2), in: text),
+              let dRange = Range(match.range(at: 3), in: text) else {
+            return (0, 0, 0)
         }
-
-        return (opponent, event, date)
-    }
-
-    private func parseFightResult(from article: Element) -> (round: String, time: String, method: String)? {
-        var round = ""
-        var time = ""
-        var method = ""
-
-        let resultDivs = (try? article.select("div.c-card-event--athlete-results__result").array()) ?? []
-        for div in resultDivs {
-            guard let label = try? div.select("div.c-card-event--athlete-results__result-label").first()?.text(),
-                  let value = try? div.select("div.c-card-event--athlete-results__result-text").first()?.text() else { continue }
-            switch label {
-            case "Round": round = value
-            case "Time": time = value
-            case "Method": method = value
-            default: break
-            }
-        }
-        return method.isEmpty ? nil : (round, time, method)
+        let wins = Int(text[wRange]) ?? 0
+        let losses = Int(text[lRange]) ?? 0
+        let draws = Int(text[dRange]) ?? 0
+        return (wins, losses, draws)
     }
 
     func getLastEvent(forceRefresh: Bool) async throws -> Event {
