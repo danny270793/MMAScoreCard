@@ -159,11 +159,14 @@ final class Sherdog: MMADataProvider {
             throw SherdogErrors.invalidFigther
         }
         
+        let sortedRecords = records.sorted { $0.date > $1.date }
+        let wins = records.filter { $0.status == .win }.count
+        let losses = records.filter { $0.status == .loss }.count
+        let draws = records.filter { $0.status == .draw }.count
+        let noContests = records.filter { $0.status == .nc }.count
         let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: fighter.link.absoluteString)
         let timeCached: String? = try LocalStorage.getTimeCached(fileName: fighter.link.absoluteString)
-        let data: FighterRecord = FighterRecord(name: fighter.name, nationality: nationality!, age: age!, height: height!, weight: weight!, fights: records.sorted { fight1, fight2 in
-            fight1.date > fight2.date
-        })
+        let data: FighterRecord = FighterRecord(name: fighter.name, nationality: nationality!, age: age!, height: height!, weight: weight!, wins: wins, losses: losses, draws: draws, noContests: noContests, fights: sortedRecords)
         return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
     
