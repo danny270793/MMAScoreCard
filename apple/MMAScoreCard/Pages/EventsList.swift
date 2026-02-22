@@ -208,7 +208,7 @@ struct EventsList: View {
                 }
                 
                 NavigationLink(destination: CacheListView()) {
-                    Label(String(localized: "nav.cache"), systemImage: "externaldrive.badge.clock")
+                    Label(String(localized: "nav.cache"), systemImage: "clock.arrow.circlepath")
                 }
                 
                 Button(action: openAppSettings) {
