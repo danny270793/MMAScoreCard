@@ -88,10 +88,10 @@ struct FighterDetails: View {
             }
             if response?.data != nil {
                 Section(header: Text("Record")) {
-                    LabeledContent("WIN", value: "\(response!.data.fights.filter { fight in fight.status == FighterStatus.win }.count)")
-                    LabeledContent("LOSS", value: "\(response!.data.fights.filter { fight in fight.status == FighterStatus.loss }.count)")
-                    LabeledContent("DRAW", value: "\(response!.data.fights.filter { fight in fight.status == FighterStatus.draw }.count)")
-                    LabeledContent("NC", value: "\(response!.data.fights.filter { fight in fight.status == FighterStatus.nc }.count)")
+                    LabeledContent("WIN", value: "\(response!.data.wins)")
+                    LabeledContent("LOSS", value: "\(response!.data.losses)")
+                    LabeledContent("DRAW", value: "\(response!.data.draws)")
+                    LabeledContent("NC", value: "\(response!.data.noContests)")
                 }
                 Section(header: Text("Fights")) {
                     ForEach(filteredFights) { fight in
