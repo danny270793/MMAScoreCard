@@ -93,7 +93,7 @@ final class UFC: MMADataProvider {
                 print("[parseBio] nationality: label has no parent, skipping")
                 continue
             }
-            print("[parseBio] nationality: parent field tagName=\(field.tagName()) className=\(field.className())")
+            print("[parseBio] nationality: parent field tagName=\(field.tagName()) className=\(try? field.className() ?? "")")
             guard let textEl = (try? field.select("div.c-bio__text"))?.first() else {
                 print("[parseBio] nationality: no c-bio__text sibling in field")
                 continue
