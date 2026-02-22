@@ -82,14 +82,17 @@ final class UFC: MMADataProvider {
             }
         }
 
-        // Nationality from div[2]/div/div[2] (Place of Birth in c-bio__row--1col)
-        for row in (try? infoDetails?.select("div.c-bio__row--1col"))?.array() ?? [] {
-            if let label = try? row.select("div.c-bio__label").first()?.text(), label == "Place of Birth" {
-                if let textEl = try? row.select("div.c-bio__text").first() {
-                    nationality = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "TBD"
-                    print("[parseBio] nationality from div[2]/div/div[2] (Place of Birth): \(nationality)")
+        // Nationality from div[2]/div/div[2] (Place of Birth). Search scope for label then sibling text.
+        let labels = (try? scope.select("div.c-bio__label"))?.array() ?? []
+        for labelEl in labels {
+            guard let labelText = try? labelEl.text(), labelText == "Place of Birth" else { continue }
+            if let field = labelEl.parent(), let textEl = (try? field.select("div.c-bio__text"))?.first() {
+                let value = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+                if !value.isEmpty {
+                    nationality = value
+                    print("[parseBio] nationality from div[2]/div/div[2] (Place of Birth via c-bio__label parent): \(nationality)")
+                    break
                 }
-                break
             }
         }
 
