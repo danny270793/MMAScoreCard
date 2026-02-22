@@ -207,6 +207,10 @@ struct EventsList: View {
                     Label(String(localized: "nav.about"), systemImage: "info.circle")
                 }
                 
+                NavigationLink(destination: CacheListView()) {
+                    Label(String(localized: "nav.cache"), systemImage: "externaldrive.badge.clock")
+                }
+                
                 Button(action: openAppSettings) {
                     Label(String(localized: "nav.settings"), systemImage: "gear")
                 }
