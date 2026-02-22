@@ -48,8 +48,10 @@ final class UFC: MMADataProvider {
         var height = "TBD"
         var weight = "TBD"
 
-        let labels = try? document.select("div.c-bio__label")
-        let texts = try? document.select("div.c-bio__text")
+        let wrap = try? document.select("div.faq-athlete__wrap").first()
+        let scope = wrap ?? document
+        let labels = try? scope.select("div.c-bio__label")
+        let texts = try? scope.select("div.c-bio__text")
         guard let labelArray = labels?.array(), let textArray = texts?.array(), labelArray.count == textArray.count else {
             if let ageField = try? document.select("div.field--name-age").first() {
                 age = (try? ageField.text()) ?? "TBD"
@@ -68,7 +70,7 @@ final class UFC: MMADataProvider {
             }
         }
 
-        if age == "TBD", let ageField = try? document.select("div.field--name-age").first() {
+        if age == "TBD", let ageField = try? scope.select("div.field--name-age").first() {
             age = (try? ageField.text()) ?? "TBD"
         }
         return (nationality, age, height, weight)
