@@ -23,7 +23,135 @@ final class UFC: MMADataProvider {
     }
 
     func loadRecord(fighter: Fighter, forceRefresh: Bool) async throws -> MMADataProviderResponse<FighterRecord> {
-        fatalError("Not implemented yet")
+        let html = try await Http.getIfNotExists(url: fighter.link, forceRefresh: forceRefresh)
+        let document = try SwiftSoup.parse(html)
+
+        let (nationality, age, height, weight) = parseBio(from: document)
+        let records = try parseFightRecords(from: document, athleteName: fighter.name)
+
+        let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: fighter.link.absoluteString)
+        let timeCached: String? = try LocalStorage.getTimeCached(fileName: fighter.link.absoluteString)
+        let data = FighterRecord(
+            name: fighter.name,
+            nationality: nationality,
+            age: age,
+            height: height,
+            weight: weight,
+            fights: records.sorted { $0.date > $1.date }
+        )
+        return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
+    }
+
+    private func parseBio(from document: Document) -> (nationality: String, age: String, height: String, weight: String) {
+        var nationality = "TBD"
+        var age = "TBD"
+        var height = "TBD"
+        var weight = "TBD"
+
+        let labels = try? document.select("div.c-bio__label")
+        let texts = try? document.select("div.c-bio__text")
+        guard let labelArray = labels?.array(), let textArray = texts?.array(), labelArray.count == textArray.count else {
+            if let ageField = try? document.select("div.field--name-age").first() {
+                age = (try? ageField.text()) ?? "TBD"
+            }
+            return (nationality, age, height, weight)
+        }
+
+        for (labelEl, textEl) in zip(labelArray, textArray) {
+            guard let label = try? labelEl.text(), let text = try? textEl.text().trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty else { continue }
+            switch label {
+            case "Place of Birth": nationality = text
+            case "Age": age = text
+            case "Height": height = text
+            case "Weight": weight = text
+            default: break
+            }
+        }
+
+        if age == "TBD", let ageField = try? document.select("div.field--name-age").first() {
+            age = (try? ageField.text()) ?? "TBD"
+        }
+        return (nationality, age, height, weight)
+    }
+
+    private func parseFightRecords(from document: Document, athleteName: String) throws -> [Record] {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM. d, yyyy"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        let altDateFormatter = DateFormatter()
+        altDateFormatter.dateFormat = "MMM d, yyyy"
+        altDateFormatter.locale = Locale(identifier: "en_US_POSIX")
+
+        var records: [Record] = []
+        let articles = try document.select("article.c-card-event--athlete-results")
+
+        for article in articles.array() {
+            guard let status = parseAthleteStatus(from: article),
+                  let (opponent, event, date) = parseFightDetails(from: article, athleteName: athleteName, dateFormatter: dateFormatter, altDateFormatter: altDateFormatter),
+                  let (round, time, method) = parseFightResult(from: article) else {
+                continue
+            }
+
+            records.append(Record(
+                status: status,
+                figther: opponent,
+                event: event,
+                date: date,
+                method: method,
+                referee: nil,
+                round: round,
+                time: time
+            ))
+        }
+
+        return records
+    }
+
+    private func parseAthleteStatus(from article: Element) -> FighterStatus? {
+        guard let redImage = try? article.select("div.c-card-event--athlete-results__red-image").first(),
+              let classes = try? redImage.className() else { return nil }
+        return classes.contains("win") ? .win : (classes.contains("loss") ? .loss : .pending)
+    }
+
+    private func parseFightDetails(from article: Element, athleteName: String, dateFormatter: DateFormatter, altDateFormatter: DateFormatter) -> (opponent: String, event: String, date: Date)? {
+        guard let headline = try? article.select("h3.c-card-event--athlete-results__headline").first(),
+              let dateEl = try? article.select("div.c-card-event--athlete-results__date").first(),
+              let dateStr = try? dateEl.text().trimmingCharacters(in: .whitespacesAndNewlines) else { return nil }
+        guard let date = dateFormatter.date(from: dateStr) ?? altDateFormatter.date(from: dateStr) else { return nil }
+
+        let links = (try? headline.select("a").array()) ?? []
+        let names = links.compactMap { try? $0.text().trimmingCharacters(in: .whitespacesAndNewlines) }
+        let opponent = names.first { !nameMatches($0, athleteName) } ?? (names.count > 1 ? names[1] : (names.first ?? "Unknown"))
+
+        var event = "UFC"
+        if let fightCardLink = try? article.select("a[href*='/event/']").first(),
+           let href = try? fightCardLink.attr("href"),
+           let url = URL(string: href.hasPrefix("http") ? href : "\(baseUrl)\(href)") {
+            let path = url.path
+            let slug = path.split(separator: "/").last.map(String.init) ?? ""
+            event = eventNameFromPath("/event/\(slug)")
+        }
+
+        return (opponent, event, date)
+    }
+
+    private func parseFightResult(from article: Element) -> (round: String, time: String, method: String)? {
+        var round = ""
+        var time = ""
+        var method = ""
+
+        let resultDivs = (try? article.select("div.c-card-event--athlete-results__result").array()) ?? []
+        for div in resultDivs {
+            guard let label = try? div.select("div.c-card-event--athlete-results__result-label").first()?.text(),
+                  let value = try? div.select("div.c-card-event--athlete-results__result-text").first()?.text() else { continue }
+            switch label {
+            case "Round": round = value
+            case "Time": time = value
+            case "Method": method = value
+            default: break
+            }
+        }
+        return method.isEmpty ? nil : (round, time, method)
     }
 
     func getLastEvent(forceRefresh: Bool) async throws -> Event {
