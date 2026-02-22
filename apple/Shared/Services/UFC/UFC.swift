@@ -27,7 +27,6 @@ final class UFC: MMADataProvider {
         let document = try SwiftSoup.parse(html)
 
         let (nationality, age, height, weight) = parseBio(from: document)
-        let records = try parseFightRecords(from: document)
 
         let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: fighter.link.absoluteString)
         let timeCached: String? = try LocalStorage.getTimeCached(fileName: fighter.link.absoluteString)
@@ -37,7 +36,7 @@ final class UFC: MMADataProvider {
             age: age,
             height: height,
             weight: weight,
-            fights: records.sorted { $0.date > $1.date }
+            fights: []
         )
         return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
@@ -121,25 +120,6 @@ final class UFC: MMADataProvider {
     private func extractCountry(from placeOfBirth: String) -> String {
         let parts = placeOfBirth.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
         return parts.last ?? placeOfBirth
-    }
-
-    /// Parse fight records from W-L-D text (e.g. "5-4-0 (W-L-D)") at p.hero-profile__division-body.
-    /// Generates wins, losses, draws as placeholder records with empty strings.
-    private func parseFightRecords(from document: Document) throws -> [Record] {
-        guard let el = try? document.select("p.hero-profile__division-body").first(),
-              let text = try? el.text().trimmingCharacters(in: .whitespacesAndNewlines) else {
-            return []
-        }
-        let (wins, losses, draws) = parseWLD(from: text)
-        let placeholderDate = Date()
-        var records: [Record] = []
-        let emptyRecord: (FighterStatus) -> Record = { status in
-            Record(status: status, figther: "", event: "", date: placeholderDate, method: "", referee: nil, round: "", time: "")
-        }
-        for _ in 0..<wins { records.append(emptyRecord(.win)) }
-        for _ in 0..<losses { records.append(emptyRecord(.loss)) }
-        for _ in 0..<draws { records.append(emptyRecord(.draw)) }
-        return records
     }
 
     /// Parse "5-4-0 (W-L-D)" -> (wins: 5, losses: 4, draws: 0)
