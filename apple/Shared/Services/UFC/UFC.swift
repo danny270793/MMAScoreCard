@@ -84,16 +84,30 @@ final class UFC: MMADataProvider {
 
         // Nationality from div[2]/div/div[2] (Place of Birth). Search scope for label then sibling text.
         let labels = (try? scope.select("div.c-bio__label"))?.array() ?? []
-        for labelEl in labels {
-            guard let labelText = try? labelEl.text(), labelText == "Place of Birth" else { continue }
-            if let field = labelEl.parent(), let textEl = (try? field.select("div.c-bio__text"))?.first() {
-                let value = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-                if !value.isEmpty {
-                    nationality = value
-                    print("[parseBio] nationality from div[2]/div/div[2] (Place of Birth via c-bio__label parent): \(nationality)")
-                    break
-                }
+        print("[parseBio] nationality: found \(labels.count) c-bio__label elements in scope")
+        for (idx, labelEl) in labels.enumerated() {
+            let labelText = (try? labelEl.text()) ?? ""
+            if labelText != "Place of Birth" { continue }
+            print("[parseBio] nationality: label[\(idx)] = \"Place of Birth\" at tagName=\(labelEl.tagName())")
+            guard let field = labelEl.parent() else {
+                print("[parseBio] nationality: label has no parent, skipping")
+                continue
             }
+            print("[parseBio] nationality: parent field tagName=\(field.tagName()) className=\(field.className())")
+            guard let textEl = (try? field.select("div.c-bio__text"))?.first() else {
+                print("[parseBio] nationality: no c-bio__text sibling in field")
+                continue
+            }
+            let value = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            print("[parseBio] nationality: c-bio__text raw=\"\(value)\"")
+            if !value.isEmpty {
+                nationality = value
+                print("[parseBio] nationality: SET from div[2]/div/div[2] (Place of Birth via c-bio__label parent): \(nationality)")
+                break
+            }
+        }
+        if nationality == "TBD" {
+            print("[parseBio] nationality: NOT FOUND, keeping TBD")
         }
 
         if age == "TBD", let ageField = try? scope.select("div.field--name-age").first() {
