@@ -142,6 +142,15 @@ struct FighterDetails: View {
         return "\(inVal) in / \(cm) cm"
     }
 
+    /// Weight display: integer part (lbs) / kg. "126.00" -> "126 lbs / 57 kg", "170 lbs" -> "170 lbs / 77 kg"
+    private func weightDisplay(_ weight: String) -> String {
+        let numericPart = weight.split(separator: ",").first.map(String.init) ?? weight
+        let digits = numericPart.filter { $0.isNumber || $0 == "." }
+        guard let lbs = Double(digits), lbs > 0 else { return weight }
+        let kg = Int(round(lbs * 0.453592))
+        return "\(Int(lbs)) lbs / \(kg) kg"
+    }
+
     @ViewBuilder
     private func fighterInfoSection(data: FighterRecord) -> some View {
         Section("Resume"){
@@ -149,7 +158,7 @@ struct FighterDetails: View {
             InfoRow(icon: "flag.fill", label: "Nationality", value: data.nationality)
             InfoRow(icon: "calendar", label: "Age", value: data.age)
             InfoRow(icon: "ruler.fill", label: "Height", value: heightDisplay(data.height))
-            InfoRow(icon: "scalemass.fill", label: "Weight", value: data.weight)
+            InfoRow(icon: "scalemass.fill", label: "Weight", value: weightDisplay(data.weight))
         }
     }
     
