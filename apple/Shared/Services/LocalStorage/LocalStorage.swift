@@ -129,6 +129,52 @@ class LocalStorage {
         
         
         
+        recordCacheAccess(url: fileName)
         return try String(contentsOf: fileURL, encoding: .utf8)
+    }
+    
+    private static let cacheAccessCountsKey = "LocalStorage.cacheAccessCounts"
+    
+    static func recordCacheAccess(url: String) {
+        var counts = UserDefaults.standard.dictionary(forKey: cacheAccessCountsKey) as? [String: Int] ?? [:]
+        counts[url, default: 0] += 1
+        UserDefaults.standard.set(counts, forKey: cacheAccessCountsKey)
+    }
+    
+    static func getCacheAccessCount(url: String) -> Int {
+        let counts = UserDefaults.standard.dictionary(forKey: cacheAccessCountsKey) as? [String: Int] ?? [:]
+        return counts[url] ?? 0
+    }
+    
+    struct CachedURLInfo {
+        let url: String
+        let cachedAt: Date
+        let accessCount: Int
+    }
+    
+    static func listAllCachedURLs() throws -> [CachedURLInfo] {
+        let fileManager = FileManager.default
+        guard let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            throw LocalStorageErrors.noHasAccess
+        }
+        
+        let counts = UserDefaults.standard.dictionary(forKey: cacheAccessCountsKey) as? [String: Int] ?? [:]
+        var result: [CachedURLInfo] = []
+        
+        let contents = try fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: [.creationDateKey], options: .skipsHiddenFiles)
+        
+        for fileURL in contents {
+            let base64Name = fileURL.lastPathComponent
+            guard let data = Data(base64Encoded: base64Name),
+                  let url = String(data: data, encoding: .utf8),
+                  url.hasPrefix("http") else { continue }
+            
+            let attributes = try fileManager.attributesOfItem(atPath: fileURL.path)
+            let cachedAt = attributes[.creationDate] as? Date ?? Date()
+            let accessCount = counts[url] ?? 0
+            result.append(CachedURLInfo(url: url, cachedAt: cachedAt, accessCount: accessCount))
+        }
+        
+        return result.sorted { $0.cachedAt > $1.cachedAt }
     }
 }
