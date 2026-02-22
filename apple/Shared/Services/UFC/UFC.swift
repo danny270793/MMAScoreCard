@@ -32,6 +32,7 @@ final class UFC: MMADataProvider {
 
         let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: fighter.link.absoluteString)
         let timeCached: String? = try LocalStorage.getTimeCached(fileName: fighter.link.absoluteString)
+        print("records \(records)")
         let data = FighterRecord(
             name: fighter.name,
             nationality: nationality,
