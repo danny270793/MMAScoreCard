@@ -56,13 +56,20 @@ private struct CacheRowView: View {
                 .font(.subheadline)
                 .lineLimit(2)
                 .textSelection(.enabled)
-            
-            HStack(spacing: 12) {
-                Label(
+
+            Label(
                     item.cachedAt.formatted(.dateTime.day().month(.abbreviated).year().hour().minute()),
                     systemImage: "clock"
                 )
+                
                 .font(.caption)
+                .foregroundStyle(.secondary)
+            
+            HStack(spacing: 12) {
+                Label(
+                    LocalStorage.minutesToText(minutes: Int(Date.now.timeIntervalSince(item.cachedAt) / 60)),
+                    systemImage: "clock"
+                ).font(.caption)
                 .foregroundStyle(.secondary)
                 
                 Text("•")
