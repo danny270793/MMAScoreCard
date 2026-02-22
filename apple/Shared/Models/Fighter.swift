@@ -13,16 +13,22 @@ class FighterRecord: Identifiable {
     var age: String
     var height: String
     var weight: String
-    var recordWLD: String?
+    var wins: Int
+    var losses: Int
+    var draws: Int
+    var noContests: Int
     var fights: [Record]
     
-    init(name: String, nationality: String, age: String, height: String, weight: String, recordWLD: String? = nil, fights: [Record]) {
+    init(name: String, nationality: String, age: String, height: String, weight: String, wins: Int = 0, losses: Int = 0, draws: Int = 0, noContests: Int = 0, fights: [Record] = []) {
         self.name = name
         self.nationality = nationality
         self.age = age
         self.height = height
         self.weight = weight
-        self.recordWLD = recordWLD
+        self.wins = wins
+        self.losses = losses
+        self.draws = draws
+        self.noContests = noContests
         self.fights = fights
     }
 }
