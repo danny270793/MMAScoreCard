@@ -123,13 +123,28 @@ struct FighterDetails: View {
         }
     }
     
+    /// Height display: integer part (inches). "67.00" -> "67 in", "5'10\"" -> "70 in"
+    private func heightDisplay(_ height: String) -> String {
+        if let inches = Double(height.split(separator: ",").first?.trimmingCharacters(in: .whitespaces) ?? height),
+           inches > 0 {
+            return "\(Int(inches)) in"
+        }
+        if height.contains("'"), let feet = Int(height.prefix(while: { $0.isNumber })),
+           let inchRange = height.range(of: "'"),
+           let inchStr = height[inchRange.upperBound...].split(separator: "\"").first,
+           let inch = Int(inchStr.trimmingCharacters(in: .whitespaces)) {
+            return "\(feet * 12 + inch) in"
+        }
+        return height
+    }
+
     @ViewBuilder
     private func fighterInfoSection(data: FighterRecord) -> some View {
         Section("Resume"){
             // Fighter Details
             InfoRow(icon: "flag.fill", label: "Nationality", value: data.nationality)
             InfoRow(icon: "calendar", label: "Age", value: data.age)
-            InfoRow(icon: "ruler.fill", label: "Height", value: data.height)
+            InfoRow(icon: "ruler.fill", label: "Height", value: heightDisplay(data.height))
             InfoRow(icon: "scalemass.fill", label: "Weight", value: data.weight)
         }
     }
