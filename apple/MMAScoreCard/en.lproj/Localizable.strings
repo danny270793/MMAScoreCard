@@ -19,6 +19,7 @@
 "nav.statistics" = "Statistics";
 "nav.career" = "Career";
 "nav.about" = "About";
+"nav.cache" = "Cache";
 "nav.settings" = "Settings";
 
 /* Events List */
@@ -169,6 +170,11 @@
 "auth.error" = "Authentication Error";
 
 /* Cache */
+"cache.title" = "Cached URLs";
+"cache.empty_title" = "No Cached URLs";
+"cache.empty_description" = "Cached content will appear here after browsing events and fighters.";
+"cache.section_header" = "Cached URLs";
+"cache.access_count" = "%d hits";
 "cache.last_updated" = "Last Updated";
 "cache.expires_at" = "Expires At";
 "cache.never" = "Never";
