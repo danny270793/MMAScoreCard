@@ -28,6 +28,7 @@ final class UFC: MMADataProvider {
 
         let (nationality, age, height, weight) = parseBio(from: document)
         let records = try parseFightRecords(from: document, athleteName: fighter.name)
+        let recordWLD = parseRecordWLD(from: document)
 
         let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: fighter.link.absoluteString)
         let timeCached: String? = try LocalStorage.getTimeCached(fileName: fighter.link.absoluteString)
@@ -37,11 +38,17 @@ final class UFC: MMADataProvider {
             age: age,
             height: height,
             weight: weight,
+            recordWLD: recordWLD,
             fights: records.sorted { $0.date > $1.date }
         )
         return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
     }
 
+    /// Parse bio from UFC athlete page. Structure (from XPaths):
+    /// - age: .../div[4]/div[1] (c-bio__row--3col > c-bio__field[1]; value in field--name-age)
+    /// - height: .../div[4]/div[2] (c-bio__row--3col > c-bio__field[2])
+    /// - weight: .../div[4]/div[3] (c-bio__row--3col > c-bio__field[3])
+    /// - nationality: .../div[2]/div/div[2] (Place of Birth in c-bio__row--1col)
     private func parseBio(from document: Document) -> (nationality: String, age: String, height: String, weight: String) {
         var nationality = "TBD"
         var age = "TBD"
@@ -50,48 +57,39 @@ final class UFC: MMADataProvider {
 
         let wrap = try? document.select("div.faq-athlete__wrap").first()
         let scope = wrap ?? document
-        let sourceName = wrap != nil ? "faq-athlete__wrap" : "document (fallback)"
-        print("[parseBio] Using scope: \(sourceName)")
+        let infoDetails = try? scope.select("div.c-bio__info-details").first()
+        print("[parseBio] Using scope: faq-athlete__wrap > c-bio__info-details")
 
-        let labels = try? scope.select("div.c-bio__label")
-        let texts = try? scope.select("div.c-bio__text")
-        guard let labelArray = labels?.array(), let textArray = texts?.array(), labelArray.count == textArray.count else {
-            print("[parseBio] c-bio__label/text mismatch or missing; trying field--name-age for age")
-            if let ageField = try? document.select("div.field--name-age").first() {
-                age = (try? ageField.text()) ?? "TBD"
-                print("[parseBio] age from field--name-age: \(age)")
+        // Age, height, weight from div[4]/div[1], div[4]/div[2], div[4]/div[3] (first c-bio__row--3col)
+        if let row3col = infoDetails?.select("div.c-bio__row--3col").first() {
+            let fields = row3col.select("div.c-bio__field").array()
+            if fields.count >= 3 {
+                // div[1] = Age (value in field--name-age inside c-bio__text)
+                if let ageField = (try? fields[0].select("div.field--name-age").first()) ?? (try? fields[0].select("div.c-bio__text").first()) {
+                    age = (try? ageField.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "TBD"
+                    print("[parseBio] age from div[4]/div[1] (c-bio__row--3col > field[1]): \(age)")
+                }
+                // div[2] = Height
+                if let heightEl = try? fields[1].select("div.c-bio__text").first() {
+                    height = (try? heightEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "TBD"
+                    print("[parseBio] height from div[4]/div[2] (c-bio__row--3col > field[2]): \(height)")
+                }
+                // div[3] = Weight
+                if let weightEl = try? fields[2].select("div.c-bio__text").first() {
+                    weight = (try? weightEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "TBD"
+                    print("[parseBio] weight from div[4]/div[3] (c-bio__row--3col > field[3]): \(weight)")
+                }
             }
-            return (nationality, age, height, weight)
         }
 
-        for (labelEl, textEl) in zip(labelArray, textArray) {
-            guard let label = try? labelEl.text() else { continue }
-            let text: String
-            switch label {
-            case "Age":
-                if let ageField = try? textEl.select("div.field--name-age").first() {
-                    text = (try? ageField.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-                    print("[parseBio] age from c-bio__text > field--name-age: \(text)")
-                } else {
-                    text = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-                    print("[parseBio] age from c-bio__text: \(text)")
+        // Nationality from div[2]/div/div[2] (Place of Birth in c-bio__row--1col)
+        for row in infoDetails?.select("div.c-bio__row--1col").array() ?? [] {
+            if let label = try? row.select("div.c-bio__label").first()?.text(), label == "Place of Birth" {
+                if let textEl = try? row.select("div.c-bio__text").first() {
+                    nationality = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "TBD"
+                    print("[parseBio] nationality from div[2]/div/div[2] (Place of Birth): \(nationality)")
                 }
-            case "Height":
-                text = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-                if !text.isEmpty { print("[parseBio] height from c-bio__text: \(text)") }
-            case "Weight":
-                text = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-                if !text.isEmpty { print("[parseBio] weight from c-bio__text: \(text)") }
-            default:
-                text = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-            }
-            guard !text.isEmpty else { continue }
-            switch label {
-            case "Place of Birth": nationality = text; print("[parseBio] nationality from c-bio__text: \(text)")
-            case "Age": age = text
-            case "Height": height = text
-            case "Weight": weight = text
-            default: break
+                break
             }
         }
 
@@ -100,6 +98,16 @@ final class UFC: MMADataProvider {
             print("[parseBio] age fallback from field--name-age: \(age)")
         }
         return (nationality, age, height, weight)
+    }
+
+    /// Record W-L-D from hero section (XPath: .../div[1]/div[2]/p[2] = p.hero-profile__division-body)
+    private func parseRecordWLD(from document: Document) -> String? {
+        guard let el = try? document.select("p.hero-profile__division-body").first() else { return nil }
+        let text = (try? el.text())?.trimmingCharacters(in: .whitespacesAndNewlines)
+        if let text = text, !text.isEmpty {
+            print("[parseBio] record W-L-D from hero-profile__division-body: \(text)")
+        }
+        return text
     }
 
     private func parseFightRecords(from document: Document, athleteName: String) throws -> [Record] {
