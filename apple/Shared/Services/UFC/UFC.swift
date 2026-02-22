@@ -28,18 +28,15 @@ final class UFC: MMADataProvider {
 
         let (nationality, age, height, weight) = parseBio(from: document)
         let records = try parseFightRecords(from: document, athleteName: fighter.name)
-        let recordWLD = parseRecordWLD(from: document)
 
         let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: fighter.link.absoluteString)
         let timeCached: String? = try LocalStorage.getTimeCached(fileName: fighter.link.absoluteString)
-        print("records \(records)")
         let data = FighterRecord(
             name: fighter.name,
             nationality: nationality,
             age: age,
             height: height,
             weight: weight,
-            recordWLD: recordWLD,
             fights: records.sorted { $0.date > $1.date }
         )
         return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
@@ -124,16 +121,6 @@ final class UFC: MMADataProvider {
     private func extractCountry(from placeOfBirth: String) -> String {
         let parts = placeOfBirth.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
         return parts.last ?? placeOfBirth
-    }
-
-    /// Record W-L-D from hero section (XPath: .../div[1]/div[2]/p[2] = p.hero-profile__division-body)
-    private func parseRecordWLD(from document: Document) -> String? {
-        guard let el = try? document.select("p.hero-profile__division-body").first() else { return nil }
-        let text = (try? el.text())?.trimmingCharacters(in: .whitespacesAndNewlines)
-        if let text = text, !text.isEmpty {
-            print("[parseBio] record W-L-D from hero-profile__division-body: \(text)")
-        }
-        return text
     }
 
     private func parseFightRecords(from document: Document, athleteName: String) throws -> [Record] {
