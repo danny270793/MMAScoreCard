@@ -33,6 +33,10 @@ final class Mock: MMADataProvider {
             age: "28",
             height: "5'10\"",
             weight: "170 lbs",
+            wins: 2,
+            losses: 1,
+            draws: 0,
+            noContests: 0,
             fights: records
         )
         return MMADataProviderResponse(cachedAt: Date(), timeCached: "Mock", data: record)
