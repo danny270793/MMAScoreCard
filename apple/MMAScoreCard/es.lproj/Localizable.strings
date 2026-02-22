@@ -19,6 +19,7 @@
 "nav.statistics" = "Estadísticas";
 "nav.career" = "Carrera";
 "nav.about" = "Acerca de";
+"nav.cache" = "Caché";
 "nav.settings" = "Configuración";
 
 /* Events List */
@@ -169,6 +170,11 @@
 "auth.error" = "Error de Autenticación";
 
 /* Cache */
+"cache.title" = "URLs en Caché";
+"cache.empty_title" = "Sin URLs en Caché";
+"cache.empty_description" = "El contenido en caché aparecerá aquí después de navegar eventos y peleadores.";
+"cache.section_header" = "URLs en Caché";
+"cache.access_count" = "%d accesos";
 "cache.last_updated" = "Última Actualización";
 "cache.expires_at" = "Expira El";
 "cache.never" = "Nunca";
