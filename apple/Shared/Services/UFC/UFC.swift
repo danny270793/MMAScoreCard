@@ -50,19 +50,44 @@ final class UFC: MMADataProvider {
 
         let wrap = try? document.select("div.faq-athlete__wrap").first()
         let scope = wrap ?? document
+        let sourceName = wrap != nil ? "faq-athlete__wrap" : "document (fallback)"
+        print("[parseBio] Using scope: \(sourceName)")
+
         let labels = try? scope.select("div.c-bio__label")
         let texts = try? scope.select("div.c-bio__text")
         guard let labelArray = labels?.array(), let textArray = texts?.array(), labelArray.count == textArray.count else {
+            print("[parseBio] c-bio__label/text mismatch or missing; trying field--name-age for age")
             if let ageField = try? document.select("div.field--name-age").first() {
                 age = (try? ageField.text()) ?? "TBD"
+                print("[parseBio] age from field--name-age: \(age)")
             }
             return (nationality, age, height, weight)
         }
 
         for (labelEl, textEl) in zip(labelArray, textArray) {
-            guard let label = try? labelEl.text(), let text = try? textEl.text().trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty else { continue }
+            guard let label = try? labelEl.text() else { continue }
+            let text: String
             switch label {
-            case "Place of Birth": nationality = text
+            case "Age":
+                if let ageField = try? textEl.select("div.field--name-age").first() {
+                    text = (try? ageField.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+                    print("[parseBio] age from c-bio__text > field--name-age: \(text)")
+                } else {
+                    text = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+                    print("[parseBio] age from c-bio__text: \(text)")
+                }
+            case "Height":
+                text = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+                if !text.isEmpty { print("[parseBio] height from c-bio__text: \(text)") }
+            case "Weight":
+                text = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+                if !text.isEmpty { print("[parseBio] weight from c-bio__text: \(text)") }
+            default:
+                text = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            }
+            guard !text.isEmpty else { continue }
+            switch label {
+            case "Place of Birth": nationality = text; print("[parseBio] nationality from c-bio__text: \(text)")
             case "Age": age = text
             case "Height": height = text
             case "Weight": weight = text
@@ -71,7 +96,8 @@ final class UFC: MMADataProvider {
         }
 
         if age == "TBD", let ageField = try? scope.select("div.field--name-age").first() {
-            age = (try? ageField.text()) ?? "TBD"
+            age = (try? ageField.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "TBD"
+            print("[parseBio] age fallback from field--name-age: \(age)")
         }
         return (nationality, age, height, weight)
     }
