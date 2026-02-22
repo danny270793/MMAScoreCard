@@ -123,19 +123,23 @@ struct FighterDetails: View {
         }
     }
     
-    /// Height display: integer part (inches). "67.00" -> "67 in", "5'10\"" -> "70 in"
+    /// Height display: integer part (inches) / cm. "67.00" -> "67 in / 170 cm", "5'10\"" -> "70 in / 178 cm"
     private func heightDisplay(_ height: String) -> String {
+        let inchesValue: Int?
         if let inches = Double(height.split(separator: ",").first?.trimmingCharacters(in: .whitespaces) ?? height),
            inches > 0 {
-            return "\(Int(inches)) in"
+            inchesValue = Int(inches)
+        } else if height.contains("'"), let feet = Int(height.prefix(while: { $0.isNumber })),
+                  let inchRange = height.range(of: "'"),
+                  let inchStr = height[inchRange.upperBound...].split(separator: "\"").first,
+                  let inch = Int(inchStr.trimmingCharacters(in: .whitespaces)) {
+            inchesValue = feet * 12 + inch
+        } else {
+            inchesValue = nil
         }
-        if height.contains("'"), let feet = Int(height.prefix(while: { $0.isNumber })),
-           let inchRange = height.range(of: "'"),
-           let inchStr = height[inchRange.upperBound...].split(separator: "\"").first,
-           let inch = Int(inchStr.trimmingCharacters(in: .whitespaces)) {
-            return "\(feet * 12 + inch) in"
-        }
-        return height
+        guard let inVal = inchesValue else { return height }
+        let cm = Int(round(Double(inVal) * 2.54))
+        return "\(inVal) in / \(cm) cm"
     }
 
     @ViewBuilder
