@@ -13,15 +13,16 @@ class FighterRecord: Identifiable {
     var age: String
     var height: String
     var weight: String
-    
+    var recordWLD: String?
     var fights: [Record]
     
-    init(name: String, nationality: String, age: String, height: String, weight: String, fights: [Record]) {
+    init(name: String, nationality: String, age: String, height: String, weight: String, recordWLD: String? = nil, fights: [Record]) {
         self.name = name
         self.nationality = nationality
         self.age = age
         self.height = height
         self.weight = weight
+        self.recordWLD = recordWLD
         self.fights = fights
     }
 }
