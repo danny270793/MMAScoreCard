@@ -82,14 +82,14 @@ final class UFC: MMADataProvider {
             }
         }
 
-        // Nationality from div[2]/div/div[2] (Place of Birth). Search scope for label then sibling text.
+        // Nationality from div[2]/div/div[2] (Place of Birth / Ciudad natal). Search scope for label then sibling text.
+        let placeOfBirthLabels = ["Place of Birth", "Ciudad natal"]
         let labels = (try? scope.select("div.c-bio__label"))?.array() ?? []
         print("[parseBio] nationality: found \(labels.count) c-bio__label elements in scope")
         for (idx, labelEl) in labels.enumerated() {
-            let labelText = (try? labelEl.text()) ?? ""
-            print("labelText \(labelText)")
-            if labelText != "Place of Birth" { continue }
-            print("[parseBio] nationality: label[\(idx)] = \"Place of Birth\" at tagName=\(labelEl.tagName())")
+            let labelText = (try? labelEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            guard placeOfBirthLabels.contains(labelText) else { continue }
+            print("[parseBio] nationality: label[\(idx)] = \"\(labelText)\" at tagName=\(labelEl.tagName())")
             guard let field = labelEl.parent() else {
                 print("[parseBio] nationality: label has no parent, skipping")
                 continue
