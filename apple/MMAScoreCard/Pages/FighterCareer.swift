@@ -9,26 +9,16 @@ import SwiftUI
 
 struct FighterCareer: View {
     let fighter: Fighter
-    let fights: [Record]
+    let record: FighterRecord
     
-    private var wins: Int {
-        fights.filter { $0.status == .win }.count
-    }
-    
-    private var losses: Int {
-        fights.filter { $0.status == .loss }.count
-    }
-    
-    private var draws: Int {
-        fights.filter { $0.status == .draw }.count
-    }
-    
-    private var ncs: Int {
-        fights.filter { $0.status == .nc }.count
-    }
+    private var fights: [Record] { record.fights }
+    private var wins: Int { record.wins }
+    private var losses: Int { record.losses }
+    private var draws: Int { record.draws }
+    private var ncs: Int { record.noContests }
     
     private var totalFights: Int {
-        fights.count
+        wins + losses + draws + ncs
     }
     
     private var winRate: Double {
@@ -430,13 +420,10 @@ struct FighterCareer: View {
 // MARK: - No local components needed - using SharedComponents
 
 #Preview {
-    NavigationStack {
-        FighterCareer(
-            fighter: Fighter(name: "Merab Dvalishvili", image: URL(string: "https://www.sherdog.com/image_crop/44/44/_images/fighter/1648844898903_20220401042811_Merab_Dvalishvili_ff.JPG")!, link: URL(string: "https://www.sherdog.com/fighter/Islam-Makhachev-76836")!),
-            fights: [
-                
-            ]
-        )
+    let fighter = Fighter(name: "Merab Dvalishvili", image: URL(string: "https://www.sherdog.com/image_crop/44/44/_images/fighter/1648844898903_20220401042811_Merab_Dvalishvili_ff.JPG")!, link: URL(string: "https://www.sherdog.com/fighter/Islam-Makhachev-76836")!)
+    let record = FighterRecord(name: fighter.name, nationality: "Georgia", age: "33", height: "66", weight: "135", wins: 18, losses: 4, draws: 0, noContests: 0, fights: [])
+    return NavigationStack {
+        FighterCareer(fighter: fighter, record: record)
     }
 }
 
