@@ -87,6 +87,7 @@ final class UFC: MMADataProvider {
         print("[parseBio] nationality: found \(labels.count) c-bio__label elements in scope")
         for (idx, labelEl) in labels.enumerated() {
             let labelText = (try? labelEl.text()) ?? ""
+            print("labelText \(labelText)")
             if labelText != "Place of Birth" { continue }
             print("[parseBio] nationality: label[\(idx)] = \"Place of Birth\" at tagName=\(labelEl.tagName())")
             guard let field = labelEl.parent() else {
@@ -121,7 +122,7 @@ final class UFC: MMADataProvider {
     /// Extracts country from "City, Country" or "City, State, Country" format. Returns full string if no comma.
     private func extractCountry(from placeOfBirth: String) -> String {
         let parts = placeOfBirth.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
-        return parts.last.map(String.init) ?? placeOfBirth
+        return parts.last ?? placeOfBirth
     }
 
     /// Record W-L-D from hero section (XPath: .../div[1]/div[2]/p[2] = p.hero-profile__division-body)
