@@ -27,6 +27,7 @@ final class UFC: MMADataProvider {
         let document = try SwiftSoup.parse(html)
 
         let (nationality, age, height, weight) = parseBio(from: document)
+        let (wins, losses, draws) = parseWLD(from: document)
 
         let cachedAt: Date? = try LocalStorage.getCachedAt(fileName: fighter.link.absoluteString)
         let timeCached: String? = try LocalStorage.getTimeCached(fileName: fighter.link.absoluteString)
@@ -36,6 +37,10 @@ final class UFC: MMADataProvider {
             age: age,
             height: height,
             weight: weight,
+            wins: wins,
+            losses: losses,
+            draws: draws,
+            noContests: 0,
             fights: []
         )
         return MMADataProviderResponse(cachedAt: cachedAt, timeCached: timeCached, data: data)
@@ -122,8 +127,12 @@ final class UFC: MMADataProvider {
         return parts.last ?? placeOfBirth
     }
 
-    /// Parse "5-4-0 (W-L-D)" -> (wins: 5, losses: 4, draws: 0)
-    private func parseWLD(from text: String) -> (wins: Int, losses: Int, draws: Int) {
+    /// Parse "5-4-0 (W-L-D)" from p.hero-profile__division-body -> (wins: 5, losses: 4, draws: 0)
+    private func parseWLD(from document: Document) -> (wins: Int, losses: Int, draws: Int) {
+        guard let el = try? document.select("p.hero-profile__division-body").first(),
+              let text = try? el.text().trimmingCharacters(in: .whitespacesAndNewlines) else {
+            return (0, 0, 0)
+        }
         let pattern = #"(\d+)\s*-\s*(\d+)\s*-\s*(\d+)"#
         guard let regex = try? NSRegularExpression(pattern: pattern),
               let match = regex.firstMatch(in: text, range: NSRange(text.startIndex..., in: text)),
