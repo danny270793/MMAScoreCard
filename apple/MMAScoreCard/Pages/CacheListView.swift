@@ -56,29 +56,25 @@ private struct CacheRowView: View {
                 .font(.subheadline)
                 .lineLimit(2)
                 .textSelection(.enabled)
-
-            Label(
-                    item.cachedAt.formatted(.dateTime.day().month(.abbreviated).year().hour().minute()),
-                    systemImage: "clock"
-                )
-                
-                .font(.caption)
-                .foregroundStyle(.secondary)
             
             HStack(spacing: 12) {
-                Label(
-                    LocalStorage.minutesToText(minutes: Int(Date.now.timeIntervalSince(item.cachedAt) / 60)),
-                    systemImage: "clock"
-                ).font(.caption)
+                Text(
+                    item.cachedAt.formatted(.dateTime.day().month(.abbreviated).year().hour().minute()),
+                )
+                .font(.caption)
                 .foregroundStyle(.secondary)
-                
+
                 Text("•")
                     .foregroundStyle(.secondary)
-                
-                Text(String(format: String(localized: "cache.access_count"), item.accessCount))
+
+                Text(
+                    LocalStorage.minutesToText(minutes: Int(Date.now.timeIntervalSince(item.cachedAt) / 60)),
+                ).font(.caption)
+                .foregroundStyle(.secondary)
+            }
+            Text(String(format: String(localized: "cache.access_count"), item.accessCount))
                     .font(.caption)
                     .foregroundStyle(.secondary)
-            }
         }
         .padding(.vertical, 4)
     }
