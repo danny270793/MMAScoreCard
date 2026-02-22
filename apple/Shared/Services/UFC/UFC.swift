@@ -61,8 +61,8 @@ final class UFC: MMADataProvider {
         print("[parseBio] Using scope: faq-athlete__wrap > c-bio__info-details")
 
         // Age, height, weight from div[4]/div[1], div[4]/div[2], div[4]/div[3] (first c-bio__row--3col)
-        if let row3col = infoDetails?.select("div.c-bio__row--3col").first() {
-            let fields = row3col.select("div.c-bio__field").array()
+        if let row3col = (try? infoDetails?.select("div.c-bio__row--3col"))?.first() {
+            let fields = (try? row3col.select("div.c-bio__field"))?.array() ?? []
             if fields.count >= 3 {
                 // div[1] = Age (value in field--name-age inside c-bio__text)
                 if let ageField = (try? fields[0].select("div.field--name-age").first()) ?? (try? fields[0].select("div.c-bio__text").first()) {
@@ -83,7 +83,7 @@ final class UFC: MMADataProvider {
         }
 
         // Nationality from div[2]/div/div[2] (Place of Birth in c-bio__row--1col)
-        for row in infoDetails?.select("div.c-bio__row--1col").array() ?? [] {
+        for row in (try? infoDetails?.select("div.c-bio__row--1col"))?.array() ?? [] {
             if let label = try? row.select("div.c-bio__label").first()?.text(), label == "Place of Birth" {
                 if let textEl = try? row.select("div.c-bio__text").first() {
                     nationality = (try? textEl.text())?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "TBD"
