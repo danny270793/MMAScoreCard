@@ -59,21 +59,10 @@ struct FighterDetails: View {
         }
     }
     
-    private var wins: Int {
-        response?.data.fights.filter { $0.status == .win }.count ?? 0
-    }
-    
-    private var losses: Int {
-        response?.data.fights.filter { $0.status == .loss }.count ?? 0
-    }
-    
-    private var draws: Int {
-        response?.data.fights.filter { $0.status == .draw }.count ?? 0
-    }
-    
-    private var ncs: Int {
-        response?.data.fights.filter { $0.status == .nc }.count ?? 0
-    }
+    private var wins: Int { response?.data.wins ?? 0 }
+    private var losses: Int { response?.data.losses ?? 0 }
+    private var draws: Int { response?.data.draws ?? 0 }
+    private var ncs: Int { response?.data.noContests ?? 0 }
     
     var body: some View {
         listContent
@@ -184,8 +173,8 @@ struct FighterDetails: View {
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) {
-            if !filteredFights.isEmpty {
-                NavigationLink(destination: FighterCareer(fighter: figther, fights: response?.data.fights ?? [])) {
+            if let data = response?.data, data.wins + data.losses + data.draws + data.noContests > 0 {
+                NavigationLink(destination: FighterCareer(fighter: figther, record: data)) {
                     Label("Statistics", systemImage: "chart.xyaxis.line")
                 }
             }
