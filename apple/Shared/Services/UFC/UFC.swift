@@ -51,14 +51,28 @@ final class UFC: MMADataProvider {
                   let fighter2 = parseFighter(from: fightDiv, corner: "blue") else {
                 continue
             }
-            print("fighter1: \(fighter1.name), fighter2: \(fighter2.name)")
 
-            let (status1, status2) = parseOutcomes(from: fightDiv)
-            print("status1: \(status1), status2: \(status2)")
+            var (status1, status2) = parseOutcomes(from: fightDiv)
             let (division, titleFight) = parseDivision(from: fightDiv)
-            print("division: \(division), titleFight: \(titleFight)")
-            let (result, round, time, fightStatus) = parseResult(from: fightDiv)
-            print("result: \(result), round: \(round), time: \(time), fightStatus: \(fightStatus)")
+            var (result, round, time, fightStatus) = parseResult(from: fightDiv)
+
+            // Fallback: event page loads results via JS; fetch results news pages for live/recent events
+            if fightStatus == .pending {
+                let resultsFromNews = await fetchResultsFromNewsPages(eventHtml: html, forceRefresh: forceRefresh)
+                if let match = resultsFromNews.first(where: { matchesFight(winner: $0.winner, loser: $0.loser, fighter1: fighter1.name, fighter2: fighter2.name) }) {
+                    if nameMatches(match.winner, fighter1.name) {
+                        status1 = .win
+                        status2 = .loss
+                    } else {
+                        status1 = .loss
+                        status2 = .win
+                    }
+                    result = match.method
+                    round = match.round
+                    time = match.time
+                    fightStatus = .done
+                }
+            }
 
             let fight = Fight(
                 position: position,
@@ -150,6 +164,77 @@ final class UFC: MMADataProvider {
         let round = (try? fightDiv.select(".c-listing-fight__result-text.round").first()?.text()) ?? ""
         let time = (try? fightDiv.select(".c-listing-fight__result-text.time").first()?.text()) ?? ""
         return (method, round, time, .done)
+    }
+
+    /// Results news pages have "X defeated Y by Z" in raw HTML when event page loads results via JS
+    private func fetchResultsFromNewsPages(eventHtml: String, forceRefresh: Bool) async -> [(winner: String, loser: String, method: String, round: String, time: String)] {
+        guard let doc = try? SwiftSoup.parse(eventHtml),
+              let links = try? doc.select("a[href*='results-highlights']") else {
+            return []
+        }
+        var allResults: [(winner: String, loser: String, method: String, round: String, time: String)] = []
+        for link in links.array() {
+            guard let href = try? link.attr("href"), href.contains("/news/"),
+                  let url = URL(string: href.hasPrefix("http") ? href : "\(baseUrl)\(href)") else {
+                continue
+            }
+            let html: String
+            do {
+                html = try await Http.getIfNotExists(url: url.absoluteString, forceRefresh: forceRefresh)
+            } catch {
+                continue
+            }
+            allResults.append(contentsOf: parseResultsFromNewsHtml(html))
+        }
+        return allResults
+    }
+
+    private func parseResultsFromNewsHtml(_ html: String) -> [(winner: String, loser: String, method: String, round: String, time: String)] {
+        var results: [(winner: String, loser: String, method: String, round: String, time: String)] = []
+        // Format: "X defeated Y by Z" or "X defeated Y by Z at X:XX of Round N"
+        let pattern = #"<h3><strong>([^<]+) defeated ([^<]+) by ([^<]+)</strong></h3>"#
+        guard let regex = try? NSRegularExpression(pattern: pattern) else { return [] }
+        let range = NSRange(html.startIndex..., in: html)
+        regex.enumerateMatches(in: html, range: range) { match, _, _ in
+            guard let m = match, m.numberOfRanges >= 4,
+                  let winnerRange = Range(m.range(at: 1), in: html),
+                  let loserRange = Range(m.range(at: 2), in: html),
+                  let methodRange = Range(m.range(at: 3), in: html) else { return }
+            var winner = String(html[winnerRange]).trimmingCharacters(in: .whitespacesAndNewlines)
+            var loser = String(html[loserRange]).trimmingCharacters(in: .whitespacesAndNewlines)
+            if let p = winner.range(of: " (", options: .literal) { winner = String(winner[..<p.lowerBound]).trimmingCharacters(in: .whitespaces) }
+            if let p = loser.range(of: " (", options: .literal) { loser = String(loser[..<p.lowerBound]).trimmingCharacters(in: .whitespaces) }
+            var method = String(html[methodRange]).trimmingCharacters(in: .whitespacesAndNewlines)
+            var round = ""
+            var time = ""
+            // Parse "submission (rear-naked choke) at 2:24 of Round 2" -> method, time, round
+            if let atRange = method.range(of: " at ", options: .caseInsensitive),
+               let ofRange = method.range(of: " of Round ", options: .caseInsensitive) {
+                time = String(method[atRange.upperBound..<ofRange.lowerBound]).trimmingCharacters(in: .whitespaces)
+                let afterRound = method[ofRange.upperBound...]
+                round = String(afterRound.split(separator: " ").first ?? "").trimmingCharacters(in: .whitespaces)
+                method = String(method[..<atRange.lowerBound]).trimmingCharacters(in: .whitespaces)
+            } else if method.lowercased().contains("decision") {
+                round = "3"
+                time = "5:00"
+            }
+            results.append((winner: winner, loser: loser, method: method, round: round, time: time))
+        }
+        return results
+    }
+
+    private func matchesFight(winner: String, loser: String, fighter1: String, fighter2: String) -> Bool {
+        (nameMatches(winner, fighter1) && nameMatches(loser, fighter2)) || (nameMatches(winner, fighter2) && nameMatches(loser, fighter1))
+    }
+
+    private func nameMatches(_ newsName: String, _ fighterName: String) -> Bool {
+        let n = newsName.lowercased()
+        let f = fighterName.lowercased()
+        if n.contains(f) || f.contains(n) { return true }
+        if let lastName = fighterName.split(separator: " ").last.map(String.init)?.lowercased() {
+            return n.contains(lastName)
+        }
+        return false
     }
 
     func loadEvents(forceRefresh: Bool) async throws -> MMADataProviderResponse<[Event]> {
