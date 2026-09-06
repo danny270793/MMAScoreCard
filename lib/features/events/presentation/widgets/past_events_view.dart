@@ -3,10 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../application/past_events_controller.dart';
+import 'event_search_utils.dart';
 import 'month_section.dart';
 
 class PastEventsView extends ConsumerStatefulWidget {
-  const PastEventsView({super.key});
+  const PastEventsView({super.key, this.query = ''});
+
+  final String query;
 
   @override
   ConsumerState<PastEventsView> createState() => _PastEventsViewState();
@@ -69,11 +72,18 @@ class _PastEventsViewState extends ConsumerState<PastEventsView> {
       return Center(child: Text(loc.noPastEvents));
     }
 
+    final matches = filterEvents(state.events, widget.query);
+    if (matches.isEmpty) {
+      return Center(child: Text(loc.searchNoResults));
+    }
+
     final groups = groupEventsByMonth(
-      state.events,
+      matches,
       Localizations.localeOf(context).toString(),
     );
 
+    // Filtered pages can be short enough not to fill the viewport, so keep
+    // the "load more" row visible to reach older matches.
     return RefreshIndicator(
       onRefresh: () =>
           ref.read(pastEventsControllerProvider.notifier).refresh(),
