@@ -300,6 +300,13 @@ class AppLocalizationsEs extends AppLocalizations {
       'MMAScoreCard se ofrece tal cual, para uso personal y no comercial. El uso continuado de la app implica la aceptación de estos términos; si no estás de acuerdo, deja de usar la app.';
 
   @override
+  String get termsAccountTitle => 'Cuenta opcional';
+
+  @override
+  String get termsAccountBody =>
+      'Puedes usar la app sin iniciar sesión. Si creas una cuenta, el acceso lo gestiona Supabase. Hoy no subimos contenido generado por la app, como favoritos. Versiones posteriores podrán guardar ese tipo de datos en Supabase cuando hayas iniciado sesión, para sincronizarlos entre tus dispositivos.';
+
+  @override
   String get termsDisclaimerTitle => 'Sin afiliación con la UFC';
 
   @override
@@ -332,21 +339,21 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get privacyTagline =>
-      'Sin rastreo. Los datos de eventos se quedan en tu dispositivo.';
+      'El inicio de sesión es opcional. La caché de eventos se queda en este dispositivo.';
 
   @override
-  String get privacyDataTitle => 'Qué recopilamos';
+  String get privacyDataTitle => 'Cuenta (opcional)';
 
   @override
   String get privacyDataBody =>
-      'MMAScoreCard no requiere una cuenta. Si inicias sesión, nuestro proveedor de autenticación procesa tu correo y credenciales; la app no almacena contraseñas.';
+      'Puedes usar MMAScoreCard sin cuenta. Si inicias sesión, la autenticación la proporciona Supabase. Tu correo y credenciales los procesa Supabase; esta app no guarda tu contraseña.';
 
   @override
-  String get privacyInfraTitle => 'De dónde vienen los datos de los eventos';
+  String get privacyInfraTitle => 'Qué guardamos hoy — y más adelante';
 
   @override
   String get privacyInfraBody =>
-      'La app obtiene listados de eventos públicos de una fuente externa por HTTPS y guarda esos datos en caché localmente en tu dispositivo (en el almacenamiento de la app) únicamente para evitar volver a descargarlos - esta caché nunca se sube a ningún lugar y puede borrarse al borrar el almacenamiento de la app. Tus preferencias de tema e idioma también se guardan solo en tu dispositivo.';
+      'Los listados públicos de eventos se obtienen de una fuente externa por HTTPS y se guardan en caché solo en este dispositivo para no volver a descargarlos cada vez. Tema e idioma se quedan en el dispositivo. Hoy no subimos datos generados por la app, como favoritos. En el futuro, si has iniciado sesión, podremos guardar ese tipo de información en Supabase para sincronizarla entre tus dispositivos. Puedes borrar la caché local de eventos al borrar el almacenamiento de la app.';
 
   @override
   String get privacySharingTitle => 'Solicitudes a terceros';
@@ -474,4 +481,82 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get fighterDetailEmpty => 'Todavía no hay historial de combates.';
+
+  @override
+  String get fighterDetailAmateurLabel => 'Amateur';
+
+  @override
+  String get fighterDetailStreaksLabel => 'Rachas';
+
+  @override
+  String get fighterDetailCurrentStreakLabel => 'Actual';
+
+  @override
+  String get fighterDetailBestStreakLabel => 'Mejor';
+
+  @override
+  String get fighterDetailWorstStreakLabel => 'Peor';
+
+  @override
+  String get fighterDetailOctagonTimeLabel => 'Tiempo en el octágono';
+
+  @override
+  String streakWins(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count victorias',
+      one: '1 victoria',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String streakLosses(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count derrotas',
+      one: '1 derrota',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String streakDraws(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count empates',
+      one: '1 empate',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String streakNoContests(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sin decisión',
+      one: '1 sin decisión',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get streakNone => 'Ninguna';
+
+  @override
+  String durationHoursMinutes(int hours, int minutes) {
+    return '$hours h $minutes min';
+  }
+
+  @override
+  String durationMinutesSeconds(int minutes, int seconds) {
+    return '$minutes min $seconds s';
+  }
+
+  @override
+  String get fightDetailOctagonTimeLabel => 'Tiempo en el octágono';
 }
