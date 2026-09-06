@@ -1,5 +1,25 @@
 enum FightOutcome { win, loss, draw, noContest, pending }
 
+const _roundLength = Duration(minutes: 5);
+
+/// Time spent in the cage: every round before the last one is a full five
+/// minutes, plus the time elapsed in the round the fight ended in. A decision
+/// after five rounds is 25:00; a stoppage at 3:45 of round two is 8:45.
+///
+/// Returns null when the bout has no result yet or the source data is not in
+/// the expected "round" / "m:ss" shape.
+Duration? octagonTimeOf({String? round, String? time}) {
+  final lastRound = int.tryParse(round?.trim() ?? '');
+  if (lastRound == null || lastRound < 1) return null;
+  final parts = (time?.trim() ?? '').split(':');
+  if (parts.length != 2) return null;
+  final minutes = int.tryParse(parts[0]);
+  final seconds = int.tryParse(parts[1]);
+  if (minutes == null || seconds == null) return null;
+  return _roundLength * (lastRound - 1) +
+      Duration(minutes: minutes, seconds: seconds);
+}
+
 /// A single bout on an event's fight card, ordered main event first.
 class EventFight {
   final String fighterA;
