@@ -116,6 +116,8 @@
   "termsTagline": "Please read before using the app.",
   "termsAcceptanceTitle": "Acceptance of terms",
   "termsAcceptanceBody": "MMAScoreCard is provided as-is, for personal, non-commercial use. Continued use of the app constitutes acceptance of these terms; if you disagree with them, please stop using the app.",
+  "termsAccountTitle": "Optional account",
+  "termsAccountBody": "You can use the app without signing in. If you create an account, sign-in is handled by Supabase. Today we do not upload app-generated content such as favorites. Later versions may store that kind of data in Supabase when you are signed in so it can sync across your devices.",
   "termsDisclaimerTitle": "Not affiliated with the UFC",
   "termsDisclaimerBody": "This app is not affiliated with, endorsed by, or sponsored by the UFC, or any fighter or promotion mentioned.",
   "termsLiabilityTitle": "No warranty",
@@ -126,11 +128,11 @@
   "termsNoticeBody": "These terms may be updated as the app changes. Continued use of the app after changes means you accept the updated terms.",
 
   "privacyTitle": "Privacy Policy",
-  "privacyTagline": "No tracking. Event data stays on your device.",
-  "privacyDataTitle": "What we collect",
-  "privacyDataBody": "MMAScoreCard does not require an account. If you sign in, your email and authentication credentials are processed by our authentication provider; passwords are not stored by the app.",
-  "privacyInfraTitle": "Where event data comes from",
-  "privacyInfraBody": "The app fetches publicly available event listings from a third-party source over HTTPS and caches that data locally on your device (in app storage) purely to avoid re-downloading it - this cache is never uploaded anywhere and can be cleared by clearing the app's storage. Your theme and language preferences are also stored only on your device.",
+  "privacyTagline": "Sign-in is optional. Event cache stays on this device.",
+  "privacyDataTitle": "Account (optional)",
+  "privacyDataBody": "You can use MMAScoreCard without an account. If you sign in, authentication is provided by Supabase. Your email and credentials are processed by Supabase; this app does not store your password.",
+  "privacyInfraTitle": "What we store today — and later",
+  "privacyInfraBody": "Public event listings are fetched from a third-party source over HTTPS and cached only on this device so the app does not re-download them every time. Theme and language stay on the device. We do not currently upload app-generated data such as favorites. In the future, if you are signed in, we may store that kind of information in Supabase so it can sync across your devices. You can clear the local event cache by clearing the app's storage.",
   "privacySharingTitle": "Third-party requests",
   "privacySharingBody": "Because event data is requested directly from that source, your device's network request (e.g. IP address) is visible to it per its own privacy practices, which this app does not control.",
   "privacyNoticeTitle": "Changes to this policy",
@@ -174,5 +176,43 @@
   "fighterDetailLossesLabel": "Losses",
   "fighterDetailFightHistoryLabel": "Fight History",
   "fighterDetailLoadError": "Could not load this fighter's profile.",
-  "fighterDetailEmpty": "No fight history available yet."
+  "fighterDetailEmpty": "No fight history available yet.",
+  "fighterDetailAmateurLabel": "Amateur",
+  "fighterDetailStreaksLabel": "Streaks",
+  "fighterDetailCurrentStreakLabel": "Current",
+  "fighterDetailBestStreakLabel": "Best",
+  "fighterDetailWorstStreakLabel": "Worst",
+  "fighterDetailOctagonTimeLabel": "Time in octagon",
+  "streakWins": "{count, plural, =1{1 win} other{{count} wins}}",
+  "@streakWins": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "streakLosses": "{count, plural, =1{1 loss} other{{count} losses}}",
+  "@streakLosses": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "streakDraws": "{count, plural, =1{1 draw} other{{count} draws}}",
+  "@streakDraws": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "streakNoContests": "{count, plural, =1{1 no contest} other{{count} no contests}}",
+  "@streakNoContests": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "streakNone": "None",
+  "durationHoursMinutes": "{hours}h {minutes}m",
+  "@durationHoursMinutes": {
+    "placeholders": {
+      "hours": { "type": "int" },
+      "minutes": { "type": "int" }
+    }
+  },
+  "durationMinutesSeconds": "{minutes}m {seconds}s",
+  "@durationMinutesSeconds": {
+    "placeholders": {
+      "minutes": { "type": "int" },
+      "seconds": { "type": "int" }
+    }
+  },
+  "fightDetailOctagonTimeLabel": "Octagon time"
 }
