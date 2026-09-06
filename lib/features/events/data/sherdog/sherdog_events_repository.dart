@@ -145,23 +145,53 @@ class SherdogEventsRepository implements MmaEventsRepository {
       losses: int.tryParse(lossesCountText ?? '') ?? 0,
       winsBreakdown: _parseRecordBreakdown(document, '.wins'),
       lossesBreakdown: _parseRecordBreakdown(document, '.loses'),
-      fightHistory:
-          (document
-                  .querySelectorAll('table.new_table.fighter tr')
-                  .where((tr) => !tr.classes.contains('table_head'))
-                  .map(_parseFightHistoryRow)
-                  .whereType<FighterFightRecord>()
-                  .toList()
-                ..sort((a, b) {
-                  final dateA = _parseHistoryDate(a.eventDateText);
-                  final dateB = _parseHistoryDate(b.eventDateText);
-                  if (dateA == null && dateB == null) return 0;
-                  if (dateA == null) return 1;
-                  if (dateB == null) return -1;
-                  return dateB.compareTo(dateA);
-                }))
-              .toList(),
+      fightHistory: _parseFightHistory(document),
     );
+  }
+
+  /// Sherdog keeps professional and amateur bouts in separate tables under
+  /// their own "Fight History" headings, so each table is read on its own to
+  /// keep track of which side of the record its rows belong to.
+  List<FighterFightRecord> _parseFightHistory(Document document) {
+    final history = <FighterFightRecord>[];
+    for (final table in document.querySelectorAll('table.new_table.fighter')) {
+      final isAmateur = _isAmateurHistoryTable(table);
+      for (final row in table.querySelectorAll('tr')) {
+        if (row.classes.contains('table_head')) continue;
+        final record = _parseFightHistoryRow(row, isAmateur: isAmateur);
+        if (record != null) history.add(record);
+      }
+    }
+    history.sort((a, b) {
+      final dateA = _parseHistoryDate(a.eventDateText);
+      final dateB = _parseHistoryDate(b.eventDateText);
+      if (dateA == null && dateB == null) return 0;
+      if (dateA == null) return 1;
+      if (dateB == null) return -1;
+      return dateB.compareTo(dateA);
+    });
+    return history;
+  }
+
+  /// The heading ("Fight History - Amateur") sits in a sibling above the
+  /// table, so walk backwards - and up - until one turns up.
+  bool _isAmateurHistoryTable(Element table) {
+    for (Element? node = table; node != null; node = node.parent) {
+      for (
+        var sibling = node.previousElementSibling;
+        sibling != null;
+        sibling = sibling.previousElementSibling
+      ) {
+        final heading = sibling.localName == 'h2'
+            ? sibling
+            : sibling.querySelector('h2') ??
+                  (sibling.classes.contains('module_header') ? sibling : null);
+        final text = heading?.text.trim().toLowerCase();
+        if (text == null || !text.contains('fight history')) continue;
+        return text.contains('amateur');
+      }
+    }
+    return false;
   }
 
   /// Cells like `<b itemprop="height">5'7"</b> <em>/</em> 170.18 cm` already
@@ -230,7 +260,10 @@ class SherdogEventsRepository implements MmaEventsRepository {
     );
   }
 
-  FighterFightRecord? _parseFightHistoryRow(Element row) {
+  FighterFightRecord? _parseFightHistoryRow(
+    Element row, {
+    required bool isAmateur,
+  }) {
     final cells = row.querySelectorAll('td');
     if (cells.length < 4) return null;
 
@@ -253,6 +286,7 @@ class SherdogEventsRepository implements MmaEventsRepository {
       referee: winby.querySelector('.sub_line')?.text.trim(),
       round: cells.length > 4 ? cells[4].text.trim() : null,
       time: cells.length > 5 ? cells[5].text.trim() : null,
+      isAmateur: isAmateur,
     );
   }
 
