@@ -632,6 +632,18 @@ abstract class AppLocalizations {
   /// **'MMAScoreCard is provided as-is, for personal, non-commercial use. Continued use of the app constitutes acceptance of these terms; if you disagree with them, please stop using the app.'**
   String get termsAcceptanceBody;
 
+  /// No description provided for @termsAccountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional account'**
+  String get termsAccountTitle;
+
+  /// No description provided for @termsAccountBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You can use the app without signing in. If you create an account, sign-in is handled by Supabase. Today we do not upload app-generated content such as favorites. Later versions may store that kind of data in Supabase when you are signed in so it can sync across your devices.'**
+  String get termsAccountBody;
+
   /// No description provided for @termsDisclaimerTitle.
   ///
   /// In en, this message translates to:
@@ -689,31 +701,31 @@ abstract class AppLocalizations {
   /// No description provided for @privacyTagline.
   ///
   /// In en, this message translates to:
-  /// **'No tracking. Event data stays on your device.'**
+  /// **'Sign-in is optional. Event cache stays on this device.'**
   String get privacyTagline;
 
   /// No description provided for @privacyDataTitle.
   ///
   /// In en, this message translates to:
-  /// **'What we collect'**
+  /// **'Account (optional)'**
   String get privacyDataTitle;
 
   /// No description provided for @privacyDataBody.
   ///
   /// In en, this message translates to:
-  /// **'MMAScoreCard does not require an account. If you sign in, your email and authentication credentials are processed by our authentication provider; passwords are not stored by the app.'**
+  /// **'You can use MMAScoreCard without an account. If you sign in, authentication is provided by Supabase. Your email and credentials are processed by Supabase; this app does not store your password.'**
   String get privacyDataBody;
 
   /// No description provided for @privacyInfraTitle.
   ///
   /// In en, this message translates to:
-  /// **'Where event data comes from'**
+  /// **'What we store today — and later'**
   String get privacyInfraTitle;
 
   /// No description provided for @privacyInfraBody.
   ///
   /// In en, this message translates to:
-  /// **'The app fetches publicly available event listings from a third-party source over HTTPS and caches that data locally on your device (in app storage) purely to avoid re-downloading it - this cache is never uploaded anywhere and can be cleared by clearing the app\'s storage. Your theme and language preferences are also stored only on your device.'**
+  /// **'Public event listings are fetched from a third-party source over HTTPS and cached only on this device so the app does not re-download them every time. Theme and language stay on the device. We do not currently upload app-generated data such as favorites. In the future, if you are signed in, we may store that kind of information in Supabase so it can sync across your devices. You can clear the local event cache by clearing the app\'s storage.'**
   String get privacyInfraBody;
 
   /// No description provided for @privacySharingTitle.
@@ -961,6 +973,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No fight history available yet.'**
   String get fighterDetailEmpty;
+
+  /// No description provided for @fighterDetailAmateurLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Amateur'**
+  String get fighterDetailAmateurLabel;
+
+  /// No description provided for @fighterDetailStreaksLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Streaks'**
+  String get fighterDetailStreaksLabel;
+
+  /// No description provided for @fighterDetailCurrentStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get fighterDetailCurrentStreakLabel;
+
+  /// No description provided for @fighterDetailBestStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Best'**
+  String get fighterDetailBestStreakLabel;
+
+  /// No description provided for @fighterDetailWorstStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Worst'**
+  String get fighterDetailWorstStreakLabel;
+
+  /// No description provided for @fighterDetailOctagonTimeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Time in octagon'**
+  String get fighterDetailOctagonTimeLabel;
+
+  /// No description provided for @streakWins.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 win} other{{count} wins}}'**
+  String streakWins(int count);
+
+  /// No description provided for @streakLosses.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 loss} other{{count} losses}}'**
+  String streakLosses(int count);
+
+  /// No description provided for @streakDraws.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 draw} other{{count} draws}}'**
+  String streakDraws(int count);
+
+  /// No description provided for @streakNoContests.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 no contest} other{{count} no contests}}'**
+  String streakNoContests(int count);
+
+  /// No description provided for @streakNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get streakNone;
+
+  /// No description provided for @durationHoursMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours}h {minutes}m'**
+  String durationHoursMinutes(int hours, int minutes);
+
+  /// No description provided for @durationMinutesSeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes}m {seconds}s'**
+  String durationMinutesSeconds(int minutes, int seconds);
+
+  /// No description provided for @fightDetailOctagonTimeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Octagon time'**
+  String get fightDetailOctagonTimeLabel;
 }
 
 class _AppLocalizationsDelegate
