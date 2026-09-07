@@ -173,25 +173,20 @@ class SherdogEventsRepository implements MmaEventsRepository {
     return history;
   }
 
-  /// The heading ("Fight History - Amateur") sits in a sibling above the
-  /// table, so walk backwards - and up - until one turns up.
+  /// Sherdog puts the "Fight History - Amateur" title in `.slanted_title`
+  /// inside the same `<section>` as the table, not as an `h2` sibling.
   bool _isAmateurHistoryTable(Element table) {
-    for (Element? node = table; node != null; node = node.parent) {
-      for (
-        var sibling = node.previousElementSibling;
-        sibling != null;
-        sibling = sibling.previousElementSibling
-      ) {
-        final heading = sibling.localName == 'h2'
-            ? sibling
-            : sibling.querySelector('h2') ??
-                  (sibling.classes.contains('module_header') ? sibling : null);
-        final text = heading?.text.trim().toLowerCase();
-        if (text == null || !text.contains('fight history')) continue;
-        return text.contains('amateur');
-      }
+    Element? section = table;
+    while (section != null && section.localName != 'section') {
+      section = section.parent;
     }
-    return false;
+    final scope = section ?? table.parent ?? table;
+    final title =
+        scope.querySelector('.slanted_title') ??
+        scope.querySelector('h2') ??
+        scope.querySelector('.module_header');
+    final text = (title ?? scope).text.trim().toLowerCase();
+    return text.contains('fight history') && text.contains('amateur');
   }
 
   /// Cells like `<b itemprop="height">5'7"</b> <em>/</em> 170.18 cm` already

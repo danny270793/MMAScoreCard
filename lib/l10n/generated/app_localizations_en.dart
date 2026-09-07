@@ -280,10 +280,25 @@ class AppLocalizationsEn extends AppLocalizations {
       'An account is optional. Event data is fetched from a third-party source and cached on this device to reduce network use.';
 
   @override
-  String get contactLabel => 'Contact';
+  String get contactLabel => 'Developer';
 
   @override
-  String get contactEmail => 'support@example.com';
+  String get developerName => 'Danny Vaca';
+
+  @override
+  String get developerEmail => 'danny270793@icloud.com';
+
+  @override
+  String get developerGithub => 'GitHub';
+
+  @override
+  String get developerWebsite => 'Website';
+
+  @override
+  String get developerYoutube => 'YouTube';
+
+  @override
+  String get developerLinkedin => 'LinkedIn';
 
   @override
   String get termsTitle => 'Terms & Conditions';

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/app_info/package_info_provider.dart';
 import '../../../../core/widgets/max_width_body.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../widgets/developer_info_section.dart';
 import '../widgets/legal_section.dart';
 
 class AboutPage extends ConsumerWidget {
@@ -70,14 +71,13 @@ class AboutPage extends ConsumerWidget {
                 body: loc.aboutDataBody,
               ),
               const SizedBox(height: 8),
-              Text(
-                loc.contactLabel,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+              DeveloperInfoSection(
+                heading: loc.contactLabel,
+                githubLabel: loc.developerGithub,
+                websiteLabel: loc.developerWebsite,
+                youtubeLabel: loc.developerYoutube,
+                linkedinLabel: loc.developerLinkedin,
               ),
-              const SizedBox(height: 4),
-              Text(loc.contactEmail, style: theme.textTheme.bodyLarge),
             ],
           ),
         ),

@@ -281,10 +281,25 @@ class AppLocalizationsEs extends AppLocalizations {
       'La cuenta es opcional. Los datos de los eventos se obtienen de una fuente externa y se guardan en caché en este dispositivo para reducir el uso de red.';
 
   @override
-  String get contactLabel => 'Contacto';
+  String get contactLabel => 'Desarrollador';
 
   @override
-  String get contactEmail => 'support@example.com';
+  String get developerName => 'Danny Vaca';
+
+  @override
+  String get developerEmail => 'danny270793@icloud.com';
+
+  @override
+  String get developerGithub => 'GitHub';
+
+  @override
+  String get developerWebsite => 'Sitio web';
+
+  @override
+  String get developerYoutube => 'YouTube';
+
+  @override
+  String get developerLinkedin => 'LinkedIn';
 
   @override
   String get termsTitle => 'Términos y condiciones';

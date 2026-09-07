@@ -599,14 +599,44 @@ abstract class AppLocalizations {
   /// No description provided for @contactLabel.
   ///
   /// In en, this message translates to:
-  /// **'Contact'**
+  /// **'Developer'**
   String get contactLabel;
 
-  /// No description provided for @contactEmail.
+  /// No description provided for @developerName.
   ///
   /// In en, this message translates to:
-  /// **'support@example.com'**
-  String get contactEmail;
+  /// **'Danny Vaca'**
+  String get developerName;
+
+  /// No description provided for @developerEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'danny270793@icloud.com'**
+  String get developerEmail;
+
+  /// No description provided for @developerGithub.
+  ///
+  /// In en, this message translates to:
+  /// **'GitHub'**
+  String get developerGithub;
+
+  /// No description provided for @developerWebsite.
+  ///
+  /// In en, this message translates to:
+  /// **'Website'**
+  String get developerWebsite;
+
+  /// No description provided for @developerYoutube.
+  ///
+  /// In en, this message translates to:
+  /// **'YouTube'**
+  String get developerYoutube;
+
+  /// No description provided for @developerLinkedin.
+  ///
+  /// In en, this message translates to:
+  /// **'LinkedIn'**
+  String get developerLinkedin;
 
   /// No description provided for @termsTitle.
   ///
