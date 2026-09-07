@@ -3,10 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../application/upcoming_events_controller.dart';
+import 'event_search_utils.dart';
 import 'month_section.dart';
 
 class UpcomingEventsView extends ConsumerWidget {
-  const UpcomingEventsView({super.key});
+  const UpcomingEventsView({super.key, this.query = ''});
+
+  final String query;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,8 +27,12 @@ class UpcomingEventsView extends ConsumerWidget {
         if (events.isEmpty) {
           return Center(child: Text(loc.noUpcomingEvents));
         }
+        final matches = filterEvents(events, query);
+        if (matches.isEmpty) {
+          return Center(child: Text(loc.searchNoResults));
+        }
         final groups = groupEventsByMonth(
-          events,
+          matches,
           Localizations.localeOf(context).toString(),
         );
         return RefreshIndicator(

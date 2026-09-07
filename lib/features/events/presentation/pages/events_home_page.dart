@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/widgets/max_width_body.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../settings/presentation/pages/settings_home_page.dart';
-import 'event_search_page.dart';
+import '../widgets/floating_search_field.dart';
 import '../widgets/past_events_view.dart';
 import '../widgets/upcoming_events_view.dart';
 
@@ -15,11 +15,23 @@ class EventsHomePage extends StatefulWidget {
 }
 
 class _EventsHomePageState extends State<EventsHomePage> {
+  final _searchController = TextEditingController();
   int _selectedIndex = 0;
+  bool _searching = false;
+  String _query = '';
 
-  void _openSearch() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (_) => const EventSearchPage()));
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _closeSearch() {
+    _searchController.clear();
+    setState(() {
+      _searching = false;
+      _query = '';
+    });
   }
 
   @override
@@ -45,7 +57,10 @@ class _EventsHomePageState extends State<EventsHomePage> {
       body: MaxWidthBody(
         child: IndexedStack(
           index: _selectedIndex,
-          children: const [UpcomingEventsView(), PastEventsView()],
+          children: [
+            UpcomingEventsView(query: _query),
+            PastEventsView(query: _query),
+          ],
         ),
       ),
       bottomNavigationBar: Padding(
@@ -56,49 +71,58 @@ class _EventsHomePageState extends State<EventsHomePage> {
             heightFactor: 1,
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: kMaxControlWidth),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Material(
-                      elevation: 3,
-                      color: colors.surfaceContainerHigh,
-                      borderRadius: BorderRadius.circular(28),
-                      child: Padding(
-                        padding: const EdgeInsets.all(4),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: _SegmentButton(
-                                label: loc.tabUpcoming,
-                                selected: _selectedIndex == 0,
-                                onTap: () => setState(() => _selectedIndex = 0),
+              child: _searching
+                  ? FloatingSearchField(
+                      controller: _searchController,
+                      hintText: loc.searchHint,
+                      onChanged: (value) => setState(() => _query = value),
+                      onClose: _closeSearch,
+                    )
+                  : Row(
+                      children: [
+                        Expanded(
+                          child: Material(
+                            elevation: 3,
+                            color: colors.surfaceContainerHigh,
+                            borderRadius: BorderRadius.circular(28),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: _SegmentButton(
+                                      label: loc.tabUpcoming,
+                                      selected: _selectedIndex == 0,
+                                      onTap: () =>
+                                          setState(() => _selectedIndex = 0),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: _SegmentButton(
+                                      label: loc.tabPast,
+                                      selected: _selectedIndex == 1,
+                                      onTap: () =>
+                                          setState(() => _selectedIndex = 1),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            Expanded(
-                              child: _SegmentButton(
-                                label: loc.tabPast,
-                                selected: _selectedIndex == 1,
-                                onTap: () => setState(() => _selectedIndex = 1),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
+                        const SizedBox(width: 12),
+                        Material(
+                          elevation: 3,
+                          color: colors.surfaceContainerHigh,
+                          shape: const CircleBorder(),
+                          child: IconButton(
+                            icon: const Icon(Icons.search),
+                            tooltip: loc.tabSearch,
+                            onPressed: () => setState(() => _searching = true),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  const SizedBox(width: 12),
-                  Material(
-                    elevation: 3,
-                    color: colors.surfaceContainerHigh,
-                    shape: const CircleBorder(),
-                    child: IconButton(
-                      icon: const Icon(Icons.search),
-                      tooltip: loc.tabSearch,
-                      onPressed: _openSearch,
-                    ),
-                  ),
-                ],
-              ),
             ),
           ),
         ),

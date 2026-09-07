@@ -91,13 +91,20 @@
   "aboutBulletFighters": "Consultar perfiles, récords e historial de combates de los peleadores",
   "aboutDataHeading": "Sobre tus datos",
   "aboutDataBody": "La cuenta es opcional. Los datos de los eventos se obtienen de una fuente externa y se guardan en caché en este dispositivo para reducir el uso de red.",
-  "contactLabel": "Contacto",
-  "contactEmail": "support@example.com",
+  "contactLabel": "Desarrollador",
+  "developerName": "Danny Vaca",
+  "developerEmail": "danny270793@icloud.com",
+  "developerGithub": "GitHub",
+  "developerWebsite": "Sitio web",
+  "developerYoutube": "YouTube",
+  "developerLinkedin": "LinkedIn",
 
   "termsTitle": "Términos y condiciones",
   "termsTagline": "Léelos antes de usar la app.",
   "termsAcceptanceTitle": "Aceptación de los términos",
   "termsAcceptanceBody": "MMAScoreCard se ofrece tal cual, para uso personal y no comercial. El uso continuado de la app implica la aceptación de estos términos; si no estás de acuerdo, deja de usar la app.",
+  "termsAccountTitle": "Cuenta opcional",
+  "termsAccountBody": "Puedes usar la app sin iniciar sesión. Si creas una cuenta, el acceso lo gestiona Supabase. Hoy no subimos contenido generado por la app, como favoritos. Versiones posteriores podrán guardar ese tipo de datos en Supabase cuando hayas iniciado sesión, para sincronizarlos entre tus dispositivos.",
   "termsDisclaimerTitle": "Sin afiliación con la UFC",
   "termsDisclaimerBody": "Esta app no está afiliada, respaldada ni patrocinada por la UFC, ni ningún luchador o promotora mencionados.",
   "termsLiabilityTitle": "Sin garantía",
@@ -108,11 +115,11 @@
   "termsNoticeBody": "Estos términos pueden actualizarse a medida que la app cambie. El uso continuado de la app después de esos cambios implica la aceptación de los términos actualizados.",
 
   "privacyTitle": "Política de privacidad",
-  "privacyTagline": "Sin rastreo. Los datos de eventos se quedan en tu dispositivo.",
-  "privacyDataTitle": "Qué recopilamos",
-  "privacyDataBody": "MMAScoreCard no requiere una cuenta. Si inicias sesión, nuestro proveedor de autenticación procesa tu correo y credenciales; la app no almacena contraseñas.",
-  "privacyInfraTitle": "De dónde vienen los datos de los eventos",
-  "privacyInfraBody": "La app obtiene listados de eventos públicos de una fuente externa por HTTPS y guarda esos datos en caché localmente en tu dispositivo (en el almacenamiento de la app) únicamente para evitar volver a descargarlos - esta caché nunca se sube a ningún lugar y puede borrarse al borrar el almacenamiento de la app. Tus preferencias de tema e idioma también se guardan solo en tu dispositivo.",
+  "privacyTagline": "El inicio de sesión es opcional. La caché de eventos se queda en este dispositivo.",
+  "privacyDataTitle": "Cuenta (opcional)",
+  "privacyDataBody": "Puedes usar MMAScoreCard sin cuenta. Si inicias sesión, la autenticación la proporciona Supabase. Tu correo y credenciales los procesa Supabase; esta app no guarda tu contraseña.",
+  "privacyInfraTitle": "Qué guardamos hoy — y más adelante",
+  "privacyInfraBody": "Los listados públicos de eventos se obtienen de una fuente externa por HTTPS y se guardan en caché solo en este dispositivo para no volver a descargarlos cada vez. Tema e idioma se quedan en el dispositivo. Hoy no subimos datos generados por la app, como favoritos. En el futuro, si has iniciado sesión, podremos guardar ese tipo de información en Supabase para sincronizarla entre tus dispositivos. Puedes borrar la caché local de eventos al borrar el almacenamiento de la app.",
   "privacySharingTitle": "Solicitudes a terceros",
   "privacySharingBody": "Como los datos se solicitan directamente a esa fuente, tu solicitud de red (por ejemplo, tu dirección IP) es visible para ella según sus propias prácticas de privacidad, que esta app no controla.",
   "privacyNoticeTitle": "Cambios en esta política",
@@ -156,5 +163,43 @@
   "fighterDetailLossesLabel": "Derrotas",
   "fighterDetailFightHistoryLabel": "Historial de combates",
   "fighterDetailLoadError": "No se pudo cargar el perfil del peleador.",
-  "fighterDetailEmpty": "Todavía no hay historial de combates."
+  "fighterDetailEmpty": "Todavía no hay historial de combates.",
+  "fighterDetailAmateurLabel": "Amateur",
+  "fighterDetailStreaksLabel": "Rachas",
+  "fighterDetailCurrentStreakLabel": "Actual",
+  "fighterDetailBestStreakLabel": "Mejor",
+  "fighterDetailWorstStreakLabel": "Peor",
+  "fighterDetailOctagonTimeLabel": "Tiempo en el octágono",
+  "streakWins": "{count, plural, =1{1 victoria} other{{count} victorias}}",
+  "@streakWins": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "streakLosses": "{count, plural, =1{1 derrota} other{{count} derrotas}}",
+  "@streakLosses": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "streakDraws": "{count, plural, =1{1 empate} other{{count} empates}}",
+  "@streakDraws": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "streakNoContests": "{count, plural, =1{1 sin decisión} other{{count} sin decisión}}",
+  "@streakNoContests": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "streakNone": "Ninguna",
+  "durationHoursMinutes": "{hours} h {minutes} min",
+  "@durationHoursMinutes": {
+    "placeholders": {
+      "hours": { "type": "int" },
+      "minutes": { "type": "int" }
+    }
+  },
+  "durationMinutesSeconds": "{minutes} min {seconds} s",
+  "@durationMinutesSeconds": {
+    "placeholders": {
+      "minutes": { "type": "int" },
+      "seconds": { "type": "int" }
+    }
+  },
+  "fightDetailOctagonTimeLabel": "Tiempo en el octágono"
 }

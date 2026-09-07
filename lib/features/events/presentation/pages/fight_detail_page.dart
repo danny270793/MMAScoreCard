@@ -5,6 +5,7 @@ import '../../../../core/widgets/max_width_body.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../domain/entities/event_fight.dart';
 import '../../domain/entities/mma_event.dart';
+import '../widgets/fight_stats_format.dart';
 import 'fighter_detail_page.dart';
 
 class FightDetailPage extends StatelessWidget {
@@ -18,6 +19,7 @@ class FightDetailPage extends StatelessWidget {
     final loc = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final localeName = Localizations.localeOf(context).toString();
+    final octagonTime = octagonTimeOf(round: fight.round, time: fight.time);
 
     return Scaffold(
       appBar: AppBar(title: Text('${fight.fighterA} vs. ${fight.fighterB}')),
@@ -143,6 +145,14 @@ class FightDetailPage extends StatelessWidget {
                         ),
                       ),
                     ],
+                    if (octagonTime != null) ...[
+                      const Divider(height: 1, indent: 16, endIndent: 16),
+                      _InfoRow(
+                        icon: Icons.hourglass_bottom_outlined,
+                        label: loc.fightDetailOctagonTimeLabel,
+                        value: formatOctagonTime(loc, octagonTime),
+                      ),
+                    ],
                     if (fight.referee != null) ...[
                       const Divider(height: 1, indent: 16, endIndent: 16),
                       _InfoRow(
@@ -226,11 +236,13 @@ class _InfoRow extends StatelessWidget {
         children: [
           Icon(icon, size: 20, color: theme.colorScheme.primary),
           const SizedBox(width: 12),
-          SizedBox(
-            width: 72,
+          Expanded(
+            flex: 2,
             child: Text(label, style: theme.textTheme.bodyMedium),
           ),
+          const SizedBox(width: 12),
           Expanded(
+            flex: 3,
             child: Text(
               value,
               textAlign: TextAlign.right,

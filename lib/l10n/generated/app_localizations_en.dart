@@ -280,10 +280,25 @@ class AppLocalizationsEn extends AppLocalizations {
       'An account is optional. Event data is fetched from a third-party source and cached on this device to reduce network use.';
 
   @override
-  String get contactLabel => 'Contact';
+  String get contactLabel => 'Developer';
 
   @override
-  String get contactEmail => 'support@example.com';
+  String get developerName => 'Danny Vaca';
+
+  @override
+  String get developerEmail => 'danny270793@icloud.com';
+
+  @override
+  String get developerGithub => 'GitHub';
+
+  @override
+  String get developerWebsite => 'Website';
+
+  @override
+  String get developerYoutube => 'YouTube';
+
+  @override
+  String get developerLinkedin => 'LinkedIn';
 
   @override
   String get termsTitle => 'Terms & Conditions';
@@ -297,6 +312,13 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get termsAcceptanceBody =>
       'MMAScoreCard is provided as-is, for personal, non-commercial use. Continued use of the app constitutes acceptance of these terms; if you disagree with them, please stop using the app.';
+
+  @override
+  String get termsAccountTitle => 'Optional account';
+
+  @override
+  String get termsAccountBody =>
+      'You can use the app without signing in. If you create an account, sign-in is handled by Supabase. Today we do not upload app-generated content such as favorites. Later versions may store that kind of data in Supabase when you are signed in so it can sync across your devices.';
 
   @override
   String get termsDisclaimerTitle => 'Not affiliated with the UFC';
@@ -330,21 +352,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get privacyTitle => 'Privacy Policy';
 
   @override
-  String get privacyTagline => 'No tracking. Event data stays on your device.';
+  String get privacyTagline =>
+      'Sign-in is optional. Event cache stays on this device.';
 
   @override
-  String get privacyDataTitle => 'What we collect';
+  String get privacyDataTitle => 'Account (optional)';
 
   @override
   String get privacyDataBody =>
-      'MMAScoreCard does not require an account. If you sign in, your email and authentication credentials are processed by our authentication provider; passwords are not stored by the app.';
+      'You can use MMAScoreCard without an account. If you sign in, authentication is provided by Supabase. Your email and credentials are processed by Supabase; this app does not store your password.';
 
   @override
-  String get privacyInfraTitle => 'Where event data comes from';
+  String get privacyInfraTitle => 'What we store today — and later';
 
   @override
   String get privacyInfraBody =>
-      'The app fetches publicly available event listings from a third-party source over HTTPS and caches that data locally on your device (in app storage) purely to avoid re-downloading it - this cache is never uploaded anywhere and can be cleared by clearing the app\'s storage. Your theme and language preferences are also stored only on your device.';
+      'Public event listings are fetched from a third-party source over HTTPS and cached only on this device so the app does not re-download them every time. Theme and language stay on the device. We do not currently upload app-generated data such as favorites. In the future, if you are signed in, we may store that kind of information in Supabase so it can sync across your devices. You can clear the local event cache by clearing the app\'s storage.';
 
   @override
   String get privacySharingTitle => 'Third-party requests';
@@ -471,4 +494,82 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get fighterDetailEmpty => 'No fight history available yet.';
+
+  @override
+  String get fighterDetailAmateurLabel => 'Amateur';
+
+  @override
+  String get fighterDetailStreaksLabel => 'Streaks';
+
+  @override
+  String get fighterDetailCurrentStreakLabel => 'Current';
+
+  @override
+  String get fighterDetailBestStreakLabel => 'Best';
+
+  @override
+  String get fighterDetailWorstStreakLabel => 'Worst';
+
+  @override
+  String get fighterDetailOctagonTimeLabel => 'Time in octagon';
+
+  @override
+  String streakWins(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count wins',
+      one: '1 win',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String streakLosses(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count losses',
+      one: '1 loss',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String streakDraws(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count draws',
+      one: '1 draw',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String streakNoContests(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count no contests',
+      one: '1 no contest',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get streakNone => 'None';
+
+  @override
+  String durationHoursMinutes(int hours, int minutes) {
+    return '${hours}h ${minutes}m';
+  }
+
+  @override
+  String durationMinutesSeconds(int minutes, int seconds) {
+    return '${minutes}m ${seconds}s';
+  }
+
+  @override
+  String get fightDetailOctagonTimeLabel => 'Octagon time';
 }

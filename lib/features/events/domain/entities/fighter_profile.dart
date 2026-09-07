@@ -53,6 +53,10 @@ class FighterFightRecord {
   final String? round;
   final String? time;
 
+  /// Amateur bouts are listed separately by the source and do not count
+  /// towards the professional record.
+  final bool isAmateur;
+
   const FighterFightRecord({
     required this.outcome,
     required this.opponentName,
@@ -64,7 +68,10 @@ class FighterFightRecord {
     this.referee,
     this.round,
     this.time,
+    this.isAmateur = false,
   });
+
+  Duration? get octagonTime => octagonTimeOf(round: round, time: time);
 
   Map<String, dynamic> toJson() => {
     'outcome': outcome.name,
@@ -77,6 +84,7 @@ class FighterFightRecord {
     'referee': referee,
     'round': round,
     'time': time,
+    'isAmateur': isAmateur,
   };
 
   factory FighterFightRecord.fromJson(Map<String, dynamic> json) =>
@@ -91,7 +99,16 @@ class FighterFightRecord {
         referee: json['referee'] as String?,
         round: json['round'] as String?,
         time: json['time'] as String?,
+        isAmateur: json['isAmateur'] as bool? ?? false,
       );
+}
+
+/// A run of consecutive fights that ended the same way.
+class FightStreak {
+  const FightStreak({required this.outcome, required this.count});
+
+  final FightOutcome outcome;
+  final int count;
 }
 
 class FighterProfile {
@@ -135,6 +152,59 @@ class FighterProfile {
 
   /// "wins-losses-draws-noContests", e.g. "30-0-1-0".
   String get recordSummary => '$wins-$losses-$draws-$noContests';
+
+  /// Professional fights only, newest first - the source orders the history
+  /// by date and lists amateur bouts separately from the record.
+  List<FighterFightRecord> get professionalFights =>
+      fightHistory.where((fight) => !fight.isAmateur).toList();
+
+  /// Consecutive same-result fights counted back from the most recent one.
+  /// Scheduled bouts have no result, so they neither start nor break a run.
+  FightStreak? get currentStreak {
+    FightOutcome? outcome;
+    var count = 0;
+    for (final fight in professionalFights) {
+      if (fight.outcome == FightOutcome.pending) continue;
+      if (outcome == null) {
+        outcome = fight.outcome;
+        count = 1;
+        continue;
+      }
+      if (fight.outcome != outcome) break;
+      count++;
+    }
+    return outcome == null ? null : FightStreak(outcome: outcome, count: count);
+  }
+
+  /// Longest run of wins anywhere in the professional history.
+  int get bestWinStreak => _longestStreak(FightOutcome.win);
+
+  /// Longest run of losses anywhere in the professional history.
+  int get worstLossStreak => _longestStreak(FightOutcome.loss);
+
+  /// Total time spent fighting across every professional bout with a result.
+  Duration get totalOctagonTime {
+    var total = Duration.zero;
+    for (final fight in professionalFights) {
+      total += fight.octagonTime ?? Duration.zero;
+    }
+    return total;
+  }
+
+  int _longestStreak(FightOutcome outcome) {
+    var longest = 0;
+    var run = 0;
+    for (final fight in professionalFights) {
+      if (fight.outcome == FightOutcome.pending) continue;
+      if (fight.outcome != outcome) {
+        run = 0;
+        continue;
+      }
+      run++;
+      if (run > longest) longest = run;
+    }
+    return longest;
+  }
 
   Map<String, dynamic> toJson() => {
     'name': name,

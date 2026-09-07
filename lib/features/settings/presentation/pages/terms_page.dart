@@ -32,6 +32,10 @@ class TermsPage extends StatelessWidget {
                 title: loc.termsAcceptanceTitle,
                 body: loc.termsAcceptanceBody,
               ),
+              PolicySection(
+                title: loc.termsAccountTitle,
+                body: loc.termsAccountBody,
+              ),
               PolicyCallout(
                 title: loc.termsDisclaimerTitle,
                 body: loc.termsDisclaimerBody,

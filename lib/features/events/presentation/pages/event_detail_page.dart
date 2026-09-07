@@ -7,7 +7,8 @@ import '../../../../l10n/generated/app_localizations.dart';
 import '../../application/event_fights_controller.dart';
 import '../../domain/entities/event_fight.dart';
 import '../../domain/entities/mma_event.dart';
-import 'event_fight_search_page.dart';
+import '../widgets/event_search_utils.dart';
+import '../widgets/floating_search_field.dart';
 import 'fight_detail_page.dart';
 
 enum _FightMethodKind { koTko, submission, other }
@@ -19,13 +20,37 @@ _FightMethodKind _methodKind(String method) {
   return _FightMethodKind.other;
 }
 
-class EventDetailPage extends ConsumerWidget {
+class EventDetailPage extends ConsumerStatefulWidget {
   const EventDetailPage({super.key, required this.event});
 
   final MmaEvent event;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<EventDetailPage> createState() => _EventDetailPageState();
+}
+
+class _EventDetailPageState extends ConsumerState<EventDetailPage> {
+  final _searchController = TextEditingController();
+  bool _searching = false;
+  String _query = '';
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _closeSearch() {
+    _searchController.clear();
+    setState(() {
+      _searching = false;
+      _query = '';
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final event = widget.event;
     final loc = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final colors = theme.colorScheme;
@@ -42,28 +67,29 @@ class EventDetailPage extends ConsumerWidget {
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                 child: SafeArea(
                   top: false,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Material(
-                        elevation: 3,
-                        color: colors.surfaceContainerHigh,
-                        shape: const CircleBorder(),
-                        child: IconButton(
-                          icon: const Icon(Icons.search),
-                          tooltip: loc.tabSearch,
-                          onPressed: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => EventFightSearchPage(
-                                event: event,
-                                fights: fights,
+                  child: _searching
+                      ? FloatingSearchField(
+                          controller: _searchController,
+                          hintText: loc.searchHint,
+                          onChanged: (value) => setState(() => _query = value),
+                          onClose: _closeSearch,
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Material(
+                              elevation: 3,
+                              color: colors.surfaceContainerHigh,
+                              shape: const CircleBorder(),
+                              child: IconButton(
+                                icon: const Icon(Icons.search),
+                                tooltip: loc.tabSearch,
+                                onPressed: () =>
+                                    setState(() => _searching = true),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
                 ),
               ),
         orElse: () => null,
@@ -129,17 +155,24 @@ class EventDetailPage extends ConsumerWidget {
                       child: Center(child: Text(loc.eventDetailEmpty)),
                     );
                   }
+                  final matches = filterFights(fights, _query);
+                  if (matches.isEmpty) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24),
+                      child: Center(child: Text(loc.searchNoResults)),
+                    );
+                  }
                   return Card(
                     margin: EdgeInsets.zero,
                     elevation: 0,
                     clipBehavior: Clip.antiAlias,
                     child: Column(
                       children: [
-                        for (var i = 0; i < fights.length; i++) ...[
+                        for (var i = 0; i < matches.length; i++) ...[
                           if (i > 0) const Divider(height: 1, indent: 56),
                           FightTile(
                             event: event,
-                            fight: fights[i],
+                            fight: matches[i],
                             titleFightLabel: loc.eventDetailTitleFightLabel,
                           ),
                         ],
@@ -177,11 +210,13 @@ class _InfoRow extends StatelessWidget {
         children: [
           Icon(icon, size: 20, color: theme.colorScheme.primary),
           const SizedBox(width: 12),
-          SizedBox(
-            width: 72,
+          Expanded(
+            flex: 2,
             child: Text(label, style: theme.textTheme.bodyMedium),
           ),
+          const SizedBox(width: 12),
           Expanded(
+            flex: 3,
             child: Text(
               value,
               textAlign: TextAlign.right,
