@@ -74,6 +74,10 @@ void main() {
       300,
     );
     expect(find.widgetWithText(OutlinedButton, 'Sign in'), findsOneWidget);
+
+    await tester.tap(find.widgetWithText(OutlinedButton, 'Sign in'));
+    await tester.pumpAndSettle();
+    expect(find.text('Continue without account'), findsOneWidget);
   });
 
   testWidgets('authenticated settings show account and biometrics', (
