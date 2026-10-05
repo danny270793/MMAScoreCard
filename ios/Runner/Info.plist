@@ -7,7 +7,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>MMAScoreCard</string>
+    <string>MMA ScoreCard</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -15,7 +15,7 @@
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>MMAScoreCard</string>
+    <string>MMA ScoreCard</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
@@ -27,7 +27,7 @@
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>NSFaceIDUsageDescription</key>
-    <string>Unlock MMA Scorecard with Face ID when you enable this option.</string>
+    <string>Unlock MMA ScoreCard with Face ID when you enable this option.</string>
     <key>UIApplicationSceneManifest</key>
     <dict>
       <key>UIApplicationSupportsMultipleScenes</key>

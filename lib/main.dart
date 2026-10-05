@@ -1,46 +1,94 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mmascorecard/l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'core/network/dev_certificate_trust.dart';
-import 'core/persistence/shared_preferences_provider.dart';
-import 'core/theme/app_theme.dart';
-import 'features/auth/application/auth_controller.dart';
-import 'features/auth/application/biometric_controller.dart';
-import 'features/auth/presentation/pages/login_page.dart';
-import 'features/events/presentation/pages/events_home_page.dart';
-import 'features/settings/application/app_settings_controller.dart';
-import 'l10n/generated/app_localizations.dart';
+import 'core/di/injection.dart';
+import 'core/locale/app_locale_controller.dart';
+import 'core/logger/app_logger.dart';
+import 'core/security/app_biometric_unlock_controller.dart';
+import 'core/theme/app_theme_controller.dart';
+import 'features/auth/presentation/cubit/auth_session_cubit.dart';
+import 'features/auth/presentation/cubit/auth_session_state.dart';
+import 'router.dart';
 
-void main() async {
+// Dart's HttpClient (used under the hood by package:http and thus by
+// Supabase and the Sherdog scraper) has its own bundled trust store,
+// independent of the Android/iOS OS trust store - installing a corporate
+// proxy's root CA (e.g. Zscaler) at the OS level does nothing for it.
+// Debug-only: trust it here too, so local dev works behind a
+// TLS-intercepting proxy. Never runs in release builds.
+Future<void> _trustDevProxyCertificateIfNeeded() async {
+  if (!kDebugMode) return;
+  try {
+    final bytes = await rootBundle.load('assets/dev_certs/zscaler_root_ca.pem');
+    SecurityContext.defaultContext.setTrustedCertificatesBytes(
+      bytes.buffer.asUint8List(),
+    );
+    AppLogger.info('trusted dev proxy certificate');
+  } catch (e) {
+    AppLogger.info('no dev proxy certificate to trust: $e');
+  }
+}
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await trustDevCorporateProxyCertificate();
+  await _trustDevProxyCertificateIfNeeded();
+
+  AppLogger.info('initializing Supabase');
   await Supabase.initialize(
     url: const String.fromEnvironment('SUPABASE_URL'),
     publishableKey: const String.fromEnvironment('SUPABASE_ANON_KEY'),
   );
-  final prefs = await SharedPreferences.getInstance();
-  runApp(
-    ProviderScope(
-      overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
-      child: const MmaScorecardApp(),
-    ),
-  );
+  AppLogger.info('Supabase initialized');
+
+  setupDi(prefs: await SharedPreferences.getInstance());
+  AppLogger.info('DI setup complete');
+  await bootstrap();
+
+  runApp(const App());
 }
 
-class MmaScorecardApp extends ConsumerStatefulWidget {
-  const MmaScorecardApp({super.key});
+/// Loads persisted preferences and starts the auth session. Shared with
+/// widget tests so they boot the app exactly like [main].
+Future<void> bootstrap() async {
+  await getIt<AppLocaleController>().load();
+  await getIt<AppThemeController>().load();
+  await getIt<AppBiometricUnlockController>().load();
+  getIt<AuthSessionCubit>().start();
+}
+
+class App extends StatefulWidget {
+  const App({super.key});
+
+  static Locale? _resolveDeviceLocale(
+    Locale? deviceLocale,
+    Iterable<Locale> supported,
+  ) {
+    if (deviceLocale == null) return supported.first;
+    for (final loc in supported) {
+      if (loc.languageCode == deviceLocale.languageCode) return loc;
+    }
+    return supported.first;
+  }
 
   @override
-  ConsumerState<MmaScorecardApp> createState() => _MmaScorecardAppState();
+  State<App> createState() => _AppState();
 }
 
-class _MmaScorecardAppState extends ConsumerState<MmaScorecardApp>
-    with WidgetsBindingObserver {
-  bool _lockOnNextResume = false;
+class _AppState extends State<App> with WidgetsBindingObserver {
+  late final GoRouter _router = buildRouter();
+
+  /// True after [AppLifecycleState.paused]; cleared on resume so cold start does not lock.
+  bool _shouldUnlockOnNextResume = false;
+
+  /// Full-screen gate: no router navigation visible until cleared.
   bool _biometricLockActive = false;
 
   @override
@@ -52,130 +100,194 @@ class _MmaScorecardAppState extends ConsumerState<MmaScorecardApp>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _router.dispose();
     super.dispose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.paused) {
-      _lockOnNextResume = true;
-    } else if (state == AppLifecycleState.resumed && _lockOnNextResume) {
-      _lockOnNextResume = false;
-      unawaited(_activateResumeLock());
+      _shouldUnlockOnNextResume = true;
+    } else if (state == AppLifecycleState.resumed &&
+        _shouldUnlockOnNextResume) {
+      _shouldUnlockOnNextResume = false;
+      unawaited(_activateBiometricLockIfNeeded());
     }
   }
 
-  Future<void> _activateResumeLock() async {
-    if (ref.read(authControllerProvider).mode != AuthAccessMode.authenticated) {
-      return;
-    }
-    final controller = ref.read(biometricControllerProvider.notifier);
-    final available = await controller.refreshAvailability();
-    final enabled = ref.read(biometricControllerProvider).enabled;
-    if (mounted && enabled && available) {
-      setState(() => _biometricLockActive = true);
+  bool get _isAuthenticated =>
+      getIt<AuthSessionCubit>().state.mode == AuthAccessMode.authenticated;
+
+  Future<void> _activateBiometricLockIfNeeded() async {
+    if (!_isAuthenticated) return;
+    final bio = getIt<AppBiometricUnlockController>();
+    await bio.refreshAuthenticatorAvailability();
+    if (!bio.enabled || !bio.authenticatorAvailable) return;
+    if (!mounted) return;
+    setState(() => _biometricLockActive = true);
+  }
+
+  void _clearBiometricLock() {
+    if (_biometricLockActive) {
+      setState(() => _biometricLockActive = false);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final settings = ref.watch(appSettingsControllerProvider);
-    final auth = ref.watch(authControllerProvider);
-
-    return MaterialApp(
-      title: 'MMA Scorecard',
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
-      themeMode: settings.themeMode,
-      locale: settings.locale,
-      supportedLocales: AppLocalizations.supportedLocales,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      home: _biometricLockActive && auth.mode == AuthAccessMode.authenticated
-          ? _BiometricLockScreen(
-              onUnlocked: () => setState(() => _biometricLockActive = false),
-            )
-          : const AuthGate(),
+    final appLocale = getIt<AppLocaleController>();
+    final appTheme = getIt<AppThemeController>();
+    return ListenableBuilder(
+      listenable: Listenable.merge([appLocale, appTheme]),
+      builder: (context, _) {
+        final seed = Colors.deepPurple;
+        return MaterialApp.router(
+          title: 'MMA ScoreCard',
+          onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: appLocale.materialAppLocale,
+          localeResolutionCallback: App._resolveDeviceLocale,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: seed),
+            useMaterial3: true,
+            bottomSheetTheme: const BottomSheetThemeData(
+              clipBehavior: Clip.antiAlias,
+            ),
+          ),
+          darkTheme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: seed,
+              brightness: Brightness.dark,
+            ),
+            useMaterial3: true,
+            bottomSheetTheme: const BottomSheetThemeData(
+              clipBehavior: Clip.antiAlias,
+            ),
+          ),
+          themeMode: appTheme.themeMode,
+          routerConfig: _router,
+          builder: (context, child) {
+            if (_biometricLockActive && _isAuthenticated) {
+              return PopScope(
+                canPop: false,
+                child: _BiometricLockScreen(onUnlocked: _clearBiometricLock),
+              );
+            }
+            return child ?? const SizedBox.shrink();
+          },
+        );
+      },
     );
   }
 }
 
-class AuthGate extends ConsumerWidget {
-  const AuthGate({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final auth = ref.watch(authControllerProvider);
-    return switch (auth.mode) {
-      AuthAccessMode.loading => const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      ),
-      AuthAccessMode.signedOut => const LoginPage(),
-      AuthAccessMode.guest ||
-      AuthAccessMode.authenticated => const EventsHomePage(),
-    };
-  }
-}
-
-class _BiometricLockScreen extends ConsumerStatefulWidget {
+class _BiometricLockScreen extends StatefulWidget {
   const _BiometricLockScreen({required this.onUnlocked});
 
   final VoidCallback onUnlocked;
 
   @override
-  ConsumerState<_BiometricLockScreen> createState() =>
-      _BiometricLockScreenState();
+  State<_BiometricLockScreen> createState() => _BiometricLockScreenState();
 }
 
-class _BiometricLockScreenState extends ConsumerState<_BiometricLockScreen> {
+class _BiometricLockScreenState extends State<_BiometricLockScreen> {
+  /// True while refresh + system biometric UI may be active — disables the Unlock button.
   bool _busy = false;
+
+  /// Prevents overlapping [_attemptUnlock] runs (e.g. double-tap before first await).
+  bool _unlockInFlight = false;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _unlock());
+    WidgetsBinding.instance.addPostFrameCallback((_) => _attemptUnlock());
   }
 
-  Future<void> _unlock() async {
-    if (_busy) return;
-    setState(() => _busy = true);
-    final loc = AppLocalizations.of(context)!;
-    final ok = await ref
-        .read(biometricControllerProvider.notifier)
-        .authenticate(loc.biometricResumeReason);
+  Future<void> _attemptUnlock() async {
     if (!mounted) return;
-    if (ok) widget.onUnlocked();
-    if (mounted) setState(() => _busy = false);
+    if (_unlockInFlight) return;
+    _unlockInFlight = true;
+    setState(() => _busy = true);
+
+    try {
+      final bio = getIt<AppBiometricUnlockController>();
+      await bio.refreshAuthenticatorAvailability();
+      if (!mounted) return;
+
+      if (!bio.enabled || !bio.authenticatorAvailable) {
+        widget.onUnlocked();
+        return;
+      }
+
+      final l10n = AppLocalizations.of(context);
+      if (l10n == null) return;
+
+      final ok = await bio.authenticate(l10n.settingsBiometricResumeReason);
+      if (!mounted) return;
+
+      if (ok) {
+        widget.onUnlocked();
+      }
+    } finally {
+      _unlockInFlight = false;
+      if (mounted) setState(() => _busy = false);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final loc = AppLocalizations.of(context)!;
-    return PopScope(
-      canPop: false,
-      child: Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(32),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.lock_outline_rounded, size: 56),
-                  const SizedBox(height: 20),
-                  Text(
-                    loc.biometricLockTitle,
-                    style: Theme.of(context).textTheme.headlineSmall,
+    final l10n = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
+
+    return Material(
+      color: scheme.surface,
+      child: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.lock_outline_rounded,
+                  size: 56,
+                  color: scheme.primary,
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  l10n.biometricLockTitle,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
                   ),
-                  const SizedBox(height: 12),
-                  Text(loc.biometricLockBody, textAlign: TextAlign.center),
-                  const SizedBox(height: 24),
-                  FilledButton.icon(
-                    onPressed: _busy ? null : _unlock,
-                    icon: const Icon(Icons.fingerprint),
-                    label: Text(loc.biometricUnlockButton),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  l10n.biometricLockBody,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodyLarge?.copyWith(
+                    color: scheme.onSurfaceVariant,
+                    height: 1.35,
                   ),
-                ],
-              ),
+                ),
+                const SizedBox(height: 28),
+                FilledButton.icon(
+                  onPressed: _busy ? null : _attemptUnlock,
+                  icon: _busy
+                      ? SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: scheme.onPrimary,
+                          ),
+                        )
+                      : const Icon(Icons.fingerprint_rounded),
+                  label: Text(l10n.biometricLockUnlockButton),
+                ),
+              ],
             ),
           ),
         ),

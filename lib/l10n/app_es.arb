@@ -1,7 +1,6 @@
 {
   "@@locale": "es",
-
-  "appTitle": "MMAScoreCard",
+  "appTitle": "MMA ScoreCard",
   "eventsPageTitle": "Eventos de UFC",
   "tabUpcoming": "Próximos",
   "tabPast": "Pasados",
@@ -14,55 +13,54 @@
   "fieldRequired": "Obligatorio",
   "unexpectedError": "Algo salió mal. Inténtalo de nuevo.",
   "signOut": "Cerrar sesión",
-
   "searchHint": "Buscar eventos",
   "searchEmptyPrompt": "Busca por evento, luchador o lugar.",
   "searchNoResults": "No hay eventos que coincidan.",
-
   "upcomingLoadError": "No se pudieron cargar los próximos eventos.",
   "pastLoadError": "No se pudieron cargar los eventos pasados.",
   "retryButton": "Reintentar",
   "noUpcomingEvents": "No hay próximos eventos.",
   "noPastEvents": "No hay eventos pasados.",
-
   "todayLabel": "Hoy",
   "inDaysLabel": "En {days}d",
-
-  "settingsTitle": "Ajustes",
-  "settingsAppearanceSection": "Apariencia",
+  "settings": "Ajustes",
+  "settingsAppearance": "Apariencia",
   "settingsDataSection": "Datos",
   "settingsAboutSection": "Acerca de",
   "settingsProfileSection": "Perfil",
   "settingsSecuritySection": "Seguridad",
-  "changeEmail": "Cambiar correo electrónico",
-  "newEmail": "Nuevo correo electrónico",
-  "invalidEmail": "Ingresa un correo electrónico válido",
-  "emailUpdateSuccess": "Se solicitó actualizar el correo. Revisa ambas bandejas si se requiere confirmación.",
-  "changePassword": "Cambiar contraseña",
-  "changePasswordSubtitle": "Elige una nueva contraseña para esta cuenta",
-  "newPassword": "Nueva contraseña",
-  "confirmPassword": "Confirmar nueva contraseña",
-  "passwordTooShort": "Usa al menos 6 caracteres",
-  "passwordsDoNotMatch": "Las contraseñas no coinciden",
-  "passwordUpdateSuccess": "Contraseña actualizada",
-  "cancel": "Cancelar",
-  "save": "Guardar",
-  "biometricUnlockTitle": "Desbloqueo con Face ID / biometría",
-  "biometricUnlockSubtitle": "Requerir autenticación biométrica al volver a la app",
-  "biometricUnavailable": "La autenticación biométrica no está disponible o configurada en este dispositivo.",
-  "biometricEnableReason": "Confirma el desbloqueo biométrico para MMA Scorecard",
-  "biometricResumeReason": "Desbloquea MMA Scorecard",
+  "settingsChangeEmail": "Cambiar correo electrónico",
+  "settingsChangeEmailDialogTitle": "Cambiar correo electrónico",
+  "settingsNewEmailLabel": "Nuevo correo electrónico",
+  "settingsChangeEmailInvalid": "Ingresa un correo electrónico válido",
+  "settingsChangeEmailSuccess": "Se solicitó actualizar el correo. Revisa ambas bandejas si se requiere confirmación.",
+  "settingsChangeEmailSubmit": "Actualizar",
+  "settingsChangeEmailSameAsCurrent": "Ese ya es tu correo.",
+  "settingsChangePassword": "Cambiar contraseña",
+  "settingsChangePasswordSubtitle": "Elige una nueva contraseña para esta cuenta",
+  "settingsChangePasswordDialogTitle": "Cambiar contraseña",
+  "settingsNewPasswordLabel": "Nueva contraseña",
+  "settingsConfirmNewPasswordLabel": "Confirmar nueva contraseña",
+  "settingsPasswordTooShort": "Usa al menos 6 caracteres",
+  "settingsPasswordsDoNotMatch": "Las contraseñas no coinciden",
+  "settingsChangePasswordSuccess": "Contraseña actualizada",
+  "settingsChangePasswordSubmit": "Actualizar contraseña",
+  "settingsBiometricUnlockTitle": "Desbloqueo con Face ID / biometría",
+  "settingsBiometricUnlockSubtitle": "Requerir autenticación biométrica al volver a la app",
+  "settingsBiometricUnavailable": "La autenticación biométrica no está disponible o configurada en este dispositivo.",
+  "settingsBiometricAuthReason": "Confirma el desbloqueo biométrico para MMA ScoreCard",
+  "settingsBiometricResumeReason": "Desbloquea MMA ScoreCard",
   "biometricLockTitle": "App bloqueada",
-  "biometricLockBody": "Autentícate para continuar a MMA Scorecard.",
-  "biometricUnlockButton": "Desbloquear",
-  "themeMenuTitle": "Tema",
-  "languageMenuTitle": "Idioma",
-  "aboutMenuTitle": "Acerca de",
-  "termsMenuTitle": "Términos y condiciones",
-  "privacyMenuTitle": "Política de privacidad",
-  "cachedRecordsMenuTitle": "Registros en caché",
-  "cachedRecordsMenuSubtitle": "Solicitudes de datos de eventos guardadas en este dispositivo",
-  "cachedRecordsTitle": "Registros en caché",
+  "biometricLockBody": "Autentícate para continuar a MMA ScoreCard.",
+  "biometricLockUnlockButton": "Desbloquear",
+  "settingsTheme": "Tema",
+  "settingsLanguage": "Idioma",
+  "settingsAboutApp": "Acerca de",
+  "settingsRateApp": "Calificar en Google Play",
+  "settingsTermsOfUse": "Términos y condiciones",
+  "settingsPrivacyPolicy": "Política de privacidad",
+  "settingsOfflineCache": "Registros en caché",
+  "settingsOfflineCacheSubtitle": "Solicitudes de datos de eventos guardadas en este dispositivo",
   "cachedRecordsEmpty": "Todavía no hay nada en caché.",
   "cachedUpcomingLabel": "Próximos eventos",
   "cachedPastPageLabel": "Eventos pasados - página {page}",
@@ -71,60 +69,47 @@
   "cachedAtLabel": "Guardado en caché {date}",
   "cachedRefreshedAtLabel": "Actualizado {date}",
   "cachedReadCountLabel": "Leído {count} veces",
-
-  "chooseThemeTitle": "Elegir tema",
-  "themeSystem": "Sistema",
-  "themeLight": "Claro",
-  "themeDark": "Oscuro",
-
-  "chooseLanguageTitle": "Elegir idioma",
-  "languageSystemDefault": "Predeterminado del sistema",
-  "languageEnglish": "Inglés",
-  "languageSpanish": "Español",
-
-  "aboutTitle": "Acerca de",
-  "appTagline": "Eventos de UFC y resultados.",
-  "versionLabel": "Versión {version}",
-  "aboutFeaturesHeading": "Qué puedes hacer",
-  "aboutBulletEvents": "Explorar eventos de UFC próximos y pasados",
-  "aboutBulletFightCards": "Ver carteleras completas, resultados y métodos de victoria",
-  "aboutBulletFighters": "Consultar perfiles, récords e historial de combates de los peleadores",
-  "aboutDataHeading": "Sobre tus datos",
-  "aboutDataBody": "La cuenta es opcional. Los datos de los eventos se obtienen de una fuente externa y se guardan en caché en este dispositivo para reducir el uso de red.",
-  "contactLabel": "Desarrollador",
-  "developerName": "Danny Vaca",
-  "developerEmail": "danny270793@icloud.com",
-  "developerGithub": "GitHub",
-  "developerWebsite": "Sitio web",
-  "developerYoutube": "YouTube",
-  "developerLinkedin": "LinkedIn",
-
-  "termsTitle": "Términos y condiciones",
-  "termsTagline": "Léelos antes de usar la app.",
-  "termsAcceptanceTitle": "Aceptación de los términos",
-  "termsAcceptanceBody": "MMAScoreCard se ofrece tal cual, para uso personal y no comercial. El uso continuado de la app implica la aceptación de estos términos; si no estás de acuerdo, deja de usar la app.",
-  "termsAccountTitle": "Cuenta opcional",
-  "termsAccountBody": "Puedes usar la app sin iniciar sesión. Si creas una cuenta, el acceso lo gestiona Supabase. Hoy no subimos contenido generado por la app, como favoritos. Versiones posteriores podrán guardar ese tipo de datos en Supabase cuando hayas iniciado sesión, para sincronizarlos entre tus dispositivos.",
-  "termsDisclaimerTitle": "Sin afiliación con la UFC",
-  "termsDisclaimerBody": "Esta app no está afiliada, respaldada ni patrocinada por la UFC, ni ningún luchador o promotora mencionados.",
-  "termsLiabilityTitle": "Sin garantía",
-  "termsLiabilityBody": "El uso de la app es bajo tu propio riesgo y se ofrece sin garantías de ningún tipo.",
-  "termsResponsibilitiesTitle": "Exactitud de los datos",
-  "termsResponsibilitiesBody": "Los datos de los eventos (fechas, combates, sedes) provienen de un servicio externo de listados de eventos que no controlamos ni operamos; no podemos garantizar su exactitud, disponibilidad ni integridad, y los detalles pueden cambiar o eliminarse en cualquier momento.",
-  "termsNoticeTitle": "Cambios en estos términos",
-  "termsNoticeBody": "Estos términos pueden actualizarse a medida que la app cambie. El uso continuado de la app después de esos cambios implica la aceptación de los términos actualizados.",
-
-  "privacyTitle": "Política de privacidad",
-  "privacyTagline": "El inicio de sesión es opcional. La caché de eventos se queda en este dispositivo.",
-  "privacyDataTitle": "Cuenta (opcional)",
-  "privacyDataBody": "Puedes usar MMAScoreCard sin cuenta. Si inicias sesión, la autenticación la proporciona Supabase. Tu correo y credenciales los procesa Supabase; esta app no guarda tu contraseña.",
-  "privacyInfraTitle": "Qué guardamos hoy — y más adelante",
-  "privacyInfraBody": "Los listados públicos de eventos se obtienen de una fuente externa por HTTPS y se guardan en caché solo en este dispositivo para no volver a descargarlos cada vez. Tema e idioma se quedan en el dispositivo. Hoy no subimos datos generados por la app, como favoritos. En el futuro, si has iniciado sesión, podremos guardar ese tipo de información en Supabase para sincronizarla entre tus dispositivos. Puedes borrar la caché local de eventos al borrar el almacenamiento de la app.",
-  "privacySharingTitle": "Solicitudes a terceros",
-  "privacySharingBody": "Como los datos se solicitan directamente a esa fuente, tu solicitud de red (por ejemplo, tu dirección IP) es visible para ella según sus propias prácticas de privacidad, que esta app no controla.",
-  "privacyNoticeTitle": "Cambios en esta política",
-  "privacyNoticeBody": "Esta política puede actualizarse a medida que la app cambie. El uso continuado de la app después de esos cambios implica la aceptación de la política actualizada.",
-
+  "settingsThemeSystem": "Sistema",
+  "settingsThemeLight": "Claro",
+  "settingsThemeDark": "Oscuro",
+  "settingsLanguageSystem": "Predeterminado del sistema",
+  "settingsLanguageEnglish": "Inglés",
+  "settingsLanguageSpanish": "Español",
+  "settingsAboutTagline": "Eventos de UFC y resultados.",
+  "settingsAboutVersionLabel": "Versión",
+  "settingsAboutFeaturesHeading": "Qué puedes hacer",
+  "settingsAboutBulletEvents": "Explorar eventos de UFC próximos y pasados",
+  "settingsAboutBulletFightCards": "Ver carteleras completas, resultados y métodos de victoria",
+  "settingsAboutBulletFighters": "Consultar perfiles, récords e historial de combates de los peleadores",
+  "settingsAboutDataHeading": "Sobre tus datos",
+  "settingsAboutDataBody": "La cuenta es opcional. Los datos de los eventos se obtienen de una fuente externa y se guardan en caché en este dispositivo para reducir el uso de red.",
+  "settingsAboutDeveloperHeading": "Desarrollador",
+  "settingsAboutDeveloperGithub": "GitHub",
+  "settingsAboutDeveloperWebsite": "Sitio web",
+  "settingsAboutDeveloperYoutube": "YouTube",
+  "settingsAboutDeveloperLinkedin": "LinkedIn",
+  "settingsTermsTagline": "Léelos antes de usar la app.",
+  "settingsTermsAcceptanceTitle": "Aceptación de los términos",
+  "settingsTermsAcceptanceBody": "MMA ScoreCard se ofrece tal cual, para uso personal y no comercial. El uso continuado de la app implica la aceptación de estos términos; si no estás de acuerdo, deja de usar la app.",
+  "settingsTermsAccountTitle": "Cuenta opcional",
+  "settingsTermsAccountBody": "Puedes usar la app sin iniciar sesión. Si creas una cuenta, el acceso lo gestiona Supabase. Hoy no subimos contenido generado por la app, como favoritos. Versiones posteriores podrán guardar ese tipo de datos en Supabase cuando hayas iniciado sesión, para sincronizarlos entre tus dispositivos.",
+  "settingsTermsDisclaimerTitle": "Sin afiliación con la UFC",
+  "settingsTermsDisclaimerBody": "Esta app no está afiliada, respaldada ni patrocinada por la UFC, ni ningún luchador o promotora mencionados.",
+  "settingsTermsLiabilityTitle": "Sin garantía",
+  "settingsTermsLiabilityBody": "El uso de la app es bajo tu propio riesgo y se ofrece sin garantías de ningún tipo.",
+  "settingsTermsResponsibilitiesTitle": "Exactitud de los datos",
+  "settingsTermsResponsibilitiesBody": "Los datos de los eventos (fechas, combates, sedes) provienen de un servicio externo de listados de eventos que no controlamos ni operamos; no podemos garantizar su exactitud, disponibilidad ni integridad, y los detalles pueden cambiar o eliminarse en cualquier momento.",
+  "settingsTermsNoticeTitle": "Cambios en estos términos",
+  "settingsTermsNoticeBody": "Estos términos pueden actualizarse a medida que la app cambie. El uso continuado de la app después de esos cambios implica la aceptación de los términos actualizados.",
+  "settingsPrivacyTagline": "El inicio de sesión es opcional. La caché de eventos se queda en este dispositivo.",
+  "settingsPrivacyDataTitle": "Cuenta (opcional)",
+  "settingsPrivacyDataBody": "Puedes usar MMA ScoreCard sin cuenta. Si inicias sesión, la autenticación la proporciona Supabase. Tu correo y credenciales los procesa Supabase; esta app no guarda tu contraseña.",
+  "settingsPrivacyInfraTitle": "Qué guardamos hoy — y más adelante",
+  "settingsPrivacyInfraBody": "Los listados públicos de eventos se obtienen de una fuente externa por HTTPS y se guardan en caché solo en este dispositivo para no volver a descargarlos cada vez. Tema e idioma se quedan en el dispositivo. Hoy no subimos datos generados por la app, como favoritos. En el futuro, si has iniciado sesión, podremos guardar ese tipo de información en Supabase para sincronizarla entre tus dispositivos. Puedes borrar la caché local de eventos al borrar el almacenamiento de la app.",
+  "settingsPrivacySharingTitle": "Solicitudes a terceros",
+  "settingsPrivacySharingBody": "Como los datos se solicitan directamente a esa fuente, tu solicitud de red (por ejemplo, tu dirección IP) es visible para ella según sus propias prácticas de privacidad, que esta app no controla.",
+  "settingsPrivacyNoticeTitle": "Cambios en esta política",
+  "settingsPrivacyNoticeBody": "Esta política puede actualizarse a medida que la app cambie. El uso continuado de la app después de esos cambios implica la aceptación de la política actualizada.",
   "eventDetailLocationLabel": "Ubicación",
   "eventDetailDateLabel": "Fecha",
   "eventDetailFightCardLabel": "Cartelera",
@@ -135,7 +120,6 @@
   "statKoTko": "KO/TKO",
   "statSubmissions": "Sumisiones",
   "statDecisions": "Decisiones",
-
   "fightDetailEventInfoLabel": "Información del evento",
   "fightDetailEventLabel": "Evento",
   "fightDetailDivisionLabel": "División",
@@ -150,7 +134,6 @@
   "fightOutcomeLoss": "Pierde",
   "fightOutcomeDraw": "Empate",
   "fightOutcomeNoContest": "SD",
-
   "fighterDetailAgeLabel": "Edad",
   "fighterDetailHeightLabel": "Estatura",
   "fighterDetailWeightLabel": "Peso",
@@ -172,33 +155,57 @@
   "fighterDetailOctagonTimeLabel": "Tiempo en el octágono",
   "streakWins": "{count, plural, =1{1 victoria} other{{count} victorias}}",
   "@streakWins": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "streakLosses": "{count, plural, =1{1 derrota} other{{count} derrotas}}",
   "@streakLosses": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "streakDraws": "{count, plural, =1{1 empate} other{{count} empates}}",
   "@streakDraws": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "streakNoContests": "{count, plural, =1{1 sin decisión} other{{count} sin decisión}}",
   "@streakNoContests": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "streakNone": "Ninguna",
   "durationHoursMinutes": "{hours} h {minutes} min",
   "@durationHoursMinutes": {
     "placeholders": {
-      "hours": { "type": "int" },
-      "minutes": { "type": "int" }
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
     }
   },
   "durationMinutesSeconds": "{minutes} min {seconds} s",
   "@durationMinutesSeconds": {
     "placeholders": {
-      "minutes": { "type": "int" },
-      "seconds": { "type": "int" }
+      "minutes": {
+        "type": "int"
+      },
+      "seconds": {
+        "type": "int"
+      }
     }
   },
   "fightDetailOctagonTimeLabel": "Tiempo en el octágono"

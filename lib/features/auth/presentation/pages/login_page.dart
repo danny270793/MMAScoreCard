@@ -1,18 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mmascorecard/l10n/app_localizations.dart';
 
-import '../../../../l10n/generated/app_localizations.dart';
-import '../../application/auth_controller.dart';
+import '../../../../core/di/injection.dart';
+import '../bloc/login_bloc.dart';
+import '../bloc/login_event.dart';
+import '../bloc/login_state.dart';
+import '../cubit/auth_session_cubit.dart';
 
-class LoginPage extends ConsumerStatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
-  ConsumerState<LoginPage> createState() => _LoginPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => getIt<LoginBloc>(),
+      child: BlocListener<LoginBloc, LoginState>(
+        listener: (context, state) {
+          if (state is LoginSuccess) {
+            TextInput.finishAutofillContext(shouldSave: true);
+            getIt<AuthSessionCubit>().markAuthenticated();
+          }
+        },
+        child: const _LoginView(),
+      ),
+    );
+  }
 }
 
-class _LoginPageState extends ConsumerState<LoginPage> {
+class _LoginView extends StatefulWidget {
+  const _LoginView();
+
+  @override
+  State<_LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<_LoginView> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -25,29 +49,25 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     super.dispose();
   }
 
-  Future<void> _submit() async {
+  void _submit() {
     if (!_formKey.currentState!.validate()) return;
-    await ref
-        .read(authControllerProvider.notifier)
-        .signIn(
-          email: _emailController.text.trim(),
-          password: _passwordController.text,
-        );
-    if (ref.read(authControllerProvider).mode == AuthAccessMode.authenticated) {
-      TextInput.finishAutofillContext(shouldSave: true);
-    }
+    context.read<LoginBloc>().add(
+      LoginSubmitted(
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
-    final auth = ref.watch(authControllerProvider);
+    final state = context.watch<LoginBloc>().state;
+    final isBusy = state is LoginLoading || state is LoginSuccess;
     final scheme = Theme.of(context).colorScheme;
-    final error = auth.error == null
-        ? null
-        : auth.error == 'unexpected'
-        ? loc.unexpectedError
-        : auth.error;
+    final error = state is LoginFailure
+        ? (state.message ?? loc.unexpectedError)
+        : null;
 
     return Scaffold(
       body: SafeArea(
@@ -139,8 +159,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         width: double.infinity,
                         height: 48,
                         child: FilledButton(
-                          onPressed: auth.isBusy ? null : _submit,
-                          child: auth.isBusy
+                          onPressed: isBusy ? null : _submit,
+                          child: isBusy
                               ? const SizedBox.square(
                                   dimension: 20,
                                   child: CircularProgressIndicator(
@@ -152,11 +172,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       ),
                       const SizedBox(height: 12),
                       TextButton(
-                        onPressed: auth.isBusy
+                        onPressed: isBusy
                             ? null
-                            : () => ref
-                                  .read(authControllerProvider.notifier)
-                                  .continueAsGuest(),
+                            : () => getIt<AuthSessionCubit>().continueAsGuest(),
                         child: Text(loc.continueWithoutAccount),
                       ),
                     ],
