@@ -21,12 +21,12 @@ lib/
   l10n/                               # app_en.arb / app_es.arb + generated app_localizations*.dart
   pages/                              # screens (settings_page, legal_info_page, events_home_page, ...)
   widgets/                            # shared widgets (bottom_sheet_pinned_title, developer_info_section, ...)
-  router.dart                         # go_router routes + auth redirects
-  main.dart                           # Supabase init, DI, MaterialApp.router, biometric lock
+  router.dart                         # go_router routes (starts on /events, no auth)
+  main.dart                           # dev proxy cert (debug), DI, MaterialApp.router, biometric lock
 ```
 
 - State management: `get_it` + `flutter_bloc` (Cubit/Bloc) for features; `ChangeNotifier` controllers for locale/theme/biometric.
-- Features: `auth` (Supabase email/password, optional guest mode via `AuthSessionCubit`) and `events` (Sherdog scraper + on-device cache).
+- Features: `events` (Sherdog scraper + on-device cache). There is no backend, account or sign-in; the optional biometric app lock works without an account.
 - Navigation uses `go_router` (`context.push('/settings')`, `/settings/about|privacy|terms|cache`, `/event`, `/fight`, `/fighter`).
 - Localization: edit `lib/l10n/app_en.arb` and `app_es.arb`, then run `flutter gen-l10n` (see `l10n.yaml`).
 

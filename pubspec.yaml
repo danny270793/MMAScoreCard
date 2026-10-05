@@ -42,7 +42,6 @@ dependencies:
   equatable: ^3.0.0
   shared_preferences: ^2.5.5
   package_info_plus: ^10.2.1
-  supabase_flutter: ^2.0.0
   local_auth: ^3.0.2
   url_launcher: ^6.3.2
   flutter_localizations:

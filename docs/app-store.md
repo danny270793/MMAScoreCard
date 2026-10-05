@@ -2,18 +2,18 @@
 
 Always open **`ios/Runner.xcworkspace`**, never `Runner.xcodeproj`. CocoaPods and Flutter plugins live in the workspace.
 
-Dart defines (`SUPABASE_*`) must be generated **before** you Archive in Xcode. A Xcode-only archive without a prior Flutter build will ship an app without those keys.
+Run a Flutter build (or `--config-only`) **before** you Archive in Xcode so `ios/Flutter/Generated.xcconfig` is up to date.
 
 ## Sync the iOS project
 
 ```sh
 asdf exec flutter pub get
-asdf exec flutter build ios --config-only --release --dart-define-from-file=.env.json
+asdf exec flutter build ios --config-only --release
 cd ios && pod install && cd ..
 open ios/Runner.xcworkspace
 ```
 
-`--config-only` refreshes `ios/Flutter/Generated.xcconfig` (including dart-defines) without a full compile.
+`--config-only` refreshes `ios/Flutter/Generated.xcconfig` without a full compile.
 
 ## Signing
 
@@ -25,10 +25,10 @@ In Xcode, select the **Runner** target → **Signing & Capabilities**:
 
 ## Preferred store build
 
-From the repo root (embeds dart-defines and produces an IPA):
+From the repo root (produces an IPA):
 
 ```sh
-asdf exec flutter build ipa --dart-define-from-file=.env.json
+asdf exec flutter build ipa
 ```
 
 Upload `build/ios/ipa/*.ipa` with **Transporter** or Xcode → **Window** → **Organizer**.
@@ -46,5 +46,5 @@ Bump the version **before** every store upload. See [versioning.md](versioning.m
 ## Common failures
 
 - Archiving `Runner.xcodeproj` instead of the workspace
-- Archiving without `--dart-define-from-file=.env.json` (login will fail)
+- Archiving in Xcode without first running a Flutter build (stale `Generated.xcconfig`)
 - Reusing the same `version` `+build` as a previous upload (App Store Connect rejects it)

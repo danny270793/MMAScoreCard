@@ -128,54 +128,6 @@ abstract class AppLocalizations {
   /// **'Search'**
   String get tabSearch;
 
-  /// No description provided for @signIn.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign in'**
-  String get signIn;
-
-  /// No description provided for @signInSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign in to manage your account, or keep using the app without one.'**
-  String get signInSubtitle;
-
-  /// No description provided for @continueWithoutAccount.
-  ///
-  /// In en, this message translates to:
-  /// **'Continue without account'**
-  String get continueWithoutAccount;
-
-  /// No description provided for @email.
-  ///
-  /// In en, this message translates to:
-  /// **'Email'**
-  String get email;
-
-  /// No description provided for @password.
-  ///
-  /// In en, this message translates to:
-  /// **'Password'**
-  String get password;
-
-  /// No description provided for @fieldRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Required'**
-  String get fieldRequired;
-
-  /// No description provided for @unexpectedError.
-  ///
-  /// In en, this message translates to:
-  /// **'Something went wrong. Please try again.'**
-  String get unexpectedError;
-
-  /// No description provided for @signOut.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign out'**
-  String get signOut;
-
   /// No description provided for @searchHint.
   ///
   /// In en, this message translates to:
@@ -260,113 +212,11 @@ abstract class AppLocalizations {
   /// **'About'**
   String get settingsAboutSection;
 
-  /// No description provided for @settingsProfileSection.
-  ///
-  /// In en, this message translates to:
-  /// **'Profile'**
-  String get settingsProfileSection;
-
   /// No description provided for @settingsSecuritySection.
   ///
   /// In en, this message translates to:
   /// **'Security'**
   String get settingsSecuritySection;
-
-  /// No description provided for @settingsChangeEmail.
-  ///
-  /// In en, this message translates to:
-  /// **'Change email'**
-  String get settingsChangeEmail;
-
-  /// No description provided for @settingsChangeEmailDialogTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Change email'**
-  String get settingsChangeEmailDialogTitle;
-
-  /// No description provided for @settingsNewEmailLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'New email'**
-  String get settingsNewEmailLabel;
-
-  /// No description provided for @settingsChangeEmailInvalid.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter a valid email address'**
-  String get settingsChangeEmailInvalid;
-
-  /// No description provided for @settingsChangeEmailSuccess.
-  ///
-  /// In en, this message translates to:
-  /// **'Email update requested. Check both inboxes if confirmation is required.'**
-  String get settingsChangeEmailSuccess;
-
-  /// No description provided for @settingsChangeEmailSubmit.
-  ///
-  /// In en, this message translates to:
-  /// **'Update'**
-  String get settingsChangeEmailSubmit;
-
-  /// No description provided for @settingsChangeEmailSameAsCurrent.
-  ///
-  /// In en, this message translates to:
-  /// **'That is already your email.'**
-  String get settingsChangeEmailSameAsCurrent;
-
-  /// No description provided for @settingsChangePassword.
-  ///
-  /// In en, this message translates to:
-  /// **'Change password'**
-  String get settingsChangePassword;
-
-  /// No description provided for @settingsChangePasswordSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose a new password for this account'**
-  String get settingsChangePasswordSubtitle;
-
-  /// No description provided for @settingsChangePasswordDialogTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Change password'**
-  String get settingsChangePasswordDialogTitle;
-
-  /// No description provided for @settingsNewPasswordLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'New password'**
-  String get settingsNewPasswordLabel;
-
-  /// No description provided for @settingsConfirmNewPasswordLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm new password'**
-  String get settingsConfirmNewPasswordLabel;
-
-  /// No description provided for @settingsPasswordTooShort.
-  ///
-  /// In en, this message translates to:
-  /// **'Use at least 6 characters'**
-  String get settingsPasswordTooShort;
-
-  /// No description provided for @settingsPasswordsDoNotMatch.
-  ///
-  /// In en, this message translates to:
-  /// **'Passwords do not match'**
-  String get settingsPasswordsDoNotMatch;
-
-  /// No description provided for @settingsChangePasswordSuccess.
-  ///
-  /// In en, this message translates to:
-  /// **'Password updated'**
-  String get settingsChangePasswordSuccess;
-
-  /// No description provided for @settingsChangePasswordSubmit.
-  ///
-  /// In en, this message translates to:
-  /// **'Update password'**
-  String get settingsChangePasswordSubmit;
 
   /// No description provided for @settingsBiometricUnlockTitle.
   ///
@@ -593,7 +443,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsAboutDataBody.
   ///
   /// In en, this message translates to:
-  /// **'An account is optional. Event data is fetched from a third-party source and cached on this device to reduce network use.'**
+  /// **'No account is needed. Event data is fetched from a third-party source and cached on this device to reduce network use.'**
   String get settingsAboutDataBody;
 
   /// No description provided for @settingsAboutDeveloperHeading.
@@ -644,17 +494,17 @@ abstract class AppLocalizations {
   /// **'MMA ScoreCard is provided as-is, for personal, non-commercial use. Continued use of the app constitutes acceptance of these terms; if you disagree with them, please stop using the app.'**
   String get settingsTermsAcceptanceBody;
 
-  /// No description provided for @settingsTermsAccountTitle.
+  /// No description provided for @settingsTermsNoAccountTitle.
   ///
   /// In en, this message translates to:
-  /// **'Optional account'**
-  String get settingsTermsAccountTitle;
+  /// **'No account needed'**
+  String get settingsTermsNoAccountTitle;
 
-  /// No description provided for @settingsTermsAccountBody.
+  /// No description provided for @settingsTermsNoAccountBody.
   ///
   /// In en, this message translates to:
-  /// **'You can use the app without signing in. If you create an account, sign-in is handled by Supabase. Today we do not upload app-generated content such as favorites. Later versions may store that kind of data in Supabase when you are signed in so it can sync across your devices.'**
-  String get settingsTermsAccountBody;
+  /// **'MMA ScoreCard does not have accounts or sign-in. Your preferences and the event cache are stored only on this device, and we do not upload any app-generated content.'**
+  String get settingsTermsNoAccountBody;
 
   /// No description provided for @settingsTermsDisclaimerTitle.
   ///
@@ -707,31 +557,31 @@ abstract class AppLocalizations {
   /// No description provided for @settingsPrivacyTagline.
   ///
   /// In en, this message translates to:
-  /// **'Sign-in is optional. Event cache stays on this device.'**
+  /// **'No account, no sign-in. Everything stays on this device.'**
   String get settingsPrivacyTagline;
 
   /// No description provided for @settingsPrivacyDataTitle.
   ///
   /// In en, this message translates to:
-  /// **'Account (optional)'**
+  /// **'No account'**
   String get settingsPrivacyDataTitle;
 
   /// No description provided for @settingsPrivacyDataBody.
   ///
   /// In en, this message translates to:
-  /// **'You can use MMA ScoreCard without an account. If you sign in, authentication is provided by Supabase. Your email and credentials are processed by Supabase; this app does not store your password.'**
+  /// **'You use MMA ScoreCard without an account. The app does not ask for your name, email or password, and does not send personal data to any server we operate.'**
   String get settingsPrivacyDataBody;
 
   /// No description provided for @settingsPrivacyInfraTitle.
   ///
   /// In en, this message translates to:
-  /// **'What we store today — and later'**
+  /// **'What we store'**
   String get settingsPrivacyInfraTitle;
 
   /// No description provided for @settingsPrivacyInfraBody.
   ///
   /// In en, this message translates to:
-  /// **'Public event listings are fetched from a third-party source over HTTPS and cached only on this device so the app does not re-download them every time. Theme and language stay on the device. We do not currently upload app-generated data such as favorites. In the future, if you are signed in, we may store that kind of information in Supabase so it can sync across your devices. You can clear the local event cache by clearing the app\'s storage.'**
+  /// **'Public event listings are fetched from a third-party source over HTTPS and cached only on this device so the app does not re-download them every time. Theme, language and the biometric unlock setting stay on the device. You can clear the local event cache by clearing the app\'s storage.'**
   String get settingsPrivacyInfraBody;
 
   /// No description provided for @settingsPrivacySharingTitle.

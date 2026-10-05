@@ -6,7 +6,6 @@ Pin the Flutter SDK with [asdf](https://asdf-vm.com/) using [`.tool-versions`](.
 
 ```sh
 asdf install
-cp .env.example.json .env.json   # then follow docs/environment.md
 asdf exec flutter pub get
 ```
 
@@ -16,20 +15,20 @@ Start an Android emulator from Android Studio or `emulator -list-avds` / `emulat
 
 ```sh
 asdf exec flutter devices
-asdf exec flutter run --dart-define-from-file=.env.json
+asdf exec flutter run
 ```
 
 Target a device explicitly:
 
 ```sh
-asdf exec flutter run --dart-define-from-file=.env.json -d emulator-5554
-asdf exec flutter run --dart-define-from-file=.env.json -d "iPhone 16"
+asdf exec flutter run -d emulator-5554
+asdf exec flutter run -d "iPhone 16"
 ```
 
 Release-style run:
 
 ```sh
-asdf exec flutter run --release --dart-define-from-file=.env.json
+asdf exec flutter run --release
 ```
 
-Do not use a bare `flutter run` for this project. `SUPABASE_URL` and `SUPABASE_ANON_KEY` are compile-time defines; without `--dart-define-from-file=.env.json` the app will not start correctly.
+`scripts/start.sh` and `scripts/build.sh` wrap the same commands. No `--dart-define` values are required.

@@ -25,31 +25,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get tabSearch => 'Buscar';
 
   @override
-  String get signIn => 'Iniciar sesión';
-
-  @override
-  String get signInSubtitle =>
-      'Inicia sesión para administrar tu cuenta o sigue usando la app sin una.';
-
-  @override
-  String get continueWithoutAccount => 'Continuar sin cuenta';
-
-  @override
-  String get email => 'Correo electrónico';
-
-  @override
-  String get password => 'Contraseña';
-
-  @override
-  String get fieldRequired => 'Obligatorio';
-
-  @override
-  String get unexpectedError => 'Algo salió mal. Inténtalo de nuevo.';
-
-  @override
-  String get signOut => 'Cerrar sesión';
-
-  @override
   String get searchHint => 'Buscar eventos';
 
   @override
@@ -94,61 +69,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settingsAboutSection => 'Acerca de';
 
   @override
-  String get settingsProfileSection => 'Perfil';
-
-  @override
   String get settingsSecuritySection => 'Seguridad';
-
-  @override
-  String get settingsChangeEmail => 'Cambiar correo electrónico';
-
-  @override
-  String get settingsChangeEmailDialogTitle => 'Cambiar correo electrónico';
-
-  @override
-  String get settingsNewEmailLabel => 'Nuevo correo electrónico';
-
-  @override
-  String get settingsChangeEmailInvalid =>
-      'Ingresa un correo electrónico válido';
-
-  @override
-  String get settingsChangeEmailSuccess =>
-      'Se solicitó actualizar el correo. Revisa ambas bandejas si se requiere confirmación.';
-
-  @override
-  String get settingsChangeEmailSubmit => 'Actualizar';
-
-  @override
-  String get settingsChangeEmailSameAsCurrent => 'Ese ya es tu correo.';
-
-  @override
-  String get settingsChangePassword => 'Cambiar contraseña';
-
-  @override
-  String get settingsChangePasswordSubtitle =>
-      'Elige una nueva contraseña para esta cuenta';
-
-  @override
-  String get settingsChangePasswordDialogTitle => 'Cambiar contraseña';
-
-  @override
-  String get settingsNewPasswordLabel => 'Nueva contraseña';
-
-  @override
-  String get settingsConfirmNewPasswordLabel => 'Confirmar nueva contraseña';
-
-  @override
-  String get settingsPasswordTooShort => 'Usa al menos 6 caracteres';
-
-  @override
-  String get settingsPasswordsDoNotMatch => 'Las contraseñas no coinciden';
-
-  @override
-  String get settingsChangePasswordSuccess => 'Contraseña actualizada';
-
-  @override
-  String get settingsChangePasswordSubmit => 'Actualizar contraseña';
 
   @override
   String get settingsBiometricUnlockTitle =>
@@ -279,7 +200,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsAboutDataBody =>
-      'La cuenta es opcional. Los datos de los eventos se obtienen de una fuente externa y se guardan en caché en este dispositivo para reducir el uso de red.';
+      'No necesitas una cuenta. Los datos de los eventos se obtienen de una fuente externa y se guardan en caché en este dispositivo para reducir el uso de red.';
 
   @override
   String get settingsAboutDeveloperHeading => 'Desarrollador';
@@ -307,11 +228,11 @@ class AppLocalizationsEs extends AppLocalizations {
       'MMA ScoreCard se ofrece tal cual, para uso personal y no comercial. El uso continuado de la app implica la aceptación de estos términos; si no estás de acuerdo, deja de usar la app.';
 
   @override
-  String get settingsTermsAccountTitle => 'Cuenta opcional';
+  String get settingsTermsNoAccountTitle => 'Sin cuenta';
 
   @override
-  String get settingsTermsAccountBody =>
-      'Puedes usar la app sin iniciar sesión. Si creas una cuenta, el acceso lo gestiona Supabase. Hoy no subimos contenido generado por la app, como favoritos. Versiones posteriores podrán guardar ese tipo de datos en Supabase cuando hayas iniciado sesión, para sincronizarlos entre tus dispositivos.';
+  String get settingsTermsNoAccountBody =>
+      'MMA ScoreCard no tiene cuentas ni inicio de sesión. Tus preferencias y la caché de eventos se guardan solo en este dispositivo, y no subimos ningún contenido generado por la app.';
 
   @override
   String get settingsTermsDisclaimerTitle => 'Sin afiliación con la UFC';
@@ -343,21 +264,21 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsPrivacyTagline =>
-      'El inicio de sesión es opcional. La caché de eventos se queda en este dispositivo.';
+      'Sin cuenta ni inicio de sesión. Todo se queda en este dispositivo.';
 
   @override
-  String get settingsPrivacyDataTitle => 'Cuenta (opcional)';
+  String get settingsPrivacyDataTitle => 'Sin cuenta';
 
   @override
   String get settingsPrivacyDataBody =>
-      'Puedes usar MMA ScoreCard sin cuenta. Si inicias sesión, la autenticación la proporciona Supabase. Tu correo y credenciales los procesa Supabase; esta app no guarda tu contraseña.';
+      'Usas MMA ScoreCard sin cuenta. La app no te pide nombre, correo ni contraseña, y no envía datos personales a ningún servidor que operemos.';
 
   @override
-  String get settingsPrivacyInfraTitle => 'Qué guardamos hoy — y más adelante';
+  String get settingsPrivacyInfraTitle => 'Qué guardamos';
 
   @override
   String get settingsPrivacyInfraBody =>
-      'Los listados públicos de eventos se obtienen de una fuente externa por HTTPS y se guardan en caché solo en este dispositivo para no volver a descargarlos cada vez. Tema e idioma se quedan en el dispositivo. Hoy no subimos datos generados por la app, como favoritos. En el futuro, si has iniciado sesión, podremos guardar ese tipo de información en Supabase para sincronizarla entre tus dispositivos. Puedes borrar la caché local de eventos al borrar el almacenamiento de la app.';
+      'Los listados públicos de eventos se obtienen de una fuente externa por HTTPS y se guardan en caché solo en este dispositivo para no volver a descargarlos cada vez. El tema, el idioma y el ajuste de desbloqueo biométrico se quedan en el dispositivo. Puedes borrar la caché local de eventos al borrar el almacenamiento de la app.';
 
   @override
   String get settingsPrivacySharingTitle => 'Solicitudes a terceros';

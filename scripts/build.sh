@@ -26,14 +26,7 @@ done
 [[ "$PLATFORM" == "android" || "$PLATFORM" == "ios" ]] || { echo "Invalid --platform: $PLATFORM" >&2; usage; }
 [[ "$MODE" == "debug" || "$MODE" == "release" ]] || { echo "Invalid --mode: $MODE" >&2; usage; }
 
-ENV_FILE=".env.json"
-if [[ ! -f "$ENV_FILE" ]]; then
-  echo "Missing $ENV_FILE. Create it from .env.example.json:" >&2
-  echo "  cp .env.example.json $ENV_FILE" >&2
-  exit 1
-fi
-
-DEFINES=(--dart-define-from-file="$ENV_FILE")
+DEFINES=()
 
 flutter pub get
 

@@ -25,31 +25,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tabSearch => 'Search';
 
   @override
-  String get signIn => 'Sign in';
-
-  @override
-  String get signInSubtitle =>
-      'Sign in to manage your account, or keep using the app without one.';
-
-  @override
-  String get continueWithoutAccount => 'Continue without account';
-
-  @override
-  String get email => 'Email';
-
-  @override
-  String get password => 'Password';
-
-  @override
-  String get fieldRequired => 'Required';
-
-  @override
-  String get unexpectedError => 'Something went wrong. Please try again.';
-
-  @override
-  String get signOut => 'Sign out';
-
-  @override
   String get searchHint => 'Search events';
 
   @override
@@ -94,60 +69,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsAboutSection => 'About';
 
   @override
-  String get settingsProfileSection => 'Profile';
-
-  @override
   String get settingsSecuritySection => 'Security';
-
-  @override
-  String get settingsChangeEmail => 'Change email';
-
-  @override
-  String get settingsChangeEmailDialogTitle => 'Change email';
-
-  @override
-  String get settingsNewEmailLabel => 'New email';
-
-  @override
-  String get settingsChangeEmailInvalid => 'Enter a valid email address';
-
-  @override
-  String get settingsChangeEmailSuccess =>
-      'Email update requested. Check both inboxes if confirmation is required.';
-
-  @override
-  String get settingsChangeEmailSubmit => 'Update';
-
-  @override
-  String get settingsChangeEmailSameAsCurrent => 'That is already your email.';
-
-  @override
-  String get settingsChangePassword => 'Change password';
-
-  @override
-  String get settingsChangePasswordSubtitle =>
-      'Choose a new password for this account';
-
-  @override
-  String get settingsChangePasswordDialogTitle => 'Change password';
-
-  @override
-  String get settingsNewPasswordLabel => 'New password';
-
-  @override
-  String get settingsConfirmNewPasswordLabel => 'Confirm new password';
-
-  @override
-  String get settingsPasswordTooShort => 'Use at least 6 characters';
-
-  @override
-  String get settingsPasswordsDoNotMatch => 'Passwords do not match';
-
-  @override
-  String get settingsChangePasswordSuccess => 'Password updated';
-
-  @override
-  String get settingsChangePasswordSubmit => 'Update password';
 
   @override
   String get settingsBiometricUnlockTitle => 'Face ID / biometric unlock';
@@ -276,7 +198,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsAboutDataBody =>
-      'An account is optional. Event data is fetched from a third-party source and cached on this device to reduce network use.';
+      'No account is needed. Event data is fetched from a third-party source and cached on this device to reduce network use.';
 
   @override
   String get settingsAboutDeveloperHeading => 'Developer';
@@ -304,11 +226,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'MMA ScoreCard is provided as-is, for personal, non-commercial use. Continued use of the app constitutes acceptance of these terms; if you disagree with them, please stop using the app.';
 
   @override
-  String get settingsTermsAccountTitle => 'Optional account';
+  String get settingsTermsNoAccountTitle => 'No account needed';
 
   @override
-  String get settingsTermsAccountBody =>
-      'You can use the app without signing in. If you create an account, sign-in is handled by Supabase. Today we do not upload app-generated content such as favorites. Later versions may store that kind of data in Supabase when you are signed in so it can sync across your devices.';
+  String get settingsTermsNoAccountBody =>
+      'MMA ScoreCard does not have accounts or sign-in. Your preferences and the event cache are stored only on this device, and we do not upload any app-generated content.';
 
   @override
   String get settingsTermsDisclaimerTitle => 'Not affiliated with the UFC';
@@ -340,21 +262,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsPrivacyTagline =>
-      'Sign-in is optional. Event cache stays on this device.';
+      'No account, no sign-in. Everything stays on this device.';
 
   @override
-  String get settingsPrivacyDataTitle => 'Account (optional)';
+  String get settingsPrivacyDataTitle => 'No account';
 
   @override
   String get settingsPrivacyDataBody =>
-      'You can use MMA ScoreCard without an account. If you sign in, authentication is provided by Supabase. Your email and credentials are processed by Supabase; this app does not store your password.';
+      'You use MMA ScoreCard without an account. The app does not ask for your name, email or password, and does not send personal data to any server we operate.';
 
   @override
-  String get settingsPrivacyInfraTitle => 'What we store today — and later';
+  String get settingsPrivacyInfraTitle => 'What we store';
 
   @override
   String get settingsPrivacyInfraBody =>
-      'Public event listings are fetched from a third-party source over HTTPS and cached only on this device so the app does not re-download them every time. Theme and language stay on the device. We do not currently upload app-generated data such as favorites. In the future, if you are signed in, we may store that kind of information in Supabase so it can sync across your devices. You can clear the local event cache by clearing the app\'s storage.';
+      'Public event listings are fetched from a third-party source over HTTPS and cached only on this device so the app does not re-download them every time. Theme, language and the biometric unlock setting stay on the device. You can clear the local event cache by clearing the app\'s storage.';
 
   @override
   String get settingsPrivacySharingTitle => 'Third-party requests';

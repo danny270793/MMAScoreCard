@@ -330,8 +330,8 @@ class _TermsBody extends StatelessWidget {
             body: l10n.settingsTermsAcceptanceBody,
           ),
           _PolicySection(
-            title: l10n.settingsTermsAccountTitle,
-            body: l10n.settingsTermsAccountBody,
+            title: l10n.settingsTermsNoAccountTitle,
+            body: l10n.settingsTermsNoAccountBody,
           ),
           _PolicyCallout(
             title: l10n.settingsTermsDisclaimerTitle,
