@@ -78,7 +78,7 @@ flutter:
   generate: true
 
   assets:
-    - assets/dev_certs/zscaler_root_ca.pem
+    - assets/certs/
     - assets/launcher.png
     - assets/launcher-ios.png
     - assets/launcher_monochrome.png

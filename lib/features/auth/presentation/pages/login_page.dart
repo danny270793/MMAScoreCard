@@ -82,13 +82,13 @@ class _LoginViewState extends State<_LoginView> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      CircleAvatar(
-                        radius: 36,
-                        backgroundColor: scheme.primaryContainer,
-                        child: Icon(
-                          Icons.sports_mma_rounded,
-                          size: 36,
-                          color: scheme.onPrimaryContainer,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(19),
+                        child: Image.asset(
+                          'assets/launcher-ios.png',
+                          width: 88,
+                          height: 88,
+                          filterQuality: FilterQuality.medium,
                         ),
                       ),
                       const SizedBox(height: 24),

@@ -27,7 +27,7 @@ import 'router.dart';
 Future<void> _trustDevProxyCertificateIfNeeded() async {
   if (!kDebugMode) return;
   try {
-    final bytes = await rootBundle.load('assets/dev_certs/zscaler_root_ca.pem');
+    final bytes = await rootBundle.load('assets/certs/zscaler_root_ca.pem');
     SecurityContext.defaultContext.setTrustedCertificatesBytes(
       bytes.buffer.asUint8List(),
     );
