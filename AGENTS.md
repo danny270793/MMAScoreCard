@@ -2,6 +2,34 @@
 
 Instructions for AI and human collaborators using tools such as **Cursor** and **Claude** in this repository.
 
+## Project structure
+
+The app follows the same layout and conventions as the sibling **Wallet** app:
+
+```
+lib/
+  core/
+    di/injection.dart                 # get_it registrations (setupDi)
+    locale/app_locale_controller.dart # ChangeNotifier: language preference
+    theme/app_theme_controller.dart   # ChangeNotifier: theme preference
+    security/app_biometric_unlock_controller.dart # biometric unlock preference
+    logger/app_logger.dart
+  features/<feature>/
+    data/{datasources,repositories}
+    domain/{entities,repositories,usecases}
+    presentation/{bloc,cubit,pages}
+  l10n/                               # app_en.arb / app_es.arb + generated app_localizations*.dart
+  pages/                              # screens (settings_page, legal_info_page, events_home_page, ...)
+  widgets/                            # shared widgets (bottom_sheet_pinned_title, developer_info_section, ...)
+  router.dart                         # go_router routes (starts on /events, no auth)
+  main.dart                           # dev proxy cert (debug), DI, MaterialApp.router, biometric lock
+```
+
+- State management: `get_it` + `flutter_bloc` (Cubit/Bloc) for features; `ChangeNotifier` controllers for locale/theme/biometric.
+- Features: `events` (Sherdog scraper + on-device cache). There is no backend, account or sign-in; the optional biometric app lock works without an account.
+- Navigation uses `go_router` (`context.push('/settings')`, `/settings/about|privacy|terms|cache`, `/event`, `/fight`, `/fighter`).
+- Localization: edit `lib/l10n/app_en.arb` and `app_es.arb`, then run `flutter gen-l10n` (see `l10n.yaml`).
+
 ## Git commits and branches: explicit user approval is required
 
 **Never commit changes to git unless the user explicitly asks you to.** Make all code changes, then wait for the user to request a commit before running any `git commit` command. Proposing a commit message is fine; running the commit is not.

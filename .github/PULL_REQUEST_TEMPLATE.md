@@ -10,7 +10,7 @@
 
 - [ ] `asdf exec flutter analyze`
 - [ ] `asdf exec flutter test`
-- [ ] Manual: emulator or device with `--dart-define-from-file=.env.json`
+- [ ] Manual: emulator or device (`asdf exec flutter run`)
 
 ## Notes
 
