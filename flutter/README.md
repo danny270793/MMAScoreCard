@@ -4,7 +4,7 @@ UFC event and fight browsing. No account or sign-in: event data is scraped from 
 
 Flutter **3.47.2** (see [`.tool-versions`](.tool-versions)). Package / bundle ID: `io.github.danny270793.mmascorecard`.
 
-Architecture mirrors the Wallet app: `get_it` + `flutter_bloc` + `go_router`, with `lib/core`, `lib/features/<feature>/{data,domain,presentation}`, `lib/pages`, `lib/widgets` and `lib/l10n` (see [AGENTS.md](AGENTS.md#project-structure)).
+Architecture mirrors the Wallet app: `get_it` + `flutter_bloc` + `go_router`, with `lib/core`, `lib/features/<feature>/{data,domain,presentation}`, `lib/pages`, `lib/widgets` and `lib/l10n` (see [AGENTS.md](../AGENTS.md#project-structure)).
 
 ## Quick start
 
@@ -21,4 +21,4 @@ asdf exec flutter run
 
 ## Agents
 
-See [AGENTS.md](AGENTS.md) (Claude: [CLAUDE.md](CLAUDE.md)).
+See [AGENTS.md](../AGENTS.md) (Claude: [CLAUDE.md](../CLAUDE.md)).
