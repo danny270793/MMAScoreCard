@@ -1,0 +1,279 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D1A2B3C4D5E6000000000014 /* ScoreCardCore in Frameworks */ = {isa = PBXBuildFile; productRef = D1A2B3C4D5E6000000000012 /* ScoreCardCore */; };
+		D1A2B3C4D5E6000000000015 /* ScoreCardData in Frameworks */ = {isa = PBXBuildFile; productRef = D1A2B3C4D5E6000000000013 /* ScoreCardData */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D1A2B3C4D5E6000000000005 /* MMAScoreCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMAScoreCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D1A2B3C4D5E6000000000006 /* MMAScoreCard */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MMAScoreCard;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D1A2B3C4D5E6000000000010 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1A2B3C4D5E6000000000014 /* ScoreCardCore in Frameworks */,
+				D1A2B3C4D5E6000000000015 /* ScoreCardData in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D1A2B3C4D5E6000000000002 = {
+			isa = PBXGroup;
+			children = (
+				D1A2B3C4D5E6000000000006 /* MMAScoreCard */,
+				D1A2B3C4D5E6000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D1A2B3C4D5E6000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D1A2B3C4D5E6000000000005 /* MMAScoreCard.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D1A2B3C4D5E6000000000008 /* MMAScoreCard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1A2B3C4D5E600000000000C /* Build configuration list for PBXNativeTarget "MMAScoreCard" */;
+			buildPhases = (
+				D1A2B3C4D5E600000000000F /* Sources */,
+				D1A2B3C4D5E6000000000010 /* Frameworks */,
+				D1A2B3C4D5E6000000000011 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D1A2B3C4D5E6000000000006 /* MMAScoreCard */,
+			);
+			name = MMAScoreCard;
+			packageProductDependencies = (
+				D1A2B3C4D5E6000000000012 /* ScoreCardCore */,
+				D1A2B3C4D5E6000000000013 /* ScoreCardData */,
+			);
+			productName = MMAScoreCard;
+			productReference = D1A2B3C4D5E6000000000005 /* MMAScoreCard.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D1A2B3C4D5E6000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+			};
+			buildConfigurationList = D1A2B3C4D5E6000000000009 /* Build configuration list for PBXProject "MMAScoreCard" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				es,
+				Base,
+			);
+			mainGroup = D1A2B3C4D5E6000000000002;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D1A2B3C4D5E6000000000007 /* XCLocalSwiftPackageReference "Packages/ScoreCardKit" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = D1A2B3C4D5E6000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D1A2B3C4D5E6000000000008 /* MMAScoreCard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D1A2B3C4D5E6000000000011 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D1A2B3C4D5E600000000000F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D1A2B3C4D5E600000000000A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D1A2B3C4D5E600000000000B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D1A2B3C4D5E600000000000D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 8TGP3K3MLX;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "MMA ScoreCard";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Unlock the app with Face ID when you enable this option.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.danny270793.mmascorecard;
+				PRODUCT_NAME = MMAScoreCard;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D1A2B3C4D5E600000000000E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 8TGP3K3MLX;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "MMA ScoreCard";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Unlock the app with Face ID when you enable this option.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.danny270793.mmascorecard;
+				PRODUCT_NAME = MMAScoreCard;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D1A2B3C4D5E6000000000009 /* Build configuration list for PBXProject "MMAScoreCard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1A2B3C4D5E600000000000A /* Debug */,
+				D1A2B3C4D5E600000000000B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1A2B3C4D5E600000000000C /* Build configuration list for PBXNativeTarget "MMAScoreCard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1A2B3C4D5E600000000000D /* Debug */,
+				D1A2B3C4D5E600000000000E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		D1A2B3C4D5E6000000000007 /* XCLocalSwiftPackageReference "Packages/ScoreCardKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/ScoreCardKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D1A2B3C4D5E6000000000012 /* ScoreCardCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ScoreCardCore;
+		};
+		D1A2B3C4D5E6000000000013 /* ScoreCardData */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ScoreCardData;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = D1A2B3C4D5E6000000000001 /* Project object */;
+}
