@@ -1,0 +1,9 @@
+{
+  "settingsRateAppStore": {"en": "Rate the app", "es": "Calificar la app"},
+  "openInSherdog": {"en": "Open in Sherdog", "es": "Abrir en Sherdog"},
+  "share": {"en": "Share", "es": "Compartir"},
+  "loadMore": {"en": "Load older events", "es": "Cargar eventos anteriores"},
+  "searchFightsHint": {"en": "Search fighters or divisions", "es": "Buscar peleadores o divisiones"},
+  "searchHistoryHint": {"en": "Search opponents or events", "es": "Buscar rivales o eventos"},
+  "searchTabPrompt": {"en": "Upcoming and loaded past events", "es": "Próximos y eventos pasados cargados"}
+}
