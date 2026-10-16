@@ -4,10 +4,12 @@ Instructions for AI and human collaborators using tools such as **Cursor** and *
 
 ## Project structure
 
-The app follows the same layout and conventions as the sibling **Wallet** app:
+The repo holds two apps: the original Flutter app in `flutter/` and a native SwiftUI port in `swift/` (see [swift/README.md](swift/README.md)). Run Flutter commands from `flutter/`.
+
+The Flutter app follows the same layout and conventions as the sibling **Wallet** app:
 
 ```
-lib/
+flutter/lib/
   core/
     di/injection.dart                 # get_it registrations (setupDi)
     locale/app_locale_controller.dart # ChangeNotifier: language preference
@@ -28,7 +30,7 @@ lib/
 - State management: `get_it` + `flutter_bloc` (Cubit/Bloc) for features; `ChangeNotifier` controllers for locale/theme/biometric.
 - Features: `events` (Sherdog scraper + on-device cache). There is no backend, account or sign-in; the optional biometric app lock works without an account.
 - Navigation uses `go_router` (`context.push('/settings')`, `/settings/about|privacy|terms|cache`, `/event`, `/fight`, `/fighter`).
-- Localization: edit `lib/l10n/app_en.arb` and `app_es.arb`, then run `flutter gen-l10n` (see `l10n.yaml`).
+- Localization: edit `flutter/lib/l10n/app_en.arb` and `app_es.arb`, then run `flutter gen-l10n` (see `l10n.yaml`). The Swift app reuses the same keys: regenerate its catalog with `python3 -I swift/scripts/arb_to_xcstrings.py`.
 
 ## Git commits and branches: explicit user approval is required
 
