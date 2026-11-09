@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "122031324796",
+    "project_id": "danny-apps-ec658",
+    "storage_bucket": "danny-apps-ec658.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122031324796:android:7233d5d94dde459f92d3f9",
+        "android_client_info": {
+          "package_name": "io.github.danny270793.mmascorecard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcpGmRBfGmvlQvlEmFEOnkXXGJ6hnz_ro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
