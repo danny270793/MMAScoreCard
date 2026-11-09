@@ -50,3 +50,6 @@ app.*.map.json
 # Personal corporate-proxy dev cert - environment-specific, not portable.
 # main.dart no-ops if it is absent; .gitkeep keeps the asset dir present.
 assets/certs/*.pem
+
+# Firebase App Distribution config (app IDs, tester groups)
+scripts/.env.deploy
