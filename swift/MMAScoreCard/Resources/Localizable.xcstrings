@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "“%@”" : {
+
+    },
     "%@" : {
 
     },
@@ -92,6 +95,244 @@
         }
       }
     },
+    "browseCities" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cities"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ciudades"
+          }
+        }
+      }
+    },
+    "browseCountries" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Countries"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Países"
+          }
+        }
+      }
+    },
+    "browseEmpty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing here yet."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todavía no hay nada aquí."
+          }
+        }
+      }
+    },
+    "browseEventsSection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Events"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eventos"
+          }
+        }
+      }
+    },
+    "browseFighters" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fighters"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peleadores"
+          }
+        }
+      }
+    },
+    "browseFightsSection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fights"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peleas"
+          }
+        }
+      }
+    },
+    "browseLocations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Locations"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lugares"
+          }
+        }
+      }
+    },
+    "browseProfile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perfil"
+          }
+        }
+      }
+    },
+    "browseReferees" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Referees"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Árbitros"
+          }
+        }
+      }
+    },
+    "browseSearchHint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search by name"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar por nombre"
+          }
+        }
+      }
+    },
+    "browseSortBy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort by"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordenar por"
+          }
+        }
+      }
+    },
+    "browseSortMostEvents" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Most events"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más eventos"
+          }
+        }
+      }
+    },
+    "browseSortMostFights" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Most fights"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más peleas"
+          }
+        }
+      }
+    },
+    "browseSortName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre"
+          }
+        }
+      }
+    },
     "cachedAtLabel" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -105,6 +346,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Guardado en caché %1$@"
+          }
+        }
+      }
+    },
+    "cachedBrowseLabel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Browse list"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista de Explorar"
+          }
+        }
+      }
+    },
+    "cachedEventLabel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Event"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Evento"
           }
         }
       }
@@ -143,6 +418,23 @@
         }
       }
     },
+    "cachedOfflineUseCountLabel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Used offline %1$lld times"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usado sin conexión %1$lld veces"
+          }
+        }
+      }
+    },
     "cachedPastPageLabel" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -177,6 +469,23 @@
         }
       }
     },
+    "cachedRecordsCountLabel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Records"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registros"
+          }
+        }
+      }
+    },
     "cachedRecordsEmpty" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -190,6 +499,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Todavía no hay nada en caché."
+          }
+        }
+      }
+    },
+    "cachedRecordsSizeLabel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total size"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamaño total"
           }
         }
       }
@@ -377,6 +703,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Combate por el título"
+          }
+        }
+      }
+    },
+    "eventNotAvailableMessage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only UFC events are stored, so this event can't be shown."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo se guardan eventos de UFC, así que este evento no se puede mostrar."
+          }
+        }
+      }
+    },
+    "eventNotAvailableTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Event not available"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Evento no disponible"
           }
         }
       }
@@ -976,6 +1336,57 @@
         }
       }
     },
+    "historySeeEvent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See event"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver evento"
+          }
+        }
+      }
+    },
+    "fightSeeFighterNamed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver a %@"
+          }
+        }
+      }
+    },
+    "historySeeFighter" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See fighter"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver peleador"
+          }
+        }
+      }
+    },
     "inDaysLabel" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1122,19 +1533,36 @@
         }
       }
     },
+    "searchFightersSection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fighters"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peleadores"
+          }
+        }
+      }
+    },
     "searchFightsHint" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Search fighters or divisions"
+            "value" : "Search fights"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buscar peleadores o divisiones"
+            "value" : "Buscar peleas"
           }
         }
       }
@@ -1145,13 +1573,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Search events"
+            "value" : "Search events, fighters, referees or places"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buscar eventos"
+            "value" : "Buscar eventos, peleadores, árbitros o lugares"
           }
         }
       }
@@ -1162,13 +1590,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Search opponents or events"
+            "value" : "Search opponents"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buscar rivales o eventos"
+            "value" : "Buscar oponentes"
           }
         }
       }
@@ -1203,6 +1631,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Próximos y eventos pasados cargados"
+          }
+        }
+      }
+    },
+    "searchTabSearchFailed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't search. Check your connection."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo buscar. Revisa tu conexión."
           }
         }
       }
@@ -2472,6 +2917,23 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "tabBrowse" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Browse"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Explorar"
           }
         }
       }
