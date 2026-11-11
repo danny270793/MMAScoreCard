@@ -112,6 +112,25 @@ public struct EventFight: Codable, Hashable, Sendable {
 
   public var isCompleted: Bool { outcomeA != .pending }
   public var octagonTime: TimeInterval? { ScoreCardCore.octagonTime(round: round, time: time) }
+
+  /// Sherdog lists the winner first, so the left side gives the result away.
+  /// Finished bouts are put on either side instead, picked from the two
+  /// fighters (a stable hash), so a bout shows the same way every time.
+  /// Bouts without a result keep the listed order, which matches the event's
+  /// headline ("Gane vs. Hokit").
+  public func withMixedSides() -> EventFight {
+    guard isCompleted else { return self }
+    var hash: UInt64 = 0xcbf2_9ce4_8422_2325  // FNV-1a
+    for byte in "\(fighterAUrl ?? fighterA)|\(fighterBUrl ?? fighterB)".utf8 {
+      hash = (hash ^ UInt64(byte)) &* 0x100_0000_01b3
+    }
+    // A high bit: the low bits of FNV-1a barely mix.
+    guard (hash >> 33) & 1 == 1 else { return self }
+    return EventFight(
+      fighterA: fighterB, fighterB: fighterA, fighterAUrl: fighterBUrl, fighterBUrl: fighterAUrl,
+      weightClass: weightClass, isTitleFight: isTitleFight, outcomeA: outcomeB, outcomeB: outcomeA, method: method,
+      round: round, time: time, referee: referee)
+  }
 }
 
 /// KO/TKO, submission and decision counts for one side of the record.
@@ -277,8 +296,74 @@ public struct FighterProfile: Codable, Hashable, Sendable {
   }
 }
 
+/// A fighter found by search.
+public struct FighterSearchHit: Hashable, Sendable {
+  public let name: String
+  public let nickname: String?
+  public let url: String
+
+  public init(name: String, nickname: String?, url: String) {
+    self.name = name
+    self.nickname = nickname
+    self.url = url
+  }
+}
+
+/// Events (newest first) and fighters matching a search.
+public struct SearchResults: Hashable, Sendable {
+  public let events: [MmaEvent]
+  public let fighters: [FighterSearchHit]
+
+  public init(events: [MmaEvent], fighters: [FighterSearchHit]) {
+    self.events = events
+    self.fighters = fighters
+  }
+}
+
+/// The lists of the Browse tab. Places list the events held there; people
+/// the bouts they were in.
+public enum BrowseKind: String, CaseIterable, Hashable, Sendable {
+  case cities, countries, fighters, locations, referees
+
+  public var listsEvents: Bool { self == .cities || self == .countries || self == .locations }
+}
+
+/// Browse list order: alphabetical, or most events / bouts first.
+public enum BrowseSort: String, CaseIterable, Hashable, Sendable {
+  case name, count
+}
+
+/// One row of a Browse list: how many events (places) or bouts (people) it has.
+public struct BrowseItem: Hashable, Identifiable, Sendable {
+  public let id: Int64
+  public let name: String
+  public let subtitle: String?
+  public let count: Int
+  /// Sherdog link, for fighters (their profile).
+  public let link: String?
+
+  public init(id: Int64, name: String, subtitle: String?, count: Int, link: String? = nil) {
+    self.id = id
+    self.name = name
+    self.subtitle = subtitle
+    self.count = count
+    self.link = link
+  }
+}
+
+/// A bout together with the event it was on.
+public struct FightOnCard: Hashable, Sendable {
+  public let event: MmaEvent
+  public let fight: EventFight
+
+  public init(event: MmaEvent, fight: EventFight) {
+    self.event = event
+    self.fight = fight
+  }
+}
+
 public enum CachedRequestKind: String, Sendable {
-  case upcoming, pastPage, fightCard, fighterProfile
+  case upcoming, pastPage, fightCard, fighterProfile, event, browse
 }
 
 public struct CachedRequestInfo: Hashable, Identifiable, Sendable {
