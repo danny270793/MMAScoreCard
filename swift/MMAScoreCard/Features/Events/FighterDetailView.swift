@@ -1,13 +1,13 @@
 import ScoreCardCore
+import ScoreCardData
 import SwiftUI
 
 /// Bio, record with KO / submission / decision breakdowns, streaks and the
-/// fight history by year. Search filters the history by opponent or event.
+/// fight history by year. The search button searches the history by opponent.
 struct FighterDetailView: View {
   @Environment(EventsStore.self) private var store
   let route: FighterRoute
   @State private var profile: Loadable<FighterProfile> = .loading
-  @State private var query = ""
 
   var body: some View {
     Group {
@@ -22,6 +22,7 @@ struct FighterDetailView: View {
     }
     .navigationTitle(route.name)
     .toolbarTitleDisplayMode(.inline)
+    .searchScope(.fighter(route, profile.value?.fightHistory ?? []))
     .toolbar {
       ToolbarItem(placement: .primaryAction) {
         if let url = URL(string: route.url) {
@@ -35,47 +36,53 @@ struct FighterDetailView: View {
 
   private func content(_ p: FighterProfile) -> some View {
     List {
-      // Record headline over wins and losses side by side, then the bio.
-      Section {
-        HStack(alignment: .top, spacing: 16) {
-          RecordColumn(title: L("fighterDetailWinsLabel"), count: p.wins, color: .green, breakdown: p.winsBreakdown)
-          Divider()
-          RecordColumn(
-            title: L("fighterDetailLossesLabel"), count: p.losses, color: .red, breakdown: p.lossesBreakdown)
-        }
-        .padding(.vertical, 6)
-      } header: {
-        VStack(spacing: 2) {
-          Text(p.recordSummary).font(.system(size: 40, weight: .bold, design: .rounded)).monospacedDigit()
-            .foregroundColor(Color(.label))
-          Text(L("fighterDetailRecordLabel")).font(.caption)
-        }
-        .textCase(nil)
-        .frame(maxWidth: .infinity)
-        .padding(.bottom, 8)
-      }
-
-      Section { bio(p) }
-
-      if let streak = p.currentStreak {
-        Section(L("fighterDetailStreaksLabel")) {
-          info(
-            L("fighterDetailCurrentStreakLabel"), "flame", Fmt.streak(streak.outcome, streak.count) ?? L("streakNone"),
-            color: streak.outcome == .win || streak.outcome == .loss ? streak.outcome.color : nil)
-          if p.bestWinStreak > 0 {
-            info(L("fighterDetailBestStreakLabel"), "chart.line.uptrend.xyaxis", L("streakWins", p.bestWinStreak),
-                 color: .green)
-          }
-          if p.worstLossStreak > 0 {
-            info(L("fighterDetailWorstStreakLabel"), "chart.line.downtrend.xyaxis", L("streakLosses", p.worstLossStreak),
-                 color: .red)
-          }
-        }
-      }
-
+      overview(p)
       history(p)
     }
-    .searchable(text: $query, prompt: L("searchHistoryHint"))
+    .fightMenuDestinations()
+  }
+
+  /// Record, bio and streaks.
+  @ViewBuilder
+  private func overview(_ p: FighterProfile) -> some View {
+    // Record headline over wins and losses side by side, then the bio.
+    Section {
+      HStack(alignment: .top, spacing: 16) {
+        RecordColumn(title: L("fighterDetailWinsLabel"), count: p.wins, color: .green, breakdown: p.winsBreakdown)
+        Divider()
+        RecordColumn(
+          title: L("fighterDetailLossesLabel"), count: p.losses, color: .red, breakdown: p.lossesBreakdown)
+      }
+      .padding(.vertical, 6)
+    } header: {
+      VStack(spacing: 2) {
+        Text(p.recordSummary).font(.system(size: 40, weight: .bold, design: .rounded)).monospacedDigit()
+          .foregroundColor(Color(.label))
+        Text(L("fighterDetailRecordLabel")).font(.caption)
+      }
+      .textCase(nil)
+      .frame(maxWidth: .infinity)
+      .padding(.bottom, 8)
+    }
+
+    Section { bio(p) }
+
+    if let streak = p.currentStreak {
+      Section(L("fighterDetailStreaksLabel")) {
+        info(
+          L("fighterDetailCurrentStreakLabel"), "flame", Fmt.streak(streak.outcome, streak.count) ?? L("streakNone"),
+          color: streak.outcome == .win || streak.outcome == .loss ? streak.outcome.color : nil)
+        if p.bestWinStreak > 0 {
+          info(L("fighterDetailBestStreakLabel"), "chart.line.uptrend.xyaxis", L("streakWins", p.bestWinStreak),
+               color: .green)
+        }
+        if p.worstLossStreak > 0 {
+          info(L("fighterDetailWorstStreakLabel"), "chart.line.downtrend.xyaxis", L("streakLosses", p.worstLossStreak),
+               color: .red)
+        }
+      }
+    }
+
   }
 
   @ViewBuilder
@@ -94,13 +101,12 @@ struct FighterDetailView: View {
 
   @ViewBuilder
   private func history(_ p: FighterProfile) -> some View {
-    let matches = filterFightHistory(p.fightHistory, query)
-    if p.fightHistory.isEmpty || matches.isEmpty {
+    if p.fightHistory.isEmpty {
       Section(L("fighterDetailFightHistoryLabel")) {
-        Text(L(p.fightHistory.isEmpty ? "fighterDetailEmpty" : "searchNoResults")).foregroundStyle(.secondary)
+        Text(L("fighterDetailEmpty")).foregroundStyle(.secondary)
       }
     }
-    ForEach(Array(groupFightsByYear(matches).enumerated()), id: \.offset) { i, group in
+    ForEach(Array(groupFightsByYear(p.fightHistory).enumerated()), id: \.offset) { i, group in
       Section {
         ForEach(Array(group.fights.enumerated()), id: \.offset) { _, record in
           let isTitle = route.currentEventIsTitleFight && record.eventUrl == route.currentEventUrl
@@ -121,14 +127,19 @@ struct FighterDetailView: View {
     }
   }
 
+  /// Tap opens the opponent; long press previews the fight with "See fighter"
+  /// and "See event".
   @ViewBuilder
   private func historyRow(_ record: FighterFightRecord, isTitle: Bool) -> some View {
     let row = HistoryRow(record: record, isTitleFight: isTitle)
-    if let url = record.opponentUrl {
-      NavigationLink(value: FighterRoute(name: record.opponentName, url: url)) { row }
-    } else {
-      row
+    Group {
+      if let url = record.opponentUrl {
+        NavigationLink(value: FighterRoute(name: record.opponentName, url: url)) { row }
+      } else {
+        row
+      }
     }
+    .historyMenu(record, isTitleFight: isTitle)
   }
 
   @ViewBuilder
@@ -218,5 +229,57 @@ struct HistoryRow: View {
       }
     }
     .padding(.vertical, 2)
+  }
+}
+
+/// An event reached from a fighter's history: only its link, name and date are known.
+struct EventRoute: Hashable {
+  let url: String
+  let name: String
+  let dateText: String?
+}
+
+/// Looks the event up in Supabase, then shows its card. Events of other
+/// promotions aren't stored, so those say so instead.
+struct EventLoaderView: View {
+  @Environment(EventsStore.self) private var store
+  let route: EventRoute
+  @State private var event: Loadable<MmaEvent?> = .loading
+
+  var body: some View {
+    switch event {
+    case .loading:
+      ProgressView().task { await load() }
+    case .failed:
+      ContentUnavailableView(L("eventNotAvailableTitle"), systemImage: "calendar.badge.exclamationmark")
+    case .loaded(let found?):
+      EventDetailView(event: found)
+    case .loaded(nil):
+      ContentUnavailableView(
+        L("eventNotAvailableTitle"), systemImage: "calendar.badge.exclamationmark",
+        description: Text(L("eventNotAvailableMessage")))
+    }
+  }
+
+  private func load() async {
+    event = await event.reloaded {
+      if let found = try await store.repo.event(route.url) { return found }
+      // Scraping Sherdog directly: any event page works, built from the history row.
+      return store.repo.readsFromBackend ? nil : fallbackEvent()
+    }
+  }
+
+  /// "UFC 333 - Volkanovski vs. Evloev" and "Oct / 24 / 2026" as an event.
+  private func fallbackEvent() -> MmaEvent {
+    let parts = route.name.components(separatedBy: " - ")
+    var cal = Calendar(identifier: .gregorian)
+    cal.timeZone = TimeZone(identifier: "UTC")!
+    let date = SherdogParser.historyDate(route.dateText).flatMap {
+      cal.date(from: DateComponents(year: $0 / 10_000, month: $0 / 100 % 100, day: $0 % 100))
+    }
+    return MmaEvent(
+      id: route.url.firstMatch(of: /-(\d+)$/).map { String($0.1) } ?? route.url, eventName: parts[0],
+      matchup: parts.count > 1 ? parts.dropFirst().joined(separator: " - ") : nil, dateUtc: date ?? .now,
+      location: "", url: route.url, isUpcoming: false)
   }
 }
