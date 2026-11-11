@@ -33,13 +33,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "MMA ScoreCard"
+            "value" : "Danny MMA Results"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "MMA ScoreCard"
+            "value" : "Danny MMA Results"
           }
         }
       }
@@ -2372,13 +2372,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "MMA ScoreCard is provided as-is, for personal, non-commercial use. Continued use of the app constitutes acceptance of these terms; if you disagree with them, please stop using the app."
+            "value" : "Danny MMA Results is provided as-is, for personal, non-commercial use. Continued use of the app constitutes acceptance of these terms; if you disagree with them, please stop using the app."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "MMA ScoreCard se ofrece tal cual, para uso personal y no comercial. El uso continuado de la app implica la aceptación de estos términos; si no estás de acuerdo, deja de usar la app."
+            "value" : "Danny MMA Results se ofrece tal cual, para uso personal y no comercial. El uso continuado de la app implica la aceptación de estos términos; si no estás de acuerdo, deja de usar la app."
           }
         }
       }
@@ -2474,13 +2474,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "MMA ScoreCard does not have accounts or sign-in. Your preferences and the event cache are stored only on this device, and we do not upload any app-generated content."
+            "value" : "Danny MMA Results does not have accounts or sign-in. Your preferences and the event cache are stored only on this device, and we do not upload any app-generated content."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "MMA ScoreCard no tiene cuentas ni inicio de sesión. Tus preferencias y la caché de eventos se guardan solo en este dispositivo, y no subimos ningún contenido generado por la app."
+            "value" : "Danny MMA Results no tiene cuentas ni inicio de sesión. Tus preferencias y la caché de eventos se guardan solo en este dispositivo, y no subimos ningún contenido generado por la app."
           }
         }
       }
