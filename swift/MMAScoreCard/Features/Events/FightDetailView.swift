@@ -65,6 +65,8 @@ struct FightDetailView: View {
     }
     .navigationTitle("\(fight.fighterA) vs. \(fight.fighterB)")
     .toolbarTitleDisplayMode(.inline)
+    // One bout: nothing to search here.
+    .hidesSearchTab()
   }
 
   @ViewBuilder
