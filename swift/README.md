@@ -10,7 +10,9 @@ simulator/SDK**.
 open swift/MMAScoreCard.xcodeproj
 ```
 
-No configuration is needed. Pick an iPhone or iPad simulator and run.
+Copy `swift/MMAConfig.example.plist` to `swift/MMAScoreCard/Resources/MMAConfig.plist` (gitignored) and fill in `SUPABASE_URL` and `SUPABASE_ANON_KEY` of the shared Supabase project. Then pick an iPhone or iPad simulator and run.
+
+Events, fight cards and fighter profiles come from Supabase (`mma_` tables, see [danny270793/supabase](https://github.com/danny270793/supabase) `docs/mma/schema.md`). The app never scrapes Sherdog itself: pull-to-refresh asks the backend's `mma-sync` function to re-read Sherdog (rate-limited on the server), then reads Supabase again. The on-device cache is only used when Supabase can't be reached. Without `MMAConfig.plist` the app falls back to scraping Sherdog directly.
 
 ## Behind a corporate network
 
