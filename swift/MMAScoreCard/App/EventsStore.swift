@@ -26,8 +26,9 @@ enum Loadable<T> {
 
 /// Upcoming and past event lists, shared by their tabs and Search.
 ///
-/// Every request is served from the on-device cache when it has one; only
-/// pull-to-refresh and retry go back to the network.
+/// Data comes from Supabase (the on-device cache only fills in when offline);
+/// pull-to-refresh asks the backend to re-read Sherdog first. Without
+/// `MMAConfig.plist` the app scrapes Sherdog itself, cache first.
 @MainActor @Observable
 final class EventsStore {
   let repo: EventsRepository
@@ -41,7 +42,7 @@ final class EventsStore {
   private(set) var pastFailed = false
   private var pastStarted = false
 
-  init(repo: EventsRepository = EventsRepository()) {
+  init(repo: EventsRepository = .live()) {
     self.repo = repo
   }
 
@@ -49,7 +50,8 @@ final class EventsStore {
     upcoming = await upcoming.reloaded { try await repo.upcomingEvents(refresh: refresh) }
   }
 
-  /// Serves every cached past page; fetches page 1 only if nothing is cached.
+  /// Shows every cached past page, then reads page 1 (always from the
+  /// backend; from Sherdog only when nothing is cached).
   func loadPast() async {
     guard !pastStarted else { return }
     pastStarted = true
@@ -57,11 +59,14 @@ final class EventsStore {
     pastPages = cached.pages
     pastHasMore = cached.hasMore
     flatten()
-    if pastPages.isEmpty { await loadPastPage(1) }
+    if pastPages.isEmpty || repo.readsFromBackend { await loadPastPage(1) }
   }
 
-  /// Pull-to-refresh: re-fetches page 1, overwriting its cache entry.
-  func refreshPast() async { await loadPastPage(1) }
+  /// Pull-to-refresh: the backend re-reads Sherdog, then page 1 is read again.
+  func refreshPast() async {
+    await repo.refreshEventLists()
+    await loadPastPage(1)
+  }
 
   /// Infinite scroll: the page after the last one loaded.
   func loadNextPastPage() async {
