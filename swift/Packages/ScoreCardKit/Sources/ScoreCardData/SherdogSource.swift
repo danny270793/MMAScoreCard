@@ -79,7 +79,7 @@ public struct SherdogSource: EventsSource {
   }
 
   public func eventFights(_ eventUrl: String) async throws -> [EventFight] {
-    try SherdogParser.fights(try await fetch(eventUrl))
+    try SherdogParser.fights(try await fetch(eventUrl)).map { $0.withMixedSides() }
   }
 
   public func fighterProfile(_ fighterUrl: String) async throws -> FighterProfile {
@@ -276,7 +276,7 @@ public enum SherdogParser {
   private static let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
   /// "May / 09 / 2026" as a sortable (year, month, day) number.
-  static func historyDate(_ text: String?) -> Int? {
+  public static func historyDate(_ text: String?) -> Int? {
     let parts = (text ?? "").split(separator: "/").map { $0.trimmingCharacters(in: .whitespaces) }
     guard parts.count == 3, let m = months.firstIndex(of: parts[0]), let d = Int(parts[1]), let y = Int(parts[2])
     else { return nil }
