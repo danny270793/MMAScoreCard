@@ -7,3 +7,6 @@ xcuserdata/
 
 # Corporate network root certificates. Never commit them.
 *.pem
+
+# Supabase project (URL + anon key). Never commit it; copy MMAConfig.example.plist instead.
+MMAScoreCard/Resources/MMAConfig.plist
