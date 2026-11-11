@@ -67,8 +67,9 @@ struct SettingsView: View {
   }
 }
 
-/// Every cached Sherdog request: what it is, when it was cached and last
-/// refreshed, how often it was read and its size.
+/// Every saved response: what it is, when it was first saved and last
+/// refreshed, how often it was used and its size. With Supabase these are the
+/// last responses of each request, used only offline.
 struct CacheView: View {
   @Environment(EventsStore.self) private var store
   @State private var entries: [CachedRequestInfo] = []
@@ -77,38 +78,40 @@ struct CacheView: View {
     List {
       if entries.isEmpty {
         ContentUnavailableView(L("cachedRecordsEmpty"), systemImage: "externaldrive").listRowBackground(Color.clear)
+      } else {
+        // Totals first, the way Settings > iPhone Storage does it.
+        Section {
+          LabeledContent(L("cachedRecordsCountLabel"), value: "\(entries.count)")
+          LabeledContent(
+            L("cachedRecordsSizeLabel"),
+            value: ByteCountFormatter.string(
+              fromByteCount: Int64(entries.reduce(0) { $0 + $1.sizeBytes }), countStyle: .file))
+        }
+        .monospacedDigit()
       }
-      ForEach(entries) { e in
-        HStack(alignment: .top) {
-          VStack(alignment: .leading, spacing: 2) {
-            Text(label(e)).font(.headline)
-            #if DEBUG
-              Text(URL(string: e.url)?.path ?? e.url).font(.caption2).foregroundStyle(.secondary).lineLimit(1)
-            #endif
-            Text(L("cachedAtLabel", date(e.cachedAt))).font(.caption).foregroundStyle(.secondary)
-            Text(L("cachedRefreshedAtLabel", date(e.refreshedAt))).font(.caption).foregroundStyle(.secondary)
-          }
-          Spacer()
-          VStack(alignment: .trailing, spacing: 2) {
-            Text(ByteCountFormatter.string(fromByteCount: Int64(e.sizeBytes), countStyle: .file))
-              .font(.subheadline.weight(.semibold)).monospacedDigit()
-            Text(L("cachedReadCountLabel", e.readCount)).font(.caption).foregroundStyle(.secondary)
+      Section {
+        ForEach(entries) { e in
+          HStack(alignment: .top) {
+            VStack(alignment: .leading, spacing: 2) {
+              Text(label(e)).font(.headline)
+              #if DEBUG
+                Text(request(e.url)).font(.caption2).foregroundStyle(.secondary).lineLimit(2)
+              #endif
+              Text(L("cachedAtLabel", date(e.cachedAt))).font(.caption).foregroundStyle(.secondary)
+              Text(L("cachedRefreshedAtLabel", date(e.refreshedAt))).font(.caption).foregroundStyle(.secondary)
+            }
+            Spacer()
+            VStack(alignment: .trailing, spacing: 2) {
+              Text(ByteCountFormatter.string(fromByteCount: Int64(e.sizeBytes), countStyle: .file))
+                .font(.subheadline.weight(.semibold)).monospacedDigit()
+              Text(L(store.repo.readsFromBackend ? "cachedOfflineUseCountLabel" : "cachedReadCountLabel", e.readCount))
+                .font(.caption).foregroundStyle(.secondary)
+            }
           }
         }
       }
     }
     .navigationTitle(L("settingsOfflineCache"))
-    .safeAreaInset(edge: .bottom) {
-      if !entries.isEmpty {
-        let total = entries.reduce(0) { $0 + $1.sizeBytes }
-        Text("\(entries.count) · \(ByteCountFormatter.string(fromByteCount: Int64(total), countStyle: .file))")
-          .font(.headline).monospacedDigit()
-          .frame(maxWidth: .infinity)
-          .padding(.vertical, 12)
-          .glassEffect(.regular, in: .capsule)
-          .padding(.horizontal, 16)
-      }
-    }
     .task { entries = await store.repo.cachedRequests() }
   }
 
@@ -118,7 +121,18 @@ struct CacheView: View {
     case .pastPage: L("cachedPastPageLabel", e.page ?? 0)
     case .fightCard: L("cachedFightCardLabel")
     case .fighterProfile: L("cachedFighterProfileLabel")
+    case .event: L("cachedEventLabel")
+    case .browse: L("cachedBrowseLabel")
     }
+  }
+
+  /// Supabase requests as "mma_fights · event.sherdog_id=eq.114293 · …"
+  /// (the column list is left out); Sherdog URLs as their path.
+  private func request(_ raw: String) -> String {
+    guard let c = URLComponents(string: raw) else { return raw }
+    guard c.path.contains("/rest/v1/") else { return c.path }
+    let filters = (c.queryItems ?? []).filter { $0.name != "select" }.map { "\($0.name)=\($0.value ?? "")" }
+    return ([String(c.path.split(separator: "/").last ?? "")] + filters).joined(separator: " · ")
   }
 
   private func date(_ d: Date) -> String {
