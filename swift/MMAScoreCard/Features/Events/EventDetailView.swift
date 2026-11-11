@@ -2,33 +2,32 @@ import ScoreCardCore
 import SwiftUI
 
 /// Where and when, KO / submission / decision totals, and the fight card,
-/// main event first. Search filters the card by fighter or division.
+/// main event first. The search button searches the card (fighter or division).
 struct EventDetailView: View {
   @Environment(EventsStore.self) private var store
   let event: MmaEvent
   @State private var fights: Loadable<[EventFight]> = .loading
-  @State private var query = ""
 
   var body: some View {
     List {
       Section {
-        LabeledContent {
-          Text(event.location).multilineTextAlignment(.trailing)
-        } label: {
-          Label(L("eventDetailLocationLabel"), systemImage: "mappin.and.ellipse")
-        }
-        LabeledContent {
-          Text(Fmt.eventDate(event.dateUtc))
-        } label: {
-          Label(L("eventDetailDateLabel"), systemImage: "calendar")
-        }
-      } header: {
-        if let matchup = event.matchup { Text(matchup).font(.title3.bold()).foregroundStyle(.primary).textCase(nil) }
+          LabeledContent {
+            Text(event.location).multilineTextAlignment(.trailing)
+          } label: {
+            Label(L("eventDetailLocationLabel"), systemImage: "mappin.and.ellipse")
+          }
+          LabeledContent {
+            Text(Fmt.eventDate(event.dateUtc))
+          } label: {
+            Label(L("eventDetailDateLabel"), systemImage: "calendar")
+          }
+        } header: {
+          if let matchup = event.matchup { Text(matchup).font(.title3.bold()).foregroundStyle(.primary).textCase(nil) }
       }
 
       if let all = fights.value {
         let stats = CardStatistics(all)
-        if !stats.isEmpty && query.isEmpty {
+        if !stats.isEmpty {
           Section(L("eventDetailStatisticsLabel")) {
             HStack {
               StatTile(symbol: FightMethodKind.koTko.symbol, color: .red, value: "\(stats.koTko)", label: L("statKoTko"))
@@ -55,18 +54,18 @@ struct EventDetailView: View {
         case .loaded(let all) where all.isEmpty:
           Text(L("eventDetailEmpty")).foregroundStyle(.secondary)
         case .loaded(let all):
-          let matches = filterFights(all, query)
-          if matches.isEmpty { Text(L("searchNoResults")).foregroundStyle(.secondary) }
-          ForEach(Array(matches.enumerated()), id: \.offset) { _, fight in
+          ForEach(Array(all.enumerated()), id: \.offset) { _, fight in
             NavigationLink(value: FightRoute(event: event, fight: fight)) { FightRow(fight: fight) }
+              .fightMenu(fight, event: nil)
               .listRowBackground(fight.isTitleFight ? Color.yellow.opacity(0.12) : nil)
           }
         }
       }
     }
+    .fightMenuDestinations()
     .navigationTitle(event.eventName)
     .toolbarTitleDisplayMode(.inline)
-    .searchable(text: $query, prompt: L("searchFightsHint"))
+    .searchScope(.event(event, fights.value ?? []))
     .toolbar {
       ToolbarItem(placement: .primaryAction) {
         if let url = URL(string: event.url) {
