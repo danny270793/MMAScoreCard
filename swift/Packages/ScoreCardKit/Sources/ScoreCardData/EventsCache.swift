@@ -2,9 +2,12 @@ import CryptoKit
 import Foundation
 import ScoreCardCore
 
-/// Persists every Sherdog response (event listings, fight cards, fighter
-/// profiles) as JSON files, so none is fetched more than once: once a URL has
-/// an entry, reads come from here until a pull-to-refresh overwrites it.
+/// On-device copies, as JSON files.
+///
+/// With Supabase: the last response of every request (event lists, fight
+/// cards, fighter profiles), keyed by the request URL and served only when
+/// Supabase can't be reached. Scraping Sherdog directly: the decoded data
+/// keyed by Sherdog URL, served until a pull-to-refresh overwrites it.
 ///
 /// `index.json` keeps per-entry metadata: first cached, last refreshed, how
 /// many times it was read, plus whether more past pages exist.
@@ -75,6 +78,36 @@ public actor EventsCache {
     write("fighter_\(fighterUrl)", profile, url: fighterUrl, kind: .fighterProfile)
   }
 
+  // MARK: Raw responses (Supabase)
+
+  private static let responsePrefix = "response_"
+
+  /// Stores a Supabase response exactly as received, keyed by the full request URL.
+  public func saveResponse(_ data: Data, for url: URL, kind: CachedRequestKind, page: Int? = nil) {
+    store(Self.responsePrefix + url.absoluteString, data, url: url.absoluteString, kind: kind, page: page)
+  }
+
+  /// The last response saved for this exact request; counts as a read.
+  public func response(for url: URL) -> Data? {
+    let key = Self.responsePrefix + url.absoluteString
+    guard index.entries[key] != nil, let data = try? Data(contentsOf: file(key)) else { return nil }
+    index.entries[key]?.readCount += 1
+    saveIndex()
+    return data
+  }
+
+  /// Drops the entries saved before reads moved to Supabase (decoded Sherdog
+  /// data keyed by Sherdog links), keeping the raw responses.
+  public func removeNonResponseEntries() {
+    let stale = index.entries.keys.filter { !$0.hasPrefix(Self.responsePrefix) }
+    guard !stale.isEmpty else { return }
+    for key in stale {
+      try? FileManager.default.removeItem(at: file(key))
+      index.entries[key] = nil
+    }
+    saveIndex()
+  }
+
   /// Every cached request on disk, most recently refreshed first.
   public func requests() -> [CachedRequestInfo] {
     index.entries.compactMap { key, meta -> CachedRequestInfo? in
@@ -108,6 +141,10 @@ public actor EventsCache {
   /// every write, so a pull-to-refresh doesn't reset "cached".
   private func write<T: Encodable>(_ key: String, _ value: T, url: String, kind: CachedRequestKind, page: Int? = nil) {
     guard let data = try? encoder.encode(value) else { return }
+    store(key, data, url: url, kind: kind, page: page)
+  }
+
+  private func store(_ key: String, _ data: Data, url: String, kind: CachedRequestKind, page: Int?) {
     try? data.write(to: file(key), options: .atomic)
     let now = Date()
     var meta =
