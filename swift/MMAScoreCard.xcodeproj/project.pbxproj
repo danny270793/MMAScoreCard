@@ -170,7 +170,7 @@
 				DEVELOPMENT_TEAM = 8TGP3K3MLX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Danny MMA Results";
+				INFOPLIST_KEY_CFBundleDisplayName = "Danny MMA ScoreCards";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Unlock the app with Face ID when you enable this option.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -208,7 +208,7 @@
 				DEVELOPMENT_TEAM = 8TGP3K3MLX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Danny MMA Results";
+				INFOPLIST_KEY_CFBundleDisplayName = "Danny MMA ScoreCards";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Unlock the app with Face ID when you enable this option.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
