@@ -22,6 +22,8 @@ struct LegalView: View {
           }
           .frame(maxWidth: .infinity)
           .listRowBackground(Color.clear)
+        }
+        Section {
           LabeledContent(L("settingsAboutVersionLabel"), value: version)
         }
         Section(L("settingsAboutFeaturesHeading")) {
